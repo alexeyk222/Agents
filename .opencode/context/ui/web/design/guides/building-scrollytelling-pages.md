@@ -1,31 +1,31 @@
 <!-- Context: ui/building-scrollytelling-pages | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
 ---
-description: "Step-by-step implementation of scroll-linked image sequence animations"
+description: "Пошаговая реализация scroll-linked-анимаций последовательности изображений"
 ---
 
-# Guide: Building Scrollytelling Pages
+# Руководство: создание scrollytelling-страниц
 
-**Purpose**: Step-by-step implementation of scroll-linked image sequence animations
+**Purpose**: Пошаговая реализация scroll-linked-анимаций последовательности изображений
 
 **Last Updated**: 2026-01-07
 
 ---
 
-## Prerequisites
+## Требования
 
-- Next.js 14+ project with App Router
-- Framer Motion installed (`npm i framer-motion`)
-- Tailwind CSS configured
-- Image sequence ready (60-240 WebP frames)
+- Проект Next.js 14+ с App Router
+- Установленный Framer Motion (`npm i framer-motion`)
+- Настроенный Tailwind CSS
+- Готовая последовательность изображений (60-240 WebP frames)
 
 ---
 
-## Step 1: Generate Image Sequences
+## Шаг 1: Генерация последовательностей изображений
 
-Use nano banana or AI image tools to create start/end frames, then generate interpolation:
+Используйте nano banana или AI-инструменты для изображений, чтобы создать стартовые/финальные кадры, затем сгенерируйте interpolation:
 
-**Start frame prompt**:
+**Промпт start frame**:
 ```
 Ultra-premium product photography of [product] on matte black surface,
 minimalistic studio shoot, deep black background with subtle gradient,
@@ -33,7 +33,7 @@ soft rim lighting, cinematic, high contrast, luxury aesthetic, sharp focus,
 no clutter, DSLR 85mm f/1.8, photorealistic
 ```
 
-**End frame prompt**:
+**Промпт end frame**:
 ```
 Exploded technical diagram of same [product], every component separated
 and floating in alignment, against deep black studio background, visible
@@ -41,9 +41,9 @@ internal structure, hyper-realistic, studio rim lighting, cinematic,
 high contrast, no labels, photorealistic
 ```
 
-**Generate video**: Use AI video tools (Runway, Pika) to interpolate between frames.
+**Сгенерируйте видео**: используйте AI video tools (Runway, Pika), чтобы интерполировать между кадрами.
 
-**Export frames**: Use ffmpeg or ezgif to split video into 120+ WebP images.
+**Экспортируйте кадры**: используйте ffmpeg или ezgif, чтобы разделить видео на 120+ WebP-изображений.
 
 ```bash
 ffmpeg -i animation.mp4 -vf fps=30 frame_%04d.webp
@@ -51,7 +51,7 @@ ffmpeg -i animation.mp4 -vf fps=30 frame_%04d.webp
 
 ---
 
-## Step 2: Project Structure
+## Шаг 2: Структура проекта
 
 ```
 app/
@@ -68,7 +68,7 @@ public/
 
 ---
 
-## Step 3: Setup globals.css
+## Шаг 3: Настройка globals.css
 
 ```css
 @tailwind base;
@@ -85,16 +85,16 @@ public/
 
 ---
 
-## Step 4: Create Scroll Component
+## Шаг 4: Создание scroll-компонента
 
-**Key patterns**:
-- Container with `h-[400vh]` for long scroll
-- Canvas with `sticky top-0` stays fixed
-- `useScroll` tracks scroll progress (0-1)
-- `useTransform` maps progress to frame index
-- `useEffect` preloads all images
+**Ключевые паттерны**:
+- Container с `h-[400vh]` для длинного scroll
+- Canvas с `sticky top-0` остается fixed
+- `useScroll` отслеживает scroll progress (0-1)
+- `useTransform` мапит progress на frame index
+- `useEffect` предварительно загружает все изображения
 
-**Core logic**:
+**Основная логика**:
 ```tsx
 const { scrollYProgress } = useScroll({ target: containerRef })
 const frameIndex = useTransform(scrollYProgress, [0, 1], [0, 119])
@@ -102,9 +102,9 @@ const frameIndex = useTransform(scrollYProgress, [0, 1], [0, 119])
 
 ---
 
-## Step 5: Implement Preloader
+## Шаг 5: Реализация preloader
 
-Always preload images before starting animation:
+Всегда предварительно загружайте изображения перед стартом анимации:
 
 ```tsx
 useEffect(() => {
@@ -128,9 +128,9 @@ useEffect(() => {
 
 ---
 
-## Step 6: Canvas Rendering
+## Шаг 6: Canvas rendering
 
-Draw current frame to canvas on every scroll update:
+Рисуйте текущий кадр в canvas при каждом обновлении scroll:
 
 ```tsx
 useEffect(() => {
@@ -154,9 +154,9 @@ useEffect(() => {
 
 ---
 
-## Step 7: Add Text Overlays
+## Шаг 7: Добавление текстовых overlays
 
-Fade text in/out at specific scroll positions:
+Делайте fade in/out текста в конкретных scroll positions:
 
 ```tsx
 <motion.div
@@ -174,18 +174,18 @@ Fade text in/out at specific scroll positions:
 
 ---
 
-## Step 8: Match Backgrounds
+## Шаг 8: Совпадение backgrounds
 
-**CRITICAL**: Page background MUST match image background exactly.
+**ВАЖНО**: фон страницы ДОЛЖЕН точно совпадать с фоном изображения.
 
-1. Open first frame in image editor
-2. Use eyedropper tool on background (e.g., `#050505`)
-3. Set page background to exact same color in globals.css
-4. Test: Image edges should be invisible
+1. Откройте первый кадр в графическом редакторе
+2. Используйте пипетку на фоне (например, `#050505`)
+3. Установите фон страницы в globals.css тем же цветом
+4. Проверьте: края изображения должны быть невидимыми
 
 ---
 
-## Step 9: Optimize Performance
+## Шаг 9: Оптимизация производительности
 
 ```tsx
 // Add GPU hint
@@ -209,9 +209,9 @@ useEffect(() => {
 
 ---
 
-## Step 10: Add Loading State
+## Шаг 10: Добавление loading state
 
-Show spinner while frames load:
+Показывайте spinner, пока загружаются кадры:
 
 ```tsx
 {loading && (
@@ -223,51 +223,51 @@ Show spinner while frames load:
 
 ---
 
-## Common Issues & Fixes
+## Частые проблемы и исправления
 
-### Images not loading
-- Check file paths match exactly (case-sensitive)
-- Verify all frames exist in `/public/frames/`
-- Open browser console for 404 errors
+### Изображения не загружаются
+- Проверьте точное совпадение путей файлов (case-sensitive)
+- Убедитесь, что все кадры есть в `/public/frames/`
+- Откройте browser console и проверьте 404 errors
 
-### Stuttering animation
-- Ensure all images preloaded before starting
-- Use WebP (not PNG/JPEG)
-- Check canvas size isn't too large
+### Анимация дергается
+- Убедитесь, что все изображения предварительно загружены перед стартом
+- Используйте WebP (не PNG/JPEG)
+- Проверьте, что размер canvas не слишком большой
 
-### Visible image edges
-- Background colors don't match exactly
-- Use eyedropper tool, not guessing
-- Check for gradients in image background
+### Видимые края изображения
+- Цвета фона не совпадают точно
+- Используйте пипетку, не подбирайте на глаз
+- Проверьте gradients на фоне изображения
 
-### Mobile performance
-- Reduce frame count (use every 2nd frame)
-- Debounce with requestAnimationFrame
-- Consider disabling on small screens
-
----
-
-## Testing Checklist
-
-- [ ] All frames load without 404s
-- [ ] Animation smooth from 0-100% scroll
-- [ ] Text fades in/out at correct positions
-- [ ] Background seamlessly blends with images
-- [ ] Loading spinner shows before animation
-- [ ] Works on mobile (or gracefully disabled)
-- [ ] No console errors
+### Производительность на mobile
+- Уменьшите frame count (используйте каждый 2-й frame)
+- Делайте debounce через requestAnimationFrame
+- Рассмотрите отключение на small screens
 
 ---
 
-## Related
+## Чеклист тестирования
 
-- concepts/scroll-linked-animations.md - Understanding the technique
-- examples/headphone-scrollytelling.md - Full code example
-- lookup/animation-image-prompts.md - Prompts for frame generation
+- [ ] Все кадры загружаются без 404
+- [ ] Анимация плавная на 0-100% scroll
+- [ ] Текст делает fade in/out в корректных позициях
+- [ ] Background бесшовно совпадает с изображениями
+- [ ] Loading spinner показывается до анимации
+- [ ] Работает на mobile (или gracefully disabled)
+- [ ] Нет console errors
 
 ---
 
-## References
+## Связано
+
+- concepts/scroll-linked-animations.md - понять технику
+- examples/headphone-scrollytelling.md - полный пример кода
+- lookup/animation-image-prompts.md - промпты для генерации кадров
+
+---
+
+## Ссылки
 
 - [Next.js Image Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images)
 - [Framer Motion useScroll](https://www.framer.com/motion/use-scroll/)

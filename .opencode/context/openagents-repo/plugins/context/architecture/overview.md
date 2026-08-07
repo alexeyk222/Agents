@@ -1,27 +1,27 @@
 <!-- Context: openagents-repo/overview | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenCode Plugins Overview
+# Обзор плагинов OpenCode
 
-OpenCode plugins are JavaScript or TypeScript modules that hook into **25+ events** across the entire OpenCode lifecycle—from when you type a prompt, to when tools execute, to when sessions complete.
+Плагины OpenCode — это модули JavaScript или TypeScript, которые подключаются к **25+ событиям** всего жизненного цикла OpenCode: от ввода prompt до выполнения инструментов и завершения сессий.
 
-## Key Concepts
+## Ключевые концепции
 
-- **Zero-Config**: No build step or compilation required. Just drop `.ts` or `.js` files into the plugin folder.
-- **Middleware Pattern**: Plugins subscribe to events and execute logic, similar to Express.js middleware.
-- **Access**: Plugins receive a `context` object with:
-  - `project`: Current project metadata.
-  - `client`: OpenCode SDK client for programmatic control.
-  - `$`: Bun's shell API for running commands.
-  - `directory`: Current working directory.
-  - `worktree`: Git worktree path.
+- **Zero-Config**: сборка или компиляция не нужны. Достаточно положить `.ts` или `.js` файлы в папку плагинов.
+- **Паттерн middleware**: плагины подписываются на события и выполняют логику, как middleware в Express.js.
+- **Доступ**: плагины получают объект `context` с:
+  - `project`: метаданные текущего проекта.
+  - `client`: клиент OpenCode SDK для программного управления.
+  - `$`: shell API Bun для запуска команд.
+  - `directory`: текущая рабочая директория.
+  - `worktree`: путь к Git worktree.
 
-## Plugin Registration
+## Регистрация плагинов
 
-OpenCode looks for plugins in:
-1. **Project-level**: `.opencode/plugin/` (project root)
-2. **Global**: `~/.config/opencode/plugin/` (home directory)
+OpenCode ищет плагины в:
+1. **Уровень проекта**: `.opencode/plugin/` (корень проекта)
+2. **Глобально**: `~/.config/opencode/plugin/` (домашняя директория)
 
-## Basic Structure
+## Базовая структура
 
 ```typescript
 export const MyPlugin = async (context) => {
@@ -35,26 +35,26 @@ export const MyPlugin = async (context) => {
 };
 ```
 
-Each exported function becomes a separate plugin instance. The name of the export is used as the plugin name.
+Каждая экспортированная функция становится отдельным экземпляром плагина. Имя экспорта используется как имя плагина.
 
-## Build and Development
+## Сборка и разработка
 
-OpenCode plugins are typically written in TypeScript and bundled into a single JavaScript file for execution.
+Плагины OpenCode обычно пишут на TypeScript и собирают в один JavaScript-файл для выполнения.
 
-### Build Command
-Use Bun to bundle the plugin into the `dist` directory:
+### Команда сборки
+Используйте Bun, чтобы собрать плагин в директорию `dist`:
 
 ```bash
 bun build src/index.ts --outdir dist --target bun --format esm
 ```
 
-The output will be a single file (e.g., `./index.js`) containing all dependencies.
+На выходе будет один файл (например, `./index.js`) со всеми зависимостями.
 
-### Development Workflow
-1. **Source Code**: Write your plugin in `src/index.ts`.
-2. **Bundle**: Run the build command to generate `dist/index.js`.
-3. **Load**: Point OpenCode to the bundled file or the directory containing the manifest.
-4. **Watch Mode**: For rapid development, use the `--watch` flag with Bun build:
+### Процесс разработки
+1. **Исходный код**: пишите плагин в `src/index.ts`.
+2. **Сборка**: запустите команду сборки, чтобы создать `dist/index.js`.
+3. **Загрузка**: укажите OpenCode на собранный файл или директорию с манифестом.
+4. **Режим наблюдения**: для быстрой разработки используйте флаг `--watch` с Bun build:
    ```bash
    bun build src/index.ts --outdir dist --target bun --format esm --watch
    ```

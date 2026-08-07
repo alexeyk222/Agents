@@ -1,31 +1,31 @@
 <!-- Context: standards/docs | Priority: critical | Version: 2.0 | Updated: 2025-01-21 -->
 
-# Documentation Standards
+# Стандарты документации
 
-## Quick Reference
+## Краткая справка
 
-**Golden Rule**: If users ask the same question twice, document it
+**Золотое правило**: Если пользователи дважды задают один вопрос — задокументируйте ответ
 
-**Document** (✅ DO):
-- WHY decisions were made
-- Complex algorithms/logic
-- Public APIs, setup, common use cases
+**Документируйте** (✅ делайте):
+- ПОЧЕМУ были приняты решения
+- Сложные алгоритмы/логику
+- Публичные API, настройку, типовые сценарии
 
-**Don't Document** (❌ DON'T):
-- Obvious code (i++ doesn't need comment)
-- What code does (should be self-explanatory)
+**Не документируйте** (❌ не делайте):
+- Очевидный код (`i++` не требует комментария)
+- Что делает код (это должно быть понятно из самого кода)
 
-**Principles**: Audience-focused, Show don't tell, Keep current
+**Принципы**: Ориентация на аудиторию, показывайте вместо объяснений, поддерживайте актуальность
 
 ---
 
-## Principles
+## Принципы
 
-**Audience-focused**: Write for users (what/how), developers (why/when), contributors (setup/conventions)
-**Show, don't tell**: Code examples, real use cases, expected output
-**Keep current**: Update with code changes, remove outdated info, mark deprecations
+**Ориентация на аудиторию**: Пишите для пользователей (что/как), разработчиков (почему/когда), контрибьюторов (настройка/соглашения)
+**Показывайте вместо объяснений**: Примеры кода, реальные сценарии, ожидаемый вывод
+**Поддерживайте актуальность**: Обновляйте вместе с кодом, удаляйте устаревшее, помечайте deprecated
 
-## README Structure
+## Структура README
 
 ```markdown
 # Project Name
@@ -40,12 +40,12 @@ Brief description (1-2 sentences)
 npm install package-name
 ```
 
-## Quick Start
+## Быстрый старт
 ```javascript
 const result = doSomething();
 ```
 
-## Usage
+## Использование
 [Detailed examples]
 
 ## API Reference
@@ -58,7 +58,7 @@ const result = doSomething();
 [License type]
 ```
 
-## Function Documentation
+## Документация функций
 
 ```javascript
 /**
@@ -76,27 +76,27 @@ function calculateTotal(price, taxRate) {
 }
 ```
 
-## What to Document
+## Что документировать
 
-### ✅ DO
-- **WHY** decisions were made
-- Complex algorithms/logic
-- Non-obvious behavior
-- Public APIs
-- Setup/installation
-- Common use cases
-- Known limitations
-- Workarounds (with explanation)
+### ✅ Делайте
+- **ПОЧЕМУ** были приняты решения
+- Сложные алгоритмы/логику
+- Неочевидное поведение
+- Публичные API
+- Настройку/установку
+- Типовые сценарии
+- Известные ограничения
+- Обходные решения (с объяснением)
 
-### ❌ DON'T
-- Obvious code (i++ doesn't need comment)
-- What code does (should be self-explanatory)
-- Redundant information
-- Outdated/incorrect info
+### ❌ Не делайте
+- Очевидный код (`i++` не требует комментария)
+- Что делает код (это должно быть понятно из самого кода)
+- Избыточную информацию
+- Устаревшую/некорректную информацию
 
-## Comments
+## Комментарии
 
-### Good
+### Хорошо
 ```javascript
 // Calculate discount by tier (Bronze: 5%, Silver: 10%, Gold: 15%)
 const discount = getDiscountByTier(customer.tier);
@@ -107,7 +107,7 @@ const items = response.items || [];
 // TODO: Use async/await when Node 18+ is minimum
 ```
 
-### Bad
+### Плохо
 ```javascript
 // Increment i
 i++;
@@ -116,7 +116,7 @@ i++;
 const user = getUser();
 ```
 
-## API Documentation
+## Документация API
 
 ```markdown
 ### POST /api/users
@@ -137,14 +137,14 @@ Create a new user
 - 409 - Email exists
 ```
 
-## Best Practices
+## Лучшие практики
 
-✅ Explain WHY, not just WHAT
-✅ Include working examples
-✅ Show expected output
-✅ Cover error handling
-✅ Use consistent terminology
-✅ Keep structure predictable
-✅ Update when code changes
+✅ Объясняйте ПОЧЕМУ, а не только ЧТО
+✅ Добавляйте рабочие примеры
+✅ Показывайте ожидаемый вывод
+✅ Описывайте обработку ошибок
+✅ Используйте согласованную терминологию
+✅ Держите структуру предсказуемой
+✅ Обновляйте при изменениях кода
 
-**Golden Rule**: If users ask the same question twice, document it.
+**Золотое правило**: Если пользователи дважды задают один вопрос — задокументируйте ответ.

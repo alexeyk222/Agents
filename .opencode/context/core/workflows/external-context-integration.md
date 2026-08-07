@@ -1,33 +1,33 @@
 <!-- Context: workflows/external-context-integration | Priority: high | Version: 1.0 | Updated: 2026-01-28 -->
-# External Context Integration Guide
+# Руководство: интеграция внешнего контекста
 
-## Overview
+## Обзор
 
-This guide explains how to integrate external context (fetched via ExternalScout) into the main agent workflow so that subagents can access it without re-fetching.
+Это руководство объясняет, как встроить внешний контекст (полученный через ExternalScout) в workflow основного агента, чтобы subagents могли использовать его без повторной загрузки.
 
-**Key Principle**: Main agents fetch external docs once → persist to disk → reference in session → subagents read (no re-fetching)
-
----
-
-## When to Use External Context
-
-Use ExternalScout to fetch external context when:
-
-1. **User asks about external libraries** (Drizzle, Better Auth, Next.js, etc.)
-2. **Task involves integration** between multiple external libraries
-3. **Setup or configuration** of external tools is needed
-4. **API patterns or best practices** from external libraries are relevant
-
-**Don't use** when:
-- Question is about internal project code
-- Answer is in `.opencode/context/` (use ContextScout instead)
-- User is asking for general programming concepts
+**Ключевой принцип**: основные агенты получают внешнюю документацию один раз → сохраняют на диск → ссылаются в сессии → subagents читают (без повторной загрузки)
 
 ---
 
-## Integration Workflow
+## Когда использовать внешний контекст
 
-### Stage 1: Analyze & Discover (Before Approval)
+Используйте ExternalScout для получения внешнего контекста, когда:
+
+1. **Пользователь спрашивает о внешних библиотеках** (Drizzle, Better Auth, Next.js и т. д.)
+2. **Задача включает интеграцию** между несколькими внешними библиотеками
+3. Нужна **настройка или конфигурация** внешних инструментов
+4. Релевантны **API-паттерны или лучшие практики** внешних библиотек
+
+**Не используйте**, когда:
+- Вопрос про внутренний код проекта
+- Ответ есть в `.opencode/context/` (используйте ContextScout)
+- Пользователь спрашивает общие концепции программирования
+
+---
+
+## Процесс интеграции
+
+### Этап 1: анализ и обнаружение (до одобрения)
 
 ```
 Main Agent (OpenAgent, etc.)
@@ -48,7 +48,7 @@ Main Agent (OpenAgent, etc.)
   6. Do NOT write anything to disk yet
 ```
 
-### Stage 2: Propose Plan (Before Approval)
+### Этап 2: предложить план (до одобрения)
 
 ```
 Main Agent
@@ -63,7 +63,7 @@ Main Agent
   3. Wait for user approval
 ```
 
-### Stage 3: Approve (User Gate)
+### Этап 3: одобрение (user gate)
 
 ```
 User
@@ -71,7 +71,7 @@ User
   Approves plan (or redirects)
 ```
 
-### Stage 4: Init Session (After Approval)
+### Этап 4: инициализировать сессию (после одобрения)
 
 ```
 Main Agent
@@ -92,7 +92,7 @@ Main Agent
      - Note that files are read-only
 ```
 
-### Stage 5: Delegate with Context Path
+### Этап 5: делегировать с путем к контексту
 
 ```
 Main Agent
@@ -109,7 +109,7 @@ Main Agent
   5. TaskManager includes in subtask JSONs
 ```
 
-### Stage 6: Subagents Read External Context
+### Этап 6: subagents читают внешний контекст
 
 ```
 TaskManager / CoderAgent / TestEngineer
@@ -127,11 +127,11 @@ TaskManager / CoderAgent / TestEngineer
 
 ---
 
-## Implementation Details
+## Детали реализации
 
-### Step 1: Call ExternalScout
+### Шаг 1: вызвать ExternalScout
 
-In your main agent (before approval):
+В основном агенте (до одобрения):
 
 ```javascript
 // Detect external libraries from user request
@@ -157,10 +157,10 @@ task(
 // - .tmp/external-context/next.js/app-router-setup.md
 ```
 
-### Step 2: Propose Plan with External Context
+### Шаг 2: предложить план с внешним контекстом
 
 ```markdown
-## Implementation Plan
+## План реализации
 
 **Task**: Set up Drizzle + Better Auth in Next.js
 
@@ -182,9 +182,9 @@ task(
 **Approval needed before proceeding.**
 ```
 
-### Step 3: Create Session with External Context
+### Шаг 3: создать сессию с внешним контекстом
 
-After approval, create `.tmp/sessions/{session-id}/context.md`:
+После одобрения создайте `.tmp/sessions/{session-id}/context.md`:
 
 ```markdown
 # Task Context: Drizzle + Better Auth Integration
@@ -196,11 +196,11 @@ Status: in_progress
 ## Current Request
 Set up Drizzle ORM with Better Auth in a Next.js application
 
-## Context Files (Standards to Follow)
+## Файлы контекста (стандарты для соблюдения)
 - .opencode/context/core/standards/code-quality.md
 - .opencode/context/core/standards/test-coverage.md
 
-## Reference Files (Source Material)
+## Справочные файлы (исходный материал)
 - package.json
 - src/db/schema.ts (existing)
 - src/auth/config.ts (existing)
@@ -247,7 +247,7 @@ These are live documentation files fetched from external libraries. Subagents sh
 - [ ] Handoff complete
 ```
 
-### Step 4: Delegate to TaskManager
+### Шаг 4: делегировать TaskManager
 
 ```javascript
 task(
@@ -272,9 +272,9 @@ task(
 )
 ```
 
-### Step 5: TaskManager Creates Subtasks with External Context
+### Шаг 5: TaskManager создает подзадачи с внешним контекстом
 
-TaskManager creates subtask JSONs like:
+TaskManager создает JSON подзадач, например:
 
 ```json
 {
@@ -303,159 +303,159 @@ TaskManager creates subtask JSONs like:
 }
 ```
 
-### Step 6: CoderAgent Implements Using External Context
+### Шаг 6: CoderAgent реализует, используя внешний контекст
 
-CoderAgent reads subtask JSON and:
+CoderAgent читает JSON подзадачи и:
 
-1. Loads context_files (standards)
-2. Reads reference_files (existing code)
-3. **Reads external_context files** (external docs)
-4. Implements following all standards and external docs
-5. Returns completed subtask
-
----
-
-## Best Practices
-
-### For Main Agents
-
-✅ **DO**:
-- Call ExternalScout early in planning phase
-- Capture returned file paths
-- Add to session context under "## External Context Fetched"
-- Pass session path to subagents
-- Include external context in proposal to user
-
-❌ **DON'T**:
-- Forget to call ExternalScout when external libraries involved
-- Skip adding external context to session
-- Re-fetch external docs (trust ExternalScout persistence)
-- Modify external context files
-
-### For ExternalScout
-
-✅ **DO**:
-- Always persist fetched docs to `.tmp/external-context/`
-- Update `.manifest.json` after each fetch
-- Include metadata header in every file
-- Filter aggressively to relevant sections
-- Cite sources and include official docs links
-
-❌ **DON'T**:
-- Forget to persist files
-- Skip manifest updates
-- Return entire documentation
-- Fabricate documentation content
-- Write outside `.tmp/external-context/`
-
-### For TaskManager
-
-✅ **DO**:
-- Extract external_context from session context
-- Include in subtask JSONs
-- Pass to downstream agents
-- Document which external docs informed decisions
-
-❌ **DON'T**:
-- Forget to include external_context in subtasks
-- Mix external_context with context_files
-- Assume subagents will re-fetch
-
-### For Subagents (CoderAgent, TestEngineer, etc.)
-
-✅ **DO**:
-- Read external_context files from subtask JSON
-- Use external docs to inform implementation
-- Reference external docs in comments
-- Follow patterns from external docs
-
-❌ **DON'T**:
-- Re-fetch external documentation
-- Ignore external context files
-- Modify external context files
-- Assume external docs are optional
+1. Загружает `context_files` (стандарты)
+2. Читает `reference_files` (существующий код)
+3. **Читает файлы `external_context`** (внешняя документация)
+4. Реализует с учетом всех стандартов и внешней документации
+5. Возвращает завершенную подзадачу
 
 ---
 
-## Example: Complete Flow
+## Лучшие практики
 
-### User Request
+### Для основных агентов
+
+✅ **ДЕЛАЙТЕ**:
+- Вызывайте ExternalScout рано на этапе планирования
+- Сохраняйте возвращенные пути файлов
+- Добавляйте в контекст сессии в раздел "## External Context Fetched"
+- Передавайте путь сессии subagents
+- Включайте внешний контекст в предложение пользователю
+
+❌ **НЕ ДЕЛАЙТЕ**:
+- Не забывайте вызывать ExternalScout, когда задействованы внешние библиотеки
+- Не пропускайте добавление внешнего контекста в сессию
+- Не загружайте внешнюю документацию повторно (доверяйте сохранению ExternalScout)
+- Не изменяйте файлы внешнего контекста
+
+### Для ExternalScout
+
+✅ **ДЕЛАЙТЕ**:
+- Всегда сохраняйте полученную документацию в `.tmp/external-context/`
+- Обновляйте `.manifest.json` после каждой загрузки
+- Включайте metadata header в каждый файл
+- Агрессивно фильтруйте до релевантных разделов
+- Цитируйте источники и добавляйте ссылки на официальную документацию
+
+❌ **НЕ ДЕЛАЙТЕ**:
+- Не забывайте сохранять файлы
+- Не пропускайте обновления manifest
+- Не возвращайте всю документацию целиком
+- Не выдумывайте содержимое документации
+- Не пишите за пределами `.tmp/external-context/`
+
+### Для TaskManager
+
+✅ **ДЕЛАЙТЕ**:
+- Извлекайте `external_context` из контекста сессии
+- Включайте в JSON подзадач
+- Передавайте нижестоящим агентам
+- Документируйте, какая внешняя документация повлияла на решения
+
+❌ **НЕ ДЕЛАЙТЕ**:
+- Не забывайте включать `external_context` в подзадачи
+- Не смешивайте `external_context` с `context_files`
+- Не предполагайте, что subagents будут загружать повторно
+
+### Для subagents (CoderAgent, TestEngineer и т. д.)
+
+✅ **ДЕЛАЙТЕ**:
+- Читайте файлы `external_context` из JSON подзадачи
+- Используйте внешнюю документацию для реализации
+- Ссылайтесь на внешнюю документацию в комментариях
+- Следуйте паттернам из внешней документации
+
+❌ **НЕ ДЕЛАЙТЕ**:
+- Не загружайте внешнюю документацию повторно
+- Не игнорируйте файлы внешнего контекста
+- Не изменяйте файлы внешнего контекста
+- Не считайте внешнюю документацию необязательной
+
+---
+
+## Пример: полный поток
+
+### Запрос пользователя
 ```
 "Set up Drizzle ORM with Better Auth in Next.js, using modular schema organization"
 ```
 
-### Main Agent Flow
+### Поток основного агента
 
-1. **Analyze**: Detect Drizzle, Better Auth, Next.js
-2. **Discover**: Call ContextScout + ExternalScout
-3. **Propose**: Show plan with external context files
-4. **Approve**: User approves
-5. **Init Session**: Create context.md with external context section
-6. **Delegate**: Call TaskManager with session path
-7. **Validate**: Check tests pass
-8. **Complete**: Update docs, cleanup
+1. **Анализ**: обнаружить Drizzle, Better Auth, Next.js
+2. **Обнаружение**: вызвать ContextScout + ExternalScout
+3. **Предложение**: показать план с файлами внешнего контекста
+4. **Одобрение**: пользователь одобряет
+5. **Инициализация сессии**: создать `context.md` с разделом внешнего контекста
+6. **Делегирование**: вызвать TaskManager с путем сессии
+7. **Проверка**: проверить, что тесты проходят
+8. **Завершение**: обновить docs, очистить
 
-### ExternalScout Flow
+### Поток ExternalScout
 
-1. **Detect**: Drizzle, Better Auth, Next.js
-2. **Fetch**: Get docs from Context7 API
-3. **Filter**: Extract relevant sections
-4. **Persist**: Write to `.tmp/external-context/{package}/{topic}.md`
-5. **Update**: Add to `.manifest.json`
-6. **Return**: File paths to main agent
+1. **Обнаружение**: Drizzle, Better Auth, Next.js
+2. **Получение**: получить документацию из Context7 API
+3. **Фильтрация**: извлечь релевантные разделы
+4. **Сохранение**: записать в `.tmp/external-context/{package}/{topic}.md`
+5. **Обновление**: добавить в `.manifest.json`
+6. **Возврат**: вернуть пути файлов основному агенту
 
-### TaskManager Flow
+### Поток TaskManager
 
-1. **Read**: Session context.md
-2. **Extract**: External context files
-3. **Create**: Subtasks with external_context field
-4. **Delegate**: Pass to CoderAgent
+1. **Чтение**: `context.md` сессии
+2. **Извлечение**: файлы внешнего контекста
+3. **Создание**: подзадачи с полем `external_context`
+4. **Делегирование**: передать CoderAgent
 
-### CoderAgent Flow
+### Поток CoderAgent
 
-1. **Read**: Subtask JSON
-2. **Load**: context_files (standards)
-3. **Reference**: reference_files (existing code)
-4. **Read**: external_context files (external docs)
-5. **Implement**: Following all standards and external docs
-6. **Complete**: Return implemented subtask
-
----
-
-## Troubleshooting
-
-### External Context Files Not Found
-
-**Problem**: Subagent can't find `.tmp/external-context/{package}/{topic}.md`
-
-**Solution**:
-1. Check ExternalScout ran successfully
-2. Verify file path in session context matches actual location
-3. Check `.manifest.json` to see what's cached
-4. If missing, re-run ExternalScout
-
-### Stale External Context
-
-**Problem**: External docs are outdated
-
-**Solution**:
-1. Delete stale files: `scripts/external-context/manage-external-context.sh delete-package {package}`
-2. Re-run ExternalScout to fetch fresh docs
-3. Update session context with new file paths
-
-### Manifest Out of Sync
-
-**Problem**: `.manifest.json` doesn't match actual files
-
-**Solution**:
-1. Regenerate manifest: `scripts/external-context/manage-external-context.sh regenerate-manifest`
-2. Verify all files have metadata headers
+1. **Чтение**: JSON подзадачи
+2. **Загрузка**: `context_files` (стандарты)
+3. **Справка**: `reference_files` (существующий код)
+4. **Чтение**: файлы `external_context` (внешняя документация)
+5. **Реализация**: реализовать по всем стандартам и внешней документации
+6. **Завершение**: вернуть реализованную подзадачу
 
 ---
 
-## References
+## Устранение неполадок
+
+### Файлы внешнего контекста не найдены
+
+**Проблема**: subagent не может найти `.tmp/external-context/{package}/{topic}.md`
+
+**Решение**:
+1. Проверьте, что ExternalScout выполнился успешно
+2. Убедитесь, что путь в контексте сессии совпадает с фактическим расположением
+3. Проверьте `.manifest.json`, чтобы увидеть, что закэшировано
+4. Если файла нет, повторно запустите ExternalScout
+
+### Устаревший внешний контекст
+
+**Проблема**: внешняя документация устарела
+
+**Решение**:
+1. Удалите устаревшие файлы: `scripts/external-context/manage-external-context.sh delete-package {package}`
+2. Повторно запустите ExternalScout для свежей документации
+3. Обновите контекст сессии новыми путями файлов
+
+### Manifest не синхронизирован
+
+**Проблема**: `.manifest.json` не соответствует фактическим файлам
+
+**Решение**:
+1. Пересоздайте manifest: `scripts/external-context/manage-external-context.sh regenerate-manifest`
+2. Убедитесь, что у всех файлов есть metadata headers
+
+---
+
+## Ссылки
 
 - **ExternalScout**: `.opencode/agent/subagents/core/externalscout.md`
-- **External Context Management**: `.opencode/context/core/workflows/external-context-management.md`
-- **Task Delegation**: `.opencode/context/core/workflows/task-delegation-basics.md`
-- **Management Script**: `scripts/external-context/manage-external-context.sh`
+- **Управление внешним контекстом**: `.opencode/context/core/workflows/external-context-management.md`
+- **Делегирование задач**: `.opencode/context/core/workflows/task-delegation-basics.md`
+- **Скрипт управления**: `scripts/external-context/manage-external-context.sh`

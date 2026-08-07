@@ -1,43 +1,43 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Adding an OpenCode Skill (Basics)
+# Руководство: добавление OpenCode Skill (основы)
 
-**Prerequisites**: Load `plugins/context/capabilities/events_skills.md` first  
-**Purpose**: Create an OpenCode skill directory and SKILL.md file
+**Предварительно**: сначала загрузите `plugins/context/capabilities/events_skills.md`  
+**Цель**: создать каталог OpenCode skill и файл SKILL.md
 
-**Note**: This is for **OpenCode skills** (internal system). For **Claude Code Skills**, see `creating-skills.md`.
-
----
-
-## Overview
-
-Adding an OpenCode skill involves:
-1. Creating skill directory structure
-2. Creating SKILL.md file
-3. Creating router script (optional)
-4. Creating CLI implementation (optional)
-5. Registering in registry (optional)
-6. Testing
-
-**Time**: ~10-15 minutes
+**Примечание**: это для **OpenCode skills** (внутренняя система). Для **Claude Code Skills** см. `creating-skills.md`.
 
 ---
 
-## Step 1: Create Skill Directory
+## Обзор
 
-### Choose Skill Name
+Добавление OpenCode skill включает:
+1. Создание структуры каталога skill
+2. Создание файла SKILL.md
+3. Создание router script (опционально)
+4. Создание CLI-реализации (опционально)
+5. Регистрацию в registry (опционально)
+6. Тестирование
+
+**Время**: ~10–15 минут
+
+---
+
+## Шаг 1: создайте каталог skill
+
+### Выберите имя skill
 
 - **kebab-case**: `task-management`, `brand-guidelines`
-- **Descriptive**: Clear indication of what skill provides
-- **Short**: Max 3-4 words
+- **Описательное**: ясно показывает, что предоставляет skill
+- **Короткое**: максимум 3–4 слова
 
-### Create Structure
+### Создайте структуру
 
 ```bash
 mkdir -p .opencode/skills/{skill-name}/scripts
 ```
 
-**Standard structure**:
+**Стандартная структура**:
 ```
 .opencode/skills/{skill-name}/
 ├── SKILL.md              # Required: Main skill documentation
@@ -48,7 +48,7 @@ mkdir -p .opencode/skills/{skill-name}/scripts
 
 ---
 
-## Step 2: Create SKILL.md
+## Шаг 2: создайте SKILL.md
 
 ### Frontmatter
 
@@ -84,21 +84,21 @@ npx ts-node .opencode/skills/{skill-name}/scripts/skill-cli.ts command1
 | `command2` | What command2 does |
 ```
 
-### Claude Code Skills (Optional)
+### Claude Code Skills (опционально)
 
-For Claude Code Skills (`.claude/skills/`), add extra frontmatter:
-- `allowed-tools` - Tool restrictions
-- `context` + `agent` - Run in forked subagent
-- `hooks` - Lifecycle events
-- `user-invocable` - Hide from slash menu
+Для Claude Code Skills (`.claude/skills/`) добавьте дополнительный frontmatter:
+- `allowed-tools` — ограничения инструментов
+- `context` + `agent` — запуск в forked subagent
+- `hooks` — события жизненного цикла
+- `user-invocable` — скрыть из slash menu
 
-See `creating-skills.md` for Claude Code Skills details.
+Подробности о Claude Code Skills см. в `creating-skills.md`.
 
 ---
 
-## Step 3: Create Router Script (Optional)
+## Шаг 3: создайте router-скрипт (опционально)
 
-For CLI-based skills:
+Для CLI-based skills:
 
 ```bash
 #!/bin/bash
@@ -133,17 +133,17 @@ chmod +x .opencode/skills/{skill-name}/router.sh
 
 ---
 
-## Next Steps
+## Следующие шаги
 
-- **CLI Implementation** → `adding-skill-implementation.md`
-- **Complete Example** → `adding-skill-example.md`
+- **CLI-реализация** → `adding-skill-implementation.md`
+- **Полный пример** → `adding-skill-example.md`
 - **Claude Code Skills** → `creating-skills.md`
 
 ---
 
-## Related
+## Связанное
 
-- `creating-skills.md` - Claude Code Skills (different system)
-- `adding-skill-implementation.md` - CLI and registry
-- `adding-skill-example.md` - Task-management example
-- `plugins/context/capabilities/events_skills.md` - Skills Plugin
+- `creating-skills.md` — Claude Code Skills (другая система)
+- `adding-skill-implementation.md` — CLI и registry
+- `adding-skill-example.md` — пример task-management
+- `plugins/context/capabilities/events_skills.md` — Skills Plugin

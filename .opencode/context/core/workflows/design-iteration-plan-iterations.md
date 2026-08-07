@@ -1,19 +1,19 @@
 <!-- Context: workflows/design-iteration-plan-iterations | Priority: high | Version: 1.0 | Updated: 2025-12-09 -->
-# Handling Plan File Edits and Iterations
+# Обработка правок файла плана и итераций
 
-## User Edits Plan File Directly
+## Пользователь редактирует файл плана напрямую
 
-**Scenario**: User opens `.tmp/design-plans/{name}.md` and makes changes
+**Сценарий**: пользователь открывает `.tmp/design-plans/{name}.md` и вносит изменения
 
-**Process**:
-1. User edits plan file (changes requirements, adds constraints, modifies goals)
-2. User notifies agent: "I've updated the plan file"
-3. Agent reads updated plan file
-4. Agent identifies what changed
-5. Agent proposes how to incorporate changes
-6. Agent updates affected stages
+**Процесс**:
+1. Пользователь редактирует файл плана (меняет требования, добавляет ограничения, корректирует цели)
+2. Пользователь сообщает агенту: "I've updated the plan file"
+3. Агент читает обновленный файл плана
+4. Агент определяет, что изменилось
+5. Агент предлагает, как учесть изменения
+6. Агент обновляет затронутые этапы
 
-**Example**:
+**Пример**:
 ```
 User: "I've updated the plan file - changed the color scheme to dark mode"
 
@@ -35,19 +35,19 @@ Would you like me to:
 
 ---
 
-## Iteration Within a Stage
+## Итерация внутри этапа
 
-**Scenario**: User requests changes during a stage
+**Сценарий**: пользователь просит изменения во время этапа
 
-**Process**:
-1. Agent presents stage output (e.g., layout wireframe)
-2. User requests changes: "Make the hero section taller"
-3. Agent updates plan file with feedback
-4. Agent makes changes
-5. Agent updates plan file with new iteration
-6. Agent presents updated output
+**Процесс**:
+1. Агент показывает результат этапа (например, layout wireframe)
+2. Пользователь просит изменения: "Make the hero section taller"
+3. Агент обновляет файл плана обратной связью
+4. Агент вносит изменения
+5. Агент обновляет файл плана новой итерацией
+6. Агент показывает обновленный результат
 
-**Example**:
+**Пример**:
 ```
 Stage 1 - Layout Design
 
@@ -65,9 +65,9 @@ Agent:
 
 ---
 
-## Tracking Iterations in Plan File
+## Отслеживание итераций в файле плана
 
-**Format**:
+**Формат**:
 ```markdown
 ## Design Evolution
 
@@ -94,13 +94,13 @@ Agent:
 
 ---
 
-## Subagent Context Preservation
+## Сохранение контекста subagent
 
-**Problem**: Subagents lose context between calls
+**Проблема**: subagents теряют контекст между вызовами
 
-**Solution**: Always pass plan file path
+**Решение**: всегда передавайте путь к файлу плана
 
-**Pattern**:
+**Паттерн**:
 ```javascript
 // When delegating to subagent
 task(
@@ -124,30 +124,30 @@ task(
 
 ---
 
-## Plan File as Single Source of Truth
+## Файл плана как единый источник правды
 
-### Benefits
+### Преимущества
 
-- ✅ All design decisions in one place
-- ✅ User can review and edit anytime
-- ✅ Subagents have full context
-- ✅ Design history preserved
-- ✅ Easy to iterate and refine
-- ✅ No context loss between stages
+- ✅ Все дизайн-решения в одном месте
+- ✅ Пользователь может просматривать и редактировать в любое время
+- ✅ У subagents есть полный контекст
+- ✅ История дизайна сохранена
+- ✅ Легко выполнять итерации и уточнения
+- ✅ Нет потери контекста между этапами
 
-### Best Practices
+### Лучшие практики
 
-- Always read plan file at start of each stage
-- Update plan file after every user interaction
-- Track all iterations with timestamps
-- Document user feedback verbatim
-- Mark approved decisions clearly
-- Pass plan file path to all subagents
+- Всегда читайте файл плана в начале каждого этапа
+- Обновляйте файл плана после каждого взаимодействия с пользователем
+- Отслеживайте все итерации с timestamps
+- Документируйте обратную связь пользователя дословно
+- Ясно отмечайте утвержденные решения
+- Передавайте путь к файлу плана всем subagents
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Overview](./design-iteration-overview.md)
-- [Design Plan File](./design-iteration-plan-file.md)
-- [Best Practices](./design-iteration-best-practices.md)
+- [Обзор](./design-iteration-overview.md)
+- [Файл плана дизайна](./design-iteration-plan-file.md)
+- [Лучшие практики](./design-iteration-best-practices.md)

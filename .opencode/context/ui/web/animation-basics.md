@@ -1,35 +1,35 @@
 <!-- Context: ui/web/animation-basics | Priority: high | Version: 1.0 | Updated: 2025-12-09 -->
-# Animation Basics
+# Основы анимации
 
-## Overview
+## Обзор
 
-Standards and patterns for UI animations, micro-interactions, and transitions. Animations should feel natural, purposeful, and enhance user experience without causing distraction.
+Стандарты и паттерны для UI-анимаций, микроинтеракций и переходов. Анимации должны ощущаться естественно, иметь цель и улучшать UX без отвлечения.
 
-## Quick Reference
+## Краткая справка
 
-**Timing**: 150-400ms for most interactions
-**Easing**: ease-out for entrances, ease-in for exits
-**Purpose**: Every animation should have a clear purpose
-**Performance**: Use transform and opacity for 60fps
+**Длительность**: 150-400ms для большинства взаимодействий
+**Easing**: ease-out для появления, ease-in для выхода
+**Цель**: у каждой анимации должна быть понятная задача
+**Производительность**: используйте transform и opacity для 60fps
 
 ---
 
-## Animation Micro-Syntax
+## Микросинтаксис анимаций
 
-### Notation Guide
+### Правила записи
 
-**Format**: `element: duration easing [properties] modifiers`
+**Формат**: `element: duration easing [properties] modifiers`
 
-**Symbols**:
-- `→` = transition from → to
-- `±` = oscillate/shake
-- `↗` = increase
-- `↘` = decrease
-- `∞` = infinite loop
-- `×N` = repeat N times
-- `+Nms` = delay N milliseconds
+**Символы**:
+- `→` = переход от → к
+- `±` = колебание/тряска
+- `↗` = увеличение
+- `↘` = уменьшение
+- `∞` = бесконечный цикл
+- `×N` = повторить N раз
+- `+Nms` = задержка на N миллисекунд
 
-**Properties**:
+**Свойства**:
 - `Y` = translateY
 - `X` = translateX
 - `S` = scale
@@ -37,14 +37,14 @@ Standards and patterns for UI animations, micro-interactions, and transitions. A
 - `α` = opacity
 - `bg` = background
 
-**Example**: `button: 200ms ease-out [S1→1.05, α0.8→1]`
-- Button scales from 1 to 1.05 and fades from 0.8 to 1 over 200ms with ease-out
+**Пример**: `button: 200ms ease-out [S1→1.05, α0.8→1]`
+- Кнопка масштабируется с 1 до 1.05 и меняет opacity с 0.8 до 1 за 200ms с ease-out
 
 ---
 
-## Core Animation Principles
+## Базовые принципы анимации
 
-### Timing Standards
+### Стандарты длительности
 
 ```
 Ultra-fast:  100-150ms  (micro-feedback, hover states)
@@ -54,7 +54,7 @@ Moderate:    350-500ms  (page transitions, complex animations)
 Slow:        500-800ms  (dramatic reveals, storytelling)
 ```
 
-### Easing Functions
+### Функции easing
 
 ```css
 /* Entrances - start slow, end fast */
@@ -73,22 +73,22 @@ bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 ```
 
-### Performance Guidelines
+### Рекомендации по производительности
 
-**60fps Animations** (GPU-accelerated):
+**Анимации 60fps** (GPU-ускорение):
 - ✅ `transform` (translate, scale, rotate)
 - ✅ `opacity`
-- ✅ `filter` (with caution)
+- ✅ `filter` (осторожно)
 
-**Avoid** (causes reflow/repaint):
+**Избегайте** (вызывает reflow/repaint):
 - ❌ `width`, `height`
 - ❌ `top`, `left`, `right`, `bottom`
 - ❌ `margin`, `padding`
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Animation Components](./animation-components.md) - Common UI patterns
-- [Loading Animations](./animation-loading.md) - Loading states
-- [Advanced Animations](./animation-advanced.md) - Recipes & best practices
+- [Анимации компонентов](./animation-components.md) - распространенные UI-паттерны
+- [Анимации загрузки](./animation-loading.md) - состояния загрузки
+- [Продвинутые анимации](./animation-advanced.md) - рецепты и лучшие практики

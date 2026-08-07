@@ -1,12 +1,12 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Debugging Common Issues
+# Руководство: диагностика частых проблем
 
-**Purpose**: Troubleshooting guide for common problems
+**Цель**: руководство по устранению частых проблем
 
 ---
 
-## Quick Diagnostics
+## Быстрая диагностика
 
 ```bash
 # Check system health
@@ -22,26 +22,26 @@ cd evals/framework && npm run eval:sdk -- --agent=core/openagent --pattern="smok
 
 ---
 
-## Registry Issues
+## Проблемы registry
 
-### Registry Validation Fails
+### Валидация registry падает
 
-**Symptoms**:
+**Симптомы**:
 ```
 ERROR: Path does not exist: (example: .opencode/agent/core/missing.md)
 ```
 
-**Diagnosis**:
+**Диагностика**:
 ```bash
 ./scripts/registry/validate-registry.sh -v
 ```
 
-**Solutions**:
-1. **Path doesn't exist**: Remove entry or create file
-2. **Duplicate ID**: Rename one component
-3. **Invalid category**: Use valid category
+**Решения**:
+1. **Путь не существует**: удалите запись или создайте файл
+2. **Дублирующийся ID**: переименуйте один компонент
+3. **Неверная категория**: используйте допустимую category
 
-**Fix**:
+**Исправление**:
 ```bash
 # Re-run auto-detect
 ./scripts/registry/auto-detect-components.sh --auto-add
@@ -52,13 +52,13 @@ ERROR: Path does not exist: (example: .opencode/agent/core/missing.md)
 
 ---
 
-### Component Not in Registry
+### Компонент не в registry
 
-**Symptoms**:
-- Component doesn't appear in `./install.sh --list`
-- Auto-detect doesn't find component
+**Симптомы**:
+- Компонент не отображается в `./install.sh --list`
+- Auto-detect не находит компонент
 
-**Diagnosis**:
+**Диагностика**:
 ```bash
 # Check frontmatter
 head -10 .opencode/agent/{category}/{agent}.md
@@ -67,12 +67,12 @@ head -10 .opencode/agent/{category}/{agent}.md
 ./scripts/registry/auto-detect-components.sh --dry-run
 ```
 
-**Solutions**:
-1. **Missing frontmatter**: Add frontmatter
-2. **Invalid YAML**: Fix YAML syntax
-3. **Wrong location**: Move to correct directory
+**Решения**:
+1. **Отсутствует frontmatter**: добавьте frontmatter
+2. **Невалидный YAML**: исправьте YAML syntax
+3. **Неверное расположение**: переместите в правильный каталог
 
-**Fix**:
+**Исправление**:
 ```bash
 # Add frontmatter
 cat > .opencode/agent/{category}/{agent}.md << 'EOF'
@@ -91,17 +91,17 @@ EOF
 
 ---
 
-## Test Failures
+## Ошибки тестов
 
-### Approval Gate Violation
+### Нарушение approval gate
 
-**Symptoms**:
+**Симптомы**:
 ```
 ✗ Approval Gate: FAIL
   Violation: Agent executed write tool without requesting approval
 ```
 
-**Diagnosis**:
+**Диагностика**:
 ```bash
 # Run with debug
 cd evals/framework
@@ -112,8 +112,8 @@ ls -lt .tmp/sessions/ | head -5
 cat .tmp/sessions/{session-id}/session.json | jq
 ```
 
-**Solution**:
-Add approval request in agent prompt:
+**Решение**:
+Добавьте approval request в agent prompt:
 ```markdown
 Before executing:
 1. Present plan to user
@@ -123,22 +123,22 @@ Before executing:
 
 ---
 
-### Context Loading Violation
+### Нарушение загрузки контекста
 
-**Symptoms**:
+**Симптомы**:
 ```
 ✗ Context Loading: FAIL
   Violation: Agent executed write tool without loading required context
 ```
 
-**Diagnosis**:
+**Диагностика**:
 ```bash
 # Check what context was loaded
 cat .tmp/sessions/{session-id}/events.json | jq '.[] | select(.type == "context_load")'
 ```
 
-**Solution**:
-Add context loading in agent prompt:
+**Решение**:
+Добавьте загрузку context в agent prompt:
 ```markdown
 Before implementing:
 1. Load core/standards/code-quality.md
@@ -147,39 +147,39 @@ Before implementing:
 
 ---
 
-### Tool Usage Violation
+### Нарушение использования инструментов
 
-**Symptoms**:
+**Симптомы**:
 ```
 ✗ Tool Usage: FAIL
   Violation: Agent used bash tool for reading file instead of read tool
 ```
 
-**Diagnosis**:
+**Диагностика**:
 ```bash
 # Check tool usage
 cat .tmp/sessions/{session-id}/events.json | jq '.[] | select(.type == "tool_call")'
 ```
 
-**Solution**:
-Update agent to use correct tools:
-- Use `read` instead of `bash cat`
-- Use `list` instead of `bash ls`
-- Use `grep` instead of `bash grep`
+**Решение**:
+Обновите агента, чтобы он использовал правильные tools:
+- Используйте `read` вместо `bash cat`
+- Используйте `list` вместо `bash ls`
+- Используйте `grep` вместо `bash grep`
 
 ---
 
-## Install Issues
+## Проблемы установки
 
-### Install Script Fails
+### Install script падает
 
-**Symptoms**:
+**Симптомы**:
 ```
 ERROR: Failed to fetch registry
 ERROR: Component not found
 ```
 
-**Diagnosis**:
+**Диагностика**:
 ```bash
 # Check dependencies
 which curl jq
@@ -188,12 +188,12 @@ which curl jq
 REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list
 ```
 
-**Solutions**:
-1. **Missing dependencies**: Install curl and jq
-2. **Registry not found**: Check registry.json exists
-3. **Component not found**: Verify component in registry
+**Решения**:
+1. **Отсутствуют зависимости**: установите curl и jq
+2. **Registry не найден**: проверьте, что registry.json существует
+3. **Компонент не найден**: убедитесь, что компонент есть в registry
 
-**Fix**:
+**Исправление**:
 ```bash
 # Install dependencies (macOS)
 brew install curl jq
@@ -207,19 +207,19 @@ REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list
 
 ---
 
-### Collision Handling
+### Обработка конфликтов
 
-**Symptoms**:
+**Симптомы**:
 ```
 File exists: .opencode/agent/core/openagent.md
 ```
 
-**Solutions**:
-1. **Skip**: Keep existing file
-2. **Overwrite**: Replace with new file
-3. **Backup**: Backup existing, install new
+**Решения**:
+1. **Skip**: оставить существующий файл
+2. **Overwrite**: заменить новым файлом
+3. **Backup**: сделать backup существующего и установить новый
 
-**Fix**:
+**Исправление**:
 ```bash
 # Skip all collisions
 ./install.sh developer --skip-existing
@@ -233,16 +233,16 @@ File exists: .opencode/agent/core/openagent.md
 
 ---
 
-## Path Resolution Issues
+## Проблемы разрешения путей
 
-### Agent Not Found
+### Агент не найден
 
-**Symptoms**:
+**Симптомы**:
 ```
 ERROR: Agent not found: development/frontend-specialist
 ```
 
-**Diagnosis**:
+**Диагностика**:
 ```bash
 # Check file exists
 ls -la .opencode/agent/subagents/development/frontend-specialist.md
@@ -251,12 +251,12 @@ ls -la .opencode/agent/subagents/development/frontend-specialist.md
 cat registry.json | jq '.components.agents[] | select(.id == "frontend-specialist")'
 ```
 
-**Solutions**:
-1. **File doesn't exist**: Create file
-2. **Wrong path**: Fix path in registry
-3. **Not in registry**: Run auto-detect
+**Решения**:
+1. **Файл не существует**: создайте файл
+2. **Неверный путь**: исправьте path в registry
+3. **Нет в registry**: запустите auto-detect
 
-**Fix**:
+**Исправление**:
 ```bash
 # Re-run auto-detect
 ./scripts/registry/auto-detect-components.sh --auto-add
@@ -267,26 +267,26 @@ cat registry.json | jq '.components.agents[] | select(.id == "frontend-specialis
 
 ---
 
-## Version Issues
+## Проблемы версий
 
-### Version Mismatch
+### Несовпадение версий
 
-**Symptoms**:
+**Симптомы**:
 ```
 VERSION: 0.5.0
 package.json: 0.4.0
 registry.json: 0.5.0
 ```
 
-**Diagnosis**:
+**Диагностика**:
 ```bash
 cat VERSION
 cat package.json | jq '.version'
 cat registry.json | jq '.version'
 ```
 
-**Solution**:
-Update all to same version:
+**Решение**:
+Обновите всё до одной версии:
 ```bash
 echo "0.5.0" > VERSION
 jq '.version = "0.5.0"' package.json > tmp && mv tmp package.json
@@ -295,15 +295,15 @@ jq '.version = "0.5.0"' registry.json > tmp && mv tmp registry.json
 
 ---
 
-## CI/CD Issues
+## Проблемы CI/CD
 
-### Workflow Fails
+### Сбой workflow
 
-**Symptoms**:
-- Registry validation fails in CI
-- Tests fail in CI but pass locally
+**Симптомы**:
+- Registry validation падает в CI
+- Тесты падают в CI, но проходят локально
 
-**Diagnosis**:
+**Диагностика**:
 ```bash
 # Run same commands as CI
 ./scripts/registry/validate-registry.sh
@@ -311,37 +311,37 @@ jq '.version = "0.5.0"' registry.json > tmp && mv tmp registry.json
 cd evals/framework && npm run eval:sdk
 ```
 
-**Solutions**:
-1. **Registry invalid**: Fix registry
-2. **Tests fail**: Fix tests
-3. **Dependencies missing**: Update CI config
+**Решения**:
+1. **Registry невалиден**: исправьте registry
+2. **Тесты падают**: исправьте тесты
+3. **Зависимости отсутствуют**: обновите CI config
 
 ---
 
-## Performance Issues
+## Проблемы производительности
 
-### Tests Timeout
+### Timeout тестов
 
-**Symptoms**:
+**Симптомы**:
 ```
 ERROR: Test timeout after 60000ms
 ```
 
-**Solution**:
-Increase timeout in config.yaml:
+**Решение**:
+Увеличьте timeout в config.yaml:
 ```yaml
 timeout: 120000  # 2 minutes
 ```
 
 ---
 
-### Slow Auto-Detect
+### Медленный auto-detect
 
-**Symptoms**:
-Auto-detect takes too long
+**Симптомы**:
+Auto-detect выполняется слишком долго
 
-**Solution**:
-Limit scope:
+**Решение**:
+Ограничьте scope:
 ```bash
 # Only scan specific directory
 ./scripts/registry/auto-detect-components.sh --path .opencode/agent/development/
@@ -349,9 +349,9 @@ Limit scope:
 
 ---
 
-## Getting Help
+## Как получить помощь
 
-### Check Logs
+### Проверьте логи
 
 ```bash
 # Session logs
@@ -362,7 +362,7 @@ cat .tmp/sessions/{session-id}/session.json | jq
 cat .tmp/sessions/{session-id}/events.json | jq
 ```
 
-### Run Diagnostics
+### Запустите диагностику
 
 ```bash
 # Full system check
@@ -371,7 +371,7 @@ cat .tmp/sessions/{session-id}/events.json | jq
 cd evals/framework && npm run eval:sdk -- --agent=core/openagent
 ```
 
-### Common Commands
+### Частые команды
 
 ```bash
 # Validate everything
@@ -389,13 +389,13 @@ REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- **Testing guide**: `guides/testing-agent.md`
-- **Registry guide**: `guides/updating-registry.md`
-- **Eval concepts**: `core-concepts/evals.md`
+- **Руководство по тестированию**: `guides/testing-agent.md`
+- **Руководство по registry**: `guides/updating-registry.md`
+- **Концепции eval**: `core-concepts/evals.md`
 
 ---
 
-**Last Updated**: 2025-12-10  
-**Version**: 0.5.0
+**Последнее обновление**: 2025-12-10  
+**Версия**: 0.5.0

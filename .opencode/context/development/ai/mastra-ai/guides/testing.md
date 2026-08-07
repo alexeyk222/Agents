@@ -1,35 +1,35 @@
 <!-- Context: development/testing | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Testing Mastra
+# Руководство: тестирование Mastra
 
-**Purpose**: How to run and validate Mastra components in this project.
+**Назначение**: Как запускать и проверять компоненты Mastra в этом проекте.
 
-**Last Updated**: 2026-01-09
+**Обновлено**: 2026-01-09
 
 ---
 
-## Core Idea
-Testing in this project is divided into tool-level tests and full workflow integration tests. Use the provided npm scripts for rapid validation.
+## Основная идея
+Тестирование в этом проекте делится на тесты уровня tools и полные интеграционные тесты workflows. Используйте готовые npm-скрипты для быстрой проверки.
 
-## Key Points
-- **Tool Tests**: Validate individual tools in isolation (e.g., `npm run test:playbook`).
-- **Workflow Tests**: Run full end-to-end scenarios (e.g., `npm run test:workflow`).
-- **Baseline Tests**: Compare current performance against a known baseline (`npm run test:baseline`).
-- **Observability**: Use `npm run traces` after tests to inspect the execution details in the database.
+## Ключевые пункты
+- **Тесты tools**: проверяют отдельные tools изолированно (например, `npm run test:playbook`).
+- **Тесты workflows**: запускают полные end-to-end-сценарии (например, `npm run test:workflow`).
+- **Базовые тесты**: сравнивают текущие показатели с известным baseline-значением (`npm run test:baseline`).
+- **Наблюдаемость**: используйте `npm run traces` после тестов, чтобы посмотреть детали выполнения в базе данных.
 
-## Quick Example
+## Быстрый пример
 ```bash
-# Test a specific tool
+# Проверить конкретный tool
 npm run test:calculator
 
-# Run full validity workflow
+# Запустить полный validity workflow
 npm run validity:workflow
 
-# View results of the last run
+# Посмотреть результаты последнего запуска
 npm run traces
 ```
 
-**Reference**: `package.json` scripts, `scripts/` directory
-**Related**:
+**Источник**: `package.json` scripts, каталог `scripts/`
+**Связано**:
 - concepts/core.md
 - lookup/mastra-config.md

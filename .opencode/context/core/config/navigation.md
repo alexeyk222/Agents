@@ -1,12 +1,12 @@
 <!-- Context: core/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Core Configuration
+# Базовая конфигурация
 
-**Purpose**: Configuration standards and patterns for the context system
+**Назначение**: Стандарты и паттерны конфигурации для системы контекста
 
 ---
 
-## Structure
+## Структура
 
 ```
 core/config/
@@ -16,24 +16,24 @@ core/config/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **View configuration** | `../config/` |
-| **Core standards** | `../standards/navigation.md` |
-| **System guides** | `../system/navigation.md` |
+| **Посмотреть конфигурацию** | `../config/` |
+| **Базовые стандарты** | `../standards/navigation.md` |
+| **Системные руководства** | `../system/navigation.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Configuration Files** → Settings and configuration patterns for the context system
+**Файлы конфигурации** → Настройки и паттерны конфигурации для системы контекста
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Core Standards** → `../standards/navigation.md`
-- **Core System** → `../system/navigation.md`
-- **Core Navigation** → `../navigation.md`
+- **Базовые стандарты** → `../standards/navigation.md`
+- **Базовая система** → `../system/navigation.md`
+- **Базовая навигация** → `../navigation.md`

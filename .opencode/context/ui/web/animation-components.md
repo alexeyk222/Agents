@@ -1,11 +1,11 @@
 <!-- Context: ui/web/animation-components | Priority: high | Version: 1.0 | Updated: 2025-12-09 -->
-# Component Animation Patterns
+# Паттерны анимации компонентов
 
-Animation patterns for buttons, cards, modals, dropdowns, and sidebars.
+Паттерны анимации для кнопок, карточек, модальных окон, dropdown и sidebar.
 
 ---
 
-## Button Interactions
+## Взаимодействия с кнопками
 
 ```css
 .button {
@@ -27,7 +27,7 @@ Animation patterns for buttons, cards, modals, dropdowns, and sidebars.
 .button::after { animation: ripple 400ms ease-out; }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 buttonHover: 200ms ease-out [Y0→-2, shadow↗]
 buttonPress: 100ms ease-in [S1→0.95]
@@ -36,7 +36,7 @@ ripple: 400ms ease-out [S0→2, α1→0]
 
 ---
 
-## Card Interactions
+## Взаимодействия с карточками
 
 ```css
 .card {
@@ -53,7 +53,7 @@ ripple: 400ms ease-out [S0→2, α1→0]
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 cardHover: 300ms ease-out [Y0→-4, shadow↗]
 cardSelect: 200ms ease-out [S1→1.02, bg→accent]
@@ -61,7 +61,7 @@ cardSelect: 200ms ease-out [S1→1.02, bg→accent]
 
 ---
 
-## Modal/Dialog Animations
+## Анимации modal/dialog
 
 ```css
 .modal-backdrop { animation: fadeIn 300ms ease-out; }
@@ -80,7 +80,7 @@ cardSelect: 200ms ease-out [S1→1.02, bg→accent]
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 backdrop: 300ms ease-out [α0→1]
 modalEnter: 350ms ease-out [Y+40→0, α0→1]
@@ -89,7 +89,7 @@ modalExit: 250ms ease-in [Y0→+40, α1→0]
 
 ---
 
-## Dropdown/Menu Animations
+## Анимации dropdown/menu
 
 ```css
 .dropdown {
@@ -102,11 +102,11 @@ modalExit: 250ms ease-in [Y0→+40, α1→0]
 }
 ```
 
-**Micro-syntax**: `dropdown: 200ms ease-out [scaleY0.95→1, α0→1]`
+**Микросинтаксис**: `dropdown: 200ms ease-out [scaleY0.95→1, α0→1]`
 
 ---
 
-## Sidebar/Drawer Animations
+## Анимации sidebar/drawer
 
 ```css
 .sidebar { animation: slideInLeft 350ms ease-out; }
@@ -122,7 +122,7 @@ modalExit: 250ms ease-in [Y0→+40, α1→0]
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 sidebar: 350ms ease-out [X-280→0, α0→1]
 overlay: 300ms ease-out [α0→1, blur0→4px]
@@ -130,8 +130,8 @@ overlay: 300ms ease-out [α0→1, blur0→4px]
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Animation Basics](./animation-basics.md) - Fundamentals
-- [Chat Animations](./animation-chat.md) - Message patterns
-- [Loading Animations](./animation-loading.md) - Loading states
+- [Основы анимации](./animation-basics.md) - базовые принципы
+- [Анимации чата](./animation-chat.md) - паттерны сообщений
+- [Анимации загрузки](./animation-loading.md) - состояния загрузки

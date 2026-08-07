@@ -1,28 +1,28 @@
 <!-- Context: core/migrate | Priority: medium | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Context Migrate Operation
+# Операция Context Migrate
 
-**Purpose**: Copy context files from global (`~/.config/opencode/context/`) to local (`.opencode/context/`) so they're project-specific and git-committed.
+**Назначение**: копировать файлы контекста из global (`~/.config/opencode/context/`) в local (`.opencode/context/`), чтобы они были специфичны для проекта и попадали в git.
 
-**Last Updated**: 2026-02-06
-
----
-
-## Core Problem
-
-Users who installed OAC globally have project-intelligence files at `~/.config/opencode/context/project-intelligence/`. These files are project-specific patterns but aren't committed to git or shared with the team.
-
-**Solution**: Migrate project-intelligence from global → local, so patterns are version-controlled and team-shared.
+**Последнее обновление**: 2026-02-06
 
 ---
 
-## 4-Stage Workflow
+## Основная проблема
+
+У пользователей, установивших OAC глобально, файлы project-intelligence находятся в `~/.config/opencode/context/project-intelligence/`. Это паттерны конкретного проекта, но они не коммитятся в git и не доступны команде.
+
+**Решение**: мигрировать project-intelligence из global → local, чтобы паттерны версионировались и были доступны команде.
+
+---
+
+## 4-этапный workflow
 
 <workflow id="migrate" enforce="@critical_rules">
 
-### Stage 1: Detect Sources
+### Этап 1: обнаружить источники
 
-Scan for context files in the global config directory:
+Просканировать файлы контекста в глобальном каталоге конфигурации:
 
 ```
 Scanning global context...
@@ -40,15 +40,15 @@ Local location: .opencode/context/
 Status: No local project-intelligence/ found
 ```
 
-**If no global context found:**
+**Если global context не найден:**
 ```
 No global context found at ~/.config/opencode/context/
 
 Nothing to migrate. Use /add-context to create project intelligence.
 ```
-→ Exit
+→ Выход
 
-**If no global project-intelligence found (but other global context exists):**
+**Если global project-intelligence не найден (но другой global context существует):**
 ```
 Global context found at ~/.config/opencode/context/ but no project-intelligence/ directory.
 
@@ -57,13 +57,13 @@ Core standards stay in global (they're universal, not project-specific).
 
 Nothing to migrate. Use /add-context to create project intelligence.
 ```
-→ Exit
+→ Выход
 
 ---
 
-### Stage 2: Check for Conflicts
+### Этап 2: проверить конфликты
 
-If local `.opencode/context/project-intelligence/` already exists:
+Если локальный `.opencode/context/project-intelligence/` уже существует:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -93,7 +93,7 @@ Options:
 Choose [1/2/3]: _
 ```
 
-**If user chooses 2 (Overwrite), show content diff first:**
+**Если пользователь выбирает 2 (Overwrite), сначала покажите diff содержимого:**
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Diff: technical-domain.md
@@ -114,11 +114,11 @@ Backup local files to .tmp/backup/migrate-{timestamp}/ before overwriting?
 [y/n] (default: y): _
 ```
 
-If no conflicts → proceed directly to Stage 3.
+Если конфликтов нет → перейти прямо к этапу 3.
 
 ---
 
-### Stage 3: Approval & Copy
+### Этап 3: одобрение и копирование
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -141,14 +141,14 @@ After migration:
 Proceed? [y/n]: _
 ```
 
-**Actions on approval:**
-1. Create `.opencode/context/project-intelligence/` if it doesn't exist
-2. Copy each file from global → local
-3. Validate copied files (frontmatter, MVI compliance)
+**Действия после одобрения:**
+1. Создать `.opencode/context/project-intelligence/`, если он не существует
+2. Скопировать каждый файл из global → local
+3. Проверить скопированные файлы (frontmatter, соответствие MVI)
 
 ---
 
-### Stage 4: Cleanup & Confirmation
+### Этап 4: очистка и подтверждение
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -174,38 +174,38 @@ Keeping them means they still apply as fallback to other projects.
 Choose [1/2] (default: 1): _
 ```
 
-**If user chooses 2 (Remove):**
-- Delete `~/.config/opencode/context/project-intelligence/` only
-- Do NOT touch `~/.config/opencode/context/core/` or any other global context
+**Если пользователь выбирает 2 (Remove):**
+- Удалить только `~/.config/opencode/context/project-intelligence/`
+- НЕ трогать `~/.config/opencode/context/core/` или любой другой глобальный контекст
 
 </workflow>
 
 ---
 
-## What Gets Migrated
+## Что мигрируется
 
-| Migrated (project-specific) | NOT Migrated (universal) |
+| Мигрируется (специфично для проекта) | НЕ мигрируется (универсальное) |
 |---|---|
 | `project-intelligence/` | `core/standards/` |
 | `project-intelligence/technical-domain.md` | `core/context-system/` |
 | `project-intelligence/business-domain.md` | `core/workflows/` |
 | `project-intelligence/navigation.md` | `core/guides/` |
-| `project-intelligence/decisions-log.md` | Any other `core/` files |
+| `project-intelligence/decisions-log.md` | Любые другие файлы `core/` |
 | `project-intelligence/living-notes.md` | |
 
-**Rationale**: Project intelligence is project-specific (YOUR tech stack, YOUR patterns). Core standards are universal (code quality, documentation standards) and should stay global.
+**Обоснование**: project intelligence специфичен для проекта (ВАШ технологический стек, ВАШИ паттерны). Core standards универсальны (качество кода, стандарты документации) и должны оставаться глобальными.
 
 ---
 
-## Error Handling
+## Обработка ошибок
 
-**Permission denied:**
+**Нет прав доступа:**
 ```
 Error: Cannot write to .opencode/context/project-intelligence/
 Check directory permissions and try again.
 ```
 
-**Global path not found:**
+**Глобальный путь не найден:**
 ```
 No global OpenCode config found at ~/.config/opencode/
 
@@ -216,8 +216,8 @@ If you installed to a custom location, set OPENCODE_INSTALL_DIR:
 
 ---
 
-## Related
+## Связанные материалы
 
-- `/add-context` — Create new project intelligence (interactive wizard)
-- `/context harvest` — Extract knowledge from summaries
-- Context path resolution: `.opencode/context/core/system/context-paths.md`
+- `/add-context` — создать новый project intelligence (интерактивный мастер)
+- `/context harvest` — извлечь знания из сводок
+- Разрешение путей контекста: `.opencode/context/core/system/context-paths.md`

@@ -1,12 +1,12 @@
 <!-- Context: development/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# AI Navigation
+# Навигация по AI
 
-**Purpose**: AI frameworks, agent runtimes, and LLM integration patterns.
+**Назначение**: AI-фреймворки, среды выполнения агентов и паттерны интеграции LLM.
 
 ---
 
-## Structure
+## Структура
 
 ```
 ai/
@@ -18,14 +18,14 @@ ai/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
 | **MAStra AI** | `mastra-ai/navigation.md` |
 
 ---
 
-## By Technology
+## По технологии
 
-**MAStra AI** → AI framework for building agents and workflows.
+**MAStra AI** → AI-фреймворк для создания агентов и workflows.

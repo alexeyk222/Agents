@@ -1,23 +1,23 @@
 <!-- Context: development/modular-building | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Modular Mastra Building
+# Руководство: модульная сборка Mastra
 
-**Purpose**: Best practices for structuring a large-scale Mastra implementation.
+**Назначение**: Лучшие практики структурирования крупной реализации Mastra.
 
-**Last Updated**: 2026-01-09
+**Обновлено**: 2026-01-09
 
 ---
 
-## Core Idea
-Modular building ensures that as the project grows, components remain testable, reusable, and easy to navigate. This is achieved by separating logic into specialized directories and using a central registry.
+## Основная идея
+Модульная сборка помогает сохранять компоненты тестируемыми, переиспользуемыми и удобными для навигации по мере роста проекта. Это достигается разделением логики по специализированным каталогам и использованием центрального реестра.
 
-## Key Points
-- **Component Separation**: Keep `agents`, `tools`, `workflows`, and `scorers` in their own top-level directories within `src/mastra/`.
-- **Shared Services**: Use a `shared.ts` file to instantiate services (DB, repositories) to prevent circular dependencies between workflows and the main Mastra instance.
-- **Central Registry**: Register all components in `src/mastra/index.ts`. This is the single source of truth for the Mastra instance.
-- **Feature-Based Steps**: Group related workflow steps into sub-directories (e.g., `src/mastra/workflows/v3/steps/`) to keep workflow files clean.
+## Ключевые пункты
+- **Разделение компонентов**: держите `agents`, `tools`, `workflows` и `scorers` в отдельных каталогах верхнего уровня внутри `src/mastra/`.
+- **Общие сервисы**: используйте файл `shared.ts` для создания сервисов (БД, репозитории), чтобы избежать циклических зависимостей между workflows и основным экземпляром Mastra.
+- **Центральный реестр**: регистрируйте все компоненты в `src/mastra/index.ts`. Это единый источник истины для экземпляра Mastra.
+- **Шаги по фичам**: группируйте связанные шаги workflow в подкаталоги (например, `src/mastra/workflows/v3/steps/`), чтобы файлы workflow оставались чистыми.
 
-## Quick Example
+## Быстрый пример
 ```typescript
 // src/mastra/shared.ts
 export const services = createServices();
@@ -31,7 +31,7 @@ export const mastra = new Mastra({
 });
 ```
 
-**Reference**: `src/mastra/index.ts`, `src/mastra/shared.ts`
-**Related**:
+**Источник**: `src/mastra/index.ts`, `src/mastra/shared.ts`
+**Связано**:
 - concepts/core.md
 - guides/workflow-step-structure.md

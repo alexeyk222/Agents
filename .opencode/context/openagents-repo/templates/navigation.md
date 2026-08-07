@@ -1,40 +1,40 @@
 <!-- Context: openagents-repo/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Templates
+# Шаблоны OpenAgents
 
-**Purpose**: Template files and patterns for OpenAgents Control
+**Назначение**: файлы шаблонов и паттерны для OpenAgents Control
 
 ---
 
-## Structure
+## Структура
 
 ```
 openagents-repo/templates/
-├── navigation.md (this file)
-└── [template files]
+├── navigation.md (этот файл)
+└── [файлы шаблонов]
 ```
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **View templates** | `./` |
-| **Blueprints** | `../blueprints/navigation.md` |
-| **Guides** | `../guides/navigation.md` |
+| **Посмотреть шаблоны** | `./` |
+| **Чертежи** | `../blueprints/navigation.md` |
+| **Руководства** | `../guides/navigation.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Templates** → Reusable template files  
-**Patterns** → Common patterns and structures
+**Шаблоны** → переиспользуемые файлы шаблонов  
+**Паттерны** → общие паттерны и структуры
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **OpenAgents Navigation** → `../navigation.md`
-- **Blueprints** → `../blueprints/navigation.md`
-- **Guides** → `../guides/navigation.md`
+- **Навигация OpenAgents** → `../navigation.md`
+- **Чертежи** → `../blueprints/navigation.md`
+- **Руководства** → `../guides/navigation.md`

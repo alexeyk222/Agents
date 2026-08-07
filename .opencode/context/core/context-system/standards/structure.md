@@ -1,24 +1,24 @@
 <!-- Context: core/structure | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Context Structure
+# Структура контекста
 
-**Purpose**: Function-based folder organization for easy discovery
+**Назначение**: организация папок по функции для удобного поиска
 
-**Last Updated**: 2026-01-06
+**Последнее обновление**: 2026-01-06
 
 ---
 
-## Core Structure
+## Основная структура
 
 <rule id="function_structure" enforcement="strict">
-  ALWAYS organize by function (what info does), not just by topic.
+  ВСЕГДА организуйте по функции (что делает информация), а не только по теме.
   
-  Required folders:
-  - concepts/  - Core ideas, definitions, "what is it?"
-  - examples/  - Minimal working code
-  - guides/    - Step-by-step workflows
-  - lookup/    - Quick reference tables, commands, paths
-  - errors/    - Common issues, gotchas, fixes
+  Обязательные папки:
+  - concepts/  - основные идеи, определения, «что это?»
+  - examples/  - минимальный рабочий код
+  - guides/    - пошаговые процессы
+  - lookup/    - справочные таблицы, команды, пути
+  - errors/    - типовые проблемы, подводные камни, исправления
 </rule>
 
 ```
@@ -38,18 +38,18 @@
 
 ---
 
-## Folder Purposes
+## Назначение папок
 
 ### concepts/
-**Purpose**: Core ideas, definitions, "what is it?"
+**Назначение**: основные идеи, определения, «что это?»
 
-**Contains**:
-- Fundamental concepts
-- Design patterns
-- Architecture decisions
-- System principles
+**Содержит**:
+- Фундаментальные концепции
+- Дизайн-паттерны
+- Архитектурные решения
+- Системные принципы
 
-**Examples**:
+**Примеры**:
 - `concepts/authentication.md`
 - `concepts/state-management.md`
 - `concepts/mvi-principle.md`
@@ -57,88 +57,88 @@
 ---
 
 ### examples/
-**Purpose**: Minimal working code examples
+**Назначение**: минимальные рабочие примеры кода
 
-**Contains**:
-- Code snippets that work as-is
-- Minimal reproductions
-- Common patterns in action
+**Содержит**:
+- Сниппеты кода, работающие как есть
+- Минимальные воспроизведения
+- Типовые паттерны в действии
 
-**Examples**:
+**Примеры**:
 - `examples/jwt-auth-example.md`
 - `examples/react-hooks-example.md`
 - `examples/api-call-example.md`
 
-**Rule**: Examples should be <30 lines of code, fully functional
+**Правило**: примеры должны быть <30 строк кода и полностью функциональными
 
 ---
 
 ### guides/
-**Purpose**: Step-by-step workflows, "how to do X"
+**Назначение**: пошаговые процессы, «как сделать X»
 
-**Contains**:
-- Numbered procedures
-- Setup instructions
-- Implementation workflows
-- Migration guides
+**Содержит**:
+- Нумерованные процедуры
+- Инструкции по настройке
+- Процессы реализации
+- Руководства по миграции
 
-**Examples**:
+**Примеры**:
 - `guides/setting-up-auth.md`
 - `guides/deploying-api.md`
 - `guides/migrating-to-v2.md`
 
-**Rule**: Steps should be actionable (not theoretical)
+**Правило**: шаги должны быть практическими, а не теоретическими
 
 ---
 
 ### lookup/
-**Purpose**: Quick reference tables, commands, paths
+**Назначение**: справочные таблицы, команды, пути
 
-**Contains**:
-- Command lists
-- File locations
-- API endpoints
-- Configuration options
-- Keyboard shortcuts
+**Содержит**:
+- Списки команд
+- Расположения файлов
+- API-endpoints
+- Опции конфигурации
+- Горячие клавиши
 
-**Examples**:
+**Примеры**:
 - `lookup/cli-commands.md`
 - `lookup/file-locations.md`
 - `lookup/api-endpoints.md`
 
-**Rule**: Must be in table/list format (scannable)
+**Правило**: должен быть в формате таблиц/списков (быстро просматриваемым)
 
 ---
 
 ### errors/
-**Purpose**: Common errors, gotchas, edge cases
+**Назначение**: типовые ошибки, подводные камни, крайние случаи
 
-**Contains**:
-- Error messages + fixes
-- Common pitfalls
-- Edge cases
-- Troubleshooting
+**Содержит**:
+- Сообщения об ошибках + исправления
+- Типовые ловушки
+- Крайние случаи
+- Устранение неполадок
 
-**Examples**:
+**Примеры**:
 - `errors/react-errors.md`
 - `errors/nextjs-build-errors.md`
 - `errors/auth-errors.md`
 
-**Rule**: Group by framework/topic, not one file per error
+**Правило**: группируйте по фреймворку/теме, а не один файл на ошибку
 
 ---
 
-## navigation.md Requirement
+## Требование `navigation.md`
 
 <rule id="readme_required" enforcement="strict">
-  Every context category MUST have navigation.md at its root with:
-  1. Purpose (1-2 sentences)
-  2. Navigation tables for each function folder
-  3. Priority levels (critical/high/medium/low)
-  4. Loading strategy (what to load for common tasks)
+  В каждой категории контекста ОБЯЗАН быть navigation.md в корне с:
+  1. Purpose (1–2 предложения)
+  2. Навигационными таблицами для каждой функциональной папки
+  3. Уровнями приоритета (critical/high/medium/low)
+  4. Стратегией загрузки (что загружать для типовых задач)
 </rule>
 
-**Example**:
+**Пример**:
 ```markdown
 # Development Context
 
@@ -146,7 +146,7 @@
 
 ---
 
-## Quick Navigation
+## Быстрая навигация
 
 ### Concepts
 | File | Description | Priority |
@@ -175,23 +175,23 @@
 
 ---
 
-## Categorization Rules
+## Правила категоризации
 
-When organizing a file, ask:
+При организации файла спросите:
 
-| Question | Folder |
+| Вопрос | Папка |
 |----------|--------|
-| Does it explain **what** something is? | `concepts/` |
-| Does it show **working code**? | `examples/` |
-| Does it explain **how to do** something? | `guides/` |
-| Is it **quick reference** data? | `lookup/` |
-| Does it document an **error/issue**? | `errors/` |
+| Объясняет **что** что-то такое? | `concepts/` |
+| Показывает **рабочий код**? | `examples/` |
+| Объясняет, **как сделать** что-то? | `guides/` |
+| Это **справочные** данные? | `lookup/` |
+| Документирует **ошибку/проблему**? | `errors/` |
 
 ---
 
-## Anti-Patterns ❌
+## Антипаттерны ❌
 
-### ❌ Flat Structure
+### ❌ Плоская структура
 ```
 development/
 ├── authentication.md
@@ -200,9 +200,9 @@ development/
 ├── auth-errors.md
 └── api-endpoints.md
 ```
-**Problem**: Hard to discover. Is authentication.md a concept or guide?
+**Проблема**: трудно находить. `authentication.md` — концепция или руководство?
 
-### ✅ Function-Based
+### ✅ По функциям
 ```
 development/
 ├── navigation.md
@@ -217,24 +217,24 @@ development/
 └── errors/
     └── auth-errors.md
 ```
-**Benefit**: Instantly know file purpose by location
+**Преимущество**: назначение файла сразу понятно по расположению
 
 ---
 
-## Validation
+## Валидация
 
-Before committing context structure:
+Перед коммитом структуры контекста:
 
-- [ ] All categories have navigation.md?
-- [ ] Files are in function folders (not flat)?
-- [ ] README has navigation tables?
-- [ ] Priority levels assigned?
-- [ ] Loading strategy documented?
+- [ ] У всех категорий есть `navigation.md`?
+- [ ] Файлы находятся в функциональных папках (не плоско)?
+- [ ] В README есть навигационные таблицы?
+- [ ] Уровни приоритета назначены?
+- [ ] Стратегия загрузки задокументирована?
 
 ---
 
-## Related
+## Связанные материалы
 
-- mvi-principle.md - What to extract
-- templates.md - File formats
-- creation.md - How to create files
+- mvi-principle.md - что извлекать
+- templates.md - форматы файлов
+- creation.md - как создавать файлы

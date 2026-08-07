@@ -1,28 +1,28 @@
 <!-- Context: ui/scroll-animation-prompts | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
 ---
-description: "AI prompts for generating start/end frames and video sequences for scrollytelling"
+description: "AI-промпты для генерации стартовых/финальных кадров и видеопоследовательностей для scrollytelling"
 ---
 
-# Lookup: Scroll Animation Image Generation Prompts
+# Lookup: Промпты генерации изображений для scroll animation
 
-**Purpose**: AI prompts for generating start/end frames and video sequences for scrollytelling
+**Purpose**: AI-промпты для генерации стартовых/финальных кадров и видеопоследовательностей для scrollytelling
 
 **Last Updated**: 2026-01-07
 
 ---
 
-## Overview
+## Обзор
 
-Use these prompts with nano banana, Runway, Pika, or other AI tools to create image sequences for scroll animations.
+Используйте эти промпты с nano banana, Runway, Pika или другими AI-инструментами, чтобы создавать последовательности изображений для scroll-анимаций.
 
-**Workflow**: Start frame → End frame → Video interpolation → Frame extraction
+**Workflow**: стартовый кадр → финальный кадр → video interpolation → извлечение кадров
 
 ---
 
-## Start Frame Prompts
+## Промпты стартового кадра
 
-### Product Hero Shot
+### Hero shot продукта
 
 ```
 Ultra-premium product photography of [PRODUCT NAME] placed on a matte black 
@@ -35,26 +35,26 @@ resolution, photorealistic, Apple-level product shoot, dramatic mood, modern
 and elegant.
 ```
 
-**Variables**: Replace [PRODUCT NAME] with your product
-**Output**: Starting position, fully assembled, hero angle
+**Переменные**: замените [PRODUCT NAME] на ваш продукт
+**Результат**: стартовая позиция, полностью собранный продукт, hero-ракурс
 
 ---
 
-### Variations by Product Type
+### Вариации по типу продукта
 
-| Product Type | Additional Details |
+| Тип продукта | Дополнительные детали |
 |--------------|-------------------|
-| **Headphones** | "over-ear headphones with leather cushions and metal headband" |
-| **Smartphone** | "smartphone with edge-to-edge OLED display, aluminum frame" |
-| **Watch** | "luxury smartwatch with titanium case and sapphire crystal" |
-| **Laptop** | "thin laptop with aluminum unibody, open at 45 degrees" |
-| **Camera** | "mirrorless camera with prime lens attached, side profile" |
+| **Наушники** | "over-ear headphones with leather cushions and metal headband" |
+| **Смартфон** | "smartphone with edge-to-edge OLED display, aluminum frame" |
+| **Часы** | "luxury smartwatch with titanium case and sapphire crystal" |
+| **Ноутбук** | "thin laptop with aluminum unibody, open at 45 degrees" |
+| **Камера** | "mirrorless camera with prime lens attached, side profile" |
 
 ---
 
-## End Frame Prompts
+## Промпты финального кадра
 
-### Exploded Technical View
+### Разнесенный технический вид
 
 ```
 Exploded technical diagram view of [PRODUCT NAME], every component precisely 
@@ -69,27 +69,27 @@ Photorealistic, ultra-high resolution, Apple-style industrial design render,
 dramatic and clean.
 ```
 
-**Variables**: 
-- [PRODUCT NAME]: Your product
-- [INTERNAL COMPONENTS]: Specific parts to show
+**Переменные**:
+- [PRODUCT NAME]: ваш продукт
+- [INTERNAL COMPONENTS]: конкретные детали для показа
 
 ---
 
-### Internal Components by Product
+### Внутренние компоненты по продуктам
 
-| Product | Internal Components Examples |
+| Продукт | Примеры внутренних компонентов |
 |---------|------------------------------|
-| **Headphones** | "copper wiring, titanium drivers, magnets, circuit boards, padding layers, metal frame" |
-| **Smartphone** | "battery, logic board, cameras, OLED panel, antenna bands, frame" |
-| **Watch** | "watch movement, gears, battery, sensors, display, crown mechanism" |
-| **Laptop** | "keyboard assembly, trackpad, battery cells, logic board, cooling fans, display panel" |
-| **Camera** | "sensor, shutter mechanism, lens elements, mirror assembly, circuit boards" |
+| **Наушники** | "copper wiring, titanium drivers, magnets, circuit boards, padding layers, metal frame" |
+| **Смартфон** | "battery, logic board, cameras, OLED panel, antenna bands, frame" |
+| **Часы** | "watch movement, gears, battery, sensors, display, crown mechanism" |
+| **Ноутбук** | "keyboard assembly, trackpad, battery cells, logic board, cooling fans, display panel" |
+| **Камера** | "sensor, shutter mechanism, lens elements, mirror assembly, circuit boards" |
 
 ---
 
-## Video Interpolation Prompts
+## Промпты интерполяции видео
 
-### For Runway/Pika
+### Для Runway/Pika
 
 ```
 Smoothly transition from fully assembled [PRODUCT] to exploded view. 
@@ -98,17 +98,17 @@ Camera stays locked, product rotates slightly clockwise. Cinematic motion,
 professional product animation, 4-5 seconds duration, 30fps.
 ```
 
-**Settings**:
-- Duration: 4-5 seconds
-- FPS: 30 (yields 120-150 frames)
-- Camera: Static or slow orbit
-- Motion: Smooth, controlled separation
+**Настройки**:
+- Длительность: 4-5 секунд
+- FPS: 30 (дает 120-150 кадров)
+- Камера: static или slow orbit
+- Движение: плавное контролируемое разделение
 
 ---
 
-## Frame Extraction
+## Извлечение кадров
 
-### Using ffmpeg
+### Через ffmpeg
 
 ```bash
 # Extract as WebP (best for web)
@@ -121,95 +121,95 @@ ffmpeg -i animation.mp4 -vf fps=30 frame_%04d.png
 ffmpeg -i animation.mp4 -vf fps=30 -quality 90 frame_%04d.webp
 ```
 
-### Using ezgif.com
+### Через ezgif.com
 
-1. Upload MP4 video
-2. Choose "Video to GIF" → "Split to frames"
-3. Select WebP format
-4. Download all frames as ZIP
-5. Rename: `frame_0001.webp`, `frame_0002.webp`, etc.
+1. Загрузите MP4-видео
+2. Выберите "Video to GIF" → "Split to frames"
+3. Выберите формат WebP
+4. Скачайте все кадры как ZIP
+5. Переименуйте: `frame_0001.webp`, `frame_0002.webp` и т. д.
 
 ---
 
-## Background Color Matching
+## Совпадение цвета фона
 
-**CRITICAL**: Page background MUST match image background exactly
+**ВАЖНО**: фон страницы ДОЛЖЕН точно совпадать с фоном изображения
 
-### Recommended Dark Backgrounds
+### Рекомендуемые темные фоны
 
-| Color Code | Usage |
+| Код цвета | Использование |
 |------------|-------|
-| `#050505` | Pure black with slight lift (recommended) |
-| `#0a0a0a` | Slightly lighter, less harsh |
-| `#000000` | True black (only if images are true black) |
-| `#1a1a1a` | Dark gray (for lighter renders) |
+| `#050505` | Почти черный с легким lift (рекомендуется) |
+| `#0a0a0a` | Немного светлее, мягче |
+| `#000000` | Настоящий черный (только если изображения реально черные) |
+| `#1a1a1a` | Темно-серый (для более светлых render) |
 
-**Pro tip**: Use eyedropper tool on first frame background, use exact hex in CSS
+**Совет**: используйте пипетку на фоне первого кадра и точный hex в CSS
 
 ---
 
-## Alternative Animation Styles
+## Альтернативные стили анимации
 
 ### Rotation (360° spin)
 
-**Start**: Front view
-**End**: Front view (after 360° rotation)
-**Prompt**: "Rotate product 360 degrees on turntable, maintain lighting"
+**Старт**: вид спереди
+**Финиш**: вид спереди (после поворота на 360°)
+**Промпт**: "Rotate product 360 degrees on turntable, maintain lighting"
 
-### Zoom In (Feature reveal)
+### Zoom In (feature reveal)
 
-**Start**: Full product view
-**End**: Close-up of key feature
-**Prompt**: "Smooth camera push-in focusing on [FEATURE], maintain focus"
+**Старт**: полный вид продукта
+**Финиш**: крупный план ключевой feature
+**Промпт**: "Smooth camera push-in focusing on [FEATURE], maintain focus"
 
-### Morph (Color/style change)
+### Morph (смена цвета/стиля)
 
-**Start**: Product in color A
-**End**: Product in color B
-**Prompt**: "Seamlessly morph product color from [A] to [B], maintain form"
-
----
-
-## Quality Settings
-
-### For High-End Results
-
-- **Resolution**: 1920x1080 minimum (4K for high-DPI)
-- **Format**: WebP (compression) or PNG (quality)
-- **Frame count**: 90-150 frames (3-5 seconds at 30fps)
-- **Total size**: Target <50MB for all frames combined
-
-### Optimization Tips
-
-1. Use WebP format (70% smaller than PNG)
-2. Compress with quality 85-90
-3. Resize images to max 2000px width
-4. Use consistent aspect ratio (16:9 or 1:1)
+**Старт**: продукт в цвете A
+**Финиш**: продукт в цвете B
+**Промпт**: "Seamlessly morph product color from [A] to [B], maintain form"
 
 ---
 
-## Testing Checklist
+## Настройки качества
 
-- [ ] Background color matches exactly (no visible edges)
-- [ ] All frames same dimensions
-- [ ] Smooth motion (no jumps between frames)
-- [ ] Consistent lighting across sequence
-- [ ] File names sequential (`frame_0001` to `frame_0120`)
-- [ ] Total file size reasonable (<50MB)
+### Для high-end результата
+
+- **Разрешение**: минимум 1920x1080 (4K для high-DPI)
+- **Формат**: WebP (compression) или PNG (quality)
+- **Количество кадров**: 90-150 frames (3-5 секунд при 30fps)
+- **Общий размер**: цель <50MB для всех кадров вместе
+
+### Советы по оптимизации
+
+1. Используйте формат WebP (на 70% меньше PNG)
+2. Сжимайте с quality 85-90
+3. Уменьшайте ширину изображений до max 2000px
+4. Используйте одинаковый aspect ratio (16:9 или 1:1)
 
 ---
 
-## Related
+## Чеклист тестирования
 
-- concepts/scroll-linked-animations.md - Understanding the technique
-- examples/scrollytelling-headphone.md - Full implementation
-- guides/scrollytelling-setup.md - Setup instructions
+- [ ] Цвет фона совпадает точно (без видимых краев)
+- [ ] Все кадры одного размера
+- [ ] Motion плавный (нет jumps между кадрами)
+- [ ] Освещение консистентно по всей sequence
+- [ ] Имена файлов последовательны (от `frame_0001` до `frame_0120`)
+- [ ] Общий размер файлов разумный (<50MB)
 
 ---
 
-## Tool References
+## Связано
 
-- [Runway ML](https://runwayml.com) - AI video generation
-- [Pika Labs](https://pika.art) - AI video interpolation
-- [ezgif](https://ezgif.com/split-video) - Frame extraction
-- [FFmpeg](https://ffmpeg.org) - Video processing
+- concepts/scroll-linked-animations.md - понять технику
+- examples/scrollytelling-headphone.md - полная реализация
+- guides/scrollytelling-setup.md - инструкции по настройке
+
+---
+
+## Ссылки на инструменты
+
+- [Runway ML](https://runwayml.com) - генерация AI-видео
+- [Pika Labs](https://pika.art) - AI-интерполяция видео
+- [ezgif](https://ezgif.com/split-video) - извлечение frames
+- [FFmpeg](https://ffmpeg.org) - обработка video

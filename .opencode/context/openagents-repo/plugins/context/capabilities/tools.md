@@ -1,12 +1,12 @@
 <!-- Context: openagents-repo/tools | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Building Custom Tools
+# Создание пользовательских инструментов
 
-Plugins can add custom tools that OpenCode agents can call autonomously.
+Плагины могут добавлять пользовательские инструменты, которые агенты OpenCode вызывают автономно.
 
-## Tool Definition
+## Определение инструмента
 
-Custom tools use Zod for schema definition and the `tool` helper from `@opencode-ai/plugin`.
+Пользовательские инструменты используют Zod для схемы и хелпер `tool` из `@opencode-ai/plugin`.
 
 ```typescript
 import { z } from 'zod';
@@ -25,9 +25,9 @@ export const MyCustomTool = tool(
 ).describe('Search your database');
 ```
 
-## Shell-based Tools
+## Инструменты на основе shell
 
-You can leverage Bun's shell API (`$`) to run commands in any language.
+Можно использовать shell API Bun (`$`), чтобы запускать команды на любом языке.
 
 ```typescript
 export const PythonCalculatorTool = tool(
@@ -40,9 +40,9 @@ export const PythonCalculatorTool = tool(
 ).describe('Calculate mathematical expressions');
 ```
 
-## Integration
+## Интеграция
 
-To register tools in your plugin:
+Чтобы зарегистрировать инструменты в плагине:
 
 ```typescript
 export const MyPlugin = async (context) => {

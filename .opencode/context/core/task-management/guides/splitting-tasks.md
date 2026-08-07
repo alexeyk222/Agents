@@ -1,40 +1,40 @@
 <!-- Context: core/splitting-tasks | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Splitting Features into Tasks
+# Руководство: разбиение фич на задачи
 
-**Purpose**: How to decompose features into atomic subtasks
+**Назначение**: как декомпозировать фичи на атомарные подзадачи
 
-**Last Updated**: 2026-01-11
-
----
-
-## Prerequisites
-
-- Feature request understood
-- Context bundle loaded (project standards, patterns)
+**Последнее обновление**: 2026-01-11
 
 ---
 
-## Steps
+## Предварительные условия
 
-### 1. Identify Atomic Boundaries
-
-Break feature into tasks that are:
-- Completable in 1-2 hours
-- Have single, clear outcome
-- Testable independently
-- Don't overlap with other tasks
-
-**Bad**: "Implement authentication" (too big)
-**Good**: "Create password hashing utility" (atomic)
+- Запрос на фичу понятен
+- Context bundle загружен (стандарты проекта, паттерны)
 
 ---
 
-### 2. Map Dependencies
+## Шаги
 
-For each task, ask:
-- What must exist before this can start?
-- What files/APIs does this need?
+### 1. Определить атомарные границы
+
+Разбейте фичу на задачи, которые:
+- Завершаются за 1-2 часа
+- Имеют один ясный результат
+- Тестируются независимо
+- Не пересекаются с другими задачами
+
+**Плохо**: "Implement authentication" (слишком крупно)
+**Хорошо**: "Create password hashing utility" (атомарно)
+
+---
+
+### 2. Сопоставить зависимости
+
+Для каждой задачи спросите:
+- Что должно существовать до старта?
+- Какие файлы/API для этого нужны?
 
 ```
 01 → no deps (can start immediately)
@@ -44,41 +44,41 @@ For each task, ask:
 
 ---
 
-### 3. Identify Parallel Tasks
+### 3. Определить параллельные задачи
 
-Mark `parallel: true` when:
-- Task doesn't modify shared files
-- Task doesn't depend on runtime state from other tasks
-- Multiple agents could work simultaneously
+Ставьте `parallel: true`, когда:
+- Задача не изменяет общие файлы
+- Задача не зависит от runtime-состояния других задач
+- Несколько агентов могут работать одновременно
 
-Example parallel tasks:
-- Writing independent unit tests
-- Creating isolated utility functions
-- Documentation for separate features
+Примеры параллельных задач:
+- Написание независимых unit-тестов
+- Создание изолированных utility functions
+- Документация для отдельных фич
 
 ---
 
-### 4. Define Acceptance Criteria
+### 4. Определить acceptance criteria
 
-Binary pass/fail conditions only:
+Только бинарные условия pass/fail:
 - "JWT tokens signed with RS256" ✓
 - "Tests pass" ✓
 - "Code is clean" ✗ (subjective)
 
 ---
 
-### 5. Specify Deliverables
+### 5. Указать deliverables
 
-Concrete files/endpoints:
+Конкретные файлы/endpoints:
 - `src/auth/hash.ts`
 - `POST /api/login`
 - `tests/auth.test.ts`
 
 ---
 
-### 6. Reference Context Files
+### 6. Ссылаться на файлы контекста
 
-Don't embed descriptions. Reference paths:
+Не встраивайте описания. Указывайте пути:
 ```json
 "context_files": [
   "(example: .opencode/context/development/backend/auth/jwt-patterns.md)"
@@ -87,29 +87,29 @@ Don't embed descriptions. Reference paths:
 
 ---
 
-## Verification Checklist
+## Чеклист проверки
 
-- [ ] Each task completable in 1-2 hours?
-- [ ] Dependencies create valid execution order?
-- [ ] Parallel tasks correctly identified?
-- [ ] Acceptance criteria are binary?
-- [ ] Deliverables are concrete files/endpoints?
+- [ ] Каждая задача завершается за 1-2 часа?
+- [ ] Зависимости образуют валидный порядок выполнения?
+- [ ] Параллельные задачи определены корректно?
+- [ ] Acceptance criteria бинарные?
+- [ ] Deliverables — конкретные файлы/endpoints?
 
 ---
 
-## Common Mistakes
+## Распространенные ошибки
 
-| Mistake | Fix |
+| Ошибка | Исправление |
 |---------|-----|
-| Task too big | Split into 2-3 smaller tasks |
-| Circular deps | Re-order or merge tasks |
-| Missing deps | Run `task-cli.ts validate` |
-| Vague criteria | Make binary pass/fail |
+| Задача слишком крупная | Разбить на 2-3 меньшие задачи |
+| Циклические зависимости | Переупорядочить или объединить задачи |
+| Отсутствующие зависимости | Запустить `task-cli.ts validate` |
+| Размытые критерии | Сделать бинарными pass/fail |
 
 ---
 
-## Related
+## Связанные материалы
 
-- `../standards/task-schema.md` - JSON field reference
-- `managing-tasks.md` - Lifecycle workflow
-- `../lookup/task-commands.md` - CLI reference
+- `../standards/task-schema.md` - справочник JSON-полей
+- `managing-tasks.md` - workflow жизненного цикла
+- `../lookup/task-commands.md` - справочник CLI

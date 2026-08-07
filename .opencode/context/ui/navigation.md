@@ -1,82 +1,82 @@
 <!-- Context: ui/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# UI Context
+# UI-контекст
 
-**Purpose**: User interface design patterns, standards, and best practices across all platforms
+**Purpose**: Паттерны UI-дизайна, стандарты и лучшие практики для всех платформ
 
 **Last Updated**: 2026-01-07
 
 ---
 
-## Overview
+## Обзор
 
-This category contains UI/UX patterns, design systems, and interface standards for building user-facing applications across different platforms.
+Эта категория содержит UI/UX-паттерны, дизайн-системы и стандарты интерфейсов для пользовательских приложений на разных платформах.
 
 ---
 
-## Directory Structure
+## Структура каталогов
 
-### 📁 Subcategories
+### 📁 Подкатегории
 
-| Subcategory | Description | Path |
+| Подкатегория | Описание | Путь |
 |-------------|-------------|------|
-| **web/** | Web UI patterns, animations, styling, React components | [web/navigation.md](web/navigation.md) |
-| **terminal/** | Terminal UI (TUI) patterns for CLI applications | [terminal/navigation.md](terminal/navigation.md) |
+| **web/** | Web UI-паттерны, анимации, стилизация, React-компоненты | [web/navigation.md](web/navigation.md) |
+| **terminal/** | Паттерны terminal UI (TUI) для CLI-приложений | [terminal/navigation.md](terminal/navigation.md) |
 
-### Future Subcategories
+### Будущие подкатегории
 
-- **mobile/** - React Native, Flutter patterns (planned)
-- **desktop/** - Electron, Tauri patterns (planned)
+- **mobile/** - паттерны React Native и Flutter (планируется)
+- **desktop/** - паттерны Electron и Tauri (планируется)
 
 ---
 
-## Quick Navigation
+## Быстрая навигация
 
 ### Web UI
-- Animation patterns and micro-interactions
-- CSS styling standards and design systems
-- React component patterns
-- Design assets and resources
-- Scroll-linked animations (scrollytelling)
+- Паттерны анимаций и микроинтеракций
+- Стандарты CSS-стилизации и дизайн-системы
+- Паттерны React-компонентов
+- Дизайн-ассеты и ресурсы
+- Scroll-linked-анимации (scrollytelling)
 
 ### Terminal UI
-- CLI/TUI patterns (planned)
-- Ink, Blessed component patterns (planned)
-- Terminal animations and progress indicators (planned)
+- CLI/TUI-паттерны (планируется)
+- Паттерны компонентов Ink и Blessed (планируется)
+- Терминальные анимации и индикаторы прогресса (планируется)
 
 ---
 
-## Usage
+## Использование
 
-**Web development**: Navigate to `web/` for browser-based UI patterns
+**Web-разработка**: перейдите в `web/` за UI-паттернами для браузера
 
-**CLI/TUI development**: Navigate to `terminal/` for terminal interface patterns
+**CLI/TUI-разработка**: перейдите в `terminal/` за паттернами терминальных интерфейсов
 
-**Cross-platform**: Consider patterns from multiple subcategories
-
----
-
-## Scope
-
-This category covers:
-- ✅ Visual design patterns
-- ✅ Animation and transitions
-- ✅ Component architecture
-- ✅ Styling standards
-- ✅ Design systems
-- ✅ Accessibility patterns
-- ⏳ Platform-specific patterns (mobile, desktop)
+**Кроссплатформенно**: учитывайте паттерны из нескольких подкатегорий
 
 ---
 
-## Related Categories
+## Область
 
-- `development/` - General development patterns (backend, APIs, clean code)
-- `product/` - Product design and UX strategy
-- `content/` - Content design and copywriting
+Эта категория охватывает:
+- ✅ Паттерны визуального дизайна
+- ✅ Анимации и переходы
+- ✅ Архитектуру компонентов
+- ✅ Стандарты стилизации
+- ✅ Дизайн-системы
+- ✅ Паттерны доступности
+- ⏳ Платформенные паттерны (mobile, desktop)
 
 ---
 
-## Used By
+## Связанные категории
+
+- `development/` - общие паттерны разработки (backend, API, clean code)
+- `product/` - продуктовый дизайн и UX-стратегия
+- `content/` - дизайн контента и copywriting
+
+---
+
+## Используется
 
 **Agents**: frontend-specialist, design-specialist, ui-developer, animation-expert

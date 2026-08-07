@@ -1,19 +1,19 @@
 <!-- Context: workflows/delegation | Priority: high | Version: 2.0 | Updated: 2025-01-21 -->
-# Delegation Context Template
+# Шаблон контекста делегирования
 
-> **Note**: This is a reference file. Start with [`task-delegation-basics.md`](./task-delegation-basics.md).
+> **Примечание**: это справочный файл. Начните с [`task-delegation-basics.md`](./task-delegation-basics.md).
 
-## Quick Reference
+## Краткая справка
 
-**Process**: Create context → Populate → Delegate → Cleanup
+**Процесс**: создать контекст → заполнить → делегировать → очистить
 
-**Location**: `.tmp/sessions/{timestamp}-{task-slug}/context.md`
+**Расположение**: `.tmp/sessions/{timestamp}-{task-slug}/context.md`
 
-**Template Sections**: Request, Requirements, Decisions, Files, Static Context, Constraints, Progress, Instructions
+**Разделы шаблона**: запрос, требования, решения, файлы, статический контекст, ограничения, прогресс, инструкции
 
 ---
 
-For the full delegation workflow, use:
+Для полного workflow делегирования используйте:
 
 - [task-delegation-basics.md](./task-delegation-basics.md)
 - [task-delegation-specialists.md](./task-delegation-specialists.md)

@@ -1,32 +1,32 @@
 <!-- Context: development/design-systems | Priority: high | Version: 1.0 | Updated: 2025-12-09 -->
-# Design Systems
+# Дизайн-системы
 
-## Overview
+## Обзор
 
-This context file provides reusable design system patterns, theme templates, and color systems for frontend design work. Use these as starting points for creating cohesive, professional UI designs.
+Этот файл содержит переиспользуемые паттерны дизайн-систем, шаблоны тем и цветовые системы для frontend-дизайна. Используйте их как стартовую точку для цельных профессиональных UI.
 
-## Quick Reference
+## Краткая справка
 
-**Color Format**: OKLCH (perceptually uniform color space)
-**Theme Variables**: CSS custom properties (--variable-name)
-**Font Sources**: Google Fonts
-**Responsive**: All designs must be mobile-first responsive
+**Формат цвета**: OKLCH (перцептуально равномерное цветовое пространство)
+**Переменные темы**: CSS custom properties (--variable-name)
+**Источники шрифтов**: Google Fonts
+**Responsive**: все дизайны должны быть mobile-first responsive
 
 ---
 
-## Theme Patterns
+## Паттерны тем
 
-### Neo-Brutalism Style
+### Стиль Neo-Brutalism
 
-**Characteristics**: 90s web design aesthetic, bold borders, flat shadows, high contrast
+**Характеристики**: эстетика web-дизайна 90-х, жирные borders, flat shadows, высокий контраст
 
-**Use Cases**: 
-- Retro/vintage applications
-- Bold, statement-making interfaces
-- Art/creative portfolios
-- Playful consumer apps
+**Сценарии**:
+- Retro/vintage-приложения
+- Смелые интерфейсы с ярким характером
+- Арт/creative portfolios
+- Игровые consumer apps
 
-**Theme Template**:
+**Шаблон темы**:
 
 ```css
 :root {
@@ -98,18 +98,18 @@ This context file provides reusable design system patterns, theme templates, and
 
 ---
 
-### Modern Dark Mode Style
+### Стиль Modern Dark Mode
 
-**Characteristics**: Clean, minimal, professional (Vercel/Linear aesthetic)
+**Характеристики**: чистый, минимальный, профессиональный (эстетика Vercel/Linear)
 
-**Use Cases**:
-- SaaS applications
-- Developer tools
-- Professional dashboards
-- Enterprise applications
-- Modern web apps
+**Сценарии**:
+- SaaS-приложения
+- Инструменты разработчика
+- Профессиональные dashboard
+- Enterprise-приложения
+- Современные web apps
 
-**Theme Template**:
+**Шаблон темы**:
 
 ```css
 :root {
@@ -181,11 +181,11 @@ This context file provides reusable design system patterns, theme templates, and
 
 ---
 
-## Typography System
+## Система типографики
 
-### Recommended Font Families
+### Рекомендуемые семейства шрифтов
 
-**Monospace Fonts** (Code, technical interfaces):
+**Monospace fonts** (код, технические интерфейсы):
 - JetBrains Mono
 - Fira Code
 - Source Code Pro
@@ -194,7 +194,7 @@ This context file provides reusable design system patterns, theme templates, and
 - Space Mono
 - Geist Mono
 
-**Sans-Serif Fonts** (UI, body text):
+**Sans-serif fonts** (UI, body text):
 - Inter
 - Roboto
 - Open Sans
@@ -206,20 +206,20 @@ This context file provides reusable design system patterns, theme templates, and
 - Geist
 - Space Grotesk
 
-**Display/Decorative Fonts**:
+**Display/decorative fonts**:
 - Oxanium
 - Architects Daughter
 
-**Serif Fonts** (Editorial, formal):
+**Serif fonts** (редакционные, формальные):
 - Merriweather
 - Playfair Display
 - Lora
 - Source Serif Pro
 - Libre Baskerville
 
-### Font Loading
+### Загрузка шрифтов
 
-Always use Google Fonts for consistency and reliability:
+Всегда используйте Google Fonts для консистентности и надежности:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -229,72 +229,72 @@ Always use Google Fonts for consistency and reliability:
 
 ---
 
-## Color System Guidelines
+## Рекомендации по цветовой системе
 
-### OKLCH Color Space
+### Цветовое пространство OKLCH
 
-Use OKLCH for perceptually uniform colors:
-- **L** (Lightness): 0-1 (0 = black, 1 = white)
-- **C** (Chroma): 0-0.4 (saturation)
-- **H** (Hue): 0-360 (color angle)
+Используйте OKLCH для перцептуально равномерных цветов:
+- **L** (Lightness): 0-1 (0 = черный, 1 = белый)
+- **C** (Chroma): 0-0.4 (насыщенность)
+- **H** (Hue): 0-360 (угол цвета)
 
-**Format**: `oklch(L C H)`
+**Формат**: `oklch(L C H)`
 
-**Example**: `oklch(0.6489 0.2370 26.9728)` = vibrant orange
+**Пример**: `oklch(0.6489 0.2370 26.9728)` = яркий оранжевый
 
-### Color Palette Rules
+### Правила цветовой палитры
 
-1. **Avoid Bootstrap Blue**: Unless explicitly requested, avoid generic blue (#007bff)
-2. **Semantic Colors**: Use meaningful color names (--primary, --destructive, --success)
-3. **Contrast**: Ensure WCAG AA compliance (4.5:1 for text)
-4. **Consistency**: Use theme variables, not hardcoded colors
+1. **Избегайте Bootstrap Blue**: если явно не запрошено, избегайте типового blue (#007bff)
+2. **Семантические цвета**: используйте осмысленные имена цветов (--primary, --destructive, --success)
+3. **Контраст**: обеспечьте соответствие WCAG AA (4.5:1 для текста)
+4. **Консистентность**: используйте theme variables, а не hardcoded colors
 
-### Background/Foreground Pairing
+### Сочетание background/foreground
 
-**Rule**: Background should contrast with content
+**Правило**: background должен контрастировать с контентом
 
-- Light component → Dark background
-- Dark component → Light background
-- Ensures visibility and visual hierarchy
+- Светлый компонент → темный background
+- Темный компонент → светлый background
+- Обеспечивает видимость и визуальную иерархию
 
 ---
 
-## Shadow System
+## Система shadows
 
-### Shadow Scales
+### Шкала shadows
 
-Shadows create depth and hierarchy:
+Shadows создают глубину и иерархию:
 
-- `--shadow-2xs`: Minimal elevation (1-2px)
-- `--shadow-xs`: Subtle lift (2-3px)
-- `--shadow-sm`: Small cards (3-4px)
-- `--shadow`: Default elevation (4-6px)
-- `--shadow-md`: Medium cards (6-8px)
-- `--shadow-lg`: Modals, dropdowns (8-12px)
-- `--shadow-xl`: Floating panels (12-16px)
-- `--shadow-2xl`: Maximum elevation (16-24px)
+- `--shadow-2xs`: минимальная elevation (1-2px)
+- `--shadow-xs`: легкий lift (2-3px)
+- `--shadow-sm`: маленькие cards (3-4px)
+- `--shadow`: elevation по умолчанию (4-6px)
+- `--shadow-md`: средние cards (6-8px)
+- `--shadow-lg`: modals, dropdowns (8-12px)
+- `--shadow-xl`: floating panels (12-16px)
+- `--shadow-2xl`: максимальная elevation (16-24px)
 
-### Shadow Styles
+### Стили shadows
 
-**Soft Shadows** (Modern):
+**Soft shadows** (Modern):
 ```css
 box-shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10);
 ```
 
-**Hard Shadows** (Neo-brutalism):
+**Hard shadows** (Neo-brutalism):
 ```css
 box-shadow: 4px 4px 0px 0px hsl(0 0% 0% / 1.00);
 ```
 
 ---
 
-## Spacing System
+## Система spacing
 
-### Base Unit
+### Базовая единица
 
-Use `--spacing: 0.25rem` (4px) as base unit
+Используйте `--spacing: 0.25rem` (4px) как базовую единицу
 
-### Scale
+### Шкала
 
 - 1x = 0.25rem (4px)
 - 2x = 0.5rem (8px)
@@ -307,9 +307,9 @@ Use `--spacing: 0.25rem` (4px) as base unit
 
 ---
 
-## Border Radius System
+## Система border radius
 
-### Radius Scales
+### Шкала radius
 
 ```css
 --radius-sm: calc(var(--radius) - 4px);
@@ -318,7 +318,7 @@ Use `--spacing: 0.25rem` (4px) as base unit
 --radius-xl: calc(var(--radius) + 4px);
 ```
 
-### Common Values
+### Частые значения
 
 - **Sharp** (Neo-brutalism): `--radius: 0px`
 - **Subtle** (Modern): `--radius: 0.375rem` (6px)
@@ -327,53 +327,53 @@ Use `--spacing: 0.25rem` (4px) as base unit
 
 ---
 
-## Usage Guidelines
+## Рекомендации по использованию
 
-### When to Use Each Theme
+### Когда использовать каждую тему
 
 **Neo-Brutalism**:
-- ✅ Creative/artistic projects
-- ✅ Retro/vintage aesthetics
-- ✅ Bold, statement-making designs
-- ❌ Enterprise/corporate applications
-- ❌ Accessibility-critical interfaces
+- ✅ Креативные/арт-проекты
+- ✅ Retro/vintage-эстетика
+- ✅ Смелые выразительные дизайны
+- ❌ Enterprise/corporate-приложения
+- ❌ Интерфейсы с критичной доступностью
 
 **Modern Dark Mode**:
-- ✅ SaaS applications
-- ✅ Developer tools
-- ✅ Professional dashboards
-- ✅ Enterprise applications
-- ✅ Accessibility-critical interfaces
+- ✅ SaaS-приложения
+- ✅ Инструменты разработчика
+- ✅ Профессиональные dashboard
+- ✅ Enterprise-приложения
+- ✅ Интерфейсы с критичной доступностью
 
-### Customization
+### Кастомизация
 
-1. Start with a base theme template
-2. Adjust primary/accent colors for brand
-3. Modify radius for desired feel
-4. Adjust shadows for depth preference
-5. Test contrast ratios for accessibility
-
----
-
-## Best Practices
-
-✅ **Use CSS custom properties** for all theme values
-✅ **Test in light and dark modes** if applicable
-✅ **Validate color contrast** (WCAG AA minimum)
-✅ **Use semantic color names** (--primary, not --blue)
-✅ **Load fonts from Google Fonts** for reliability
-✅ **Apply consistent spacing** using the spacing scale
-✅ **Test responsive behavior** at all breakpoints
-
-❌ **Don't hardcode colors** in components
-❌ **Don't use generic blue** (#007bff) without reason
-❌ **Don't mix color formats** (stick to OKLCH)
-❌ **Don't skip contrast testing**
-❌ **Don't use too many font families** (2-3 max)
+1. Начните с базового шаблона темы
+2. Настройте primary/accent colors под бренд
+3. Измените radius для нужного ощущения
+4. Настройте shadows под нужную глубину
+5. Проверяйте contrast ratios для доступности
 
 ---
 
-## References
+## Лучшие практики
+
+✅ **Используйте CSS custom properties** для всех значений темы
+✅ **Тестируйте light и dark modes**, если применимо
+✅ **Проверяйте цветовой контраст** (минимум WCAG AA)
+✅ **Используйте семантические имена цветов** (--primary, не --blue)
+✅ **Загружайте шрифты из Google Fonts** для надежности
+✅ **Применяйте консистентный spacing** через шкалу spacing
+✅ **Тестируйте responsive behavior** на всех breakpoints
+
+❌ **Не хардкодьте цвета** в компонентах
+❌ **Не используйте generic blue** (#007bff) без причины
+❌ **Не смешивайте форматы цветов** (держитесь OKLCH)
+❌ **Не пропускайте contrast testing**
+❌ **Не используйте слишком много font families** (максимум 2-3)
+
+---
+
+## Ссылки
 
 - [OKLCH Color Picker](https://oklch.com/)
 - [Google Fonts](https://fonts.google.com/)

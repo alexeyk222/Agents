@@ -1,32 +1,32 @@
 <!-- Context: ui/scroll-linked-animations | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Concept: Scroll-Linked Animations
+# Concept: Scroll-linked-анимации
 
-**Purpose**: Sync image sequences to scroll position for cinematic product reveals
+**Purpose**: Синхронизация последовательностей изображений с позицией scroll для кинематографичного показа продукта
 
 **Last Updated**: 2026-01-07
 
 ---
 
-## Core Idea
+## Основная идея
 
-Map scroll position to video frames. As user scrolls, play through image sequence like a scrubbing timeline. Creates illusion of 3D animation controlled by scroll.
+Свяжите позицию scroll с кадрами видео. Пока пользователь скроллит, последовательность изображений проигрывается как scrubbing timeline. Это создает иллюзию 3D-анимации, управляемой scroll.
 
-**Formula**: `scrollProgress (0→1) → frameIndex (0→N) → canvas.drawImage()`
-
----
-
-## Essential Parts
-
-1. **Image sequence** - 60-150 WebP frames from video/3D render
-2. **Sticky canvas** - Fixed HTML5 canvas, always visible while scrolling
-3. **Scroll tracker** - Framer Motion `useScroll` hook
-4. **Preloader** - Load all frames upfront (prevents flicker)
-5. **Background match** - Page BG = image BG (hides edges)
+**Формула**: `scrollProgress (0→1) → frameIndex (0→N) → canvas.drawImage()`
 
 ---
 
-## Minimal Example
+## Ключевые части
+
+1. **Image sequence** - 60-150 WebP-кадров из видео/3D render
+2. **Sticky canvas** - фиксированный HTML5 canvas, всегда видим при scroll
+3. **Scroll tracker** - hook Framer Motion `useScroll`
+4. **Preloader** - предварительно загружает все кадры (убирает flicker)
+5. **Background match** - фон страницы = фон изображения (скрывает края)
+
+---
+
+## Минимальный пример
 
 ```tsx
 const { scrollYProgress } = useScroll({ target: containerRef })
@@ -37,18 +37,18 @@ useEffect(() => {
 }, [frameIndex])
 ```
 
-**Why canvas?** 10x faster than swapping `<img src>`. DOM updates are slow.
+**Почему canvas?** В 10 раз быстрее, чем менять `<img src>`. DOM updates медленные.
 
 ---
 
-## Related
+## Связано
 
-- examples/scrollytelling-headphone.md - Full code
-- guides/building-scrollytelling-pages.md - Implementation
-- lookup/scroll-animation-prompts.md - Generate sequences
+- examples/scrollytelling-headphone.md - полный код
+- guides/building-scrollytelling-pages.md - реализация
+- lookup/scroll-animation-prompts.md - генерация последовательностей изображений
 
 ---
 
-## Reference
+## Ссылка
 
-[Apple AirPods Pro](https://www.apple.com/airpods-pro/) - Production example
+[Apple AirPods Pro](https://www.apple.com/airpods-pro/) - production-пример

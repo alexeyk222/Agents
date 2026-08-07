@@ -1,23 +1,23 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: GitHub Issues and Project Board Workflow
+# Руководство: процесс GitHub Issues и доски проекта
 
-**Prerequisites**: Basic understanding of GitHub issues and projects  
-**Purpose**: Step-by-step workflow for managing issues and project board
-
----
-
-## Overview
-
-This guide covers how to work with GitHub issues and the project board to track and process different requests, features, and improvements.
-
-**Project Board**: https://github.com/users/darrenhinde/projects/2/views/2
-
-**Time**: Varies by task
+**Предварительно**: базовое понимание GitHub issues и projects  
+**Цель**: пошаговый процесс управления issues и project board
 
 ---
 
-## Quick Commands Reference
+## Обзор
+
+Это руководство описывает, как работать с GitHub issues и project board, чтобы отслеживать и обрабатывать разные запросы, features и улучшения.
+
+**Доска проекта**: https://github.com/users/darrenhinde/projects/2/views/2
+
+**Время**: зависит от задачи
+
+---
+
+## Быстрый справочник команд
 
 ```bash
 # List issues
@@ -41,42 +41,42 @@ gh issue close NUMBER --repo darrenhinde/OpenAgentsControl
 
 ---
 
-## Step 1: Creating Issues
+## Шаг 1: создание issues
 
-### Issue Types
+### Типы issue
 
-**Feature Request**
-- Labels: `feature`, `enhancement`
-- Include: Goals, key features, success criteria
-- Template: See "Feature Issue Template" below
+**Запрос функции**
+- Метки: `feature`, `enhancement`
+- Включите: цели, ключевые возможности, критерии успеха
+- Шаблон: см. «Шаблон feature issue» ниже
 
-**Bug Report**
-- Labels: `bug`
-- Include: Steps to reproduce, expected vs actual behavior
-- Template: See "Bug Issue Template" below
+**Баг-репорт**
+- Метки: `bug`
+- Включите: шаги воспроизведения, ожидаемое vs фактическое поведение
+- Шаблон: см. «Шаблон bug issue» ниже
 
-**Improvement**
-- Labels: `enhancement`, `framework`
-- Include: Current state, proposed improvement, impact
+**Улучшение**
+- Метки: `enhancement`, `framework`
+- Включите: текущее состояние, предлагаемое улучшение, влияние
 
-**Question**
-- Labels: `question`
-- Include: Context, specific question, use case
+**Вопрос**
+- Метки: `question`
+- Включите: контекст, конкретный вопрос, сценарий использования
 
-### Priority Labels
+### Метки приоритета
 
-- `priority-high` - Critical, blocking work
-- `priority-medium` - Important, not blocking
-- `priority-low` - Nice to have
+- `priority-high` — критично, блокирует работу
+- `priority-medium` — важно, но не блокирует
+- `priority-low` — желательно
 
-### Category Labels
+### Метки категорий
 
-- `agents` - Agent system related
-- `framework` - Core framework changes
-- `evals` - Evaluation framework
-- `idea` - High-level proposal
+- `agents` — связано с agent system
+- `framework` — изменения core framework
+- `evals` — evaluation framework
+- `idea` — high-level предложение
 
-### Creating an Issue
+### Создание issue
 
 ```bash
 # Basic issue
@@ -112,9 +112,9 @@ EOF
 
 ---
 
-## Step 2: Adding Issues to Project Board
+## Шаг 2: добавление issues на доску проекта
 
-### Add Single Issue
+### Добавить один issue
 
 ```bash
 # Add issue to project
@@ -123,7 +123,7 @@ gh project item-add 2 \
   --url https://github.com/darrenhinde/OpenAgentsControl/issues/NUMBER
 ```
 
-### Add Multiple Issues
+### Добавить несколько issues
 
 ```bash
 # Add issues 137-142 to project
@@ -134,7 +134,7 @@ for i in {137..142}; do
 done
 ```
 
-### Verify Issues on Board
+### Проверить issues на board
 
 ```bash
 # View project items
@@ -143,24 +143,24 @@ gh project item-list 2 --owner darrenhinde --format json | jq '.items[] | {title
 
 ---
 
-## Step 3: Processing Issues
+## Шаг 3: обработка issues
 
-### Workflow States
+### Состояния workflow
 
-1. **Backlog** - New issues, not yet prioritized
-2. **Todo** - Prioritized, ready to work on
-3. **In Progress** - Currently being worked on
-4. **In Review** - PR submitted, awaiting review
-5. **Done** - Completed and merged
+1. **Backlog** — новые issues, еще не приоритизированы
+2. **Todo** — приоритизированы, готовы к работе
+3. **In Progress** — сейчас в работе
+4. **In Review** — PR отправлен, ожидает review
+5. **Done** — завершено и merged
 
-### Moving Issues
+### Перемещение issues
 
 ```bash
 # Update issue status (via project board UI or gh CLI)
 # Note: Status updates are typically done via web UI
 ```
 
-### Assigning Issues
+### Назначение issues
 
 ```bash
 # Assign to yourself
@@ -176,28 +176,28 @@ gh issue edit NUMBER \
 
 ---
 
-## Step 4: Working on Issues
+## Шаг 4: работа над issues
 
-### Start Work
+### Начать работу
 
-1. **Assign issue to yourself**
+1. **Назначьте issue на себя**
    ```bash
    gh issue edit NUMBER --repo darrenhinde/OpenAgentsControl --add-assignee @me
    ```
 
-2. **Move to "In Progress"** (via web UI)
+2. **Переместите в "In Progress"** (через web UI)
 
-3. **Create branch** (optional)
+3. **Создайте branch** (опционально)
    ```bash
    git checkout -b feature/issue-NUMBER-description
    ```
 
-4. **Reference issue in commits**
+4. **Ссылайтесь на issue в commits**
    ```bash
    git commit -m "feat: implement X (#NUMBER)"
    ```
 
-### Update Progress
+### Обновить прогресс
 
 ```bash
 # Add comment to issue
@@ -206,9 +206,9 @@ gh issue comment NUMBER \
   --body "Progress update: Completed X, working on Y"
 ```
 
-### Complete Work
+### Завершить работу
 
-1. **Create PR**
+1. **Создайте PR**
    ```bash
    gh pr create \
      --repo darrenhinde/OpenAgentsControl \
@@ -216,40 +216,40 @@ gh issue comment NUMBER \
      --body "Closes #NUMBER\n\nChanges:\n- Change 1\n- Change 2"
    ```
 
-2. **Move to "In Review"** (via web UI)
+2. **Переместите в "In Review"** (через web UI)
 
-3. **After merge, issue auto-closes** (if PR uses "Closes #NUMBER")
+3. **После merge issue закроется автоматически** (если PR использует "Closes #NUMBER")
 
 ---
 
-## Step 5: Using Issues for Request Processing
+## Шаг 5: использование issues для обработки запросов
 
-### Request Types
+### Типы запросов
 
-**User Feature Request**
-1. Create issue with `feature` label
-2. Add to project board
-3. Prioritize based on impact
-4. Break down into subtasks if needed
-5. Assign to appropriate person/team
+**Пользовательский запрос функции**
+1. Создайте issue с label `feature`
+2. Добавьте в project board
+3. Приоритизируйте по влиянию
+4. Разбейте на subtasks при необходимости
+5. Назначьте подходящему человеку/команде
 
-**Bug Report**
-1. Create issue with `bug` label
-2. Add reproduction steps
-3. Prioritize based on severity
-4. Assign for investigation
-5. Link to related issues if applicable
+**Баг-репорт**
+1. Создайте issue с label `bug`
+2. Добавьте reproduction steps
+3. Приоритизируйте по severity
+4. Назначьте для investigation
+5. Свяжите с related issues, если применимо
 
-**Improvement Suggestion**
-1. Create issue with `enhancement` label
-2. Discuss approach in comments
-3. Get consensus before implementation
-4. Create implementation plan
-5. Execute and track progress
+**Предложение улучшения**
+1. Создайте issue с label `enhancement`
+2. Обсудите approach в comments
+3. Получите consensus перед реализацией
+4. Создайте implementation plan
+5. Выполните и отслеживайте прогресс
 
-### Breaking Down Large Issues
+### Разбиение больших issues
 
-For complex features, create parent issue and subtasks:
+Для сложных features создавайте parent issue и subtasks:
 
 ```bash
 # Parent issue
@@ -269,9 +269,9 @@ gh issue create \
 
 ---
 
-## Step 6: Issue Templates
+## Шаг 6: шаблоны issue
 
-### Feature Issue Template
+### Шаблон feature issue
 
 ```markdown
 ## Overview
@@ -296,7 +296,7 @@ Brief description of the feature
 - [ ] Criterion 3
 ```
 
-### Bug Issue Template
+### Шаблон bug issue
 
 ```markdown
 ## Description
@@ -322,7 +322,7 @@ What actually happens
 Any other relevant information
 ```
 
-### Improvement Issue Template
+### Шаблон issue для улучшения
 
 ```markdown
 ## Current State
@@ -346,16 +346,16 @@ High-level approach to implementation
 
 ---
 
-## Step 7: Automation and Integration
+## Шаг 7: автоматизация и интеграция
 
-### Auto-Close Issues
+### Автозакрытие issues
 
-Use keywords in PR descriptions:
+Используйте keywords в описаниях PR:
 - `Closes #123`
 - `Fixes #123`
 - `Resolves #123`
 
-### Link Issues to PRs
+### Связать issues с PR
 
 ```bash
 # In PR description
@@ -364,7 +364,7 @@ gh pr create \
   --body "Implements #123\n\nChanges:\n- Change 1"
 ```
 
-### Issue References in Commits
+### Ссылки на issue в commits
 
 ```bash
 # Reference issue in commit
@@ -376,98 +376,98 @@ git commit -m "fix: resolve permission error (closes #140)"
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-### Issue Creation
+### Создание issues
 
-✅ **Clear titles** - Descriptive and specific  
-✅ **Detailed descriptions** - Include context and goals  
-✅ **Proper labels** - Use consistent labeling  
-✅ **Success criteria** - Define what "done" means  
-✅ **Link related issues** - Show dependencies  
+✅ **Понятные заголовки** — описательные и конкретные  
+✅ **Подробные описания** — включайте context и goals  
+✅ **Правильные labels** — используйте единый labeling  
+✅ **Критерии успеха** — определите, что значит "done"  
+✅ **Связанные issues** — показывайте dependencies  
 
-### Issue Management
+### Управление issues
 
-✅ **Regular triage** - Review and prioritize weekly  
-✅ **Keep updated** - Add comments on progress  
-✅ **Close stale issues** - Clean up old/irrelevant issues  
-✅ **Use milestones** - Group related issues  
-✅ **Assign owners** - Clear responsibility  
+✅ **Регулярный triage** — просматривайте и приоритизируйте еженедельно  
+✅ **Держите актуальными** — добавляйте комментарии о прогрессе  
+✅ **Закрывайте устаревшие issues** — очищайте старые/неактуальные issues  
+✅ **Используйте milestones** — группируйте связанные issues  
+✅ **Назначайте owners** — ясная ответственность  
 
-### Project Board
+### Доска проекта
 
-✅ **Update status** - Keep board current  
-✅ **Limit WIP** - Don't overload "In Progress"  
-✅ **Review regularly** - Weekly board review  
-✅ **Archive completed** - Keep board clean  
-
----
-
-## Common Workflows
-
-### Processing User Request
-
-1. **Receive request** (via issue, email, chat)
-2. **Create issue** with appropriate labels
-3. **Add to project board**
-4. **Triage and prioritize**
-5. **Assign to team member**
-6. **Track progress** via status updates
-7. **Review and merge** PR
-8. **Close issue** and notify requester
-
-### Planning New Feature
-
-1. **Create epic issue** for overall feature
-2. **Break down into subtasks**
-3. **Add all to project board**
-4. **Prioritize subtasks**
-5. **Assign to team members**
-6. **Track progress** across subtasks
-7. **Complete and close** when all subtasks done
-
-### Bug Triage
-
-1. **Create bug issue** with reproduction steps
-2. **Label with severity** (critical, high, medium, low)
-3. **Add to project board**
-4. **Assign for investigation**
-5. **Reproduce and diagnose**
-6. **Fix and test**
-7. **Create PR** with fix
-8. **Close issue** after merge
+✅ **Обновляйте status** — держите board актуальной  
+✅ **Ограничивайте WIP** — не перегружайте "In Progress"  
+✅ **Регулярно review** — еженедельный review board  
+✅ **Архивируйте завершенное** — держите board чистой  
 
 ---
 
-## Checklist
+## Частые процессы
 
-Before closing an issue:
+### Обработка пользовательского запроса
 
-- [ ] All success criteria met
-- [ ] Tests passing
-- [ ] Documentation updated
-- [ ] PR merged (if applicable)
-- [ ] Related issues updated
-- [ ] Stakeholders notified
+1. **Получите запрос** (через issue, email, chat)
+2. **Создайте issue** с подходящими labels
+3. **Добавьте в project board**
+4. **Проведите triage и приоритизируйте**
+5. **Назначьте участника команды**
+6. **Отслеживайте прогресс** через обновления статуса
+7. **Проверьте и merge** PR
+8. **Закройте issue** и уведомите requester
+
+### Планирование новой feature
+
+1. **Создайте epic issue** для всей feature
+2. **Разбейте на subtasks**
+3. **Добавьте всё в project board**
+4. **Приоритизируйте subtasks**
+5. **Назначьте участников команды**
+6. **Отслеживайте прогресс** по subtasks
+7. **Завершите и закройте**, когда все subtasks готовы
+
+### Triage багов
+
+1. **Создайте bug issue** с шагами воспроизведения
+2. **Добавьте label severity** (critical, high, medium, low)
+3. **Добавьте в project board**
+4. **Назначьте расследование**
+5. **Воспроизведите и диагностируйте**
+6. **Исправьте и протестируйте**
+7. **Создайте PR** с fix
+8. **Закройте issue** после merge
 
 ---
 
-## Related Files
+## Чеклист
 
-- **Registry guide**: `guides/updating-registry.md`
-- **Release guide**: `guides/creating-release.md`
-- **Testing guide**: `guides/testing-agent.md`
-- **Debugging**: `guides/debugging.md`
+Перед закрытием issue:
 
----
-
-## External Resources
-
-- [GitHub Issues Documentation](https://docs.github.com/en/issues)
-- [GitHub Projects Documentation](https://docs.github.com/en/issues/planning-and-tracking-with-projects)
-- [GitHub CLI Documentation](https://cli.github.com/manual/)
+- [ ] Все критерии успеха выполнены
+- [ ] Тесты проходят
+- [ ] Документация обновлена
+- [ ] PR merged (если применимо)
+- [ ] Связанные issues обновлены
+- [ ] Stakeholders уведомлены
 
 ---
 
-**Last Updated**: 2026-01-30  
-**Version**: 0.5.2
+## Связанные файлы
+
+- **Руководство по registry**: `guides/updating-registry.md`
+- **Руководство по релизу**: `guides/creating-release.md`
+- **Руководство по тестированию**: `guides/testing-agent.md`
+- **Диагностика**: `guides/debugging.md`
+
+---
+
+## Внешние ресурсы
+
+- [Документация GitHub Issues](https://docs.github.com/en/issues)
+- [Документация GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects)
+- [Документация GitHub CLI](https://cli.github.com/manual/)
+
+---
+
+**Последнее обновление**: 2026-01-30  
+**Версия**: 0.5.2

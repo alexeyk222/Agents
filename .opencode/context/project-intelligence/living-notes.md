@@ -1,114 +1,114 @@
 <!-- Context: project-intelligence/notes | Priority: high | Version: 1.0 | Updated: 2025-01-12 -->
 
-# Living Notes
+# Живые заметки
 
-> Active issues, technical debt, open questions, and insights that don't fit elsewhere. Keep this alive.
+> Активные проблемы, технический долг, открытые вопросы и наблюдения, которые не подходят в другие разделы. Поддерживайте файл актуальным.
 
-## Quick Reference
+## Краткая справка
 
-- **Purpose**: Capture current state, problems, and open questions
-- **Update**: Weekly or when status changes
-- **Archive**: Move resolved items to bottom with status
+- **Назначение**: фиксировать текущее состояние, проблемы и открытые вопросы
+- **Обновлять**: еженедельно или при изменении статуса
+- **Архивировать**: переносить решённые пункты вниз со статусом
 
-## Technical Debt
+## Технический долг
 
-| Item | Impact | Priority | Mitigation |
+| Пункт | Влияние | Приоритет | Меры |
 |------|--------|----------|------------|
 | [Debt item] | [What risk it creates] | [High/Med/Low] | [How to manage] |
 
-### Technical Debt Details
+### Детали технического долга
 
 **[Debt Item]**  
-*Priority*: [High/Med/Low]  
-*Impact*: [What happens if not addressed]  
-*Root Cause*: [Why this debt exists]  
-*Proposed Solution*: [How to fix it]  
-*Effort*: [Small/Medium/Large]  
-*Status*: [Acknowledged | Scheduled | In Progress | Deferred]
+*Приоритет*: [High/Med/Low]  
+*Влияние*: [What happens if not addressed]  
+*Причина*: [Why this debt exists]  
+*Предлагаемое решение*: [How to fix it]  
+*Оценка усилий*: [Small/Medium/Large]  
+*Статус*: [Acknowledged | Scheduled | In Progress | Deferred]
 
-## Open Questions
+## Открытые вопросы
 
-| Question | Stakeholders | Status | Next Action |
+| Вопрос | Стейкхолдеры | Статус | Следующее действие |
 |----------|--------------|--------|-------------|
 | [Question] | [Who needs to decide] | [Open/In Progress] | [What needs to happen] |
 
-### Open Question Details
+### Детали открытого вопроса
 
 **[Question]**  
-*Context*: [Why this question matters]  
-*Stakeholders*: [Who needs to be involved]  
-*Options*: [What are the possibilities]  
-*Timeline*: [When does this need resolution]  
-*Status*: [Open/In Progress/Blocked]
+*Контекст*: [Why this question matters]  
+*Стейкхолдеры*: [Who needs to be involved]  
+*Варианты*: [What are the possibilities]  
+*Сроки*: [When does this need resolution]  
+*Статус*: [Open/In Progress/Blocked]
 
-## Known Issues
+## Известные проблемы
 
-| Issue | Severity | Workaround | Status |
+| Проблема | Серьёзность | Обходной путь | Статус |
 |-------|----------|------------|--------|
 | [Issue] | [Critical/High/Med/Low] | [Temporary fix] | [Known/In Progress/Fixed] |
 
-### Issue Details
+### Детали проблемы
 
 **[Issue Title]**  
-*Severity*: [Critical/High/Med/Low]  
-*Impact*: [Who/what is affected]  
-*Reproduction*: [Steps to reproduce if applicable]  
-*Workaround*: [Temporary solution if exists]  
-*Root Cause*: [If known]  
-*Fix Plan*: [How to properly fix]  
-*Status*: [Known/In Progress/Fixed in vX.X]
+*Серьёзность*: [Critical/High/Med/Low]  
+*Влияние*: [Who/what is affected]  
+*Воспроизведение*: [Steps to reproduce if applicable]  
+*Обходной путь*: [Temporary solution if exists]  
+*Причина*: [If known]  
+*План исправления*: [How to properly fix]  
+*Статус*: [Known/In Progress/Fixed in vX.X]
 
-## Insights & Lessons Learned
+## Наблюдения и извлечённые уроки
 
-### What Works Well
+### Что работает хорошо
 - [Positive pattern 1] - [Why it works]
 - [Positive pattern 2] - [Why it works]
 
-### What Could Be Better
+### Что можно улучшить
 - [Area for improvement 1] - [Why it's a problem]
 - [Area for improvement 2] - [Why it's a problem]
 
-### Lessons Learned
+### Извлечённые уроки
 - [Lesson 1] - [Context and implication]
 - [Lesson 2] - [Context and implication]
 
-## Patterns & Conventions
+## Паттерны и соглашения
 
-### Code Patterns Worth Preserving
+### Кодовые паттерны, которые стоит сохранить
 - [Pattern 1] - [Where it lives, why it's good]
 - [Pattern 2] - [Where it lives, why it's good]
 
-### Gotchas for Maintainers
+### Подводные камни для сопровождающих
 - [Gotcha 1] - [What to watch out for]
 - [Gotcha 2] - [What to watch out for]
 
-## Active Projects
+## Активные проекты
 
-| Project | Goal | Owner | Timeline |
+| Проект | Цель | Владелец | Сроки |
 |---------|------|-------|----------|
 | [Project] | [What we're doing] | [Who owns it] | [When it matters] |
 
-## Archive (Resolved Items)
+## Архив (решённые пункты)
 
-Moved here for historical reference. Current team should refer to current notes above.
+Перенесено сюда для истории. Текущей команде следует смотреть актуальные заметки выше.
 
-### Resolved: [Item]
-- **Resolved**: [Date]
-- **Resolution**: [What was decided/done]
-- **Learnings**: [What we learned from this]
+### Решено: [Item]
+- **Решено**: [Date]
+- **Решение**: [What was decided/done]
+- **Выводы**: [What we learned from this]
 
-## Onboarding Checklist
+## Чеклист онбординга
 
-- [ ] Review known technical debt and understand impact
-- [ ] Know what open questions exist and who's involved
-- [ ] Understand current issues and workarounds
-- [ ] Be aware of patterns and gotchas
-- [ ] Know active projects and timelines
-- [ ] Understand the team's priorities
+- [ ] Просмотреть известный технический долг и понять его влияние
+- [ ] Знать открытые вопросы и участников обсуждения
+- [ ] Понимать текущие проблемы и обходные пути
+- [ ] Знать паттерны и подводные камни
+- [ ] Знать активные проекты и сроки
+- [ ] Понимать приоритеты команды
 
-## Related Files
+## Связанные файлы
 
-- `decisions-log.md` - Past decisions that inform current state
-- `business-domain.md` - Business context for current priorities
-- `technical-domain.md` - Technical context for current state
-- `business-tech-bridge.md` - Context for current trade-offs
+- `decisions-log.md` - Прошлые решения, влияющие на текущее состояние
+- `business-domain.md` - Бизнес-контекст текущих приоритетов
+- `technical-domain.md` - Технический контекст текущего состояния
+- `business-tech-bridge.md` - Контекст текущих компромиссов

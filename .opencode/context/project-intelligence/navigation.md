@@ -1,65 +1,65 @@
 <!-- Context: project-intelligence/nav | Priority: high | Version: 1.0 | Updated: 2025-01-12 -->
 
-# Project Intelligence
+# Сведения о проекте
 
-> Start here for quick project understanding. These files bridge business and technical domains.
+> Начинайте здесь, чтобы быстро понять проект. Эти файлы связывают бизнес- и технический домены.
 
-## Structure
+## Структура
 
 ```
 .opencode/context/project-intelligence/
-├── navigation.md              # This file - quick overview
-├── business-domain.md         # Business context and problem statement
-├── technical-domain.md        # Stack, architecture, technical decisions
-├── business-tech-bridge.md    # How business needs map to solutions
-├── decisions-log.md           # Major decisions with rationale
-└── living-notes.md            # Active issues, debt, open questions
+├── navigation.md              # Этот файл — краткий обзор
+├── business-domain.md         # Бизнес-контекст и постановка проблемы
+├── technical-domain.md        # Стек, архитектура, технические решения
+├── business-tech-bridge.md    # Как бизнес-потребности связаны с решениями
+├── decisions-log.md           # Ключевые решения с обоснованием
+└── living-notes.md            # Активные проблемы, долг, открытые вопросы
 ```
 
-## Quick Routes
+## Быстрые маршруты
 
-| What You Need | File | Description |
+| Что нужно | Файл | Описание |
 |---------------|------|-------------|
-| Understand the "why" | `business-domain.md` | Problem, users, value proposition |
-| Understand the "how" | `technical-domain.md` | Stack, architecture, integrations |
-| See the connection | `business-tech-bridge.md` | Business → technical mapping |
-| Know the context | `decisions-log.md` | Why decisions were made |
-| Current state | `living-notes.md` | Active issues and open questions |
-| All of the above | Read all files in order | Full project intelligence |
+| Понять «зачем» | `business-domain.md` | Проблема, пользователи, ценностное предложение |
+| Понять «как» | `technical-domain.md` | Стек, архитектура, интеграции |
+| Увидеть связь | `business-tech-bridge.md` | Соответствие бизнес → технологии |
+| Узнать контекст | `decisions-log.md` | Почему были приняты решения |
+| Текущее состояние | `living-notes.md` | Активные проблемы и открытые вопросы |
+| Всё перечисленное | Читать все файлы по порядку | Полные сведения о проекте |
 
-## Usage
+## Использование
 
-**New Team Member / Agent**:
-1. Start with `navigation.md` (this file)
-2. Read all files in order for complete understanding
-3. Follow onboarding checklist in each file
+**Новый участник команды / агент**:
+1. Начните с `navigation.md` (этот файл)
+2. Прочитайте все файлы по порядку для полного понимания
+3. Следуйте чеклисту онбординга в каждом файле
 
-**Quick Reference**:
-- Business focus → `business-domain.md`
-- Technical focus → `technical-domain.md`
-- Decision context → `decisions-log.md`
+**Краткая справка**:
+- Бизнес-фокус → `business-domain.md`
+- Технический фокус → `technical-domain.md`
+- Контекст решений → `decisions-log.md`
 
-## Integration
+## Интеграция
 
-This folder is referenced from:
-- `.opencode/context/core/standards/project-intelligence.md` (standards and patterns)
-- `.opencode/context/core/system/context-guide.md` (context loading)
+На эту папку ссылаются:
+- `.opencode/context/core/standards/project-intelligence.md` (стандарты и паттерны)
+- `.opencode/context/core/system/context-guide.md` (загрузка контекста)
 
-See `.opencode/context/core/context-system.md` for the broader context architecture.
+Более широкую архитектуру контекста см. в `.opencode/context/core/context-system.md`.
 
-## Maintenance
+## Поддержка
 
-Keep this folder current:
-- Update when business direction changes
-- Document decisions as they're made
-- Review `living-notes.md` regularly
-- Archive resolved items from decisions-log.md
+Поддерживайте эту папку в актуальном состоянии:
+- Обновляйте при изменении бизнес-направления
+- Документируйте решения по мере их принятия
+- Регулярно просматривайте `living-notes.md`
+- Архивируйте решённые пункты из decisions-log.md
 
-**Management Guide**: See `.opencode/context/core/standards/project-intelligence-management.md` for complete lifecycle management including:
-- How to update, add, and remove files
-- How to create new subfolders
-- Version tracking and frontmatter standards
-- Quality checklists and anti-patterns
-- Governance and ownership
+**Руководство по управлению**: полное управление жизненным циклом см. в `.opencode/context/core/standards/project-intelligence-management.md`, включая:
+- Как обновлять, добавлять и удалять файлы
+- Как создавать новые подпапки
+- Отслеживание версий и стандарты frontmatter
+- Чеклисты качества и антипаттерны
+- Управление и владение
 
-See `.opencode/context/core/standards/project-intelligence.md` for the standard itself.
+Сам стандарт см. в `.opencode/context/core/standards/project-intelligence.md`.

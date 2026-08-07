@@ -1,24 +1,24 @@
 <!-- Context: openagents-repo/events_skills | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenCode Events: Skills Plugin Implementation
+# События OpenCode: реализация Skills Plugin
 
-## Overview
+## Обзор
 
-This document explains how the OpenCode Skills Plugin uses event hooks (`tool.execute.before` and `tool.execute.after`) to implement skill delivery and output enhancement. This is a practical example of the event system described in `events.md`.
+Этот документ объясняет, как OpenCode Skills Plugin использует хуки событий (`tool.execute.before` и `tool.execute.after`) для доставки навыков и улучшения вывода. Это практический пример системы событий из `events.md`.
 
 ---
 
-## Event Hooks Used
+## Используемые хуки событий
 
 ### tool.execute.before
 
-**Event Type:** Tool Execution Interception
+**Тип события:** перехват выполнения инструмента
 
-**When it fires:** Before a tool function executes
+**Когда срабатывает:** до выполнения функции инструмента
 
-**Purpose in Skills Plugin:** Inject skill content into the conversation
+**Назначение в Skills Plugin:** внедрить содержимое навыка в разговор
 
-**Implementation:**
+**Реализация:**
 ```typescript
 const beforeHook = async (input: any, output: any) => {
   // Check if this is a skill tool
@@ -45,40 +45,40 @@ const beforeHook = async (input: any, output: any) => {
 }
 ```
 
-**Why use this hook?**
-- Runs before tool execution, perfect for context injection
-- Can access tool name and session ID
-- Can inject content without triggering AI response
-- Skill content persists in conversation history
+**Зачем использовать этот хук?**
+- Срабатывает до выполнения инструмента — идеально для внедрения контекста
+- Имеет доступ к имени инструмента и session ID
+- Может внедрять содержимое без запуска ответа AI
+- Содержимое навыка сохраняется в истории разговора
 
-**Input Parameters:**
-- `input.tool` - Tool name (e.g., "skills_brand_guidelines")
-- `input.sessionID` - Current session ID
-- `input.agent` - Agent name that called the tool
-- `output.args` - Tool arguments
+**Входные параметры:**
+- `input.tool` - имя инструмента (например, "skills_brand_guidelines")
+- `input.sessionID` - текущий session ID
+- `input.agent` - имя агента, вызвавшего инструмент
+- `output.args` - аргументы инструмента
 
-**What you can do:**
-- ✅ Inject context (skill content)
-- ✅ Validate inputs
-- ✅ Preprocess arguments
-- ✅ Log tool calls
-- ✅ Implement security checks
+**Что можно делать:**
+- ✅ Внедрять контекст (содержимое навыка)
+- ✅ Валидировать входные данные
+- ✅ Предобрабатывать аргументы
+- ✅ Логировать вызовы инструментов
+- ✅ Реализовывать проверки безопасности
 
-**What you can't do:**
-- ❌ Modify tool output (tool hasn't run yet)
-- ❌ Access tool results
+**Что нельзя делать:**
+- ❌ Изменять вывод инструмента (инструмент еще не запущен)
+- ❌ Получать доступ к результатам инструмента
 
 ---
 
 ### tool.execute.after
 
-**Event Type:** Tool Execution Interception
+**Тип события:** перехват выполнения инструмента
 
-**When it fires:** After a tool function completes
+**Когда срабатывает:** после завершения функции инструмента
 
-**Purpose in Skills Plugin:** Enhance output with visual feedback
+**Назначение в Skills Plugin:** улучшить вывод визуальной обратной связью
 
-**Implementation:**
+**Реализация:**
 ```typescript
 const afterHook = async (input: any, output: any) => {
   // Check if this is a skill tool
@@ -93,32 +93,32 @@ const afterHook = async (input: any, output: any) => {
 }
 ```
 
-**Why use this hook?**
-- Runs after tool execution, perfect for output enhancement
-- Can modify output properties
-- Can add visual feedback (emoji titles)
-- Can implement logging/analytics
+**Зачем использовать этот хук?**
+- Срабатывает после выполнения инструмента — идеально для улучшения вывода
+- Может изменять свойства вывода
+- Может добавлять визуальную обратную связь (emoji-заголовки)
+- Может реализовывать логирование/аналитику
 
-**Input Parameters:**
-- `input.tool` - Tool name (e.g., "skills_brand_guidelines")
-- `input.sessionID` - Current session ID
-- `output.output` - Tool result/output
-- `output.title` - Output title (can be modified)
+**Входные параметры:**
+- `input.tool` - имя инструмента (например, "skills_brand_guidelines")
+- `input.sessionID` - текущий session ID
+- `output.output` - результат/вывод инструмента
+- `output.title` - заголовок вывода (можно изменить)
 
-**What you can do:**
-- ✅ Modify output
-- ✅ Add titles/formatting
-- ✅ Log completion
-- ✅ Add analytics
-- ✅ Transform results
+**Что можно делать:**
+- ✅ Изменять вывод
+- ✅ Добавлять заголовки/форматирование
+- ✅ Логировать завершение
+- ✅ Добавлять аналитику
+- ✅ Преобразовывать результаты
 
-**What you can't do:**
-- ❌ Modify tool arguments (already executed)
-- ❌ Prevent tool execution (already happened)
+**Что нельзя делать:**
+- ❌ Изменять аргументы инструмента (уже выполнен)
+- ❌ Предотвращать выполнение инструмента (уже произошло)
 
 ---
 
-## Event Lifecycle in Skills Plugin
+## Жизненный цикл событий в Skills Plugin
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -186,9 +186,9 @@ const afterHook = async (input: any, output: any) => {
 
 ---
 
-## Why Hooks Instead of Embedded Logic?
+## Почему хуки вместо встроенной логики?
 
-### Problem: Embedded Delivery (Anti-Pattern)
+### Проблема: встроенная доставка (антипаттерн)
 
 ```typescript
 // ❌ OLD: Skill delivery inside tool.execute()
@@ -203,16 +203,16 @@ async execute(args, toolCtx) {
 }
 ```
 
-**Issues:**
-1. **Tight Coupling**: Tool logic and delivery are inseparable
-2. **Hard to Test**: Can't test tool without testing delivery
-3. **Violates SOLID**: Single Responsibility Principle broken
-4. **No Reusability**: Delivery logic can't be extracted
-5. **Difficult to Monitor**: Can't track delivery separately
+**Проблемы:**
+1. **Жесткая связность**: логика инструмента и доставка неразделимы
+2. **Сложно тестировать**: нельзя тестировать инструмент без доставки
+3. **Нарушение SOLID**: нарушен Single Responsibility Principle
+4. **Нет переиспользования**: логику доставки нельзя вынести
+5. **Сложный мониторинг**: доставку нельзя отслеживать отдельно
 
 ---
 
-### Solution: Hook-Based Delivery (Best Practice)
+### Решение: доставка через хуки (лучшая практика)
 
 ```typescript
 // ✅ NEW: Separated concerns using hooks
@@ -233,20 +233,20 @@ const beforeHook = async (input, output) => {
 }
 ```
 
-**Benefits:**
-1. ✅ **Loose Coupling**: Tool and delivery are independent
-2. ✅ **Easy to Test**: Each component tested separately
-3. ✅ **SOLID Compliant**: Single Responsibility Principle
-4. ✅ **Reusable**: Hooks can be composed with other plugins
-5. ✅ **Monitorable**: Can add logging/analytics independently
+**Преимущества:**
+1. ✅ **Слабая связность**: инструмент и доставка независимы
+2. ✅ **Легко тестировать**: каждый компонент тестируется отдельно
+3. ✅ **Соответствие SOLID**: Single Responsibility Principle
+4. ✅ **Переиспользуемость**: хуки можно комбинировать с другими плагинами
+5. ✅ **Мониторинг**: логирование/аналитику можно добавлять независимо
 
 ---
 
-## Skill Lookup Map: Performance Optimization
+## Карта поиска навыков: оптимизация производительности
 
-### Why a Map?
+### Почему Map?
 
-The skill lookup map enables O(1) access instead of O(n) search:
+Карта поиска навыков дает доступ O(1) вместо поиска O(n):
 
 ```typescript
 // ✅ EFFICIENT: O(1) lookup
@@ -265,28 +265,28 @@ const beforeHook = async (input, output) => {
 }
 ```
 
-### Performance Impact
+### Влияние на производительность
 
-| Number of Skills | Array Search (O(n)) | Map Lookup (O(1)) | Speedup |
+| Количество навыков | Поиск в массиве (O(n)) | Поиск в Map (O(1)) | Ускорение |
 |------------------|-------------------|------------------|---------|
-| 10 | 10 comparisons | 1 lookup | 10x |
-| 100 | 100 comparisons | 1 lookup | 100x |
-| 1000 | 1000 comparisons | 1 lookup | 1000x |
+| 10 | 10 сравнений | 1 поиск | 10x |
+| 100 | 100 сравнений | 1 поиск | 100x |
+| 1000 | 1000 сравнений | 1 поиск | 1000x |
 
-**Conclusion:** Map lookup is essential for scalability
+**Вывод:** поиск в Map важен для масштабируемости
 
 ---
 
-## Integration with OpenCode Event System
+## Интеграция с системой событий OpenCode
 
-### Event Mapping
+### Сопоставление событий
 
-| OpenCode Event | Skills Plugin Hook | Purpose |
+| Событие OpenCode | Хук Skills Plugin | Назначение |
 |---|---|---|
-| `tool.execute.before` | `beforeHook` | Skill content injection |
-| `tool.execute.after` | `afterHook` | Output enhancement |
+| `tool.execute.before` | `beforeHook` | внедрение содержимого навыка |
+| `tool.execute.after` | `afterHook` | улучшение вывода |
 
-### Plugin Return Object
+### Возвращаемый объект плагина
 
 ```typescript
 return {
@@ -301,37 +301,37 @@ return {
 }
 ```
 
-**Key Points:**
-- Hooks apply to ALL tools (use `if` statements to filter)
-- Multiple plugins can register hooks without conflict
-- Hooks run in registration order
-- Hooks can be async
+**Главное:**
+- Хуки применяются ко ВСЕМ инструментам (фильтруйте через `if`)
+- Несколько плагинов могут регистрировать хуки без конфликтов
+- Хуки выполняются в порядке регистрации
+- Хуки могут быть async
 
 ---
 
-## Comparison with Other Event Hooks
+## Сравнение с другими хуками событий
 
-### Available Tool Execution Hooks
+### Доступные хуки выполнения инструментов
 
-| Hook | When | Use Case |
+| Хук | Когда | Сценарий |
 |------|------|----------|
-| `tool.execute.before` | Before tool runs | Input validation, context injection, preprocessing |
-| `tool.execute.after` | After tool completes | Output formatting, logging, analytics |
+| `tool.execute.before` | До запуска инструмента | Валидация входных данных, внедрение контекста, предобработка |
+| `tool.execute.after` | После завершения инструмента | Форматирование вывода, логирование, аналитика |
 
-### Other Event Hooks (Not Used in Skills Plugin)
+### Другие хуки событий (не используются в Skills Plugin)
 
-| Hook | When | Use Case |
+| Хук | Когда | Сценарий |
 |------|------|----------|
-| `session.created` | Session starts | Welcome messages, initialization |
-| `message.updated` | Message changes | Monitoring, logging |
-| `session.idle` | Session completes | Cleanup, background tasks |
-| `session.error` | Error occurs | Error handling, logging |
+| `session.created` | Сессия начинается | Приветственные сообщения, инициализация |
+| `message.updated` | Сообщение меняется | Мониторинг, логирование |
+| `session.idle` | Сессия завершается | Очистка, фоновые задачи |
+| `session.error` | Возникает ошибка | Обработка ошибок, логирование |
 
 ---
 
-## Real-World Example: Skill Delivery Flow
+## Практический пример: поток доставки навыка
 
-### Step 1: Agent Calls Skill Tool
+### Шаг 1: агент вызывает инструмент навыка
 
 ```
 Agent: "Use the brand-guidelines skill"
@@ -339,7 +339,7 @@ Agent: "Use the brand-guidelines skill"
 OpenCode: Calls skills_brand_guidelines tool
 ```
 
-### Step 2: Before Hook Fires
+### Шаг 2: срабатывает before hook
 
 ```typescript
 const beforeHook = async (input, output) => {
@@ -373,9 +373,9 @@ const beforeHook = async (input, output) => {
 }
 ```
 
-**Result:** Skill content added to conversation, no AI response
+**Результат:** содержимое навыка добавлено в разговор, ответа AI нет
 
-### Step 3: Tool Executes
+### Шаг 3: инструмент выполняется
 
 ```typescript
 async execute(args, toolCtx) {
@@ -384,9 +384,9 @@ async execute(args, toolCtx) {
 }
 ```
 
-**Result:** Simple confirmation returned
+**Результат:** возвращается простое подтверждение
 
-### Step 4: After Hook Fires
+### Шаг 4: срабатывает after hook
 
 ```typescript
 const afterHook = async (input, output) => {
@@ -402,9 +402,9 @@ const afterHook = async (input, output) => {
 }
 ```
 
-**Result:** Output title enhanced with emoji
+**Результат:** заголовок вывода улучшен emoji
 
-### Step 5: Agent Receives Result
+### Шаг 5: агент получает результат
 
 ```
 Conversation History:
@@ -418,9 +418,9 @@ Conversation History:
 
 ---
 
-## Testing Hooks
+## Тестирование хуков
 
-### Testing Before Hook
+### Тестирование before hook
 
 ```typescript
 describe("beforeHook", () => {
@@ -468,7 +468,7 @@ describe("beforeHook", () => {
 })
 ```
 
-### Testing After Hook
+### Тестирование after hook
 
 ```typescript
 describe("afterHook", () => {
@@ -503,9 +503,9 @@ describe("afterHook", () => {
 
 ---
 
-## Common Patterns
+## Частые паттерны
 
-### Pattern 1: Tool-Specific Hooks
+### Паттерн 1: хуки для конкретных инструментов
 
 ```typescript
 const beforeHook = async (input, output) => {
@@ -522,7 +522,7 @@ const beforeHook = async (input, output) => {
 }
 ```
 
-### Pattern 2: Conditional Processing
+### Паттерн 2: условная обработка
 
 ```typescript
 const beforeHook = async (input, output) => {
@@ -535,7 +535,7 @@ const beforeHook = async (input, output) => {
 }
 ```
 
-### Pattern 3: Logging & Monitoring
+### Паттерн 3: логирование и мониторинг
 
 ```typescript
 const beforeHook = async (input, output) => {
@@ -553,7 +553,7 @@ const afterHook = async (input, output) => {
 }
 ```
 
-### Pattern 4: Error Handling
+### Паттерн 4: обработка ошибок
 
 ```typescript
 const beforeHook = async (input, output) => {
@@ -574,25 +574,24 @@ const beforeHook = async (input, output) => {
 
 ---
 
-## Key Takeaways
+## Главное
 
-1. **Hooks are middleware**: They intercept tool execution at specific points
-2. **Before hook**: For preprocessing, validation, context injection
-3. **After hook**: For output enhancement, logging, analytics
-4. **Lookup maps**: Enable O(1) access instead of O(n) search
-5. **Separation of concerns**: Tools do one thing, hooks do another
-6. **Composability**: Multiple plugins can register hooks without conflict
-7. **Testability**: Each component can be tested independently
-8. **Maintainability**: Changes are isolated to specific hooks
+1. **Хуки — это middleware**: они перехватывают выполнение инструмента в заданных точках
+2. **Хук before**: для предобработки, валидации, внедрения контекста
+3. **Хук after**: для улучшения вывода, логирования, аналитики
+4. **Карты поиска**: дают доступ O(1) вместо поиска O(n)
+5. **Разделение ответственности**: инструменты делают одно, хуки — другое
+6. **Композиция**: несколько плагинов могут регистрировать хуки без конфликтов
+7. **Тестируемость**: каждый компонент можно тестировать независимо
+8. **Поддерживаемость**: изменения изолированы в конкретных хуках
 
 ---
 
-## References
+## Ссылки
 
-- **OpenCode Events**: `context/capabilities/events.md`
-- **Tool Definition**: `context/capabilities/tools.md`
-- **Best Practices**: `context/reference/best-practices.md`
-- **Skills Plugin Example**: `skills-plugin/example.ts`
-- **Hook Lifecycle**: `skills-plugin/hook-lifecycle-and-patterns.md`
-- **Implementation Pattern**: `skills-plugin/implementation-pattern.md`
-
+- **События OpenCode**: `context/capabilities/events.md`
+- **Определение инструмента**: `context/capabilities/tools.md`
+- **Лучшие практики**: `context/reference/best-practices.md`
+- **Пример Skills Plugin**: `skills-plugin/example.ts`
+- **Жизненный цикл хуков**: `skills-plugin/hook-lifecycle-and-patterns.md`
+- **Паттерн реализации**: `skills-plugin/implementation-pattern.md`

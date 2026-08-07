@@ -1,39 +1,39 @@
 <!-- Context: openagents-repo/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Blueprints
+# Чертежи OpenAgents
 
-**Purpose**: Blueprint templates and patterns for OpenAgents Control
+**Назначение**: шаблоны и паттерны чертежей для OpenAgents Control
 
 ---
 
-## Structure
+## Структура
 
 ```
 openagents-repo/blueprints/
-├── navigation.md (this file)
-└── [blueprint files]
+├── navigation.md (этот файл)
+└── [файлы чертежей]
 ```
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **View blueprints** | `./` |
-| **Core concepts** | `../core-concepts/navigation.md` |
-| **Examples** | `../examples/navigation.md` |
+| **Посмотреть чертежи** | `./` |
+| **Ключевые концепции** | `../core-concepts/navigation.md` |
+| **Примеры** | `../examples/navigation.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Blueprints** → Template patterns for OpenAgents implementations
+**Чертежи** → шаблонные паттерны для реализаций OpenAgents
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **OpenAgents Navigation** → `../navigation.md`
-- **Core Concepts** → `../core-concepts/navigation.md`
-- **Examples** → `../examples/navigation.md`
+- **Навигация OpenAgents** → `../navigation.md`
+- **Ключевые концепции** → `../core-concepts/navigation.md`
+- **Примеры** → `../examples/navigation.md`

@@ -1,11 +1,11 @@
 <!-- Context: ui/web/animation-loading | Priority: medium | Version: 1.0 | Updated: 2025-12-09 -->
-# Loading State Animations
+# Анимации состояний загрузки
 
-Animation patterns for skeleton screens, spinners, progress bars, and status indicators.
+Паттерны анимации для skeleton-экранов, spinner, progress bar и индикаторов статуса.
 
 ---
 
-## Skeleton Screens
+## Skeleton-экраны
 
 ```css
 /* Skeleton shimmer */
@@ -25,14 +25,14 @@ Animation patterns for skeleton screens, spinners, progress bars, and status ind
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 skeleton: 2000ms ∞ [bg: muted↔accent]
 ```
 
 ---
 
-## Spinners
+## Spinner
 
 ```css
 /* Circular spinner */
@@ -56,7 +56,7 @@ skeleton: 2000ms ∞ [bg: muted↔accent]
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 spinner: 1000ms ∞ linear [R360°]
 dotPulse: 1500ms ∞ [α0.3→1→0.3, S0.8→1→0.8] stagger+200ms
@@ -64,7 +64,7 @@ dotPulse: 1500ms ∞ [α0.3→1→0.3, S0.8→1→0.8] stagger+200ms
 
 ---
 
-## Progress Bars
+## Progress bar
 
 ```css
 /* Indeterminate progress */
@@ -78,14 +78,14 @@ dotPulse: 1500ms ∞ [α0.3→1→0.3, S0.8→1→0.8] stagger+200ms
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 progress: 2000ms ∞ ease-in-out [X-100%→0→100%]
 ```
 
 ---
 
-## Status Indicators
+## Индикаторы статуса
 
 ```css
 /* Online status pulse */
@@ -104,15 +104,15 @@ progress: 2000ms ∞ ease-in-out [X-100%→0→100%]
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 status: 2000ms ∞ [α1→0.6→1, S1→1.05→1]
 ```
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Animation Basics](./animation-basics.md) - Fundamentals
-- [Form Animations](./animation-forms.md) - Form patterns
-- [Advanced Animations](./animation-advanced.md) - Recipes & best practices
+- [Основы анимации](./animation-basics.md) - базовые принципы
+- [Анимации форм](./animation-forms.md) - паттерны форм
+- [Продвинутые анимации](./animation-advanced.md) - рецепты и лучшие практики

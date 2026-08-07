@@ -1,59 +1,59 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Resolving Installer Wildcard Failures
+# Руководство: устранение сбоев wildcard в installer
 
-**Purpose**: Capture the root cause, fix, and lessons from wildcard context install failures.
+**Цель**: зафиксировать причину, исправление и выводы из сбоев установки wildcard context.
 
-**Last Updated**: 2026-01-12
+**Последнее обновление**: 2026-01-12
 
 ---
 
-## Prerequisites
-- Installer changes scoped to `install.sh`
-- Registry entries validated (`./scripts/registry/validate-registry.sh`)
+## Предварительные условия
+- Изменения installer ограничены `install.sh`
+- Записи registry проверены (`./scripts/registry/validate-registry.sh`)
 
-**Estimated time**: 10 min
+**Оценка времени**: 10 мин
 
-## Steps
+## Шаги
 
-### 1. Identify the failure mode
-**Symptom**:
+### 1. Определите режим сбоя
+**Симптом**:
 ```
 curl: (3) URL rejected: Malformed input to a URL function
 ```
-**Cause**: Wildcard expansion returned context IDs that weren’t path-aligned (e.g., `standards-code` mapped to `.opencode/context/core/standards/code-quality.md`). Installer treated IDs as paths.
+**Причина**: wildcard expansion вернул context IDs, не согласованные с paths (например, `standards-code` сопоставлен с `.opencode/context/core/standards/code-quality.md`). Installer обработал IDs как paths.
 
-### 2. Expand wildcards to path-based IDs
-**Goal**: Make wildcard expansion output `core/...` IDs that map directly to a path.
+### 2. Разверните wildcards в path-based IDs
+**Цель**: сделать так, чтобы wildcard expansion выводил IDs вида `core/...`, которые напрямую map to path.
 
-**Update**:
-- Expand `context:core/*` to `core/standards/code-quality` style IDs
+**Обновление**:
+- Разворачивайте `context:core/*` в IDs формата `core/standards/code-quality`
 
-### 3. Resolve context paths deterministically
-**Goal**: Avoid ambiguous matches and ensure one registry entry is used.
+### 3. Разрешайте context paths детерминированно
+**Цель**: избегать неоднозначных совпадений и гарантировать использование одной registry entry.
 
-**Update**:
-- Add `resolve_component_path` to map context IDs to the registry path
-- Use `first(...)` in jq queries for deterministic selection
+**Обновление**:
+- Добавьте `resolve_component_path`, чтобы map context IDs to registry path
+- Используйте `first(...)` в jq queries для детерминированного выбора
 
-### 4. Verify installation
+### 4. Проверьте установку
 ```bash
 bash scripts/tests/test-e2e-install.sh
 ```
-**Expected**: All E2E tests pass on macOS and Ubuntu.
+**Ожидается**: все E2E-тесты проходят на macOS и Ubuntu.
 
-## Verification
+## Проверка
 ```bash
 REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list
 ```
 
-## Troubleshooting
-| Issue | Solution |
+## Диагностика
+| Проблема | Решение |
 |-------|----------|
-| `Malformed input to a URL function` | Ensure wildcard expansion returns `core/...` IDs and uses `resolve_component_path` |
-| Multiple context entries for one path | Use `first(...)` in jq lookups |
+| `Malformed input to a URL function` | Убедитесь, что wildcard expansion возвращает IDs вида `core/...` и использует `resolve_component_path` |
+| Несколько context entries для одного path | Используйте `first(...)` в jq lookups |
 
-## Related
+## Связанное
 - guides/debugging.md
 - guides/updating-registry.md
 - core-concepts/registry.md

@@ -1,5 +1,5 @@
 ---
-description: Maintain registry quality through dependency validation and consistency checks
+description: Поддерживайте качество registry через валидацию зависимостей и проверки консистентности
 tags:
   - registry
   - quality
@@ -9,18 +9,18 @@ dependencies: []
 ---
 
 <!-- Context: quality/registry-dependencies | Priority: high | Version: 1.0 | Updated: 2026-01-06 -->
-# Registry Dependency Validation
+# Валидация зависимостей registry
 
-**Purpose**: Maintain registry quality through dependency validation and consistency checks  
-**Audience**: Contributors, maintainers, CI/CD processes
+**Назначение**: поддерживать качество registry через валидацию зависимостей и проверки консистентности  
+**Аудитория**: участники, мейнтейнеры, CI/CD-процессы
 
 ---
 
-## Quick Reference
+## Краткий справочник
 
-**Golden Rule**: All component dependencies must be declared in frontmatter and validated before commits.
+**Золотое правило**: все зависимости компонентов должны быть объявлены во frontmatter и проверены до коммита.
 
-**Critical Commands**:
+**Критические команды**:
 ```bash
 # Check context file dependencies
 /check-context-deps
@@ -37,25 +37,25 @@ dependencies: []
 
 ---
 
-## Dependency System
+## Система зависимостей
 
-### Dependency Types
+### Типы зависимостей
 
-Components can depend on other components using the `type:id` format:
+Компоненты могут зависеть от других компонентов в формате `type:id`:
 
-| Type | Format | Example | Description |
+| Тип | Формат | Пример | Описание |
 |------|--------|---------|-------------|
-| **agent** | `agent:id` | `agent:opencoder` | Core agent profile |
-| **subagent** | `subagent:id` | `subagent:coder-agent` | Delegatable subagent |
-| **command** | `command:id` | `command:context` | Slash command |
-| **tool** | `tool:id` | `tool:gemini` | External tool integration |
-| **plugin** | `plugin:id` | `plugin:context` | Plugin component |
-| **context** | `context:path` | `context:core/standards/code` | Context file |
-| **config** | `config:id` | `config:defaults` | Configuration file |
+| **agent** | `agent:id` | `agent:opencoder` | Профиль core-агента |
+| **subagent** | `subagent:id` | `subagent:coder-agent` | Делегируемый субагент |
+| **command** | `command:id` | `command:context` | Slash-команда |
+| **tool** | `tool:id` | `tool:gemini` | Интеграция внешнего инструмента |
+| **plugin** | `plugin:id` | `plugin:context` | Компонент плагина |
+| **context** | `context:path` | `context:core/standards/code` | Контекстный файл |
+| **config** | `config:id` | `config:defaults` | Файл конфигурации |
 
-### Declaring Dependencies
+### Объявление зависимостей
 
-**In component frontmatter** (example):
+**Во frontmatter компонента** (пример):
 ```
 id: opencoder
 name: OpenCoder
@@ -67,20 +67,20 @@ dependencies:
   - context:core/standards/code # Requires code standards context
 ```
 
-**Why declare dependencies?**
-- ✅ **Validation**: Catch missing components before runtime
-- ✅ **Documentation**: Clear visibility of what each component needs
-- ✅ **Installation**: Installers can fetch all required dependencies
-- ✅ **Dependency graphs**: Visualize component relationships
-- ✅ **Breaking change detection**: Know what's affected by changes
+**Зачем объявлять зависимости?**
+- ✅ **Валидация**: находить отсутствующие компоненты до выполнения
+- ✅ **Документация**: ясно видеть, что нужно каждому компоненту
+- ✅ **Установка**: инсталляторы могут получить все нужные зависимости
+- ✅ **Графы зависимостей**: визуализировать связи компонентов
+- ✅ **Обнаружение ломающих изменений**: понимать, что затронуто изменениями
 
 ---
 
-## Context File Dependencies
+## Зависимости контекстных файлов
 
-### The Problem
+### Проблема
 
-Agents reference context files in their prompts but often don't declare them as dependencies:
+Агенты ссылаются на контекстные файлы в промптах, но часто не объявляют их как зависимости:
 
 ```markdown
 <!-- In agent prompt -->
@@ -88,22 +88,22 @@ BEFORE any code implementation, ALWAYS load:
 - Code tasks → .opencode/context/core/standards/code-quality.md (MANDATORY)
 ```
 
-**Without dependency declaration**:
-- ❌ No validation that context file exists
-- ❌ Can't track which agents use which context files
-- ❌ Breaking changes when context files are moved/deleted
-- ❌ Installers don't know to fetch context files
+**Без объявления зависимости**:
+- ❌ Нет проверки, что контекстный файл существует
+- ❌ Нельзя отследить, какие агенты используют какие контекстные файлы
+- ❌ Возникают ломающие изменения при перемещении/удалении контекстных файлов
+- ❌ Инсталляторы не знают, что нужно получить контекстные файлы
 
-### The Solution
+### Решение
 
-**Declare context dependencies in frontmatter** (example):
+**Объявляйте context-зависимости во frontmatter** (пример):
 ```
 id: opencoder
 dependencies:
   - context:core/standards/code  # ← ADD THIS
 ```
 
-**Use `/check-context-deps` to find missing declarations**:
+**Используйте `/check-context-deps`, чтобы найти отсутствующие объявления**:
 ```bash
 # Analyze all agents
 /check-context-deps
@@ -112,9 +112,9 @@ dependencies:
 /check-context-deps --fix
 ```
 
-### Context Dependency Format
+### Формат context-зависимостей
 
-**Path normalization**:
+**Нормализация пути**:
 ```
 File path:     .opencode/context/core/standards/code-quality.md
 Dependency:    context:core/standards/code
@@ -122,7 +122,7 @@ Dependency:    context:core/standards/code
                type    path (no .opencode/, no .md)
 ```
 
-**Examples**:
+**Примеры**:
 ```
 dependencies:
   - context:core/standards/code           # .opencode/context/core/standards/code-quality.md
@@ -133,56 +133,56 @@ dependencies:
 
 ---
 
-## Validation Workflow
+## Процесс валидации
 
-### Pre-Commit Checklist
+### Чек-лист перед коммитом
 
-Before committing changes to agents, commands, or context files:
+Перед коммитом изменений в агентах, командах или контекстных файлах:
 
-1. **Check context dependencies**:
+1. **Проверьте context-зависимости**:
    ```bash
    /check-context-deps
    ```
-   - Identifies agents using context files without declaring them
-   - Reports unused context files
-   - Validates context file paths
+   - Находит агентов, которые используют контекстные файлы без объявления
+   - Сообщает о неиспользуемых контекстных файлах
+   - Валидирует пути контекстных файлов
 
-2. **Fix missing dependencies** (if needed):
+2. **Исправьте отсутствующие зависимости** (если нужно):
    ```bash
    /check-context-deps --fix
    ```
-   - Automatically adds missing `context:` dependencies to frontmatter
-   - Preserves existing dependencies
+   - Автоматически добавляет отсутствующие зависимости `context:` во frontmatter
+   - Сохраняет существующие зависимости
 
-3. **Update registry**:
+3. **Обновите registry**:
    ```bash
    ./scripts/registry/auto-detect-components.sh --auto-add
    ```
-   - Extracts dependencies from frontmatter
-   - Updates registry.json
+   - Извлекает зависимости из frontmatter
+   - Обновляет registry.json
 
-4. **Validate registry**:
+4. **Валидируйте registry**:
    ```bash
    ./scripts/registry/validate-registry.sh
    ```
-   - Checks all dependencies exist
-   - Validates component paths
-   - Reports missing dependencies
+   - Проверяет, что все зависимости существуют
+   - Валидирует пути компонентов
+   - Сообщает об отсутствующих зависимостях
 
-### Validation Tools
+### Инструменты валидации
 
-#### 1. `/check-context-deps` Command
+#### 1. Команда `/check-context-deps`
 
-**Purpose**: Analyze context file usage and validate dependencies
+**Назначение**: анализировать использование контекстных файлов и валидировать зависимости
 
-**What it checks**:
-- ✅ Agents referencing context files in prompts
-- ✅ Context dependencies declared in frontmatter
-- ✅ Context files exist on disk
-- ✅ Context files in registry
-- ✅ Unused context files
+**Что проверяет**:
+- ✅ Агенты ссылаются на контекстные файлы в промптах
+- ✅ Context-зависимости объявлены во frontmatter
+- ✅ Контекстные файлы существуют на диске
+- ✅ Контекстные файлы есть в registry
+- ✅ Неиспользуемые контекстные файлы
 
-**Usage**:
+**Использование**:
 ```bash
 # Full analysis
 /check-context-deps
@@ -197,9 +197,9 @@ Before committing changes to agents, commands, or context files:
 /check-context-deps --verbose
 ```
 
-**Example output**:
+**Пример вывода**:
 ```
-# Context Dependency Analysis Report
+# Отчёт анализа зависимостей контекста
 
 ## Summary
 - Agents scanned: 25
@@ -219,16 +219,16 @@ dependencies:
   - context:core/standards/code
 ```
 
-#### 2. `auto-detect-components.sh` Script
+#### 2. Скрипт `auto-detect-components.sh`
 
-**Purpose**: Scan for new components and update registry
+**Назначение**: искать новые компоненты и обновлять registry
 
-**Dependency validation**:
-- Checks dependencies during component scanning
-- Logs warnings for missing dependencies
-- Non-blocking (warnings only)
+**Валидация зависимостей**:
+- Проверяет зависимости при сканировании компонентов
+- Логирует предупреждения для отсутствующих зависимостей
+- Не блокирует выполнение (только предупреждения)
 
-**Usage**:
+**Использование**:
 ```bash
 # See what would be added
 ./scripts/registry/auto-detect-components.sh --dry-run
@@ -237,30 +237,30 @@ dependencies:
 ./scripts/registry/auto-detect-components.sh --auto-add
 ```
 
-**Example warning**:
+**Пример предупреждения**:
 ```
 ⚠ New command: Demo (demo)
   Dependencies: subagent:coder-agent,subagent:missing-agent
     ⚠ Dependency not found in registry: subagent:missing-agent
 ```
 
-#### 3. `validate-registry.sh` Script
+#### 3. Скрипт `validate-registry.sh`
 
-**Purpose**: Comprehensive registry validation
+**Назначение**: комплексная валидация registry
 
-**Checks**:
-- ✅ All component paths exist
-- ✅ All dependencies exist in registry
-- ✅ No duplicate IDs
-- ✅ Valid JSON structure
-- ✅ Required fields present
+**Проверки**:
+- ✅ Все пути компонентов существуют
+- ✅ Все зависимости существуют в registry
+- ✅ Нет дублирующихся IDs
+- ✅ Валидная структура JSON
+- ✅ Обязательные поля присутствуют
 
-**Usage**:
+**Использование**:
 ```bash
 ./scripts/registry/validate-registry.sh
 ```
 
-**Example output**:
+**Пример вывода**:
 ```
 Validating registry.json...
 
@@ -274,41 +274,41 @@ Fix: Add missing component to registry or remove from dependencies
 
 ---
 
-## Quality Standards
+## Стандарты качества
 
-### Well-Maintained Registry
+### Хорошо поддерживаемый registry
 
-A high-quality registry has:
+Качественный registry имеет:
 
-✅ **Complete dependencies**: All component dependencies declared
-✅ **Validated dependencies**: All dependencies exist in registry
-✅ **No orphans**: All context files used by at least one component
-✅ **Consistent format**: Dependencies use `type:id` format
-✅ **Up-to-date**: Registry reflects current component state
-✅ **No broken paths**: All component paths valid
+✅ **Полные зависимости**: все зависимости компонентов объявлены
+✅ **Проверенные зависимости**: все зависимости существуют в registry
+✅ **Нет сирот**: каждый контекстный файл используется хотя бы одним компонентом
+✅ **Единый формат**: зависимости используют формат `type:id`
+✅ **Актуальность**: registry отражает текущее состояние компонентов
+✅ **Нет битых путей**: все пути компонентов валидны
 
-### Dependency Declaration Standards
+### Стандарты объявления зависимостей
 
-**DO**:
-- ✅ Declare all subagents you delegate to
-- ✅ Declare all context files you reference
-- ✅ Declare all commands you invoke
-- ✅ Use correct format: `type:id`
-- ✅ Keep dependencies in frontmatter (not hardcoded in prompts)
+**Делайте**:
+- ✅ Объявляйте всех субагентов, которым делегируете
+- ✅ Объявляйте все контекстные файлы, на которые ссылаетесь
+- ✅ Объявляйте все команды, которые вызываете
+- ✅ Используйте корректный формат: `type:id`
+- ✅ Храните зависимости во frontmatter (не хардкодьте в промптах)
 
-**DON'T**:
-- ❌ Reference context files without declaring dependency
-- ❌ Use invalid dependency formats
-- ❌ Declare dependencies you don't actually use
-- ❌ Forget to update registry after adding dependencies
+**Не делайте**:
+- ❌ Не ссылайтесь на контекстные файлы без объявления зависимости
+- ❌ Не используйте неверные форматы зависимостей
+- ❌ Не объявляйте зависимости, которые фактически не используете
+- ❌ Не забывайте обновлять registry после добавления зависимостей
 
 ---
 
-## Commit Guidelines
+## Рекомендации по коммитам
 
-### When Adding/Modifying Components
+### При добавлении/изменении компонентов
 
-**1. Add component with proper frontmatter** (example):
+**1. Добавьте компонент с корректным frontmatter** (пример):
 ```
 id: my-agent
 name: My Agent
@@ -321,97 +321,97 @@ dependencies:
   - context:core/standards/code
 ```
 
-**2. Validate dependencies**:
+**2. Валидируйте зависимости**:
 ```bash
 /check-context-deps my-agent
 ```
 
-**3. Update registry**:
+**3. Обновите registry**:
 ```bash
 ./scripts/registry/auto-detect-components.sh --auto-add
 ```
 
-**4. Validate registry**:
+**4. Валидируйте registry**:
 ```bash
 ./scripts/registry/validate-registry.sh
 ```
 
-**5. Commit with descriptive message**:
+**5. Сделайте коммит с описательным сообщением**:
 ```bash
 git add .opencode/agent/my-agent.md registry.json
 git commit -m "Add my-agent with coder-agent and code standards dependencies"
 ```
 
-### When Modifying Context Files
+### При изменении контекстных файлов
 
-**1. Check which agents depend on it**:
+**1. Проверьте, какие агенты зависят от файла**:
 ```bash
 jq '.components[] | .[] | select(.dependencies[]? | contains("context:core/standards/code")) | {id, name}' registry.json
 ```
 
-**2. Update context file**:
+**2. Обновите контекстный файл**:
 ```bash
 # Make your changes
 vim .opencode/context/core/standards/code-quality.md
 ```
 
-**3. Validate no broken references**:
+**3. Проверьте, что нет битых ссылок**:
 ```bash
 /check-context-deps --verbose
 ```
 
-**4. Update registry if needed**:
+**4. Обновите registry, если нужно**:
 ```bash
 ./scripts/registry/auto-detect-components.sh --auto-add
 ```
 
-**5. Commit with impact note**:
+**5. Сделайте коммит с примечанием о влиянии**:
 ```bash
 git commit -m "Update code standards - affects opencoder, openagent, reviewer"
 ```
 
-### When Deleting Components
+### При удалении компонентов
 
-**1. Check dependencies first**:
+**1. Сначала проверьте зависимости**:
 ```bash
 # Find what depends on this component
 jq '.components[] | .[] | select(.dependencies[]? == "subagent:old-agent") | {id, name}' registry.json
 ```
 
-**2. Remove from dependents**:
+**2. Удалите из зависимых компонентов**:
 ```bash
 # Update agents that depend on it
 # Remove the dependency from their frontmatter
 ```
 
-**3. Delete component**:
+**3. Удалите компонент**:
 ```bash
 rm .opencode/agent/subagents/old-agent.md
 ```
 
-**4. Update registry**:
+**4. Обновите registry**:
 ```bash
 ./scripts/registry/auto-detect-components.sh --auto-add
 ```
 
-**5. Validate**:
+**5. Валидируйте**:
 ```bash
 ./scripts/registry/validate-registry.sh
 ```
 
 ---
 
-## Troubleshooting
+## Диагностика
 
-### Missing Context Dependencies
+### Отсутствующие context-зависимости
 
-**Symptom**:
+**Симптом**:
 ```
 /check-context-deps reports:
   opencoder: missing context:core/standards/code
 ```
 
-**Fix**:
+**Исправление**:
 ```bash
 # Option 1: Auto-fix
 /check-context-deps --fix
@@ -426,19 +426,19 @@ dependencies:
 ./scripts/registry/auto-detect-components.sh --auto-add
 ```
 
-### Dependency Not Found in Registry
+### Зависимость не найдена в registry
 
-**Symptom**:
+**Симптом**:
 ```
 ⚠ Dependency not found in registry: context:core/standards/code
 ```
 
-**Causes**:
-1. Context file doesn't exist
-2. Context file exists but not in registry
-3. Wrong dependency format
+**Причины**:
+1. Контекстный файл не существует
+2. Контекстный файл существует, но отсутствует в registry
+3. Неверный формат зависимости
 
-**Fix**:
+**Исправление**:
 ```bash
 # Check if file exists
 ls -la .opencode/context/core/standards/code-quality.md
@@ -449,15 +449,15 @@ ls -la .opencode/context/core/standards/code-quality.md
 # If doesn't exist, remove dependency or create file
 ```
 
-### Unused Context Files
+### Неиспользуемые контекстные файлы
 
-**Symptom**:
+**Симптом**:
 ```
 /check-context-deps reports:
   Unused: context:core/standards/analysis (0 references)
 ```
 
-**Fix**:
+**Исправление**:
 ```bash
 # Option 1: Add to an agent that should use it
 # Edit agent frontmatter to add dependency
@@ -467,24 +467,24 @@ rm .opencode/context/core/standards/code-analysis.md
 ./scripts/registry/auto-detect-components.sh --auto-add
 ```
 
-### Circular Dependencies
+### Циклические зависимости
 
-**Symptom**:
+**Симптом**:
 ```
 Agent A depends on Agent B
 Agent B depends on Agent A
 ```
 
-**Fix**:
-- Refactor to remove circular dependency
-- Extract shared logic to a third component
-- Use dependency injection instead
+**Исправление**:
+- Выполните рефакторинг и уберите циклическую зависимость
+- Вынесите общую логику в третий компонент
+- Используйте dependency injection
 
 ---
 
-## CI/CD Integration
+## Интеграция CI/CD
 
-### Pre-Commit Hook
+### Pre-commit hook
 
 ```bash
 #!/bin/bash
@@ -530,57 +530,57 @@ jobs:
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-### For Component Authors
+### Для авторов компонентов
 
-1. **Always declare dependencies** in frontmatter
-2. **Use `/check-context-deps`** before committing
-3. **Update registry** after adding components
-4. **Validate** before pushing
-5. **Document** why dependencies are needed
+1. **Всегда объявляйте зависимости** во frontmatter
+2. **Используйте `/check-context-deps`** перед коммитом
+3. **Обновляйте registry** после добавления компонентов
+4. **Валидируйте** перед push
+5. **Документируйте**, зачем нужны зависимости
 
-### For Maintainers
+### Для мейнтейнеров
 
-1. **Review dependencies** in PRs
-2. **Run validation** in CI/CD
-3. **Keep context files** organized and documented
-4. **Monitor unused** context files
-5. **Refactor** when dependency graphs get complex
+1. **Проверяйте зависимости** в PR
+2. **Запускайте валидацию** в CI/CD
+3. **Держите контекстные файлы** организованными и документированными
+4. **Отслеживайте неиспользуемые** контекстные файлы
+5. **Рефакторьте**, когда графы зависимостей усложняются
 
-### For CI/CD
+### Для CI/CD
 
-1. **Fail builds** on validation errors
-2. **Report** missing dependencies
-3. **Track** dependency changes over time
-4. **Alert** on circular dependencies
-5. **Enforce** dependency declaration standards
-
----
-
-## Related Documentation
-
-- **Registry Guide**: `.opencode/context/openagents-repo/guides/updating-registry.md`
-- **Registry Concepts**: `.opencode/context/openagents-repo/core-concepts/registry.md`
-- **Adding Agents**: `.opencode/context/openagents-repo/guides/adding-agent-basics.md`
-- **Command Reference**: `/check-context-deps` command
+1. **Падайте в build** при ошибках валидации
+2. **Сообщайте** об отсутствующих зависимостях
+3. **Отслеживайте** изменения зависимостей во времени
+4. **Оповещайте** о циклических зависимостях
+5. **Принудительно применяйте** стандарты объявления зависимостей
 
 ---
 
-## Summary
+## Связанная документация
 
-**Key Takeaways**:
-1. Declare all dependencies in frontmatter (subagents, context files, etc.)
-2. Use `/check-context-deps` to find missing context dependencies
-3. Validate registry before commits
-4. Keep registry in sync with component changes
-5. Follow dependency format: `type:id`
+- **Руководство по registry**: `.opencode/context/openagents-repo/guides/updating-registry.md`
+- **Концепции registry**: `.opencode/context/openagents-repo/core-concepts/registry.md`
+- **Добавление агентов**: `.opencode/context/openagents-repo/guides/adding-agent-basics.md`
+- **Справочник команд**: команда `/check-context-deps`
 
-**Quality Checklist**:
-- [ ] All context files referenced have dependencies declared
-- [ ] All dependencies exist in registry
-- [ ] No unused context files (or documented why)
-- [ ] Registry validates without errors
-- [ ] Dependency format is consistent
+---
 
-**Remember**: Dependencies are documentation. They help users understand what components need and help the system validate integrity.
+## Итоги
+
+**Ключевые выводы**:
+1. Объявляйте все зависимости во frontmatter (subagents, context files и т. д.)
+2. Используйте `/check-context-deps`, чтобы находить отсутствующие context-зависимости
+3. Валидируйте registry перед коммитами
+4. Держите registry синхронизированным с изменениями компонентов
+5. Соблюдайте формат зависимости: `type:id`
+
+**Чек-лист качества**:
+- [ ] У всех упомянутых контекстных файлов объявлены зависимости
+- [ ] Все зависимости существуют в registry
+- [ ] Нет неиспользуемых контекстных файлов (или задокументировано почему)
+- [ ] Registry валидируется без ошибок
+- [ ] Формат зависимостей консистентен
+
+**Помните**: зависимости — это документация. Они помогают пользователям понять, что нужно компонентам, а системе — валидировать целостность.

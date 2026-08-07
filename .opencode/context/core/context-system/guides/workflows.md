@@ -1,16 +1,16 @@
 <!-- Context: core/workflows | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Context Operation Workflows
+# Рабочие процессы операций контекста
 
-**Purpose**: Detailed interactive workflows for all context operations
+**Назначение**: подробные интерактивные рабочие процессы для всех операций контекста
 
-**Last Updated**: 2026-01-06
+**Последнее обновление**: 2026-01-06
 
 ---
 
-## Extract Workflow (Interactive)
+## Процесс Extract (интерактивный)
 
-### Stage 1: Read Source
+### Этап 1: прочитать источник
 ```
 /context extract from https://react.dev/hooks
   ↓
@@ -18,7 +18,7 @@ Agent: "Reading source (8,500 lines)...
 Analyzing content for extractable items..."
 ```
 
-### Stage 2: Analyze & Categorize
+### Этап 2: проанализировать и категоризировать
 ```
 Agent: "Analysis complete.
 
@@ -40,7 +40,7 @@ Found 3 workflows:
   - Testing components with hooks"
 ```
 
-### Stage 3: Select Category (APPROVAL REQUIRED)
+### Этап 3: выбрать категорию (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
 ```
 Agent: "Which category should this go in?
   [1] development/
@@ -69,7 +69,7 @@ Type items (A B M or 'all') + category (1/2/3):"
 User: "all 1"
 ```
 
-### Stage 4: Preview (APPROVAL REQUIRED)
+### Этап 4: предварительный просмотр (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
 ```
 Agent: "Would create in development/:
 
@@ -97,7 +97,7 @@ Agent: [Shows first 30 lines of use-state.md]
 User: "yes"
 ```
 
-### Stage 5-7: Create, Update, Report
+### Этапы 5–7: создать, обновить, отчитаться
 ```
 Agent: "Creating files...
 ✅ Extracted 20 items into development/
@@ -112,9 +112,9 @@ Files created:
 
 ---
 
-## Organize Workflow (Interactive)
+## Процесс Organize (интерактивный)
 
-### Stage 1-2: Scan & Categorize
+### Этапы 1–2: сканирование и категоризация
 ```
 /context organize development/
   ↓
@@ -123,7 +123,7 @@ Agent: "Scanning development/ (23 files, flat structure)...
 Categorizing by function..."
 ```
 
-### Stage 3: Resolve Conflicts (APPROVAL REQUIRED)
+### Этап 3: разрешить конфликты (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
 ```
 Agent: "Categorization plan:
 
@@ -185,7 +185,7 @@ Select resolutions (A D G J M or 'auto' for AI suggestions):"
 User: "A D G J M"
 ```
 
-### Stage 4: Preview (APPROVAL REQUIRED)
+### Этап 4: предварительный просмотр (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
 ```
 Agent: "Preview of changes:
 
@@ -231,7 +231,7 @@ Agent: [Simulates changes without executing, shows what would happen]
 User: "yes"
 ```
 
-### Stage 5-8: Backup, Execute, Update, Report
+### Этапы 5–8: резервная копия, выполнение, обновление, отчет
 ```
 Agent: "Creating backup...
 💾 Backup: .tmp/backup/organize-development-2026-01-06-143022/
@@ -248,9 +248,9 @@ Rollback available at: .tmp/backup/organize-development-2026-01-06-143022/"
 
 ---
 
-## Update Workflow (Interactive)
+## Процесс Update (интерактивный)
 
-### Stage 1: Identify Changes (APPROVAL REQUIRED)
+### Этап 1: определить изменения (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
 ```
 /context update for Next.js 15
   ↓
@@ -275,7 +275,7 @@ New features: New metadata API, Server Actions stable
 Breaking changes: Pages router requires explicit opt-in"
 ```
 
-### Stage 2: Find Affected Files
+### Этап 2: найти затронутые файлы
 ```
 Agent: "Searching for files referencing Next.js...
 
@@ -289,7 +289,7 @@ Found 5 files with 17 references:
 Total impact: 17 references across 5 files"
 ```
 
-### Stage 3: Preview Changes (APPROVAL REQUIRED)
+### Этап 3: предварительный просмотр изменений (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
 ```
 Agent: "Proposed updates:
 
@@ -369,7 +369,7 @@ User: "yes"
 [... continues for each change ...]
 ```
 
-### Stage 4-8: Backup, Update, Add Migration, Validate, Report
+### Этапы 4–8: резервная копия, обновление, миграция, проверка, отчет
 ```
 Agent: "Creating backup...
 💾 Backup: .tmp/backup/update-nextjs-2026-01-06-143530/
@@ -394,9 +394,9 @@ Rollback available at: .tmp/backup/update-nextjs-2026-01-06-143530/"
 
 ---
 
-## Error Workflow (Interactive)
+## Процесс Error (интерактивный)
 
-### Stage 1: Search Existing
+### Этап 1: найти существующие
 ```
 /context error for "Cannot read property 'map' of undefined"
   ↓
@@ -414,7 +414,7 @@ Found 2 related errors:
      ## Error: Undefined is not an object"
 ```
 
-### Stage 2: Check Duplication (APPROVAL REQUIRED)
+### Этап 2: проверить дублирование (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
 ```
 Agent: "Options:
   [A] Add as new error to react-errors.md
@@ -436,7 +436,7 @@ Select option + category (e.g., 'B 1'):"
 User: "B 1"
 ```
 
-### Stage 3: Preview (APPROVAL REQUIRED)
+### Этап 3: предварительный просмотр (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
 ```
 Agent: "Would update development/errors/react-errors.md:
 
@@ -516,7 +516,7 @@ Approve? (yes/no/edit):"
 User: "yes"
 ```
 
-### Stage 4-6: Add, Update, Report
+### Этапы 4–6: добавить, обновить, отчитаться
 ```
 Agent: "Updating development/errors/react-errors.md...
 
@@ -533,41 +533,41 @@ Changes:
 
 ---
 
-## Common Patterns
+## Общие паттерны
 
-### Approval Gates
-All operations with `enforce="@critical_rules.approval_gate"` MUST:
-1. Show clear preview of what will happen
-2. Wait for explicit user input
-3. Provide options (yes/no/edit/preview/dry-run)
-4. Never proceed without confirmation
+### Точки одобрения
+Все операции с `enforce="@critical_rules.approval_gate"` ОБЯЗАНЫ:
+1. Показывать ясный предварительный просмотр того, что произойдет
+2. Ждать явного ввода пользователя
+3. Предоставлять варианты (yes/no/edit/preview/dry-run)
+4. Никогда не продолжать без подтверждения
 
-### Conflict Resolution
-When conflicts detected:
-1. Present all options clearly
-2. Use letter-based selection (A/B/C)
-3. Show impact of each option
-4. Allow user to choose resolution
+### Разрешение конфликтов
+Когда обнаружены конфликты:
+1. Ясно покажите все варианты
+2. Используйте выбор по буквам (A/B/C)
+3. Покажите влияние каждого варианта
+4. Дайте пользователю выбрать решение
 
-### Previews
-All previews should show:
-1. What will be created/modified/deleted
-2. File sizes (before → after)
-3. Line-by-line diffs for updates
-4. Validation status (under limits, no broken links)
+### Предварительные просмотры
+Все предварительные просмотры должны показывать:
+1. Что будет создано/изменено/удалено
+2. Размеры файлов (до → после)
+3. Построчные diff для обновлений
+4. Статус проверки (в пределах лимитов, нет битых ссылок)
 
-### Backups
-Operations that modify files MUST:
-1. Create backup before changes
-2. Store in `.tmp/backup/{operation}-{topic}-{timestamp}/`
-3. Report backup location
-4. Keep backups for rollback
+### Резервные копии
+Операции, изменяющие файлы, ОБЯЗАНЫ:
+1. Создавать резервную копию перед изменениями
+2. Хранить в `.tmp/backup/{operation}-{topic}-{timestamp}/`
+3. Сообщать расположение резервной копии
+4. Сохранять резервные копии для отката
 
 ---
 
-## Related
+## Связанные материалы
 
-- context.md - Main command interface
-- harvest.md - Harvest workflow details
-- mvi-principle.md - What to extract
-- compact.md - How to minimize
+- context.md - основной интерфейс команд
+- harvest.md - детали workflow Harvest
+- mvi-principle.md - что извлекать
+- compact.md - как минимизировать

@@ -1,53 +1,53 @@
 <!-- Context: core/creation | Priority: high | Version: 1.1 | Updated: 2026-02-15 -->
 
-# Context File Creation Standards
+# Стандарты создания файлов контекста
 
-**Purpose**: Ensure all context files follow the same format and structure
+**Назначение**: обеспечить единый формат и структуру для всех файлов контекста
 
-**Last Updated**: 2026-02-15
+**Последнее обновление**: 2026-02-15
 
 ---
 
-## Critical Rules
+## Критические правила
 
 <critical_rules priority="absolute" enforcement="strict">
-  <rule id="size_limit">Files MUST be under line limits (see below)</rule>
-  <rule id="mvi_required">All files MUST follow MVI principle</rule>
-  <rule id="function_placement">Files MUST be in correct folder</rule>
-  <rule id="navigation_update">MUST update navigation.md when creating files</rule>
+  <rule id="size_limit">Файлы ОБЯЗАНЫ быть в пределах лимитов строк (см. ниже)</rule>
+  <rule id="mvi_required">Все файлы ОБЯЗАНЫ следовать принципу MVI</rule>
+  <rule id="function_placement">Файлы ОБЯЗАНЫ находиться в правильной папке</rule>
+  <rule id="navigation_update">ОБЯЗАТЕЛЬНО обновлять navigation.md при создании файлов</rule>
 </critical_rules>
 
 ---
 
-## Creation Workflow
+## Рабочий процесс создания
 
-### 1. Determine Function
-Ask: Is this a concept, example, guide, lookup, or error?  
-→ Place in correct folder
+### 1. Определить функцию
+Спросите: это concept, example, guide, lookup или error?  
+→ Поместить в правильную папку
 
-### 2. Apply Template
-Use standard template for file type (see templates.md)
+### 2. Применить шаблон
+Используйте стандартный шаблон для типа файла (см. templates.md)
 
-### 3. Apply MVI
-- Core: 1-3 sentences
-- Key points: 3-5 bullets
-- Example: <10 lines
-- Reference: Link to docs
+### 3. Применить MVI
+- Core: 1-3 предложения
+- Key points: 3–5 маркеров
+- Example: <10 строк
+- Reference: ссылка на документацию
 
-### 4. Validate Size
-Ensure file under limit. If not, split or reference external.
+### 4. Проверить размер
+Убедитесь, что файл в пределах лимита. Если нет — разделите или ссылайтесь на внешний источник.
 
-### 5. Add Cross-References
-Link to related concepts/, examples/, guides/, errors/
+### 5. Добавить перекрестные ссылки
+Ссылайтесь на связанные `concepts/`, `examples/`, `guides/`, `errors/`
 
-### 6. Update Navigation
-Add entry to navigation.md in parent directory
+### 6. Обновить навигацию
+Добавьте запись в `navigation.md` родительского каталога
 
 ---
 
-## File Naming Conventions
+## Правила именования файлов
 
-| Type | Format | Example |
+| Тип | Формат | Пример |
 |------|--------|---------|
 | Concept | `{concept-name}.md` | `authentication.md` |
 | Example | `{example-name}.md` | `jwt-example.md` |
@@ -55,32 +55,32 @@ Add entry to navigation.md in parent directory
 | Lookup | `{reference-name}.md` | `commands.md` |
 | Error | `{error-category}.md` | `auth-errors.md` |
 
-**Rules**:
-- Use kebab-case (lowercase with hyphens)
-- Be descriptive but concise
-- Avoid redundant category in name (not `concept-authentication.md`)
+**Правила**:
+- Используйте kebab-case (нижний регистр с дефисами)
+- Будьте описательными, но краткими
+- Избегайте избыточной категории в имени (не `concept-authentication.md`)
 
 ---
 
-## Standard Metadata (Frontmatter)
+## Стандартные метаданные (frontmatter)
 
 ```html
 <!-- Context: {path} | Priority: {level} | Version: {X.Y} | Updated: {YYYY-MM-DD} -->
 ```
 
-**Priority levels**: critical, high, medium, low
+**Уровни Priority**: critical, high, medium, low
 
-**When to use**:
-- critical: Core system files, always needed
-- high: Frequently referenced, important patterns
-- medium: Useful but not essential
-- low: Nice-to-have, rarely needed
+**Когда использовать**:
+- critical: файлы ядра системы, нужны всегда
+- high: часто используемые, важные паттерны
+- medium: полезно, но не обязательно
+- low: nice-to-have, редко нужно
 
 ---
 
-## File Size Limits
+## Лимиты размера файлов
 
-| File Type | Max Lines |
+| Тип файла | Макс. строк |
 |-----------|-----------|
 | Concept | 100 |
 | Example | 80 |
@@ -88,30 +88,30 @@ Add entry to navigation.md in parent directory
 | Lookup | 100 |
 | Error | 150 |
 
-**Enforcement**: Strict. If over limit, split into multiple files or reference external docs.
+**Обеспечение**: строго. Если лимит превышен, разделите на несколько файлов или ссылайтесь на внешнюю документацию.
 
 ---
 
-## Cross-Reference Guidelines
+## Рекомендации по перекрестным ссылкам
 
-**Format**: `See {type}/{filename}.md for {what}`
+**Формат**: `See {type}/{filename}.md for {what}`
 
-**Examples**:
+**Примеры**:
 - `See concepts/authentication.md for JWT details`
 - `See examples/jwt-example.md for working code`
 - `See errors/auth-errors.md for troubleshooting`
 
-**Best practices**:
-- Link to related concepts
-- Link to examples from guides
-- Link to errors from guides
-- Create bidirectional links when relevant
+**Лучшие практики**:
+- Ссылайтесь на связанные concepts
+- Ссылайтесь на examples из guides
+- Ссылайтесь на errors из guides
+- Создавайте двунаправленные ссылки, когда релевантно
 
 ---
 
-## Navigation Update Process
+## Процесс обновления navigation
 
-When creating a file, update parent `navigation.md`:
+При создании файла обновляйте родительский `navigation.md`:
 
 ```markdown
 | File | Description | Priority |
@@ -119,55 +119,55 @@ When creating a file, update parent `navigation.md`:
 | new-file.md | Brief description | high |
 ```
 
-**Keep navigation**:
-- Alphabetical within priority groups
-- Grouped by priority (critical → high → medium → low)
-- Descriptions <10 words
+**Держите navigation**:
+- По алфавиту внутри групп приоритета
+- С группировкой по приоритету (critical → high → medium → low)
+- Описания <10 слов
 
 ---
 
-## Validation Before Commit
+## Валидация перед коммитом
 
-- [ ] File under line limit?
-- [ ] MVI format applied?
-- [ ] Frontmatter added?
-- [ ] In correct folder?
-- [ ] Navigation.md updated?
-- [ ] Cross-references added?
-- [ ] Can be scanned in <30 seconds?
+- [ ] Файл в пределах лимита строк?
+- [ ] Формат MVI применен?
+- [ ] Frontmatter добавлен?
+- [ ] В правильной папке?
+- [ ] `navigation.md` обновлен?
+- [ ] Перекрестные ссылки добавлены?
+- [ ] Можно просканировать за <30 секунд?
 
 ---
 
-## Common Creation Mistakes
+## Распространенные ошибки создания
 
-| Mistake | Fix |
+| Ошибка | Исправление |
 |---------|-----|
-| File too long | Split into multiple files or compress |
-| Missing frontmatter | Add HTML comment at top |
-| Wrong folder | Move to correct function folder |
-| No cross-references | Add links to related files |
-| Verbose explanations | Apply MVI compression |
-| Missing from navigation | Update navigation.md |
+| Файл слишком длинный | Разделить на несколько файлов или сжать |
+| Нет frontmatter | Добавить HTML-комментарий сверху |
+| Неверная папка | Переместить в правильную функциональную папку |
+| Нет перекрестных ссылок | Добавить ссылки на связанные файлы |
+| Многословные объяснения | Применить MVI-сжатие |
+| Отсутствует в navigation | Обновить `navigation.md` |
 
 ---
 
-## Template Selection
+## Выбор шаблона
 
-| File Type | Template | Use When |
+| Тип файла | Шаблон | Когда использовать |
 |-----------|----------|----------|
-| Concept | Concept template | Explaining what something is |
-| Example | Example template | Showing working code |
-| Guide | Guide template | Step-by-step instructions |
-| Lookup | Lookup template | Quick reference data |
-| Error | Error template | Troubleshooting issues |
+| Concept | Шаблон Concept | Объясняет, что это |
+| Example | Шаблон Example | Показывает рабочий код |
+| Guide | Шаблон Guide | Пошаговые инструкции |
+| Lookup | Шаблон Lookup | Справочные данные |
+| Error | Шаблон Error | Проблемы для устранения |
 
-See templates.md for full templates.
+Полные шаблоны см. в templates.md.
 
 ---
 
-## Related
+## Связанные материалы
 
-- templates.md - File templates
-- mvi.md - MVI principle
-- compact.md - Compression techniques
-- structure.md - Directory structure
+- templates.md - шаблоны файлов
+- mvi.md - принцип MVI
+- compact.md - техники сжатия
+- structure.md - структура каталогов

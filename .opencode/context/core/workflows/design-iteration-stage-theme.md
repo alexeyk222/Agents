@@ -1,35 +1,35 @@
 <!-- Context: workflows/design-iteration-stage-theme | Priority: high | Version: 1.0 | Updated: 2025-12-09 -->
-# Stage 2: Theme Design
+# Этап 2: дизайн темы
 
-**Purpose**: Define colors, typography, spacing, and visual style
+**Назначение**: определить цвета, типографику, отступы и визуальный стиль
 
-## Process
+## Процесс
 
-1. Read design plan file from `.tmp/design-plans/{name}.md`
-2. Review approved layout from Stage 1
-3. Choose design system (neo-brutalism, modern dark, custom)
-4. Select color palette (avoid Bootstrap blue unless requested)
-5. Choose typography (Google Fonts)
-6. Define spacing and shadows
-7. Generate theme CSS file
-8. **Update plan file** with theme specifications
-9. Present theme to user for approval
-10. **Update plan file** with user feedback and approval status
+1. Прочитать файл плана дизайна из `.tmp/design-plans/{name}.md`
+2. Просмотреть утвержденный макет этапа 1
+3. Выбрать дизайн-систему (neo-brutalism, modern dark, custom)
+4. Выбрать цветовую палитру (избегать Bootstrap blue, если не запрошено)
+5. Выбрать типографику (Google Fonts)
+6. Определить отступы и тени
+7. Сгенерировать CSS-файл темы
+8. **Обновить файл плана** спецификациями темы
+9. Показать тему пользователю для одобрения
+10. **Обновить файл плана** обратной связью пользователя и статусом одобрения
 
-## Deliverable
+## Результат
 
-- CSS theme file saved to `design_iterations/theme_N.css`
-- Updated plan file with Stage 2 complete
+- CSS-файл темы, сохраненный в `design_iterations/theme_N.css`
+- Обновленный файл плана с завершенным этапом 2
 
-## Theme Selection Criteria
+## Критерии выбора темы
 
-| Style | Use When | Avoid When |
+| Стиль | Использовать когда | Избегать когда |
 |-------|----------|------------|
-| Neo-Brutalism | Creative/artistic projects, retro aesthetic | Enterprise apps, accessibility-critical |
-| Modern Dark | SaaS, developer tools, professional dashboards | Playful consumer apps |
-| Custom | Specific brand requirements | Time-constrained projects |
+| Neo-Brutalism | Креативные/арт-проекты, ретро-эстетика | Enterprise apps, accessibility-critical |
+| Modern Dark | SaaS, инструменты разработчика, professional dashboards | Playful consumer apps |
+| Custom | Специфичные требования бренда | Проекты с жестким лимитом времени |
 
-## Example Output
+## Пример результата
 
 ```
 ## Theme Design: Modern Professional
@@ -50,35 +50,35 @@ Key Design Decisions:
 - Fonts: System-like for familiarity
 ```
 
-## File Naming
+## Именование файлов
 
-`theme_1.css`, `theme_2.css`, etc.
+`theme_1.css`, `theme_2.css` и т. д.
 
-## Best Practices
+## Лучшие практики
 
-✅ **Do**:
-- Reference design system context files
-- Use CSS custom properties
-- Save theme to separate file
-- Consider accessibility (contrast ratios)
-- Avoid Bootstrap blue unless requested
+✅ **Делайте**:
+- Ссылайтесь на файлы контекста дизайн-системы
+- Используйте CSS custom properties
+- Сохраняйте тему в отдельный файл
+- Учитывайте доступность (контрастность)
+- Избегайте Bootstrap blue, если не запрошено
 
-❌ **Don't**:
-- Hardcode colors in HTML
-- Use generic/overused color schemes
-- Skip contrast testing
-- Mix color formats (stick to OKLCH)
+❌ **Не делайте**:
+- Не хардкодьте цвета в HTML
+- Не используйте generic/заезженные цветовые схемы
+- Не пропускайте проверку контраста
+- Не смешивайте форматы цветов (держитесь OKLCH)
 
-## Approval Gate
+## Точка одобрения
 
-"Does this theme match your vision, or would you like adjustments?"
+"Эта тема соответствует вашему видению или нужны корректировки?"
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Overview](./design-iteration-overview.md)
-- [Stage 1: Layout](./design-iteration-stage-layout.md)
-- [Stage 3: Animation](./design-iteration-stage-animation.md)
-- [Design Systems Context](../../ui/web/design-systems.md)
-- [UI Styling Standards](../../ui/web/ui-styling-standards.md)
+- [Обзор](./design-iteration-overview.md)
+- [Этап 1: Макет](./design-iteration-stage-layout.md)
+- [Этап 3: Анимация](./design-iteration-stage-animation.md)
+- [Контекст дизайн-систем](../../ui/web/design-systems.md)
+- [Стандарты UI-стилей](../../ui/web/ui-styling-standards.md)

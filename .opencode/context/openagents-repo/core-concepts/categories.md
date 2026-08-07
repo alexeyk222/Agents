@@ -1,88 +1,88 @@
-# Core Concept: Category System
+# Ключевая концепция: система категорий
 
-**Purpose**: Understanding how components are organized  
-**Priority**: HIGH - Load this before adding categories or organizing components
-
----
-
-## What Are Categories?
-
-Categories are domain-based groupings that organize agents, context files, and tests by expertise area.
-
-**Benefits**:
-- **Scalability** - Easy to add new domains
-- **Discovery** - Find agents by domain
-- **Organization** - Clear structure
-- **Modularity** - Install only what you need
+**Назначение**: понять, как организованы компоненты  
+**Приоритет**: HIGH - загрузите перед добавлением категорий или организацией компонентов
 
 ---
 
-## Available Categories
+## Что такое категории?
 
-### Core (`core/`)
-**Purpose**: Essential system agents (always available)
+Категории — это доменные группы, которые организуют агентов, контекстные файлы и тесты по области экспертизы.
 
-**Agents**:
-
-**When to use**: System-level tasks, orchestration, coding (simple or complex)
-
-**Status**: ✅ Stable
+**Преимущества**:
+- **Масштабируемость** - легко добавлять новые домены
+- **Обнаружение** - поиск агентов по домену
+- **Организация** - понятная структура
+- **Модульность** - устанавливайте только нужное
 
 ---
 
-### Development Subagents (`subagents/development/`)
-**Purpose**: Domain-specific development specialists (invoked by core agents)
+## Доступные категории
 
-**Subagents**:
+### Core-категория (`core/`)
+**Назначение**: базовые системные агенты (всегда доступны)
+
+**Агенты**:
+
+**Когда использовать**: системные задачи, orchestration, coding (простые или сложные)
+
+**Статус**: ✅ Stable
+
+---
+
+### Development-субагенты (`subagents/development/`)
+**Назначение**: доменные специалисты по разработке (вызываются core agents)
+
+**Субагенты**:
 - frontend-specialist, devops-specialist
 
-**Context**:
+**Контекст**:
 - clean-code.md, react-patterns.md, api-design.md
 
-**When to use**: Delegated frontend, backend, or DevOps tasks within a larger workflow
+**Когда использовать**: делегированные frontend, backend или DevOps-задачи внутри более крупного workflow
 
-**Status**: ✅ Active
+**Статус**: ✅ Active
 
 ---
 
 ### Content (`content/`)
-**Purpose**: Content creation specialists
+**Назначение**: специалисты по созданию контента
 
-**Agents**:
+**Агенты**:
 - copywriter, technical-writer
 
-**Context**:
+**Контекст**:
 - copywriting-frameworks.md
 - tone-voice.md
 - audience-targeting.md
 - hooks.md
 
-**When to use**: Writing, documentation, marketing
+**Когда использовать**: тексты, документация, маркетинг
 
-**Status**: ✅ Active
+**Статус**: ✅ Active
 
 ---
 
 ### Data (`data/`)
-**Purpose**: Data analysis specialists
+**Назначение**: специалисты по анализу данных
 
-**Agents**:
+**Агенты**:
 - data-analyst
 
-**Context**:
-- (Ready for data-specific context)
+**Контекст**:
+- (готово для data-specific context)
 
-**When to use**: Data tasks, analysis, reporting
+**Когда использовать**: data-задачи, анализ, отчеты
 
-**Status**: ✅ Active
-
----
+**Статус**: ✅ Active
 
 ---
 
-## Category Structure
+---
 
-### Directory Layout
+## Структура категорий
+
+### Структура директорий
 
 ```
 .opencode/
@@ -92,7 +92,7 @@ Categories are domain-based groupings that organize agents, context files, and t
 evals/agents/{category}/        # Tests by category
 ```
 
-### Example: Core Agents + Development Subagents
+### Пример: Core-агенты + Development-субагенты
 
 ```
 .opencode/agent/core/
@@ -114,11 +114,11 @@ evals/agents/{category}/        # Tests by category
 
 ---
 
-## Category Metadata
+## Метаданные категории
 
 ### 0-category.json
 
-Each category has a metadata file:
+У каждой категории есть файл метаданных:
 
 ```json
 {
@@ -130,50 +130,50 @@ Each category has a metadata file:
 }
 ```
 
-**Fields**:
-- `name`: Display name
-- `description`: Brief description
-- `icon`: Emoji icon
-- `order`: Display order
+**Поля**:
+- `name`: отображаемое имя
+- `description`: краткое описание
+- `icon`: emoji-иконка
+- `order`: порядок отображения
 - `status`: active, ready, planned
 
 ---
 
-## Naming Conventions
+## Соглашения об именовании
 
-### Category Names
+### Имена категорий
 
-✅ **Lowercase** - `development`, not `Development`  
-✅ **Singular** - `content`, not `contents`  
-✅ **Descriptive** - Clear domain name  
-✅ **Consistent** - Follow existing patterns  
+✅ **Нижний регистр** - `development`, не `Development`  
+✅ **Единственное число** - `content`, не `contents`  
+✅ **Описательность** - понятное имя домена  
+✅ **Консистентность** - следуйте существующим паттернам  
 
-### Agent Names
+### Имена агентов
 
 ✅ **Kebab-case** - `frontend-specialist.md`  
-✅ **Descriptive** - Clear purpose  
-✅ **Suffix** - Use `-specialist`, `-agent`, `-writer` as appropriate  
+✅ **Описательность** - понятное назначение  
+✅ **Суффикс** - используйте `-specialist`, `-agent`, `-writer` по ситуации  
 
-### Context Names
+### Имена контекста
 
 ✅ **Kebab-case** - `react-patterns.md`  
-✅ **Descriptive** - Clear topic  
-✅ **Specific** - Focused on one topic  
+✅ **Описательность** - понятная тема  
+✅ **Конкретность** - фокус на одной теме  
 
 ---
 
-## Path Resolution
+## Разрешение путей
 
-The system resolves agent paths flexibly:
+Система гибко разрешает пути агентов:
 
-### Resolution Order
+### Порядок разрешения
 
-1. **Check for `/`** - If present, treat as category path
-2. **Check core/** - For backward compatibility
-3. **Search categories** - Look in all categories
-4. **Error** - If not found
+1. **Проверить `/`** - если есть, считать путем категории
+2. **Проверить core/** - для обратной совместимости
+3. **Искать в категориях** - проверить все категории
+4. **Ошибка** - если не найдено
 
-### Examples
+### Примеры
 
 ```bash
 # Short ID (backward compatible)
@@ -188,9 +188,9 @@ The system resolves agent paths flexibly:
 
 ---
 
-## Adding a New Category
+## Добавление новой категории
 
-### Step 1: Create Directory Structure
+### Шаг 1: создать структуру директорий
 
 ```bash
 # Create agent directory
@@ -203,7 +203,7 @@ mkdir -p .opencode/context/{category}
 mkdir -p evals/agents/{category}
 ```
 
-### Step 2: Add Category Metadata
+### Шаг 2: добавить метаданные категории
 
 ```bash
 cat > .opencode/agent/{category}/0-category.json << 'EOF'
@@ -217,7 +217,7 @@ cat > .opencode/agent/{category}/0-category.json << 'EOF'
 EOF
 ```
 
-### Step 3: Add Context README
+### Шаг 3: добавить README контекста
 
 ```bash
 cat > .opencode/context/{category}/navigation.md << 'EOF'
@@ -235,7 +235,7 @@ Context files for {category} specialists.
 EOF
 ```
 
-### Step 4: Validate
+### Шаг 4: валидировать
 
 ```bash
 # Validate structure
@@ -247,43 +247,43 @@ EOF
 
 ---
 
-## Category Guidelines
+## Рекомендации по категориям
 
-### When to Create a New Category
+### Когда создавать новую категорию
 
-✅ **Distinct domain** - Clear expertise area  
-✅ **Multiple agents** - Plan for 2+ agents  
-✅ **Shared context** - Common knowledge to share  
-✅ **User demand** - Requested by users  
+✅ **Отдельный домен** - ясная область экспертизы  
+✅ **Несколько агентов** - планируйте 2+ агентов  
+✅ **Общий контекст** - есть общие знания для шаринга  
+✅ **Спрос пользователей** - запрошено пользователями  
 
-### When NOT to Create a Category
+### Когда НЕ создавать категорию
 
-❌ **Single agent** - Use existing category  
-❌ **Overlapping** - Fits in existing category  
-❌ **Too specific** - Too narrow focus  
-❌ **Unclear domain** - Not well-defined  
-
----
-
-## Category vs Subagent
-
-### Use Category Agent When:
-- User-facing specialist
-- Broad domain expertise
-- Direct invocation by user
-- Example: `frontend-specialist`
-
-### Use Subagent When:
-- Delegated subtask
-- Narrow focus
-- Invoked by other agents
-- Example: `tester`
+❌ **Один агент** - используйте существующую категорию  
+❌ **Пересечение** - подходит под существующую категорию  
+❌ **Слишком конкретно** - слишком узкий фокус  
+❌ **Нечеткий домен** - область плохо определена  
 
 ---
 
-## Context Organization
+## Категория vs субагент
 
-### Category Context Structure
+### Используйте агента категории, когда:
+- Это специалист для пользователя
+- Нужна широкая доменная экспертиза
+- Пользователь вызывает напрямую
+- Пример: `frontend-specialist`
+
+### Используйте субагента, когда:
+- Это делегируемая подзадача
+- Нужен узкий фокус
+- Вызывается другими агентами
+- Пример: `tester`
+
+---
+
+## Организация контекста
+
+### Структура контекста категории
 
 ```
 .opencode/context/{category}/
@@ -293,46 +293,46 @@ EOF
 └── {topic-3}.md           # Specific topic
 ```
 
-### Context Loading
+### Загрузка контекста
 
-Agents load category context based on task:
+Агенты загружают контекст категории на основе задачи:
 
 ```markdown
 <!-- Context: development/react-patterns | Priority: high -->
 ```
 
-Loads: `.opencode/context/ui/web/react-patterns.md`
+Загружает: `.opencode/context/ui/web/react-patterns.md`
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-### Organization
+### Организация
 
-✅ **Clear categories** - Well-defined domains  
-✅ **Consistent naming** - Follow conventions  
-✅ **Proper metadata** - Complete 0-category.json  
-✅ **README files** - Document each category  
+✅ **Ясные категории** - хорошо определенные домены  
+✅ **Консистентное именование** - следуйте соглашениям  
+✅ **Корректные метаданные** - полный 0-category.json  
+✅ **README-файлы** - документируйте каждую категорию  
 
-### Scalability
+### Масштабируемость
 
-✅ **Modular** - Categories are independent  
-✅ **Extensible** - Easy to add new categories  
-✅ **Maintainable** - Clear structure  
-✅ **Testable** - Each category has tests  
+✅ **Модульность** - категории независимы  
+✅ **Расширяемость** - легко добавлять новые категории  
+✅ **Поддерживаемость** - понятная структура  
+✅ **Тестируемость** - у каждой категории есть тесты  
 
-### Discovery
+### Обнаружение
 
-✅ **Descriptive names** - Clear purpose  
-✅ **Good descriptions** - Explain when to use  
-✅ **Proper tags** - Aid discovery  
-✅ **Documentation** - Document in README  
+✅ **Описательные имена** - понятное назначение  
+✅ **Хорошие описания** - объясняют, когда использовать  
+✅ **Правильные tags** - помогают обнаружению  
+✅ **Документация** - документируйте в README  
 
 ---
 
-## Migration from Flat Structure
+## Миграция с плоской структуры
 
-### Old Structure (Flat)
+### Старая структура (плоская)
 
 ```
 .opencode/agent/
@@ -342,7 +342,7 @@ Loads: `.opencode/context/ui/web/react-patterns.md`
 └── copywriter.md
 ```
 
-### New Structure (Category-Based)
+### Новая структура (на основе категорий)
 
 ```
 .opencode/agent/
@@ -360,21 +360,21 @@ Loads: `.opencode/context/ui/web/react-patterns.md`
     └── copywriter.md
 ```
 
-### Backward Compatibility
+### Обратная совместимость
 
-Old paths still work:
+Старые пути продолжают работать:
 - `openagent` → resolves to `core/openagent`
 - `opencoder` → resolves to `core/opencoder`
 
-New agents use category paths:
+Новые агенты используют пути категорий:
 - `subagents/development/frontend-specialist`
 - `content/copywriter`
 
 ---
 
-## Common Patterns
+## Частые паттерны
 
-### Core Category with Multiple Agents
+### Core-категория с несколькими агентами
 
 ```
 core/
@@ -383,7 +383,7 @@ core/
 ├── opencoder.md
 ```
 
-### Development Subagents
+### Development-субагенты
 
 ```
 subagents/development/
@@ -392,7 +392,7 @@ subagents/development/
 └── devops-specialist.md
 ```
 
-### Category with Shared Context
+### Категория с общим контекстом
 
 ```
 context/development/
@@ -402,7 +402,7 @@ context/development/
 └── api-design.md
 ```
 
-### Category with Tests
+### Категория с тестами
 
 ```
 evals/agents/core/
@@ -414,15 +414,15 @@ evals/agents/core/
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- **Adding agents**: `guides/adding-agent.md`
-- **Adding categories**: `guides/add-category.md`
-- **Agent concepts**: `core-concepts/agents.md`
-- **File locations**: `lookup/file-locations.md`
-- **Content creation principles**: `../content-creation/principles/navigation.md`
+- **Добавление агентов**: `guides/adding-agent.md`
+- **Добавление категорий**: `guides/add-category.md`
+- **Концепции агентов**: `core-concepts/agents.md`
+- **Расположение файлов**: `lookup/file-locations.md`
+- **Принципы создания контента**: `../content-creation/principles/navigation.md`
 
 ---
 
-**Last Updated**: 2026-01-13  
-**Version**: 0.5.1
+**Последнее обновление**: 2026-01-13  
+**Версия**: 0.5.1

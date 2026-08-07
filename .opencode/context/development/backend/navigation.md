@@ -1,26 +1,26 @@
 <!-- Context: development/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Backend Development Navigation
+# Навигация по backend-разработке
 
-**Purpose**: Server-side development patterns
+**Назначение**: Паттерны серверной разработки
 
-**Status**: 🚧 Placeholder - Content coming soon
+**Статус**: 🚧 Заготовка — контент скоро появится
 
 ---
 
-## Planned Structure
+## Планируемая структура
 
 ```
 backend/
 ├── navigation.md
 │
-├── api-patterns/              # Approach-based
+├── api-patterns/              # По подходу
 │   ├── rest-design.md
 │   ├── graphql-design.md
 │   ├── grpc-patterns.md
 │   └── trpc-patterns.md
 │
-├── nodejs/                    # Tech-specific
+├── nodejs/                    # По технологии
 │   ├── express-patterns.md
 │   ├── fastify-patterns.md
 │   └── nextjs-api-routes.md
@@ -29,7 +29,7 @@ backend/
 │   ├── fastapi-patterns.md
 │   └── django-patterns.md
 │
-├── authentication/            # Functional concern
+├── authentication/            # Функциональная область
 │   ├── jwt-patterns.md
 │   ├── oauth-patterns.md
 │   └── session-management.md
@@ -42,16 +42,16 @@ backend/
 
 ---
 
-## For Now
+## Пока
 
-Use specialized navigation: `../backend-navigation.md`
+Используйте специализированную навигацию: `../backend-navigation.md`
 
-Also see: `../principles/api-design.md`
+Также см.: `../principles/api-design.md`
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Backend Navigation** → `../backend-navigation.md`
-- **API Design Principles** → `../principles/api-design.md`
-- **Core Standards** → `../../core/standards/code-quality.md`
+- **Навигация по backend** → `../backend-navigation.md`
+- **Принципы проектирования API** → `../principles/api-design.md`
+- **Базовые стандарты** → `../../core/standards/code-quality.md`

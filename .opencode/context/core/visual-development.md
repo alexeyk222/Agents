@@ -1,42 +1,42 @@
 <!-- Context: visual-development | Priority: high | Version: 1.0 | Updated: 2025-01-27 -->
-# Visual Development Context
+# Контекст визуальной разработки
 
-**Purpose**: Visual content creation, UI design, image generation, and diagram creation
+**Назначение**: Создание визуального контента, UI-дизайн, генерация изображений и диаграмм
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task Type | Context File | Subagent | Tools |
+| Тип задачи | Контекстный файл | Subagent | Инструменты |
 |-----------|-------------|----------|-------|
-| **Generate image/diagram** | This file | Image Specialist | tool:gemini |
-| **Edit existing image** | This file | Image Specialist | tool:gemini |
-| **UI mockup (static)** | This file | Image Specialist | tool:gemini |
-| **Interactive UI design** | `workflows/design-iteration-overview.md` | - | - |
-| **Design system** | `ui/web/design-systems.md` | - | - |
-| **UI standards** | `ui/web/ui-styling-standards.md` | - | - |
-| **Animation patterns** | `ui/web/animation-patterns.md` | - | - |
+| **Сгенерировать изображение/диаграмму** | Этот файл | Image Specialist | tool:gemini |
+| **Отредактировать существующее изображение** | Этот файл | Image Specialist | tool:gemini |
+| **UI-макет (статический)** | Этот файл | Image Specialist | tool:gemini |
+| **Интерактивный UI-дизайн** | `workflows/design-iteration-overview.md` | - | - |
+| **Дизайн-система** | `ui/web/design-systems.md` | - | - |
+| **UI-стандарты** | `ui/web/ui-styling-standards.md` | - | - |
+| **Паттерны анимации** | `ui/web/animation-patterns.md` | - | - |
 
 ---
 
-## Image Specialist Capabilities
+## Возможности Image Specialist
 
-### What It Does
+### Что делает
 
-The **Image Specialist** subagent uses Gemini Nano Banana AI to:
+Subagent **Image Specialist** использует Gemini Nano Banana AI, чтобы:
 
-- ✅ **Generate images from text descriptions** - Create original images, illustrations, graphics
-- ✅ **Edit existing images** - Modify, enhance, or transform images
-- ✅ **Analyze images** - Describe image content, extract information
-- ✅ **Create diagrams** - Architecture diagrams, flowcharts, system visualizations
-- ✅ **Design mockups** - UI mockups, wireframes, design concepts
-- ✅ **Generate graphics** - Social media graphics, promotional images, icons
+- ✅ **Генерировать изображения по текстовым описаниям** - Создавать оригинальные изображения, иллюстрации, графику
+- ✅ **Редактировать существующие изображения** - Изменять, улучшать или трансформировать изображения
+- ✅ **Анализировать изображения** - Описывать содержимое изображения, извлекать информацию
+- ✅ **Создавать диаграммы** - Архитектурные диаграммы, flowcharts, визуализации систем
+- ✅ **Проектировать макеты** - UI-макеты, wireframes, дизайн-концепты
+- ✅ **Генерировать графику** - Графика для соцсетей, промоматериалы, иконки
 
-### When to Delegate
+### Когда делегировать
 
-Delegate to Image Specialist when users request:
+Делегируйте Image Specialist, когда пользователи просят:
 
-**Keywords to Watch For**:
+**Ключевые слова для отслеживания**:
 - "create image", "generate image", "make image"
 - "diagram", "flowchart", "visualization"
 - "mockup", "wireframe", "design concept"
@@ -44,15 +44,15 @@ Delegate to Image Specialist when users request:
 - "edit image", "modify image", "enhance image"
 - "screenshot", "visual", "picture"
 
-**Common Use Cases**:
-1. **Architecture Diagrams** - Microservices, system design, infrastructure
-2. **UI Mockups** - Dashboard designs, app interfaces, web layouts
-3. **Social Media Graphics** - Announcements, promotions, branded content
-4. **Documentation Images** - Tutorial screenshots, feature highlights, guides
-5. **Presentations** - Slide graphics, charts, visual aids
-6. **Marketing Assets** - Product images, hero graphics, banners
+**Типовые сценарии**:
+1. **Архитектурные диаграммы** - Микросервисы, дизайн системы, инфраструктура
+2. **UI-макеты** - дизайн dashboard, интерфейсы приложений, web layout
+3. **Графика для соцсетей** - Анонсы, промо, брендированный контент
+4. **Изображения для документации** - скриншоты tutorial, highlights фич, guides
+5. **Презентации** - графика для слайдов, charts, визуальные материалы
+6. **Маркетинговые assets** - изображения продукта, hero-графика, banners
 
-### How to Invoke
+### Как вызвать
 
 ```javascript
 task(
@@ -76,13 +76,13 @@ task(
 
 ---
 
-## Use Case Examples
+## Примеры сценариев
 
-### 1. Architecture Diagram
+### 1. Архитектурная диаграмма
 
-**User Request**: "Create a diagram showing our microservices architecture"
+**Запрос пользователя**: «Создай диаграмму нашей микросервисной архитектуры»
 
-**Invocation**:
+**Вызов**:
 ```javascript
 task(
   subagent_type="Image Specialist",
@@ -119,11 +119,11 @@ task(
 
 ---
 
-### 2. UI Mockup
+### 2. UI-макет
 
-**User Request**: "Show me what the dashboard could look like"
+**Запрос пользователя**: «Покажи, как может выглядеть dashboard»
 
-**Invocation**:
+**Вызов**:
 ```javascript
 task(
   subagent_type="Image Specialist",
@@ -156,11 +156,11 @@ task(
 
 ---
 
-### 3. Social Media Graphic
+### 3. Графика для соцсетей
 
-**User Request**: "Create a graphic announcing our new feature"
+**Запрос пользователя**: «Создай графику для анонса новой фичи»
 
-**Invocation**:
+**Вызов**:
 ```javascript
 task(
   subagent_type="Image Specialist",
@@ -192,11 +192,11 @@ task(
 
 ---
 
-### 4. Flowchart/Process Diagram
+### 4. Flowchart / диаграмма процесса
 
-**User Request**: "Diagram the user onboarding flow"
+**Запрос пользователя**: «Сделай диаграмму user onboarding flow»
 
-**Invocation**:
+**Вызов**:
 ```javascript
 task(
   subagent_type="Image Specialist",
@@ -233,11 +233,11 @@ task(
 
 ---
 
-### 5. Icon/Illustration
+### 5. Иконка/иллюстрация
 
-**User Request**: "Create an icon for our file upload feature"
+**Запрос пользователя**: «Создай иконку для фичи загрузки файлов»
 
-**Invocation**:
+**Вызов**:
 ```javascript
 task(
   subagent_type="Image Specialist",
@@ -262,11 +262,11 @@ task(
 
 ---
 
-### 6. Image Editing
+### 6. Редактирование изображения
 
-**User Request**: "Make this screenshot look more professional"
+**Запрос пользователя**: «Сделай этот скриншот более профессиональным»
 
-**Invocation**:
+**Вызов**:
 ```javascript
 task(
   subagent_type="Image Specialist",
@@ -293,9 +293,9 @@ task(
 
 ---
 
-## Decision Tree: Image Specialist vs Design Iteration
+## Дерево решений: Image Specialist и Design Iteration
 
-Use this decision tree to choose the right approach:
+Используйте это дерево решений, чтобы выбрать подход:
 
 ```
 User needs visual content
@@ -318,74 +318,74 @@ Is it interactive/responsive HTML/CSS?
   NO → Clarify requirements with user
 ```
 
-### Quick Reference
+### Краткая справка
 
-| Need | Use |
+| Нужно | Использовать |
 |------|-----|
-| **Interactive dashboard** | design-iteration-overview.md |
-| **Dashboard mockup (static image)** | Image Specialist |
+| **Интерактивный dashboard** | design-iteration-overview.md |
+| **Dashboard mockup (статическое изображение)** | Image Specialist |
 | **Responsive landing page** | design-iteration-overview.md |
-| **Landing page hero graphic** | Image Specialist |
-| **Working HTML prototype** | design-iteration-overview.md |
-| **Architecture diagram** | Image Specialist |
-| **UI component library** | design-iteration-overview.md |
-| **Social media graphic** | Image Specialist |
+| **Hero-графика для landing page** | Image Specialist |
+| **Рабочий HTML-прототип** | design-iteration-overview.md |
+| **Архитектурная диаграмма** | Image Specialist |
+| **Библиотека UI-компонентов** | design-iteration-overview.md |
+| **Графика для соцсетей** | Image Specialist |
 
 ---
 
-## Tools & Dependencies
+## Инструменты и зависимости
 
-### Required Tool
+### Обязательный инструмент
 
 **tool:gemini** - Gemini Nano Banana AI
-- Automatically included in Developer profile
-- Requires GEMINI_API_KEY environment variable
-- Get API key: https://makersuite.google.com/app/apikey
+- Автоматически включен в профиль Developer
+- Требует переменную окружения GEMINI_API_KEY
+- Получить API key: https://makersuite.google.com/app/apikey
 
-### Configuration
+### Конфигурация
 
-Add to `.env` file:
+Добавьте в файл `.env`:
 ```bash
 GEMINI_API_KEY=your_api_key_here
 ```
 
-### Capabilities
+### Возможности
 
-- **Text-to-Image**: Generate images from descriptions
-- **Image-to-Image**: Edit and transform existing images
-- **Image Analysis**: Describe and analyze image content
-- **Multiple Formats**: PNG, JPG, WebP support
-- **High Resolution**: Up to 2048x2048 pixels
+- **Text-to-Image**: Генерация изображений по описаниям
+- **Image-to-Image**: Редактирование и трансформация существующих изображений
+- **Image Analysis**: Описание и анализ содержимого изображения
+- **Multiple Formats**: Поддержка PNG, JPG, WebP
+- **High Resolution**: До 2048x2048 пикселей
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-### Writing Effective Prompts
+### Написание эффективных prompt-запросов
 
-✅ **Do**:
-- Be specific about dimensions and format
-- Describe visual style clearly (modern, minimalist, professional)
-- Specify colors using hex codes or names
-- Include key elements that must appear
-- Mention the intended use case
-- Provide context about brand/aesthetic
+✅ **Делайте**:
+- Конкретно указывайте размеры и формат
+- Ясно описывайте визуальный стиль (modern, minimalist, professional)
+- Указывайте цвета hex-кодами или названиями
+- Добавляйте ключевые элементы, которые должны быть на изображении
+- Указывайте предполагаемый сценарий использования
+- Давайте контекст бренда/эстетики
 
-❌ **Don't**:
-- Use vague descriptions ("make it nice")
-- Forget to specify dimensions
-- Assume default style preferences
-- Skip color specifications
-- Omit output location
+❌ **Не делайте**:
+- Не используйте расплывчатые описания («сделай красиво»)
+- Не забывайте указывать размеры
+- Не полагайтесь на предпочтения стиля по умолчанию
+- Не пропускайте спецификацию цветов
+- Не забывайте место вывода
 
-### Example: Good vs Bad Prompts
+### Пример: хороший и плохой prompt-запрос
 
-**❌ Bad Prompt**:
+**❌ Плохой prompt-запрос**:
 ```
 "Create a diagram of our system"
 ```
 
-**✅ Good Prompt**:
+**✅ Хороший prompt-запрос**:
 ```
 "Create a technical architecture diagram showing:
 - 3 microservices (API, Auth, Database)
@@ -402,63 +402,63 @@ Output: docs/system-architecture.png"
 
 ---
 
-## Quality Checklist
+## Чеклист качества
 
-Before delegating to Image Specialist:
+Перед делегированием Image Specialist:
 
-- [ ] User request clearly indicates need for visual content
-- [ ] Determined static image is appropriate (not interactive HTML)
-- [ ] Gathered requirements: style, dimensions, colors, elements
-- [ ] Specified output format and location
-- [ ] Confirmed tool:gemini is available in profile
-- [ ] Prepared detailed prompt with all specifications
+- [ ] Запрос пользователя явно требует визуального контента
+- [ ] Подтверждено, что подходит статическое изображение (не interactive HTML)
+- [ ] Собраны требования: стиль, размеры, цвета, элементы
+- [ ] Указаны формат и место вывода
+- [ ] Подтверждено, что tool:gemini доступен в профиле
+- [ ] Подготовлен подробный prompt-запрос со всеми спецификациями
 
-After receiving output:
+После получения результата:
 
-- [ ] Image meets specified requirements
-- [ ] Dimensions and format are correct
-- [ ] Visual style matches request
-- [ ] All key elements are included
-- [ ] Image is saved to specified location
-- [ ] User is satisfied with result
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-**Issue**: Generated image doesn't match expectations
-**Solution**: Refine prompt with more specific details, provide reference examples
-
-**Issue**: Image quality is low
-**Solution**: Request higher resolution, specify quality requirements in prompt
-
-**Issue**: Colors don't match brand
-**Solution**: Provide exact hex codes, reference brand guidelines
-
-**Issue**: Layout is cluttered
-**Solution**: Simplify requirements, specify clear hierarchy and spacing
-
-**Issue**: Text in image is unreadable
-**Solution**: Request larger text, higher contrast, clearer typography
+- [ ] Изображение соответствует требованиям
+- [ ] Размеры и формат корректны
+- [ ] Визуальный стиль соответствует запросу
+- [ ] Все ключевые элементы включены
+- [ ] Изображение сохранено в указанное место
+- [ ] Пользователь доволен результатом
 
 ---
 
-## Related Context
+## Устранение неполадок
 
-- **UI Design Workflow**: `.opencode/context/core/workflows/design-iteration-overview.md`
-- **Design Systems**: `.opencode/context/ui/web/design-systems.md`
-- **UI Styling Standards**: `.opencode/context/ui/web/ui-styling-standards.md`
-- **Animation Patterns**: `.opencode/context/ui/web/animation-basics.md`, `.opencode/context/ui/web/animation-advanced.md`
-- **Subagent Invocation Guide**: `.opencode/context/openagents-repo/guides/subagent-invocation.md`
-- **Agent Capabilities**: `.opencode/context/openagents-repo/core-concepts/agents.md`
+### Типовые проблемы
+
+**Проблема**: Сгенерированное изображение не соответствует ожиданиям
+**Решение**: Уточнить prompt-запрос конкретными деталями, дать референсы
+
+**Проблема**: Низкое качество изображения
+**Решение**: Запросить более высокое разрешение, указать требования к качеству в prompt-запросе
+
+**Проблема**: Цвета не соответствуют бренду
+**Решение**: Дать точные hex-коды, сослаться на brand guidelines
+
+**Проблема**: Layout перегружен
+**Решение**: Упростить требования, указать четкую иерархию и отступы
+
+**Проблема**: Текст на изображении не читается
+**Решение**: Запросить более крупный текст, высокий контраст, более ясную типографику
 
 ---
 
-## Keywords for Discovery
+## Связанный контекст
 
-**ContextScout should find this file when users mention**:
+- **Workflow UI-дизайна**: `.opencode/context/core/workflows/design-iteration-overview.md`
+- **Дизайн-системы**: `.opencode/context/ui/web/design-systems.md`
+- **Стандарты UI-стилей**: `.opencode/context/ui/web/ui-styling-standards.md`
+- **Паттерны анимации**: `.opencode/context/ui/web/animation-basics.md`, `.opencode/context/ui/web/animation-advanced.md`
+- **Руководство по вызову subagent**: `.opencode/context/openagents-repo/guides/subagent-invocation.md`
+- **Возможности агентов**: `.opencode/context/openagents-repo/core-concepts/agents.md`
+
+---
+
+## Ключевые слова для discovery
+
+**ContextScout должен находить этот файл, когда пользователи упоминают**:
 
 - image, images, picture, photo, graphic
 - diagram, flowchart, visualization, chart
@@ -473,6 +473,6 @@ After receiving output:
 
 ---
 
-## Version History
+## История версий
 
-- **v1.0** (2025-01-27): Initial creation with comprehensive use cases and examples
+- **v1.0** (2025-01-27): Первичное создание с полными сценариями и примерами

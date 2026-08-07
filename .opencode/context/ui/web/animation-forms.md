@@ -1,11 +1,11 @@
 <!-- Context: ui/web/animation-forms | Priority: medium | Version: 1.0 | Updated: 2025-12-09 -->
-# Form Animation Patterns
+# Паттерны анимации форм
 
-Animation patterns for form inputs, validation states, and scroll animations.
+Паттерны анимации для полей формы, состояний валидации и scroll-анимаций.
 
 ---
 
-## Focus States
+## Состояния фокуса
 
 ```css
 /* Input focus - ring and scale */
@@ -23,7 +23,7 @@ Animation patterns for form inputs, validation states, and scroll animations.
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 inputFocus: 200ms ease-out [S1→1.01, shadow+ring]
 inputBlur: 150ms ease-in [S1.01→1, shadow-ring]
@@ -31,7 +31,7 @@ inputBlur: 150ms ease-in [S1.01→1, shadow-ring]
 
 ---
 
-## Validation States
+## Состояния валидации
 
 ```css
 /* Error shake */
@@ -60,7 +60,7 @@ inputBlur: 150ms ease-in [S1.01→1, shadow-ring]
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 error: 400ms ease-in-out [X±5] shake
 success: 600ms bounce [S0→1.2, R0→360°, α0→1]
@@ -68,9 +68,9 @@ success: 600ms bounce [S0→1.2, R0→360°, α0→1]
 
 ---
 
-## Scroll Animations
+## Scroll-анимации
 
-### Scroll-Triggered Fade In
+### Fade in при скролле
 
 ```css
 .fade-in-on-scroll {
@@ -84,12 +84,12 @@ success: 600ms bounce [S0→1.2, R0→360°, α0→1]
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 scrollFadeIn: 500ms ease-out [Y+40→0, α0→1]
 ```
 
-### Auto-Scroll
+### Auto-scroll
 
 ```css
 html {
@@ -106,7 +106,7 @@ html {
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 autoScroll: 400ms smooth
 scrollHint: 800ms ∞×3 [Y±5]
@@ -114,8 +114,8 @@ scrollHint: 800ms ∞×3 [Y±5]
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Animation Basics](./animation-basics.md) - Fundamentals
-- [Animation Components](./animation-components.md) - Common UI patterns
-- [Loading Animations](./animation-loading.md) - Loading states
+- [Основы анимации](./animation-basics.md) - базовые принципы
+- [Анимации компонентов](./animation-components.md) - распространенные UI-паттерны
+- [Анимации загрузки](./animation-loading.md) - состояния загрузки

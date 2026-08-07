@@ -1,25 +1,25 @@
 <!-- Context: workflows/design-iteration-stage-layout | Priority: high | Version: 1.0 | Updated: 2025-12-09 -->
-# Stage 1: Layout Design
+# Этап 1: дизайн макета
 
-**Purpose**: Define the structure and component hierarchy before visual design
+**Назначение**: определить структуру и иерархию компонентов до визуального дизайна
 
-## Process
+## Процесс
 
-1. Read design plan file from `.tmp/design-plans/{name}.md`
-2. Analyze user requirements from plan
-3. Identify core UI components
-4. Plan layout structure and responsive behavior
-5. Create ASCII wireframe
-6. **Update plan file** with layout structure and component breakdown
-7. Present to user for approval
-8. **Update plan file** with user feedback and approval status
+1. Прочитать файл плана дизайна из `.tmp/design-plans/{name}.md`
+2. Проанализировать требования пользователя из плана
+3. Определить основные UI-компоненты
+4. Спланировать структуру макета и адаптивное поведение
+5. Создать ASCII wireframe
+6. **Обновить файл плана** структурой макета и декомпозицией компонентов
+7. Показать пользователю для одобрения
+8. **Обновить файл плана** обратной связью пользователя и статусом одобрения
 
-## Deliverable
+## Результат
 
-- ASCII wireframe with component breakdown
-- Updated plan file with Stage 1 complete
+- ASCII-wireframe с декомпозицией компонентов
+- Обновленный файл плана с завершенным этапом 1
 
-## Example Output
+## Пример результата
 
 ```
 ## Core UI Components
@@ -87,29 +87,29 @@ Mobile (< 768px):
 └─────────────────┘
 ```
 
-## Best Practices
+## Лучшие практики
 
-✅ **Do**:
-- Use ASCII wireframes for clarity
-- Break down into component hierarchy
-- Plan responsive behavior upfront
-- Consider mobile-first approach
-- Get approval before proceeding
+✅ **Делайте**:
+- Используйте ASCII-wireframes для ясности
+- Разбивайте на иерархию компонентов
+- Планируйте адаптивное поведение заранее
+- Учитывайте mobile-first подход
+- Получайте одобрение перед продолжением
 
-❌ **Don't**:
-- Skip wireframing and jump to code
-- Ignore responsive considerations
-- Proceed without user approval
-- Over-complicate initial layout
+❌ **Не делайте**:
+- Не пропускайте wireframing и не переходите сразу к коду
+- Не игнорируйте адаптивность
+- Не продолжайте без одобрения пользователя
+- Не усложняйте начальный макет
 
-## Approval Gate
+## Точка одобрения
 
-"Would you like to proceed with this layout or need modifications?"
+"Хотите продолжить с этим макетом или нужны изменения?"
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Overview](./design-iteration-overview.md)
-- [Design Plan File](./design-iteration-plan-file.md)
-- [Stage 2: Theme](./design-iteration-stage-theme.md)
+- [Обзор](./design-iteration-overview.md)
+- [Файл плана дизайна](./design-iteration-plan-file.md)
+- [Этап 2: Тема](./design-iteration-stage-theme.md)

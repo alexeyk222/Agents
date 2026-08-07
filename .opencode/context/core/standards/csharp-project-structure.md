@@ -10,39 +10,41 @@ author: community
 
 <!-- Context: core/standards | Priority: critical | Version: 1.3 | Updated: 2026-03-15 -->
 
-# C# Project Structure Standards
+# Стандарты структуры C#-проекта
 
-**Purpose**: Standard project structure for ASP.NET Core APIs using Minimal APIs, CQRS (MediatR), Vertical Slice Architecture, and EF Core with PostgreSQL  
-**Scope**: Project layout, wiring patterns, and conventions — not language-level rules (see `csharp.md`)  
-**Last Updated**: 2026-03-15
-
----
-
-## Design Principles
-
-- **`Features/`** contains only business logic — Commands, Queries, Validators, Handlers. No HTTP or framework code.
-- **`Features/Common/`** contains shared feature-level concerns — pipeline behaviors, shared exceptions.
-- **`Infrastructure/`** contains all technical wiring — endpoint registration, DB context, external services.
-- **Command/Query records are the API contract** — they are sent directly from endpoints. No separate DTO mapping layer.
+**Назначение**: Стандартная структура проекта для ASP.NET Core APIs с Minimal APIs, CQRS (MediatR), Vertical Slice Architecture и EF Core с PostgreSQL  
+**Область**: структура проекта, паттерны wiring и соглашения — не языковые правила (см. `csharp.md`)  
+**Последнее обновление**: 2026-03-15
 
 ---
 
-## Table of Contents
+## Принципы дизайна
 
-1. [Project Initialization](#1-project-initialization)
-2. [Project Layout](#2-project-layout)
+- **`Features/`** содержит только бизнес-логику — Commands, Queries, Validators, Handlers. Без HTTP- или framework-кода.
+- **`Features/Common/`** содержит общие feature-level задачи — pipeline behaviors, общие exceptions.
+- **`Infrastructure/`** содержит весь technical wiring — регистрацию endpoints, DB context, внешние сервисы.
+- **Command/Query records — это API contract** — они отправляются напрямую из endpoints. Отдельного слоя DTO mapping нет.
+
+---
+
+## Содержание
+
+1. [Инициализация проекта](#1-project-initialization)
+2. [Структура проекта](#2-project-layout)
 3. [Program.cs](#3-programcs)
-4. [Features — Vertical Slices](#4-features--vertical-slices)
+4. [Features — вертикальные slices](#4-features--vertical-slices)
 5. [Infrastructure](#5-infrastructure)
 6. [EF Core & PostgreSQL](#6-ef-core--postgresql)
-7. [Migrations](#7-migrations)
-8. [NuGet Packages](#8-nuget-packages)
+7. [Миграции](#7-migrations)
+8. [NuGet-пакеты](#8-nuget-packages)
 
 ---
 
-## 1. Project Initialization
+<a id="1-project-initialization"></a>
 
-**Always run these commands FIRST when creating a new ASP.NET Core project:**
+## 1. Инициализация проекта
+
+**При создании нового ASP.NET Core проекта ВСЕГДА сначала запускайте эти команды:**
 
 ```bash
 # Create .gitignore (C# patterns)
@@ -56,14 +58,16 @@ dotnet new web -n MyApi
 cd MyApi
 ```
 
-**Why this order?**
-- `.gitignore` must exist before any build artifacts are created (prevents committing `bin/`, `obj/`, etc.)
-- `.gitattributes` ensures consistent line endings across team members
-- Projects created after these are in place benefit from proper version control setup
+**Почему такой порядок?**
+- `.gitignore` должен существовать до создания build artifacts (предотвращает коммит `bin/`, `obj/` и т. д.)
+- `.gitattributes` обеспечивает единые окончания строк у всех участников команды
+- Проекты, созданные после этих файлов, получают корректную настройку version control
 
 ---
 
-## 2. Project Layout
+<a id="2-project-layout"></a>
+
+## 2. Структура проекта
 
 ```
 MyApi/
@@ -119,9 +123,11 @@ MyApi/
 
 ---
 
+<a id="3-programcs"></a>
+
 ## 3. Program.cs
 
-`Program.cs` contains **only** DI registration and endpoint mapping. No business logic.
+`Program.cs` содержит **только** регистрацию DI и mapping endpoints. Никакой бизнес-логики.
 
 ```csharp
 // Program.cs
@@ -172,13 +178,15 @@ public partial class Program { }   // allows WebApplicationFactory in integratio
 
 ---
 
-## 4. Features — Vertical Slices
+<a id="4-features--vertical-slices"></a>
 
-Each use case lives in its own file: **Command or Query record + Validator + Handler — nothing else**.  
-The Command/Query record is the API contract — it is bound directly from the HTTP request body/route.  
-No separate DTO types, no mapping layer.
+## 4. Features — вертикальные slices
 
-### 3.1 Command Slice (write operation)
+Каждый use case живет в своем файле: **Command или Query record + Validator + Handler — и ничего больше**.  
+Command/Query record — это API contract, он привязывается напрямую из HTTP request body/route.  
+Отдельных DTO types и mapping layer нет.
+
+### 3.1 Command Slice (операция записи)
 
 ```csharp
 // Features/Orders/CreateOrder.cs
@@ -222,7 +230,7 @@ public class CreateOrderHandler(AppDbContext db) : IRequestHandler<CreateOrderCo
 }
 ```
 
-### 3.2 Query Slice (read operation)
+### 3.2 Query Slice (операция чтения)
 
 ```csharp
 // Features/Orders/GetOrder.cs
@@ -345,11 +353,13 @@ public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TReq
 
 ---
 
+<a id="5-infrastructure"></a>
+
 ## 5. Infrastructure & API Endpoints
 
-### 4.1 API Endpoints (Entry Points)
+### 4.1 API Endpoints (точки входа)
 
-Endpoint files live in the `Api/` directory at the project root — they are the entry points for discovering business processes. These files handle HTTP concerns only: routing, parameter binding, response shaping, and dispatching to MediatR. No business logic here.
+Файлы endpoints находятся в каталоге `Api/` в корне проекта — это точки входа для обнаружения бизнес-процессов. Эти файлы обрабатывают только HTTP-задачи: routing, parameter binding, shaping response и dispatch в MediatR. Бизнес-логики здесь нет.
 
 ```csharp
 // Api/OrderEndpoints.cs
@@ -461,7 +471,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 }
 ```
 
-### 4.4 Entity Configuration
+### 4.4 Конфигурация entity
 
 ```csharp
 // Infrastructure/Persistence/Configurations/OrderConfiguration.cs
@@ -499,6 +509,8 @@ public sealed class OrderConfiguration : IEntityTypeConfiguration<Order>
 
 ---
 
+<a id="6-ef-core--postgresql"></a>
+
 ## 6. EF Core & PostgreSQL
 
 ### 5.1 Connection String (appsettings.json)
@@ -511,17 +523,17 @@ public sealed class OrderConfiguration : IEntityTypeConfiguration<Order>
 }
 ```
 
-Override in environment / Docker / Kubernetes using double-underscore notation:
+Переопределяйте в environment / Docker / Kubernetes через нотацию с двойным подчеркиванием:
 ```
 ConnectionStrings__DefaultConnection=Host=prod-db;...
 ```
 
-For local development, use `dotnet user-secrets`:
+Для локальной разработки используйте `dotnet user-secrets`:
 ```bash
 dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;..."
 ```
 
-### 5.2 Async Query Patterns
+### 5.2 Паттерны async queries
 
 ```csharp
 // ✅ Always pass CancellationToken to all EF async methods
@@ -562,9 +574,11 @@ await db.SaveChangesAsync(ct);
 
 ---
 
-## 7. Migrations
+<a id="7-migrations"></a>
 
-### Common Commands
+## 7. Миграции
+
+### Типовые команды
 
 ```bash
 # Add a new migration after model changes
@@ -585,7 +599,7 @@ dotnet ef migrations add MigrationName \
   --startup-project src/MyApp.Api
 ```
 
-### Production Deployment
+### Развертывание в production
 
 ```bash
 # Generate idempotent SQL script — safe to run multiple times (recommended for CI/CD)
@@ -596,11 +610,13 @@ dotnet ef migrations bundle --output migrations-bundle
 ./migrations-bundle --connection "${DB_CONNECTION_STRING}"
 ```
 
-> **Do not** auto-migrate in `Program.cs` (`db.Database.MigrateAsync()`) in production multi-instance deployments — use SQL scripts or migration bundles instead to avoid race conditions.
+> **Не** выполняйте auto-migrate в `Program.cs` (`db.Database.MigrateAsync()`) в production multi-instance deployments — используйте SQL-скрипты или migration bundles, чтобы избежать race conditions.
 
 ---
 
-## 8. NuGet Packages
+<a id="8-nuget-packages"></a>
+
+## 8. NuGet-пакеты
 
 ```xml
 <ItemGroup>
@@ -652,18 +668,18 @@ global using NSubstitute;
 
 ---
 
-## Quick Reference
+## Краткая справка
 
-| Concern | Where it lives | Rule |
+| Задача | Где находится | Правило |
 |---------|---------------|------|
-| DI wiring + endpoint mapping | `Program.cs` | Declarative only, no logic |
-| API entry points (discover processes) | `Api/{Name}Endpoints.cs` | `IEndpointRouteBuilder` extension, routing + dispatch only |
-| Business use case | `Features/{Name}/{UseCase}.cs` | Command/Query + Validator + Handler only |
-| API request/response contract | Command/Query record + result record | No separate DTOs, no mapping |
+| DI-wiring + маппинг endpoint | `Program.cs` | Только декларативно, без логики |
+| Точки входа API (обнаруживаемые процессы) | `Api/{Name}Endpoints.cs` | Расширение `IEndpointRouteBuilder`, только routing + dispatch |
+| Бизнес-сценарий | `Features/{Name}/{UseCase}.cs` | Только Command/Query + Validator + Handler |
+| API-контракт request/response | Command/Query record + result record | Без отдельных DTO, без mapping |
 | Pipeline behaviors | `Features/Common/Behaviors/` | `IPipelineBehavior<TRequest, TResponse>` |
-| Shared exceptions | `Features/Common/Exceptions/` | Domain exception hierarchy |
-| Database context + entity configs | `Infrastructure/Persistence/` | `AppDbContext` + `IEntityTypeConfiguration<T>` |
-| EF Core migrations | `Infrastructure/Persistence/Migrations/` | Auto-generated by `dotnet ef` |
-| External services | `Infrastructure/Services/` | Interface + implementation |
-| Infra DI registration | `Infrastructure/Extensions/InfrastructureExtensions.cs` | `AddInfrastructure()` |
+| Общие exceptions | `Features/Common/Exceptions/` | Иерархия domain exceptions |
+| Контекст БД + конфигурации entities | `Infrastructure/Persistence/` | `AppDbContext` + `IEntityTypeConfiguration<T>` |
+| EF Core migrations | `Infrastructure/Persistence/Migrations/` | Auto-generated через `dotnet ef` |
+| Внешние сервисы | `Infrastructure/Services/` | Interface + implementation |
+| Регистрация Infra DI | `Infrastructure/Extensions/InfrastructureExtensions.cs` | `AddInfrastructure()` |
 | Global usings | `GlobalUsings.cs` | `global using` |

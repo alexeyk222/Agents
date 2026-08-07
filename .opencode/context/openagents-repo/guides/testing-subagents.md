@@ -1,40 +1,40 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Testing Subagents - Step-by-Step Guide
+# Тестирование subagents — пошаговое руководство
 
-**Purpose**: How to test subagents in standalone mode
+**Цель**: как тестировать subagents в standalone-режиме
 
-**Last Updated**: 2026-01-09
+**Последнее обновление**: 2026-01-09
 
 ---
 
-## ⚠️ CRITICAL: Adding New Subagent to Framework
+## ⚠️ КРИТИЧНО: добавление нового subagent во framework
 
-**Before testing**, you MUST update THREE locations in framework code:
+**Перед тестированием** нужно обновить ТРИ места в framework-коде:
 
 ### 1. `evals/framework/src/sdk/run-sdk-tests.ts` (~line 336)
-Add to `subagentParentMap`:
+Добавьте в `subagentParentMap`:
 ```typescript
 'contextscout': 'openagent',  // Maps subagent → parent
 ```
 
 ### 2. `evals/framework/src/sdk/run-sdk-tests.ts` (~line 414)
-Add to `subagentPathMap`:
+Добавьте в `subagentPathMap`:
 ```typescript
 'contextscout': 'ContextScout',  // Maps name → path
 ```
 
 ### 3. `evals/framework/src/sdk/test-runner.ts` (~line 238)
-Add to `agentMap`:
+Добавьте в `agentMap`:
 ```typescript
 'contextscout': 'ContextScout.md',  // Maps name → file
 ```
 
-**If missing from ANY map**: Tests will fail with "No test files found" or "Unknown subagent"
+**Если отсутствует в ЛЮБОЙ map**: тесты упадут с "No test files found" или "Unknown subagent"
 
 ---
 
-## Quick Start
+## Быстрый старт
 
 ```bash
 # Test subagent directly (standalone mode)
@@ -50,9 +50,9 @@ npm run eval:sdk -- --subagent=contextscout --pattern="01-test.yaml" --debug
 
 ---
 
-## Step 1: Verify Agent File
+## Шаг 1: проверьте файл агента
 
-**Check agent exists and has correct structure**:
+**Проверьте, что агент существует и имеет правильную структуру**:
 
 ```bash
 # Check agent file
@@ -62,7 +62,7 @@ cat .opencode/agent/subagents/core/contextscout.md | head -20
 grep -A 5 "^id:" .opencode/agent/subagents/core/contextscout.md
 ```
 
-**Expected**:
+**Ожидается**:
 ```yaml
 id: contextscout
 name: ContextScout
@@ -73,15 +73,15 @@ mode: subagent  # ← Will be forced to 'primary' in standalone tests
 
 ---
 
-## Step 2: Verify Test Configuration
+## Шаг 2: проверьте конфигурацию тестов
 
-**Check test config points to correct agent**:
+**Проверьте, что конфиг теста указывает на правильного агента**:
 
 ```bash
 cat evals/agents/ContextScout/config/config.yaml
 ```
 
-**Expected**:
+**Ожидается**:
 ```yaml
 agent: ContextScout  # ← Full path
 model: anthropic/claude-sonnet-4-5
@@ -90,16 +90,16 @@ timeout: 60000
 
 ---
 
-## Step 3: Run Standalone Test
+## Шаг 3: запустите standalone-тест
 
-**Use `--subagent` flag** (not `--agent`):
+**Используйте флаг `--subagent`** (не `--agent`):
 
 ```bash
 cd evals/framework
 npm run eval:sdk -- --subagent=ContextScout --pattern="standalone/01-simple-discovery.yaml"
 ```
 
-**What to Look For**:
+**На что смотреть**:
 ```
 ⚡ Standalone Test Mode
    Subagent: contextscout
@@ -110,16 +110,16 @@ Testing agent: contextscout  # ← Should show subagent name
 
 ---
 
-## Step 4: Verify Agent Loaded Correctly
+## Шаг 4: проверьте, что агент загрузился корректно
 
-**Check test results**:
+**Проверьте результаты тестов**:
 
 ```bash
 # View latest results
 cat evals/results/latest.json | jq '.meta'
 ```
 
-**Expected**:
+**Ожидается**:
 ```json
 {
   "agent": "ContextScout",  // ← Correct agent
@@ -128,22 +128,22 @@ cat evals/results/latest.json | jq '.meta'
 }
 ```
 
-**Red Flags**:
-- `"agent": "core/openagent"` ← Wrong! OpenAgent is running instead
-- `"agent": "contextscout"` ← Missing category prefix
+**Тревожные признаки**:
+- `"agent": "core/openagent"` ← неверно! Запущен OpenAgent
+- `"agent": "contextscout"` ← отсутствует category prefix
 
 ---
 
-## Step 5: Check Tool Usage
+## Шаг 5: проверьте использование инструментов
 
-**Verify subagent used tools**:
+**Убедитесь, что subagent использовал tools**:
 
 ```bash
 # Check tool calls in output
 cat evals/results/latest.json | jq '.tests[0]' | grep -A 5 "Tool Calls"
 ```
 
-**Expected** (for ContextScout):
+**Ожидается** (для ContextScout):
 ```
 Tool Calls: 1
 Tools Used: glob
@@ -152,23 +152,23 @@ Tool Call Details:
   1. glob: {"pattern":"*.md","path":".opencode/context/core"}
 ```
 
-**Red Flags**:
-- `Tool Calls: 0` ← Agent didn't use any tools
-- `Tools Used: task` ← Parent agent delegating (wrong mode)
+**Тревожные признаки**:
+- `Tool Calls: 0` ← агент не использовал tools
+- `Tools Used: task` ← parent agent делегирует (неверный mode)
 
 ---
 
-## Step 6: Analyze Failures
+## Шаг 6: проанализируйте падения
 
-**If test fails, check violations**:
+**Если тест падает, проверьте нарушения**:
 
 ```bash
 cat evals/results/latest.json | jq '.tests[0].violations'
 ```
 
-**Common Issues**:
+**Частые проблемы**:
 
-### Issue 1: No Tool Calls
+### Проблема 1: нет tool calls
 ```json
 {
   "type": "missing-required-tool",
@@ -176,18 +176,18 @@ cat evals/results/latest.json | jq '.tests[0].violations'
 }
 ```
 
-**Cause**: Agent prompt doesn't emphasize tool usage  
-**Fix**: Add critical rules section emphasizing tools (see `examples/subagent-prompt-structure.md`)
+**Причина**: промпт агента не делает акцент на tool usage  
+**Исправление**: добавьте секцию critical rules с акцентом на tools (см. `examples/subagent-prompt-structure.md`)
 
-### Issue 2: Wrong Agent Running
+### Проблема 2: запущен неверный агент
 ```
 Agent: OpenAgent
 ```
 
-**Cause**: Used `--agent` instead of `--subagent`  
-**Fix**: Use `--subagent=ContextScout`
+**Причина**: использован `--agent` вместо `--subagent`  
+**Исправление**: используйте `--subagent=ContextScout`
 
-### Issue 3: Tool Permission Denied
+### Проблема 3: Tool Permission Denied
 ```json
 {
   "type": "missing-approval",
@@ -195,21 +195,21 @@ Agent: OpenAgent
 }
 ```
 
-**Cause**: Agent tried to use restricted tool  
-**Fix**: See `errors/tool-permission-errors.md`
+**Причина**: агент попытался использовать ограниченный tool  
+**Исправление**: см. `errors/tool-permission-errors.md`
 
 ---
 
-## Step 7: Validate Results
+## Шаг 7: проверьте результаты
 
-**Check test passed**:
+**Убедитесь, что тест прошел**:
 
 ```bash
 # View summary
 cat evals/results/latest.json | jq '.summary'
 ```
 
-**Expected**:
+**Ожидается**:
 ```json
 {
   "total": 1,
@@ -221,9 +221,9 @@ cat evals/results/latest.json | jq '.summary'
 
 ---
 
-## Test File Organization
+## Организация test-файлов
 
-**Best Practice**: Organize by mode
+**Лучшая практика**: организуйте по mode
 
 ```
 evals/agents/ContextScout/tests/
@@ -238,18 +238,18 @@ evals/agents/ContextScout/tests/
 
 ---
 
-## Writing Good Test Prompts
+## Написание хороших test-промптов
 
-**Be explicit about tool usage**:
+**Явно указывайте использование инструментов**:
 
-❌ **Vague** (may not work):
+❌ **Расплывчато** (может не сработать):
 ```yaml
 prompts:
   - text: |
       List all markdown files in .opencode/context/core/
 ```
 
-✅ **Explicit** (works):
+✅ **Явно** (работает):
 ```yaml
 prompts:
   - text: |
@@ -263,22 +263,22 @@ prompts:
 
 ---
 
-## Quick Troubleshooting
+## Быстрая диагностика
 
-| Symptom | Cause | Fix |
+| Симптом | Причина | Исправление |
 |---------|-------|-----|
-| OpenAgent runs instead | Used `--agent` flag | Use `--subagent` flag |
-| Tool calls: 0 | Prompt doesn't emphasize tools | Add critical rules section |
-| Permission denied | Tool restricted in frontmatter | Check `tools:` and `permissions:` |
-| Test timeout | Agent stuck/looping | Check prompt logic, add timeout |
+| Запускается OpenAgent | Использован флаг `--agent` | Используйте флаг `--subagent` |
+| Tool calls: 0 | Prompt не делает акцент на tools | Добавьте секцию critical rules |
+| Permission denied | Tool restricted во frontmatter | Проверьте `tools:` и `permissions:` |
+| Test timeout | Агент завис/зациклился | Проверьте логику prompt, добавьте timeout |
 
 ---
 
-## Related
+## Связанное
 
-- `concepts/subagent-testing-modes.md` - Understand standalone vs delegation
-- `lookup/subagent-test-commands.md` - Quick command reference
-- `errors/tool-permission-errors.md` - Common permission issues
-- `examples/subagent-prompt-structure.md` - Optimized prompt structure
+- `concepts/subagent-testing-modes.md` — понять standalone и delegation
+- `lookup/subagent-test-commands.md` — быстрый справочник команд
+- `errors/tool-permission-errors.md` — частые permission issues
+- `examples/subagent-prompt-structure.md` — оптимизированная структура prompt
 
-**Reference**: `evals/framework/src/sdk/run-sdk-tests.ts`
+**Справка**: `evals/framework/src/sdk/run-sdk-tests.ts`

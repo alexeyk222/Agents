@@ -1,12 +1,12 @@
 <!-- Context: core/navigation-templates | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Navigation File Templates
+# Шаблоны файлов навигации
 
-**Purpose**: Ready-to-use templates for navigation files
+**Назначение**: готовые шаблоны для файлов навигации
 
 ---
 
-## Category Navigation Template
+## Шаблон навигации категории
 
 ```markdown
 # {Category} Navigation
@@ -27,7 +27,7 @@
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -50,11 +50,11 @@
 - **{Category}** → `../{category}/navigation.md`
 ```
 
-**Token count**: ~200-250 tokens
+**Количество токенов**: ~200–250 токенов
 
 ---
 
-## Specialized Navigation Template
+## Шаблон специализированной навигации
 
 ```markdown
 # {Domain} Navigation
@@ -71,7 +71,7 @@
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -94,11 +94,11 @@
 2. `{file2}` ({purpose})
 ```
 
-**Token count**: ~250-300 tokens
+**Количество токенов**: ~250–300 токенов
 
 ---
 
-## Good Example (Token-Efficient)
+## Хороший пример (токен-эффективный)
 
 ```markdown
 # Development Navigation
@@ -121,7 +121,7 @@ development/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -139,11 +139,11 @@ development/
 **Data** → SQL, NoSQL, ORMs
 ```
 
-**Token count**: ~180 tokens ✅
+**Количество токенов**: ~180 токенов ✅
 
 ---
 
-## Bad Example (Too Verbose)
+## Плохой пример (слишком многословный)
 
 ```markdown
 # Development Navigation
@@ -163,23 +163,23 @@ user interfaces, backend APIs, database integrations...
 [... continues for 500+ tokens]
 ```
 
-**Token count**: 500+ tokens ❌
+**Количество токенов**: 500+ токенов ❌
 
 ---
 
-## Troubleshooting
+## Устранение неполадок
 
-| Issue | Solution |
+| Проблема | Решение |
 |-------|----------|
-| Too many tokens | Remove verbose descriptions, shorten entries |
-| Hard to scan | Use tables instead of paragraphs |
-| Missing files | Add to structure and quick routes |
-| Unclear paths | Use relative paths, add brief descriptions |
+| Слишком много токенов | Уберите многословные описания, сократите записи |
+| Трудно сканировать | Используйте таблицы вместо абзацев |
+| Не хватает файлов | Добавьте в структуру и быстрые маршруты |
+| Неясные пути | Используйте относительные пути, добавьте краткие описания |
 
 ---
 
-## Related
+## Связанные материалы
 
-- `navigation-design-basics.md` - Core principles and steps
-- `../standards/mvi.md` - MVI principle
-- `../examples/navigation-examples.md` - More examples
+- `navigation-design-basics.md` - основные принципы и шаги
+- `../standards/mvi.md` - принцип MVI
+- `../examples/navigation-examples.md` - больше примеров

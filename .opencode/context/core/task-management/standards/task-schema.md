@@ -1,75 +1,75 @@
 <!-- Context: core/task-schema | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Standard: Task JSON Schema
+# Стандарт: схема Task JSON
 
-**Purpose**: JSON schema reference for task management files
+**Назначение**: справочник JSON-схемы для файлов управления задачами
 
-**Last Updated**: 2026-02-14
-
----
-
-## Core Concepts
-
-Task management uses two JSON file types:
-- `task.json` - Feature-level metadata and tracking
-- `subtask_NN.json` - Individual atomic tasks with dependencies
-
-Location: `.tmp/tasks/{feature-slug}/` (at project root)
+**Последнее обновление**: 2026-02-14
 
 ---
 
-## Schema Versions
+## Основные концепции
 
-This document describes the **base schema** (v1.0) that all task files must follow.
+Управление задачами использует два типа JSON-файлов:
+- `task.json` - метаданные и отслеживание на уровне feature
+- `subtask_NN.json` - отдельные атомарные задачи с зависимостями
 
-For **enhanced features** (line-number precision, domain modeling, contracts, ADRs, prioritization):
-- See `enhanced-task-schema.md` for extended fields and capabilities
-- All enhanced fields are **optional** and backward compatible
-- Use enhanced schema for multi-stage orchestration workflows
+Расположение: `.tmp/tasks/{feature-slug}/` (в корне проекта)
 
 ---
 
-## task.json Schema
+## Версии схемы
 
-| Field | Type | Required | Description |
+Этот документ описывает **базовую схему** (v1.0), которой должны следовать все файлы задач.
+
+Для **расширенных функций** (точность строк, моделирование домена, контракты, ADR, приоритизация):
+- См. `enhanced-task-schema.md` для расширенных полей и возможностей
+- Все расширенные поля **необязательны** и обратно совместимы
+- Используйте расширенную схему для multi-stage orchestration workflows
+
+---
+
+## Схема `task.json`
+
+| Поле | Тип | Обязательное | Описание |
 |-------|------|----------|-------------|
-| `id` | string | Yes | kebab-case identifier |
-| `name` | string | Yes | Human-readable name (max 100) |
+| `id` | string | Yes | идентификатор в kebab-case |
+| `name` | string | Yes | человекочитаемое имя (max 100) |
 | `status` | enum | Yes | active / completed / blocked / archived |
-| `objective` | string | Yes | One-line objective (max 200) |
-| `context_files` | array | No | **Standards paths only** — coding conventions, patterns, security rules to follow |
-| `reference_files` | array | No | **Source material only** — project files to look at (existing code, config, schemas) |
-| `exit_criteria` | array | No | Completion conditions |
-| `subtask_count` | int | No | Total subtasks |
-| `completed_count` | int | No | Done subtasks |
+| `objective` | string | Yes | цель в одну строку (max 200) |
+| `context_files` | array | No | **только пути стандартов** — соглашения кодирования, паттерны, правила безопасности для соблюдения |
+| `reference_files` | array | No | **только исходные материалы** — проектные файлы для изучения (существующий код, config, schemas) |
+| `exit_criteria` | array | No | условия завершения |
+| `subtask_count` | int | No | всего подзадач |
+| `completed_count` | int | No | завершенных подзадач |
 | `created_at` | datetime | Yes | ISO 8601 |
 | `completed_at` | datetime | No | ISO 8601 |
 
 ---
 
-## subtask_NN.json Schema
+## Схема `subtask_NN.json`
 
-| Field | Type | Required | Description |
+| Поле | Тип | Обязательное | Описание |
 |-------|------|----------|-------------|
 | `id` | string | Yes | {feature}-{seq} |
-| `seq` | string | Yes | 2-digit (01, 02) |
-| `title` | string | Yes | Task title (max 100) |
+| `seq` | string | Yes | 2 цифры (01, 02) |
+| `title` | string | Yes | заголовок задачи (max 100) |
 | `status` | enum | Yes | pending / in_progress / completed / blocked |
-| `depends_on` | array | No | Sequence numbers of dependencies |
-| `parallel` | bool | No | True if can run alongside others |
-| `context_files` | array | No | **Standards paths only** — conventions and patterns to follow |
-| `reference_files` | array | No | **Source material only** — existing files to reference |
-| `suggested_agent` | string | No | Recommended agent for this task (e.g., OpenFrontendSpecialist) |
-| `acceptance_criteria` | array | No | Binary pass/fail conditions |
-| `deliverables` | array | No | Files to create/modify |
-| `agent_id` | string | No | Set when in_progress |
+| `depends_on` | array | No | номера последовательности зависимостей |
+| `parallel` | bool | No | True, если можно выполнять вместе с другими |
+| `context_files` | array | No | **только пути стандартов** — соглашения и паттерны для соблюдения |
+| `reference_files` | array | No | **только исходные материалы** — существующие файлы для справки |
+| `suggested_agent` | string | No | рекомендуемый агент для задачи (например, OpenFrontendSpecialist) |
+| `acceptance_criteria` | array | No | бинарные условия pass/fail |
+| `deliverables` | array | No | файлы для создания/изменения |
+| `agent_id` | string | No | задается при `in_progress` |
 | `started_at` | datetime | No | ISO 8601 |
 | `completed_at` | datetime | No | ISO 8601 |
-| `completion_summary` | string | No | What was done (max 200) |
+| `completion_summary` | string | No | что было сделано (max 200) |
 
 ---
 
-## Status Transitions
+## Переходы статусов
 
 ```
 pending → in_progress   (by working agent, when deps satisfied)
@@ -80,25 +80,25 @@ blocked → pending       (when unblocked)
 
 ---
 
-## Parallel Flag
+## Флаг `parallel`
 
-- `parallel: true` = Isolated task, can run alongside others
-- `parallel: false` = May affect shared state, run sequentially
+- `parallel: true` = изолированная задача, можно выполнять вместе с другими
+- `parallel: false` = может затрагивать общее состояние, выполнять последовательно
 
-Use `task-cli.ts parallel` to find all parallelizable tasks ready to run.
+Используйте `task-cli.ts parallel`, чтобы найти все параллелизуемые задачи, готовые к запуску.
 
 ---
 
-## context_files vs reference_files — The Rule
+## `context_files` vs `reference_files` — правило
 
-These two fields serve fundamentally different purposes. **Never mix them.**
+У этих двух полей принципиально разные назначения. **Никогда не смешивайте их.**
 
-| Field | Answers | Contains | Agent behavior |
+| Поле | Отвечает на | Содержит | Поведение агента |
 |-------|---------|----------|----------------|
-| `context_files` | "What rules do I follow?" | Standards, conventions, patterns from `.opencode/context/` | Load and apply as coding guidelines |
-| `reference_files` | "What existing code do I look at?" | Project source files, configs, schemas | Read to understand existing patterns |
+| `context_files` | "Каким правилам следовать?" | Стандарты, соглашения, паттерны из `.opencode/context/` | Загрузить и применять как coding guidelines |
+| `reference_files` | "Какой существующий код смотреть?" | Исходные файлы проекта, configs, schemas | Читать для понимания существующих паттернов |
 
-**Wrong** ❌ — mixing standards and source files:
+**Неверно** ❌ — смешаны стандарты и исходные файлы:
 ```json
 "context_files": [
   ".opencode/context/core/standards/code-quality.md",
@@ -107,7 +107,7 @@ These two fields serve fundamentally different purposes. **Never mix them.**
 ]
 ```
 
-**Right** ✅ — clean separation:
+**Верно** ✅ — четкое разделение:
 ```json
 "context_files": [
   ".opencode/context/core/standards/code-quality.md",
@@ -121,7 +121,7 @@ These two fields serve fundamentally different purposes. **Never mix them.**
 
 ---
 
-## Example
+## Пример
 
 ```json
 {
@@ -145,40 +145,40 @@ These two fields serve fundamentally different purposes. **Never mix them.**
 
 ---
 
-## Migration to Enhanced Schema
+## Миграция на расширенную схему
 
-The enhanced schema adds powerful features while maintaining full backward compatibility:
+Расширенная схема добавляет мощные возможности и сохраняет полную обратную совместимость:
 
-### When to Use Enhanced Schema
+### Когда использовать расширенную схему
 
-Use `enhanced-task-schema.md` when you need:
-- **Line-number precision** - Point to specific sections of large files (reduces cognitive load)
-- **Domain modeling** - Track bounded contexts, modules, vertical slices
-- **Contract tracking** - Manage API/interface dependencies
-- **Design artifacts** - Link Figma, wireframes, mockups
-- **ADR references** - Connect architectural decisions to tasks
-- **Prioritization** - RICE/WSJF scoring for release planning
+Используйте `enhanced-task-schema.md`, когда нужны:
+- **Line-number precision** - ссылки на конкретные разделы больших файлов (снижает когнитивную нагрузку)
+- **Domain modeling** - отслеживание bounded contexts, modules, vertical slices
+- **Contract tracking** - управление зависимостями API/interface
+- **Design artifacts** - ссылки на Figma, wireframes, mockups
+- **ADR references** - связь архитектурных решений с задачами
+- **Prioritization** - scoring RICE/WSJF для планирования релиза
 
-### Migration Path
+### Путь миграции
 
-1. **No changes required** - Existing task files work as-is
-2. **Gradual adoption** - Add enhanced fields incrementally:
-   - Start with line-number precision for large context files
-   - Add domain fields (bounded_context, module) when modeling architecture
-   - Add contracts when defining APIs
-   - Add prioritization scores when planning releases
-3. **Mixed formats** - You can mix old and new formats in the same file
+1. **Изменения не требуются** - существующие task files работают как есть
+2. **Постепенное внедрение** - добавляйте расширенные поля инкрементально:
+   - Начните с line-number precision для больших файлов контекста
+   - Добавьте domain fields (`bounded_context`, `module`) при моделировании архитектуры
+   - Добавьте contracts при определении API
+   - Добавьте prioritization scores при планировании релизов
+3. **Смешанные форматы** - старый и новый форматы можно сочетать в одном файле
 
-### Example: Adding Line-Number Precision
+### Пример: добавление line-number precision
 
-**Old format** (still valid):
+**Старый формат** (все еще валиден):
 ```json
 "context_files": [
   ".opencode/context/core/standards/code-quality.md"
 ]
 ```
 
-**New format** (enhanced):
+**Новый формат** (расширенный):
 ```json
 "context_files": [
   {
@@ -189,13 +189,13 @@ Use `enhanced-task-schema.md` when you need:
 ]
 ```
 
-Both formats work. Agents handle both automatically.
+Оба формата работают. Агенты обрабатывают оба автоматически.
 
 ---
 
-## Related
+## Связанные материалы
 
-- `enhanced-task-schema.md` - Extended schema with advanced features
-- `../guides/splitting-tasks.md` - How to decompose features
-- `../guides/managing-tasks.md` - Lifecycle workflow
-- `../lookup/task-commands.md` - CLI reference
+- `enhanced-task-schema.md` - расширенная схема с advanced features
+- `../guides/splitting-tasks.md` - как декомпозировать фичи
+- `../guides/managing-tasks.md` - workflow жизненного цикла
+- `../lookup/task-commands.md` - справочник CLI

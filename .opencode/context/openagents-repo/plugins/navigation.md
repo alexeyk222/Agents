@@ -1,12 +1,12 @@
 <!-- Context: openagents-repo/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Plugins
+# Плагины OpenAgents
 
-**Purpose**: Plugin architecture and documentation for OpenAgents Control
+**Назначение**: архитектура плагинов и документация для OpenAgents Control
 
 ---
 
-## Structure
+## Структура
 
 ```
 openagents-repo/plugins/
@@ -18,25 +18,25 @@ openagents-repo/plugins/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **Context plugin** | `./context/` |
-| **View plugins** | `./` |
-| **Guides** | `../guides/navigation.md` |
+| **Плагин контекста** | `./context/` |
+| **Просмотр плагинов** | `./` |
+| **Руководства** | `../guides/navigation.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Context Plugin** → Context system plugin documentation  
-**Plugin Architecture** → How plugins work in OpenAgents
+**Плагин контекста** → документация плагина системы контекста  
+**Архитектура плагинов** → как плагины работают в OpenAgents
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **OpenAgents Navigation** → `../navigation.md`
-- **Guides** → `../guides/navigation.md`
-- **Core Concepts** → `../core-concepts/navigation.md`
+- **Навигация OpenAgents** → `../navigation.md`
+- **Руководства** → `../guides/navigation.md`
+- **Основные концепции** → `../core-concepts/navigation.md`

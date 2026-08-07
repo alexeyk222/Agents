@@ -1,118 +1,118 @@
 <!-- Context: ui/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Web UI Context
+# Web UI-контекст
 
-**Purpose**: Web-based UI patterns, animations, styling standards, and React component design
+**Purpose**: Web UI-паттерны, анимации, стандарты стилизации и дизайн React-компонентов
 
 **Last Updated**: 2026-01-07
 
 ---
 
-## Quick Navigation
+## Быстрая навигация
 
-### Core Files
+### Основные файлы
 
-| File | Description | Priority |
+| Файл | Описание | Приоритет |
 |------|-------------|----------|
-| [animation-basics.md](animation-basics.md) | Animation fundamentals, timing, easing | high |
-| [animation-components.md](animation-components.md) | Button, card, modal, dropdown animations | high |
-| [animation-chat.md](animation-chat.md) | Chat UI and message animations | medium |
-| [animation-loading.md](animation-loading.md) | Skeleton, spinner, progress animations | medium |
-| [animation-forms.md](animation-forms.md) | Form input and validation animations | medium |
-| [animation-advanced.md](animation-advanced.md) | Recipes, best practices, accessibility | medium |
-| [ui-styling-standards.md](ui-styling-standards.md) | CSS frameworks, Tailwind patterns, styling best practices | high |
-| [react-patterns.md](react-patterns.md) | Modern React patterns, hooks, component design | high |
-| [design-systems.md](design-systems.md) | Design system principles and component libraries | medium |
-| [images-guide.md](images-guide.md) | Placeholder and responsive images | medium |
-| [icons-guide.md](icons-guide.md) | Icon systems (Lucide, Heroicons, FA) | medium |
-| [fonts-guide.md](fonts-guide.md) | Font loading and optimization | medium |
-| [cdn-resources.md](cdn-resources.md) | CDN libraries and resources | medium |
+| [animation-basics.md](animation-basics.md) | Основы анимации, длительность, easing | high |
+| [animation-components.md](animation-components.md) | Анимации кнопок, карточек, modal, dropdown | high |
+| [animation-chat.md](animation-chat.md) | Chat UI и анимации сообщений | medium |
+| [animation-loading.md](animation-loading.md) | Skeleton, spinner, progress-анимации | medium |
+| [animation-forms.md](animation-forms.md) | Анимации полей формы и валидации | medium |
+| [animation-advanced.md](animation-advanced.md) | Рецепты, лучшие практики, доступность | medium |
+| [ui-styling-standards.md](ui-styling-standards.md) | CSS-фреймворки, паттерны Tailwind, лучшие практики стилизации | high |
+| [react-patterns.md](react-patterns.md) | Современные React-паттерны, hooks, дизайн компонентов | high |
+| [design-systems.md](design-systems.md) | Принципы дизайн-систем и библиотеки компонентов | medium |
+| [images-guide.md](images-guide.md) | Placeholder и responsive images | medium |
+| [icons-guide.md](icons-guide.md) | Icon-системы (Lucide, Heroicons, FA) | medium |
+| [fonts-guide.md](fonts-guide.md) | Загрузка и оптимизация шрифтов | medium |
+| [cdn-resources.md](cdn-resources.md) | CDN-библиотеки и ресурсы | medium |
 
-### Subcategories
+### Подкатегории
 
-| Subcategory | Description | Path |
+| Подкатегория | Описание | Путь |
 |-------------|-------------|------|
-| **design/** | Advanced design patterns (scrollytelling, effects) | [design/navigation.md](design/navigation.md) |
+| **design/** | Продвинутые дизайн-паттерны (scrollytelling, эффекты) | [design/navigation.md](design/navigation.md) |
 
 ---
 
-## Loading Strategy
+## Стратегия загрузки
 
-### For general web UI work:
-1. Load `ui-styling-standards.md` (CSS frameworks, Tailwind)
-2. Load `react-patterns.md` (component patterns)
-3. Reference `animation-patterns.md` (if animations needed)
+### Для общей работы с Web UI:
+1. Загрузите `ui-styling-standards.md` (CSS-фреймворки, Tailwind)
+2. Загрузите `react-patterns.md` (паттерны компонентов)
+3. Смотрите `animation-patterns.md` (если нужны анимации)
 
-### For animation work:
-1. Load `animation-basics.md` (fundamentals, timing, easing)
-2. Load `animation-components.md` (UI component animations)
-3. Reference `animation-chat.md` for chat UI patterns
-4. Reference `animation-advanced.md` for recipes and accessibility
+### Для работы с анимациями:
+1. Загрузите `animation-basics.md` (основы, длительность, easing)
+2. Загрузите `animation-components.md` (анимации UI-компонентов)
+3. Смотрите `animation-chat.md` для паттернов Chat UI
+4. Смотрите `animation-advanced.md` для рецептов и доступности
 
-### For scroll animations:
-1. Navigate to `design/` subcategory
-2. Load scroll-linked animation guides
+### Для scroll-анимаций:
+1. Перейдите в подкатегорию `design/`
+2. Загрузите гайды по scroll-linked-анимациям
 
 ---
 
-## Scope
+## Область
 
-This subcategory covers:
-- ✅ CSS animations and transitions
-- ✅ Tailwind CSS and utility-first styling
-- ✅ React component patterns and hooks
-- ✅ Design systems and component libraries
-- ✅ Icon libraries and web fonts
-- ✅ Scroll-linked animations (scrollytelling)
+Эта подкатегория охватывает:
+- ✅ CSS-анимации и transitions
+- ✅ Tailwind CSS и utility-first-стилизацию
+- ✅ Паттерны React-компонентов и hooks
+- ✅ Дизайн-системы и библиотеки компонентов
+- ✅ Библиотеки иконок и web fonts
+- ✅ Scroll-linked-анимации (scrollytelling)
 - ✅ Canvas-based rendering
-- ✅ Framer Motion patterns
+- ✅ Паттерны Framer Motion
 
 ---
 
-## File Summaries
+## Кратко о файлах
 
 ### animation-basics.md, animation-components.md, animation-chat.md, animation-loading.md, animation-forms.md, animation-advanced.md
-CSS animations, micro-interactions, and UI transitions split into focused modules.
+CSS-анимации, микроинтеракции и UI-переходы, разделенные на фокусные модули.
 
-**Key topics**: Animation micro-syntax, 60fps performance, reduced motion, chat UI animations, component patterns
+**Ключевые темы**: микросинтаксис анимаций, производительность 60fps, reduced motion, анимации Chat UI, паттерны компонентов
 
 ### ui-styling-standards.md
-CSS framework usage, Tailwind CSS patterns, responsive design, and styling best practices.
+Использование CSS-фреймворков, паттерны Tailwind CSS, responsive design и лучшие практики стилизации.
 
-**Key topics**: Utility-first CSS, component styling, responsive breakpoints, dark mode
+**Ключевые темы**: utility-first CSS, стилизация компонентов, responsive breakpoints, dark mode
 
 ### react-patterns.md
-Modern React patterns including functional components, hooks, state management, and performance optimization.
+Современные React-паттерны: функциональные компоненты, hooks, управление состоянием и оптимизация производительности.
 
-**Key topics**: Custom hooks, context API, code splitting, memoization
+**Ключевые темы**: custom hooks, context API, code splitting, memoization
 
 ### design-systems.md
-Design system principles, component libraries, and maintaining consistency across applications.
+Принципы дизайн-систем, библиотеки компонентов и поддержание консистентности в приложениях.
 
-**Key topics**: Design tokens, component APIs, documentation, versioning
+**Ключевые темы**: design tokens, component APIs, документация, versioning
 
 ### images-guide.md, icons-guide.md, fonts-guide.md, cdn-resources.md
-Managing design assets in web applications - split into focused guides.
+Управление дизайн-ассетами в web-приложениях, разбитое на фокусные гайды.
 
-**Key topics**: Placeholder images, icon libraries (Lucide, Heroicons), web fonts, CDN resources
-
----
-
-## Related Categories
-
-- `ui/terminal/` - Terminal UI patterns
-- `development/` - General development patterns
-- `product/` - Product design and UX strategy
+**Ключевые темы**: placeholder images, библиотеки иконок (Lucide, Heroicons), web fonts, CDN-ресурсы
 
 ---
 
-## Used By
+## Связанные категории
+
+- `ui/terminal/` - паттерны Terminal UI
+- `development/` - общие паттерны разработки
+- `product/` - продуктовый дизайн и UX-стратегия
+
+---
+
+## Используется
 
 **Agents**: frontend-specialist, design-specialist, ui-developer, react-developer, animation-expert
 
 ---
 
-## Statistics
-- Core files: 8
-- Subcategories: 1 (design/)
-- **Total context files**: 8 + design subcategory
+## Статистика
+- Основные файлы: 8
+- Подкатегории: 1 (design/)
+- **Всего context-файлов**: 8 + подкатегория design

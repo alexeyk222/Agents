@@ -1,192 +1,192 @@
 <!-- Context: openagents-repo/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Control Repository Context
+# Контекст репозитория OpenAgents Control
 
-**Purpose**: Context files specific to the OpenAgents Control repository
+**Назначение**: контекстные файлы для репозитория OpenAgents Control
 
-**Last Updated**: 2026-02-04
+**Последнее обновление**: 2026-02-04
 
 ---
 
-## Quick Navigation
+## Быстрая навигация
 
-| Function | Files | Purpose |
+| Функция | Файлы | Назначение |
 |----------|-------|---------|
-| **Standards** | 2 files | Agent creation standards |
-| **Concepts** | 6 files | Core ideas and principles |
-| **Examples** | 9 files | Working code samples |
-| **Guides** | 14 files | Step-by-step workflows |
-| **Lookup** | 11 files | Quick reference tables |
-| **Errors** | 2 files | Common issues + solutions |
-| **Features** | 3 files | Feature documentation and refactoring |
-| **Plugins** | Context plugin system | Plugin architecture and capabilities |
+| **Стандарты** | 2 файла | Стандарты создания агентов |
+| **Концепции** | 6 файлов | Ключевые идеи и принципы |
+| **Примеры** | 9 файлов | Рабочие примеры кода |
+| **Руководства** | 14 файлов | Пошаговые процессы |
+| **Справочник** | 11 файлов | Быстрые справочные таблицы |
+| **Ошибки** | 2 файла | Частые проблемы и решения |
+| **Возможности** | 3 файла | Документация возможностей и рефакторинг |
+| **Плагины** | Система контекстных плагинов | Архитектура и возможности плагинов |
 
 ---
 
-## Standards (Agent Creation)
+## Стандарты (создание агентов)
 
-| File | Topic | Priority |
+| Файл | Тема | Приоритет |
 |------|-------|----------|
-| `standards/agent-frontmatter.md` | Valid OpenCode YAML frontmatter | ⭐⭐⭐⭐⭐ |
-| `standards/subagent-structure.md` | Standard subagent file structure | ⭐⭐⭐⭐⭐ |
+| `standards/agent-frontmatter.md` | Валидный YAML frontmatter OpenCode | ⭐⭐⭐⭐⭐ |
+| `standards/subagent-structure.md` | Стандартная структура файла субагента | ⭐⭐⭐⭐⭐ |
 
-**When to read**: Before creating or modifying any agent files
+**Когда читать**: перед созданием или изменением файлов агентов
 
 ---
 
-## Concepts (Core Ideas)
+## Концепции (ключевые идеи)
 
-| File | Topic | Priority |
+| Файл | Тема | Приоритет |
 |------|-------|----------|
-| `concepts/compatibility-layer.md` | Adapter pattern for AI coding tools | ⭐⭐⭐⭐⭐ |
-| `concepts/subagent-testing-modes.md` | Standalone vs delegation testing | ⭐⭐⭐⭐⭐ |
-| `concepts/hooks-system.md` | User-defined lifecycle commands | ⭐⭐⭐⭐ |
-| `concepts/agent-skills.md` | Skills that teach Claude tasks | ⭐⭐⭐⭐ |
-| `concepts/subagents-system.md` | Specialized AI assistants | ⭐⭐⭐⭐ |
+| `concepts/compatibility-layer.md` | Паттерн адаптера для AI-инструментов разработки | ⭐⭐⭐⭐⭐ |
+| `concepts/subagent-testing-modes.md` | Standalone-тестирование и делегирование | ⭐⭐⭐⭐⭐ |
+| `concepts/hooks-system.md` | Пользовательские команды жизненного цикла | ⭐⭐⭐⭐ |
+| `concepts/agent-skills.md` | Skills, обучающие Claude задачам | ⭐⭐⭐⭐ |
+| `concepts/subagents-system.md` | Специализированные AI-помощники | ⭐⭐⭐⭐ |
 
-**When to read**: Before testing any subagent or working with tool adapters
+**Когда читать**: перед тестированием субагентов или работой с адаптерами инструментов
 
 ---
 
-## Examples (Working Code)
+## Примеры (рабочий код)
 
-| File | Topic | Priority |
+| Файл | Тема | Приоритет |
 |------|-------|----------|
-| `examples/baseadapter-pattern.md` | Template Method pattern for tool adapters | ⭐⭐⭐⭐⭐ |
-| `examples/zod-schema-migration.md` | Migrating TypeScript to Zod schemas | ⭐⭐⭐⭐ |
-| `examples/subagent-prompt-structure.md` | Optimized subagent prompt template | ⭐⭐⭐⭐ |
+| `examples/baseadapter-pattern.md` | Паттерн Template Method для адаптеров инструментов | ⭐⭐⭐⭐⭐ |
+| `examples/zod-schema-migration.md` | Миграция TypeScript на схемы Zod | ⭐⭐⭐⭐ |
+| `examples/subagent-prompt-structure.md` | Оптимизированный шаблон промпта субагента | ⭐⭐⭐⭐ |
 
-**When to read**: When creating adapters, schemas, or optimizing subagent prompts
+**Когда читать**: при создании адаптеров, схем или оптимизации промптов субагентов
 
 ---
 
-## Guides (Step-by-Step)
+## Руководства (пошагово)
 
-| File | Topic | Priority |
+| Файл | Тема | Приоритет |
 |------|-------|----------|
-| `guides/compatibility-layer-workflow.md` | Developing compatibility layer for AI tools | ⭐⭐⭐⭐⭐ |
-| `guides/testing-subagents.md` | How to test subagents standalone | ⭐⭐⭐⭐⭐ |
-| `guides/adding-agent-basics.md` | How to add new agents (basics) | ⭐⭐⭐⭐ |
-| `guides/adding-agent-testing.md` | How to add agent tests | ⭐⭐⭐⭐ |
-| `guides/adding-skill-basics.md` | How to add OpenCode skills | ⭐⭐⭐⭐ |
-| `guides/creating-skills.md` | How to create Claude Code skills | ⭐⭐⭐⭐ |
-| `guides/creating-subagents.md` | How to create Claude Code subagents | ⭐⭐⭐⭐ |
-| `guides/testing-agent.md` | How to test agents | ⭐⭐⭐⭐ |
-| `guides/external-libraries-workflow.md` | How to handle external library dependencies | ⭐⭐⭐⭐ |
-| `guides/github-issues-workflow.md` | How to work with GitHub issues and project board | ⭐⭐⭐⭐ |
-| `guides/npm-publishing.md` | How to publish package to npm | ⭐⭐⭐ |
-| `guides/updating-registry.md` | How to update registry | ⭐⭐⭐ |
-| `guides/debugging.md` | How to debug issues | ⭐⭐⭐ |
-| `guides/resolving-installer-wildcard-failures.md` | Fix wildcard context install failures | ⭐⭐⭐ |
-| `guides/creating-release.md` | How to create releases | ⭐⭐ |
+| `guides/compatibility-layer-workflow.md` | Разработка слоя совместимости для AI-инструментов | ⭐⭐⭐⭐⭐ |
+| `guides/testing-subagents.md` | Как тестировать субагентов standalone | ⭐⭐⭐⭐⭐ |
+| `guides/adding-agent-basics.md` | Как добавлять новых агентов (основы) | ⭐⭐⭐⭐ |
+| `guides/adding-agent-testing.md` | Как добавлять тесты агентов | ⭐⭐⭐⭐ |
+| `guides/adding-skill-basics.md` | Как добавлять OpenCode skills | ⭐⭐⭐⭐ |
+| `guides/creating-skills.md` | Как создавать Claude Code skills | ⭐⭐⭐⭐ |
+| `guides/creating-subagents.md` | Как создавать субагентов Claude Code | ⭐⭐⭐⭐ |
+| `guides/testing-agent.md` | Как тестировать агентов | ⭐⭐⭐⭐ |
+| `guides/external-libraries-workflow.md` | Как работать с зависимостями внешних библиотек | ⭐⭐⭐⭐ |
+| `guides/github-issues-workflow.md` | Как работать с GitHub issues и project board | ⭐⭐⭐⭐ |
+| `guides/npm-publishing.md` | Как публиковать пакет в npm | ⭐⭐⭐ |
+| `guides/updating-registry.md` | Как обновлять registry | ⭐⭐⭐ |
+| `guides/debugging.md` | Как диагностировать проблемы | ⭐⭐⭐ |
+| `guides/resolving-installer-wildcard-failures.md` | Исправление wildcard-сбоев установки контекста | ⭐⭐⭐ |
+| `guides/creating-release.md` | Как создавать релизы | ⭐⭐ |
 
-**When to read**: When performing specific tasks
+**Когда читать**: при выполнении конкретных задач
 
 ---
 
-## Lookup (Quick Reference)
+## Справочник (быстрые ссылки)
 
-| File | Topic | Priority |
+| Файл | Тема | Приоритет |
 |------|-------|----------|
-| `lookup/tool-feature-parity.md` | AI coding tool feature comparison | ⭐⭐⭐⭐⭐ |
-| `lookup/compatibility-layer-structure.md` | Compatibility package file structure | ⭐⭐⭐⭐⭐ |
-| `lookup/subagent-test-commands.md` | Subagent testing commands | ⭐⭐⭐⭐⭐ |
-| `lookup/hook-events.md` | All hook events reference | ⭐⭐⭐⭐ |
-| `lookup/skill-metadata.md` | SKILL.md frontmatter fields | ⭐⭐⭐⭐ |
-| `lookup/skills-comparison.md` | Skills vs other options | ⭐⭐⭐⭐ |
-| `lookup/builtin-subagents.md` | Default subagents (Explore, Plan) | ⭐⭐⭐⭐ |
-| `lookup/subagent-frontmatter.md` | Subagent configuration fields | ⭐⭐⭐⭐ |
-| `lookup/file-locations.md` | Where files are located | ⭐⭐⭐⭐ |
-| `lookup/commands.md` | Available slash commands | ⭐⭐⭐ |
+| `lookup/tool-feature-parity.md` | Сравнение возможностей AI-инструментов для кода | ⭐⭐⭐⭐⭐ |
+| `lookup/compatibility-layer-structure.md` | Структура файлов пакета совместимости | ⭐⭐⭐⭐⭐ |
+| `lookup/subagent-test-commands.md` | Команды тестирования субагентов | ⭐⭐⭐⭐⭐ |
+| `lookup/hook-events.md` | Справочник всех событий hooks | ⭐⭐⭐⭐ |
+| `lookup/skill-metadata.md` | Поля frontmatter в SKILL.md | ⭐⭐⭐⭐ |
+| `lookup/skills-comparison.md` | Skills и альтернативы | ⭐⭐⭐⭐ |
+| `lookup/builtin-subagents.md` | Субагенты по умолчанию (Explore, Plan) | ⭐⭐⭐⭐ |
+| `lookup/subagent-frontmatter.md` | Поля конфигурации субагента | ⭐⭐⭐⭐ |
+| `lookup/file-locations.md` | Где расположены файлы | ⭐⭐⭐⭐ |
+| `lookup/commands.md` | Доступные slash-команды | ⭐⭐⭐ |
 
-**When to read**: Quick command lookups and feature comparisons
+**Когда читать**: для быстрого поиска команд и сравнения возможностей
 
 ---
 
-## Errors (Troubleshooting)
+## Ошибки (диагностика)
 
-| File | Topic | Priority |
+| Файл | Тема | Приоритет |
 |------|-------|----------|
-| `errors/tool-permission-errors.md` | Tool permission issues | ⭐⭐⭐⭐⭐ |
-| `errors/skills-errors.md` | Skills not triggering/loading | ⭐⭐⭐⭐ |
+| `errors/tool-permission-errors.md` | Проблемы с правами инструментов | ⭐⭐⭐⭐⭐ |
+| `errors/skills-errors.md` | Skills не срабатывают или не загружаются | ⭐⭐⭐⭐ |
 
-**When to read**: When tests fail with permission errors
+**Когда читать**: когда тесты падают из-за ошибок прав
 
 ---
 
-## Core Concepts (Foundational)
+## Ключевые концепции (основа)
 
-| File | Topic | Priority |
+| Файл | Тема | Приоритет |
 |------|-------|----------|
-| `core-concepts/agents.md` | How agents work | ⭐⭐⭐⭐⭐ |
-| `core-concepts/evals.md` | How testing works | ⭐⭐⭐⭐⭐ |
-| `core-concepts/registry.md` | How registry works | ⭐⭐⭐⭐ |
-| `core-concepts/categories.md` | How organization works | ⭐⭐⭐ |
+| `core-concepts/agents.md` | Как работают агенты | ⭐⭐⭐⭐⭐ |
+| `core-concepts/evals.md` | Как работает тестирование | ⭐⭐⭐⭐⭐ |
+| `core-concepts/registry.md` | Как работает registry | ⭐⭐⭐⭐ |
+| `core-concepts/categories.md` | Как устроена организация | ⭐⭐⭐ |
 
-**When to read**: First time working in this repo
-
----
-
-## Loading Strategy
-
-### For Subagent Testing:
-1. Load `concepts/subagent-testing-modes.md` (understand modes)
-2. Load `guides/testing-subagents.md` (step-by-step)
-3. Reference `lookup/subagent-test-commands.md` (commands)
-4. If errors: Load `errors/tool-permission-errors.md`
-
-### For Agent Creation:
-1. Load `standards/agent-frontmatter.md` (valid YAML frontmatter)
-2. Load `standards/subagent-structure.md` (file structure)
-3. Load `core-concepts/agents.md` (understand system)
-4. Load `guides/adding-agent-basics.md` (step-by-step)
-5. **If using external libraries**: Load `guides/external-libraries-workflow.md` (fetch docs)
-6. Load `examples/subagent-prompt-structure.md` (if subagent)
-7. Load `guides/testing-agent.md` (validate)
-
-### For Issue Management:
-1. Load `guides/github-issues-workflow.md` (understand workflow)
-2. Create issues with proper labels and templates
-3. Add to project board for tracking
-4. Process requests systematically
-
-### For Debugging:
-1. Load `guides/debugging.md` (general approach)
-2. Load specific error file from `errors/`
-3. Reference `lookup/file-locations.md` (find files)
+**Когда читать**: при первом знакомстве с репозиторием
 
 ---
 
-## File Size Compliance
+## Стратегия загрузки
 
-All files follow MVI principle (<200 lines):
+### Для тестирования субагентов:
+1. Загрузите `concepts/subagent-testing-modes.md` (понять режимы)
+2. Загрузите `guides/testing-subagents.md` (пошагово)
+3. Используйте `lookup/subagent-test-commands.md` (команды)
+4. Если есть ошибки: загрузите `errors/tool-permission-errors.md`
 
-- ✅ Standards: <200 lines
-- ✅ Concepts: <100 lines
-- ✅ Examples: <100 lines
-- ✅ Guides: <150 lines
-- ✅ Lookup: <100 lines
-- ✅ Errors: <150 lines
+### Для создания агентов:
+1. Загрузите `standards/agent-frontmatter.md` (валидный YAML frontmatter)
+2. Загрузите `standards/subagent-structure.md` (структура файла)
+3. Загрузите `core-concepts/agents.md` (понять систему)
+4. Загрузите `guides/adding-agent-basics.md` (пошагово)
+5. **Если используете внешние библиотеки**: загрузите `guides/external-libraries-workflow.md` (получить docs)
+6. Загрузите `examples/subagent-prompt-structure.md` (если это субагент)
+7. Загрузите `guides/testing-agent.md` (валидация)
+
+### Для управления issues:
+1. Загрузите `guides/github-issues-workflow.md` (понять процесс)
+2. Создавайте issues с корректными labels и шаблонами
+3. Добавляйте их на доску проекта для отслеживания
+4. Обрабатывайте запросы системно
+
+### Для отладки:
+1. Загрузите `guides/debugging.md` (общий подход)
+2. Загрузите конкретный файл ошибки из `errors/`
+3. Используйте `lookup/file-locations.md` (поиск файлов)
 
 ---
 
-## Related Context
+## Соответствие размерам файлов
 
-- `../core/` - Core system context (standards, patterns)
-- `../core/context-system/` - Context management system
-- `quick-start.md` - 2-minute repo orientation
-- `../content-creation/navigation.md` - Content creation principles
-- `plugins/context/navigation.md` - Plugin system context
-- `features/navigation.md` - Feature documentation and refactoring guides
+Все файлы следуют принципу MVI (<200 строк):
+
+- ✅ Стандарты: <200 строк
+- ✅ Концепции: <100 строк
+- ✅ Примеры: <100 строк
+- ✅ Руководства: <150 строк
+- ✅ Справочник: <100 строк
+- ✅ Ошибки: <150 строк
 
 ---
 
-## Contributing
+## Связанный контекст
 
-When adding new context files:
+- `../core/` - базовый системный контекст (стандарты, паттерны)
+- `../core/context-system/` - система управления контекстом
+- `quick-start.md` - 2-минутная ориентация по репозиторию
+- `../content-creation/navigation.md` - принципы создания контента
+- `plugins/context/navigation.md` - контекст системы плагинов
+- `features/navigation.md` - документация возможностей и руководства по рефакторингу
 
-1. Follow MVI principle (<200 lines)
-2. Use function-based organization (concepts/, examples/, guides/, lookup/, errors/)
-3. Update this README.md navigation
-4. Add cross-references to related files
-5. Validate with `/context validate`
+---
+
+## Вклад
+
+При добавлении новых контекстных файлов:
+
+1. Следуйте принципу MVI (<200 строк)
+2. Используйте функциональную организацию (concepts/, examples/, guides/, lookup/, errors/)
+3. Обновите навигацию в этом README.md
+4. Добавьте перекрестные ссылки на связанные файлы
+5. Проверьте через `/context validate`

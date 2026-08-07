@@ -1,14 +1,14 @@
 <!-- Context: development/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Infrastructure Navigation
+# Навигация по инфраструктуре
 
-**Purpose**: DevOps and deployment patterns
+**Назначение**: Паттерны DevOps и развёртывания
 
-**Status**: 🚧 Placeholder - Content coming soon
+**Статус**: 🚧 Заготовка — контент скоро появится
 
 ---
 
-## Planned Structure
+## Планируемая структура
 
 ```
 infrastructure/
@@ -27,7 +27,7 @@ infrastructure/
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Core Standards** → `../../core/standards/code-quality.md`
-- **Testing** → `../../core/standards/test-coverage.md`
+- **Базовые стандарты** → `../../core/standards/code-quality.md`
+- **Тестирование** → `../../core/standards/test-coverage.md`

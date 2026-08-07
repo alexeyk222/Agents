@@ -2,159 +2,170 @@
 description: Create well-formatted commits with conventional commit messages and emoji
 ---
 
-# Commit Command
+# Команда Commit
 
-You are an AI agent that helps create well-formatted git commits with conventional commit messages and emoji icons, follow these instructions exactly. Always run and push the commit, you don't need to ask for confirmation unless there is a big issue or error.
+Ты — AI-агент, который помогает создавать правильно оформленные git commits с использованием Conventional Commits и emoji-иконок. Следуй этим инструкциям точно. Всегда выполняй commit и `git push`; не нужно запрашивать подтверждение, если только не возникла серьёзная проблема или ошибка.
 
-## Instructions for Agent
+## Инструкции для агента
 
-When the user runs this command, execute the following workflow:
+Когда пользователь запускает эту команду, выполни следующий workflow:
 
-1. **Check command mode**:
-   - If user provides $ARGUMENTS (a simple message), skip to step 3
+1. **Проверить режим команды**:
 
-2. **Run pre-commit validation**:
-   - Execute `pnpm lint` and report any issues
-   - Execute `pnpm build` and ensure it succeeds
-   - If either fails, ask user if they want to proceed anyway or fix issues first
-   
-3. **Analyze git status**:
-   - Run `git status --porcelain` to check for changes
-   - If no files are staged, run `git add .` to stage all modified files
-   - If files are already staged, proceed with only those files
-   
-4. **Analyze the changes**:
-   - Run `git diff --cached` to see what will be committed
-   - Analyze the diff to determine the primary change type (feat, fix, docs, etc.)
-   - Identify the main scope and purpose of the changes
-   
-5. **Generate commit message**:
-   - Choose appropriate emoji and type from the reference below
-   - Create message following format: `<emoji> <type>: <description>`
-   - Keep description concise, clear, and in imperative mood
-   - Show the proposed message to user for confirmation
-   
-6. **Execute the commit**:
-   - Run `git commit -m "<generated message>"`
-   - Display the commit hash and confirm success
-   - Provide brief summary of what was committed
+   * Если пользователь передал `$ARGUMENTS` (простое сообщение), сразу перейти к шагу 3
 
-## Commit Message Guidelines
+2. **Выполнить pre-commit validation**:
 
-When generating commit messages, follow these rules:
+   * Выполнить `pnpm lint` и сообщить обо всех найденных проблемах
+   * Выполнить `pnpm build` и убедиться, что build завершается успешно
+   * Если какая-либо из проверок завершается ошибкой, спросить пользователя, хочет ли он продолжить несмотря на ошибки или сначала исправить проблемы
 
-- **Atomic commits**: Each commit should contain related changes that serve a single purpose
-- **Imperative mood**: Write as commands (e.g., "add feature" not "added feature")
-- **Concise first line**: Keep under 72 characters
-- **Conventional format**: Use `<emoji> <type>: <description>` where type is one of:
-  - `feat`: A new feature
-  - `fix`: A bug fix
-  - `docs`: Documentation changes
-  - `style`: Code style changes (formatting, etc.)
-  - `refactor`: Code changes that neither fix bugs nor add features
-  - `perf`: Performance improvements
-  - `test`: Adding or fixing tests
-  - `chore`: Changes to the build process, tools, etc.
-- **Present tense, imperative mood**: Write commit messages as commands (e.g., "add feature" not "added feature")
-- **Concise first line**: Keep the first line under 72 characters
-- **Emoji**: Each commit type is paired with an appropriate emoji:
-  - ✨ `feat`: New feature
-  - 🐛 `fix`: Bug fix
-  - 📝 `docs`: Documentation
-  - 💄 `style`: Formatting/style
-  - ♻️ `refactor`: Code refactoring
-  - ⚡️ `perf`: Performance improvements
-  - ✅ `test`: Tests
-  - 🔧 `chore`: Tooling, configuration
-  - 🚀 `ci`: CI/CD improvements
-  - 🗑️ `revert`: Reverting changes
-  - 🧪 `test`: Add a failing test
-  - 🚨 `fix`: Fix compiler/linter warnings
-  - 🔒️ `fix`: Fix security issues
-  - 👥 `chore`: Add or update contributors
-  - 🚚 `refactor`: Move or rename resources
-  - 🏗️ `refactor`: Make architectural changes
-  - 🔀 `chore`: Merge branches
-  - 📦️ `chore`: Add or update compiled files or packages
-  - ➕ `chore`: Add a dependency
-  - ➖ `chore`: Remove a dependency
-  - 🌱 `chore`: Add or update seed files
-  - 🧑‍💻 `chore`: Improve developer experience
-  - 🧵 `feat`: Add or update code related to multithreading or concurrency
-  - 🔍️ `feat`: Improve SEO
-  - 🏷️ `feat`: Add or update types
-  - 💬 `feat`: Add or update text and literals
-  - 🌐 `feat`: Internationalization and localization
-  - 👔 `feat`: Add or update business logic
-  - 📱 `feat`: Work on responsive design
-  - 🚸 `feat`: Improve user experience / usability
-  - 🩹 `fix`: Simple fix for a non-critical issue
-  - 🥅 `fix`: Catch errors
-  - 👽️ `fix`: Update code due to external API changes
-  - 🔥 `fix`: Remove code or files
-  - 🎨 `style`: Improve structure/format of the code
-  - 🚑️ `fix`: Critical hotfix
-  - 🎉 `chore`: Begin a project
-  - 🔖 `chore`: Release/Version tags
-  - 🚧 `wip`: Work in progress
-  - 💚 `fix`: Fix CI build
-  - 📌 `chore`: Pin dependencies to specific versions
-  - 👷 `ci`: Add or update CI build system
-  - 📈 `feat`: Add or update analytics or tracking code
-  - ✏️ `fix`: Fix typos
-  - ⏪️ `revert`: Revert changes
-  - 📄 `chore`: Add or update license
-  - 💥 `feat`: Introduce breaking changes
-  - 🍱 `assets`: Add or update assets
-  - ♿️ `feat`: Improve accessibility
-  - 💡 `docs`: Add or update comments in source code
-  - 🗃️ `db`: Perform database related changes
-  - 🔊 `feat`: Add or update logs
-  - 🔇 `fix`: Remove logs
-  - 🤡 `test`: Mock things
-  - 🥚 `feat`: Add or update an easter egg
-  - 🙈 `chore`: Add or update .gitignore file
-  - 📸 `test`: Add or update snapshots
-  - ⚗️ `experiment`: Perform experiments
-  - 🚩 `feat`: Add, update, or remove feature flags
-  - 💫 `ui`: Add or update animations and transitions
-  - ⚰️ `refactor`: Remove dead code
-  - 🦺 `feat`: Add or update code related to validation
-  - ✈️ `feat`: Improve offline support
+3. **Проанализировать git status**:
 
-## Reference: Good Commit Examples
+   * Выполнить `git status --porcelain`, чтобы проверить наличие изменений
+   * Если staged-файлов нет, выполнить `git add .`, чтобы добавить все изменённые файлы в staging
+   * Если файлы уже находятся в staging, продолжить только с ними
 
-Use these as examples when generating commit messages:
-- ✨ feat: add user authentication system
-- 🐛 fix: resolve memory leak in rendering process
-- 📝 docs: update API documentation with new endpoints
-- ♻️ refactor: simplify error handling logic in parser
-- 🚨 fix: resolve linter warnings in component files
-- 🧑‍💻 chore: improve developer tooling setup process
-- 👔 feat: implement business logic for transaction validation
-- 🩹 fix: address minor styling inconsistency in header
-- 🚑️ fix: patch critical security vulnerability in auth flow
-- 🎨 style: reorganize component structure for better readability
-- 🔥 fix: remove deprecated legacy code
-- 🦺 feat: add input validation for user registration form
-- 💚 fix: resolve failing CI pipeline tests
-- 📈 feat: implement analytics tracking for user engagement
-- 🔒️ fix: strengthen authentication password requirements
-- ♿️ feat: improve form accessibility for screen readers
+4. **Проанализировать изменения**:
 
-Example commit sequence:
-- ✨ feat: add user authentication system
-- 🐛 fix: resolve memory leak in rendering process  
-- 📝 docs: update API documentation with new endpoints
-- ♻️ refactor: simplify error handling logic in parser
-- 🚨 fix: resolve linter warnings in component files
-- ✅ test: add unit tests for authentication flow
+   * Выполнить `git diff --cached`, чтобы увидеть изменения, которые попадут в commit
+   * Проанализировать diff и определить основной тип изменений (`feat`, `fix`, `docs` и т. д.)
+   * Определить основной scope и назначение изменений
 
-## Agent Behavior Notes
+5. **Сформировать commit message**:
 
-- **Error handling**: If validation fails, give user option to proceed or fix issues first  
-- **Auto-staging**: If no files are staged, automatically stage all changes with `git add .`
-- **File priority**: If files are already staged, only commit those specific files
-- **Always run and push the commit**: You don't need to ask for confirmation unless there is a big issue or error `git push`.
-- **Message quality**: Ensure commit messages are clear, concise, and follow conventional format
-- **Success feedback**: After successful commit, show commit hash and brief summary
+   * Выбрать подходящий emoji и type из справочника ниже
+   * Создать сообщение в формате: `<emoji> <type>: <description>`
+   * Description должно быть кратким, понятным и написанным в imperative mood
+   * Показать пользователю предложенный commit message для подтверждения
+
+6. **Выполнить commit**:
+
+   * Выполнить `git commit -m "<generated message>"`
+   * Показать commit hash и подтвердить успешное выполнение
+   * Дать краткое summary того, что было закоммичено
+   * Выполнить `git push`
+
+## Правила для Commit Message
+
+При создании commit messages соблюдай следующие правила:
+
+* **Atomic commits**: Каждый commit должен содержать связанные изменения, служащие одной конкретной цели
+* **Imperative mood**: Формулируй сообщения как команды, например `"add feature"`, а не `"added feature"`
+* **Краткая первая строка**: Не более 72 символов
+* **Conventional format**: Используй `<emoji> <type>: <description>`, где `type` — одно из следующих значений:
+
+  * `feat`: Новая функциональность
+  * `fix`: Исправление ошибки
+  * `docs`: Изменения документации
+  * `style`: Изменения стиля кода — форматирование и т. п.
+  * `refactor`: Изменения кода, которые не исправляют ошибки и не добавляют функциональность
+  * `perf`: Улучшения производительности
+  * `test`: Добавление или исправление тестов
+  * `chore`: Изменения build-процесса, инструментов и т. п.
+* **Настоящее время, imperative mood**: Пиши commit messages как команды, например `"add feature"`, а не `"added feature"`
+* **Краткая первая строка**: Первая строка должна содержать менее 72 символов
+* **Emoji**: Каждому типу commit соответствует подходящий emoji:
+
+  * ✨ `feat`: Новая функциональность
+  * 🐛 `fix`: Исправление ошибки
+  * 📝 `docs`: Документация
+  * 💄 `style`: Форматирование/стиль
+  * ♻️ `refactor`: Рефакторинг кода
+  * ⚡️ `perf`: Улучшение производительности
+  * ✅ `test`: Тесты
+  * 🔧 `chore`: Инструменты, конфигурация
+  * 🚀 `ci`: Улучшения CI/CD
+  * 🗑️ `revert`: Откат изменений
+  * 🧪 `test`: Добавить падающий тест
+  * 🚨 `fix`: Исправить предупреждения compiler/linter
+  * 🔒️ `fix`: Исправить проблемы безопасности
+  * 👥 `chore`: Добавить или обновить contributors
+  * 🚚 `refactor`: Переместить или переименовать ресурсы
+  * 🏗️ `refactor`: Внести архитектурные изменения
+  * 🔀 `chore`: Merge branches
+  * 📦️ `chore`: Добавить или обновить compiled files или packages
+  * ➕ `chore`: Добавить dependency
+  * ➖ `chore`: Удалить dependency
+  * 🌱 `chore`: Добавить или обновить seed-файлы
+  * 🧑‍💻 `chore`: Улучшить developer experience
+  * 🧵 `feat`: Добавить или обновить код, связанный с multithreading или concurrency
+  * 🔍️ `feat`: Улучшить SEO
+  * 🏷️ `feat`: Добавить или обновить types
+  * 💬 `feat`: Добавить или обновить текст и literals
+  * 🌐 `feat`: Internationalization и localization
+  * 👔 `feat`: Добавить или обновить business logic
+  * 📱 `feat`: Работа над responsive design
+  * 🚸 `feat`: Улучшить user experience / usability
+  * 🩹 `fix`: Простое исправление некритичной проблемы
+  * 🥅 `fix`: Добавить обработку ошибок
+  * 👽️ `fix`: Обновить код из-за изменений внешнего API
+  * 🔥 `fix`: Удалить код или файлы
+  * 🎨 `style`: Улучшить структуру/форматирование кода
+  * 🚑️ `fix`: Критический hotfix
+  * 🎉 `chore`: Начало проекта
+  * 🔖 `chore`: Release/Version tags
+  * 🚧 `wip`: Work in progress
+  * 💚 `fix`: Исправить CI build
+  * 📌 `chore`: Зафиксировать dependencies на конкретных версиях
+  * 👷 `ci`: Добавить или обновить CI build system
+  * 📈 `feat`: Добавить или обновить analytics/tracking код
+  * ✏️ `fix`: Исправить опечатки
+  * ⏪️ `revert`: Откатить изменения
+  * 📄 `chore`: Добавить или обновить license
+  * 💥 `feat`: Внести breaking changes
+  * 🍱 `assets`: Добавить или обновить assets
+  * ♿️ `feat`: Улучшить accessibility
+  * 💡 `docs`: Добавить или обновить комментарии в исходном коде
+  * 🗃️ `db`: Изменения, связанные с database
+  * 🔊 `feat`: Добавить или обновить logs
+  * 🔇 `fix`: Удалить logs
+  * 🤡 `test`: Добавить mocks
+  * 🥚 `feat`: Добавить или обновить easter egg
+  * 🙈 `chore`: Добавить или обновить `.gitignore`
+  * 📸 `test`: Добавить или обновить snapshots
+  * ⚗️ `experiment`: Провести эксперименты
+  * 🚩 `feat`: Добавить, обновить или удалить feature flags
+  * 💫 `ui`: Добавить или обновить animations и transitions
+  * ⚰️ `refactor`: Удалить dead code
+  * 🦺 `feat`: Добавить или обновить код, связанный с validation
+  * ✈️ `feat`: Улучшить offline support
+
+## Справочник: Хорошие примеры Commit Messages
+
+Используй эти примеры при создании commit messages:
+
+* ✨ feat: add user authentication system
+* 🐛 fix: resolve memory leak in rendering process
+* 📝 docs: update API documentation with new endpoints
+* ♻️ refactor: simplify error handling logic in parser
+* 🚨 fix: resolve linter warnings in component files
+* 🧑‍💻 chore: improve developer tooling setup process
+* 👔 feat: implement business logic for transaction validation
+* 🩹 fix: address minor styling inconsistency in header
+* 🚑️ fix: patch critical security vulnerability in auth flow
+* 🎨 style: reorganize component structure for better readability
+* 🔥 fix: remove deprecated legacy code
+* 🦺 feat: add input validation for user registration form
+* 💚 fix: resolve failing CI pipeline tests
+* 📈 feat: implement analytics tracking for user engagement
+* 🔒️ fix: strengthen authentication password requirements
+* ♿️ feat: improve form accessibility for screen readers
+
+Пример последовательности commits:
+
+* ✨ feat: add user authentication system
+* 🐛 fix: resolve memory leak in rendering process
+* 📝 docs: update API documentation with new endpoints
+* ♻️ refactor: simplify error handling logic in parser
+* 🚨 fix: resolve linter warnings in component files
+* ✅ test: add unit tests for authentication flow
+
+## Особенности поведения агента
+
+* **Error handling**: Если validation завершается ошибкой, предложить пользователю выбор — продолжить или сначала исправить проблемы
+* **Auto-staging**: Если staged-файлов нет, автоматически добавить все изменения через `git add .`
+* **File priority**: Если файлы уже находятся в staging, commit должен включать только эти файлы
+* **Всегда выполнять commit и push**: Не нужно запрашивать подтверждение, если только не возникла серьёзная проблема или ошибка; после commit выполнить `git push`
+* **Качество сообщения**: Commit messages должны быть понятными, краткими и соответствовать conventional format
+* **Success feedback**: После успешного commit показать commit hash и краткое summary

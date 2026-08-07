@@ -7,145 +7,162 @@ category: analysis
 version: 1.0.0
 ---
 
-# Command: analyze-patterns
+# Команда: analyze-patterns
 
-## Description
+## Описание
 
-Analyze codebase for recurring patterns, similar implementations, and refactoring opportunities. Replaces codebase-pattern-analyst subagent functionality with a command-based interface.
+Анализирует codebase на повторяющиеся patterns, похожие реализации и возможности для refactoring. Заменяет функциональность subagent `codebase-pattern-analyst` через command-based интерфейс.
 
-## Usage
+## Использование
 
 ```bash
 /analyze-patterns [--pattern=<pattern>] [--language=<lang>] [--depth=<level>] [--output=<format>]
 ```
 
-## Parameters
+## Параметры
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `--pattern` | string | No | Pattern name or regex to search for (e.g., "singleton", "factory", "error-handling") |
-| `--language` | string | No | Filter by language: js, ts, py, go, rust, java, etc. |
-| `--depth` | string | No | Search depth: shallow (current dir) \| medium (src/) \| deep (entire repo) |
-| `--output` | string | No | Output format: text (default) \| json \| markdown |
+| Параметр     | Тип    | Обязательный | Описание                                                                                       |
+| ------------ | ------ | ------------ | ---------------------------------------------------------------------------------------------- |
+| `--pattern`  | string | Нет          | Название pattern или regex для поиска, например `"singleton"`, `"factory"`, `"error-handling"` |
+| `--language` | string | Нет          | Фильтрация по языку: js, ts, py, go, rust, java и т. д.                                        |
+| `--depth`    | string | Нет          | Глубина поиска: shallow (текущая директория) | medium (`src/`) | deep (весь repository)        |
+| `--output`   | string | Нет          | Формат вывода: text (по умолчанию) | json | markdown                                           |
 
-## Behavior
+## Поведение
 
-### Pattern Search
-- Searches codebase for pattern matches using regex + semantic analysis
-- Identifies similar implementations across files
-- Groups results by pattern type + similarity score
-- Suggests refactoring opportunities
+### Поиск Patterns
 
-### Analysis Output
-- Pattern occurrences with file locations + line numbers
-- Similarity metrics (how similar are implementations?)
-- Refactoring suggestions (consolidate, extract, standardize)
-- Code quality insights (duplication, inconsistency)
+* Ищет совпадения patterns в codebase с помощью regex + semantic analysis
+* Определяет похожие реализации в разных файлах
+* Группирует результаты по типу pattern + similarity score
+* Предлагает возможности для refactoring
 
-### Result Format
-```
-Pattern Analysis Report
-=======================
+### Результат анализа
+
+* Найденные вхождения pattern с расположением файлов + номерами строк
+* Метрики similarity — насколько реализации похожи друг на друга
+* Предложения по refactoring — consolidate, extract, standardize
+* Информация о качестве кода — duplication, inconsistency
+
+### Формат результата
+
+```text
+Отчёт по анализу Patterns
+=========================
 
 Pattern: [pattern_name]
-Occurrences: [count]
-Files: [file_list]
+Вхождений: [count]
+Файлы: [file_list]
 
-Implementations:
-  1. [file:line] - [description] (similarity: X%)
-  2. [file:line] - [description] (similarity: Y%)
+Реализации:
+  1. [file:line] - [описание] (similarity: X%)
+  2. [file:line] - [описание] (similarity: Y%)
   ...
 
-Refactoring Suggestions:
-  - [suggestion 1]
-  - [suggestion 2]
+Предложения по Refactoring:
+  - [предложение 1]
+  - [предложение 2]
   ...
 
-Quality Insights:
-  - [insight 1]
-  - [insight 2]
+Наблюдения по качеству:
+  - [наблюдение 1]
+  - [наблюдение 2]
   ...
 ```
 
-## Examples
+## Примеры
 
-### Find all error handling patterns
+### Найти все patterns обработки ошибок
+
 ```bash
 /analyze-patterns --pattern="error-handling" --language=ts
 ```
 
-### Analyze factory patterns across codebase
+### Проанализировать factory patterns во всём codebase
+
 ```bash
 /analyze-patterns --pattern="factory" --depth=deep --output=json
 ```
 
-### Find similar API endpoint implementations
+### Найти похожие реализации API endpoints
+
 ```bash
 /analyze-patterns --pattern="api-endpoint" --language=js --output=markdown
 ```
 
-### Search for singleton patterns
+### Найти singleton patterns
+
 ```bash
 /analyze-patterns --pattern="singleton" --depth=medium
 ```
 
-## Implementation
+## Реализация
 
-### Delegation
-- Delegates to: **opencoder** (primary)
-- Uses context search capabilities for pattern matching
-- Returns structured pattern analysis results
+### Делегирование
 
-### Context Requirements
-- Codebase structure + file organization
-- Language-specific patterns + conventions
-- Project-specific naming conventions
-- Existing refactoring guidelines
+* Делегирует выполнение: **opencoder** (основной агент)
+* Использует возможности context search для поиска patterns
+* Возвращает структурированные результаты анализа patterns
 
-### Processing Steps
-1. Parse command parameters
-2. Validate pattern syntax (regex or predefined)
-3. Search codebase using glob + grep tools
-4. Analyze semantic similarity of matches
-5. Group results by pattern + similarity
-6. Generate refactoring suggestions
-7. Format output per requested format
-8. Return analysis report
+### Требования к Context
 
-## Predefined Patterns
+* Структура codebase + организация файлов
+* Language-specific patterns + conventions
+* Project-specific naming conventions
+* Существующие guidelines по refactoring
+
+### Этапы обработки
+
+1. Распарсить параметры команды
+2. Проверить корректность синтаксиса pattern — regex или predefined
+3. Выполнить поиск по codebase с помощью инструментов glob + grep
+4. Проанализировать semantic similarity найденных совпадений
+5. Сгруппировать результаты по pattern + similarity
+6. Сформировать предложения по refactoring
+7. Отформатировать результат в соответствии с указанным форматом
+8. Вернуть отчёт анализа
+
+## Предопределённые Patterns
 
 ### JavaScript/TypeScript
-- `singleton` - Singleton pattern implementations
-- `factory` - Factory pattern implementations
-- `observer` - Observer/event pattern implementations
-- `error-handling` - Error handling patterns
-- `async-patterns` - Promise/async-await patterns
-- `api-endpoint` - API endpoint definitions
-- `middleware` - Middleware implementations
+
+* `singleton` — реализации Singleton pattern
+* `factory` — реализации Factory pattern
+* `observer` — реализации Observer/event pattern
+* `error-handling` — patterns обработки ошибок
+* `async-patterns` — patterns Promise/async-await
+* `api-endpoint` — определения API endpoints
+* `middleware` — реализации Middleware
 
 ### Python
-- `decorator` - Decorator pattern implementations
-- `context-manager` - Context manager patterns
-- `error-handling` - Exception handling patterns
-- `async-patterns` - Async/await patterns
-- `class-patterns` - Class design patterns
+
+* `decorator` — реализации Decorator pattern
+* `context-manager` — Context Manager patterns
+* `error-handling` — patterns обработки exceptions
+* `async-patterns` — Async/await patterns
+* `class-patterns` — patterns проектирования классов
 
 ### Go
-- `interface-patterns` - Interface implementations
-- `error-handling` - Error handling patterns
-- `goroutine-patterns` - Goroutine patterns
-- `middleware` - Middleware implementations
 
-### Custom Patterns
-Users can provide custom regex patterns for domain-specific analysis.
+* `interface-patterns` — реализации interfaces
+* `error-handling` — patterns обработки ошибок
+* `goroutine-patterns` — patterns использования goroutines
+* `middleware` — реализации Middleware
 
-## Output Formats
+### Пользовательские Patterns
 
-### Text (Default)
-Human-readable report with clear sections and formatting
+Пользователи могут передавать собственные regex patterns для domain-specific анализа.
+
+## Форматы вывода
+
+### Text (по умолчанию)
+
+Читаемый человеком отчёт с понятными разделами и форматированием.
 
 ### JSON
-Structured data for programmatic processing:
+
+Структурированные данные для программной обработки:
+
 ```json
 {
   "pattern": "error-handling",
@@ -164,21 +181,24 @@ Structured data for programmatic processing:
 ```
 
 ### Markdown
-Formatted for documentation + sharing:
+
+Формат для документации и распространения:
+
 ```markdown
-# Pattern Analysis: error-handling
+# Анализ Pattern: error-handling
 
-**Occurrences**: 12  
-**Files**: 3  
-**Similarity Range**: 85-98%
+**Вхождений**: 12  
+**Файлов**: 3  
+**Диапазон Similarity**: 85-98%
 
-## Implementations
+## Реализации
 ...
 ```
 
-## Integration
+## Интеграция
 
 ### Registry Entry
+
 ```json
 {
   "id": "analyze-patterns",
@@ -191,31 +211,32 @@ Formatted for documentation + sharing:
 }
 ```
 
-### Profile Assignment
-- **Developer Profile**: ✅ Included
-- **Full Profile**: ✅ Included
-- **Advanced Profile**: ✅ Included
-- **Business Profile**: ❌ Not included
+### Назначение Profiles
 
-## Notes
+* **Developer Profile**: ✅ Включён
+* **Full Profile**: ✅ Включён
+* **Advanced Profile**: ✅ Включён
+* **Business Profile**: ❌ Не включён
 
-- Replaces `codebase-pattern-analyst` subagent functionality
-- Command-based interface is more flexible + discoverable
-- Supports both predefined + custom patterns
-- Results can be exported for documentation
-- Integrates with refactoring workflows
+## Примечания
+
+* Заменяет функциональность subagent `codebase-pattern-analyst`
+* Command-based интерфейс более гибкий и удобный для обнаружения
+* Поддерживает как predefined, так и custom patterns
+* Результаты можно экспортировать для документации
+* Интегрируется с workflows по refactoring
 
 ---
 
-## Validation Checklist
+## Checklist валидации
 
-✅ Command structure defined  
-✅ Parameters documented  
-✅ Behavior specified  
-✅ Examples provided  
-✅ Implementation details included  
-✅ Output formats defined  
-✅ Integration ready  
-✅ Ready for registry integration  
+✅ Структура команды определена
+✅ Параметры задокументированы
+✅ Поведение описано
+✅ Примеры добавлены
+✅ Детали реализации указаны
+✅ Форматы вывода определены
+✅ Интеграция подготовлена
+✅ Готово к интеграции с registry
 
 **Status**: Ready for deployment

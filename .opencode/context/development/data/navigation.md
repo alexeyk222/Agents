@@ -1,14 +1,14 @@
 <!-- Context: development/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Data Layer Navigation
+# Навигация по слою данных
 
-**Purpose**: Database and data access patterns
+**Назначение**: Паттерны баз данных и доступа к данным
 
-**Status**: 🚧 Placeholder - Content coming soon
+**Статус**: 🚧 Заготовка — контент скоро появится
 
 ---
 
-## Planned Structure
+## Планируемая структура
 
 ```
 data/
@@ -32,7 +32,7 @@ data/
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Backend Navigation** → `../backend-navigation.md`
-- **Core Standards** → `../../core/standards/code-quality.md`
+- **Навигация по backend** → `../backend-navigation.md`
+- **Базовые стандарты** → `../../core/standards/code-quality.md`

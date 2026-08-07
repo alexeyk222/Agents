@@ -1,149 +1,149 @@
 <!-- Context: standards/patterns | Priority: high | Version: 2.0 | Updated: 2025-01-21 -->
 
-# Essential Patterns - Core Knowledge Base
+# Ключевые паттерны — базовая база знаний
 
-## Quick Reference
+## Краткая справка
 
-**Critical Patterns**: Error Handling, Validation, Security, Logging
+**Критические паттерны**: Обработка ошибок, валидация, безопасность, логирование
 
-**ALWAYS**: Handle errors gracefully, validate input, use env vars for secrets
+**ВСЕГДА**: Обрабатывайте ошибки аккуратно, валидируйте ввод, используйте env vars для секретов
 
-**NEVER**: Expose sensitive info, hardcode credentials, skip input validation
+**НИКОГДА**: Не раскрывайте чувствительные данные, не хардкодьте учетные данные, не пропускайте валидацию ввода
 
-**Language-agnostic**: Apply to all programming languages
+**Независимо от языка**: Применимо ко всем языкам программирования
 
 ---
 
-These are language-agnostic patterns that apply to all programming languages. Language-specific implementations are loaded from context files based on project detection.
+Это языконезависимые паттерны для всех языков программирования. Языковые реализации загружаются из контекстных файлов на основе определения проекта.
 
-## Error Handling Pattern
+## Паттерн обработки ошибок
 
-**ALWAYS** handle errors gracefully:
+**ВСЕГДА** обрабатывайте ошибки аккуратно:
 
-- Catch specific errors, not generic ones
-- Log errors with context
-- Return meaningful error messages
-- Don't expose internal implementation details
-- Use language-specific error handling mechanisms (try/catch, Result, error returns)
+- Ловите конкретные ошибки, а не общие
+- Логируйте ошибки с контекстом
+- Возвращайте понятные сообщения об ошибках
+- Не раскрывайте внутренние детали реализации
+- Используйте механизмы обработки ошибок конкретного языка (try/catch, Result, возврат ошибок)
 
-## Validation Pattern
+## Паттерн валидации
 
-**ALWAYS** validate input data:
+**ВСЕГДА** валидируйте входные данные:
 
-- Check for null/nil/None values
-- Validate data types
-- Validate data ranges and constraints
-- Sanitize user input
-- Return clear validation error messages
+- Проверяйте значения null/nil/None
+- Валидируйте типы данных
+- Валидируйте диапазоны и ограничения
+- Очищайте пользовательский ввод
+- Возвращайте понятные ошибки валидации
 
-## Logging Pattern
+## Паттерн логирования
 
-**USE** consistent logging levels:
+**ИСПОЛЬЗУЙТЕ** согласованные уровни логирования:
 
-- **Debug**: Detailed information for debugging (development only)
-- **Info**: Important events and milestones
-- **Warning**: Potential issues that don't stop execution
-- **Error**: Failures and exceptions
+- **Debug**: Подробная информация для отладки (только development)
+- **Info**: Важные события и этапы
+- **Warning**: Потенциальные проблемы, не останавливающие выполнение
+- **Error**: Сбои и исключения
 
-## Security Pattern
+## Паттерн безопасности
 
-**NEVER** expose sensitive information:
+**НИКОГДА** не раскрывайте чувствительную информацию:
 
-- Don't log passwords, tokens, or API keys
-- Don't expose internal error details to users
-- Validate and sanitize all user input
-- Use environment variables for secrets
-- Follow principle of least privilege
+- Не логируйте пароли, токены или API-ключи
+- Не показывайте пользователям внутренние детали ошибок
+- Валидируйте и очищайте весь пользовательский ввод
+- Используйте переменные окружения для секретов
+- Следуйте принципу наименьших привилегий
 
-## File System Safety Pattern
+## Паттерн безопасности файловой системы
 
-**ALWAYS** validate file paths:
+**ВСЕГДА** валидируйте пути к файлам:
 
-- Prevent path traversal attacks
-- Check file permissions before operations
-- Use absolute paths when possible
-- Handle file not found errors gracefully
-- Close file handles properly
+- Предотвращайте path traversal-атаки
+- Проверяйте права доступа к файлу перед операциями
+- По возможности используйте абсолютные пути
+- Аккуратно обрабатывайте ошибки отсутствия файла
+- Корректно закрывайте файловые дескрипторы
 
-## Configuration Pattern
+## Паттерн конфигурации
 
-**ALWAYS** use environment variables for configuration:
+**ВСЕГДА** используйте переменные окружения для конфигурации:
 
-- Never hardcode secrets or credentials
-- Provide sensible defaults
-- Validate required configuration on startup
-- Document all configuration options
-- Use different configs for dev/staging/production
+- Никогда не хардкодьте секреты или учетные данные
+- Задавайте разумные значения по умолчанию
+- Валидируйте обязательную конфигурацию при старте
+- Документируйте все опции конфигурации
+- Используйте разные конфиги для dev/staging/production
 
-## Testing Pattern
+## Паттерн тестирования
 
-**ALWAYS** write testable code:
+**ВСЕГДА** пишите тестируемый код:
 
-- Use dependency injection
-- Keep functions pure when possible
-- Write unit tests for business logic
-- Write integration tests for external dependencies
-- Use test fixtures and mocks appropriately
+- Используйте dependency injection
+- По возможности держите функции чистыми
+- Пишите unit-тесты для бизнес-логики
+- Пишите интеграционные тесты для внешних зависимостей
+- Уместно используйте test fixtures и моки
 
-## Documentation Pattern
+## Паттерн документации
 
-**DOCUMENT** complex logic and public APIs:
+**ДОКУМЕНТИРУЙТЕ** сложную логику и публичные API:
 
-- Explain the "why", not just the "what"
-- Document function parameters and return values
-- Include usage examples
-- Keep documentation up to date with code
-- Use language-specific documentation tools
+- Объясняйте «почему», а не только «что»
+- Документируйте параметры функций и возвращаемые значения
+- Добавляйте примеры использования
+- Поддерживайте документацию синхронно с кодом
+- Используйте инструменты документации конкретного языка
 
-## Performance Pattern
+## Паттерн производительности
 
-**AVOID** unnecessary operations:
+**ИЗБЕГАЙТЕ** лишних операций:
 
-- Don't repeat expensive calculations
-- Cache results when appropriate
-- Use efficient data structures
-- Profile before optimizing
-- Consider time and space complexity
+- Не повторяйте дорогие вычисления
+- Кешируйте результаты, когда уместно
+- Используйте эффективные структуры данных
+- Профилируйте перед оптимизацией
+- Учитывайте сложность по времени и памяти
 
-## Code Organization Pattern
+## Паттерн организации кода
 
-**KEEP** code modular and focused:
+**ДЕРЖИТЕ** код модульным и сфокусированным:
 
-- Single Responsibility Principle - one function, one purpose
+- Single Responsibility Principle — одна функция, одна цель
 - Don't Repeat Yourself (DRY)
-- Separate concerns (business logic, data access, presentation)
-- Use meaningful names for functions and variables
-- Keep functions small and focused (< 50 lines ideally)
+- Разделяйте ответственности (бизнес-логика, доступ к данным, представление)
+- Используйте осмысленные имена функций и переменных
+- Держите функции маленькими и сфокусированными (идеально < 50 строк)
 
-## Dependency Management
+## Управление зависимостями
 
-**MANAGE** dependencies carefully:
+**УПРАВЛЯЙТЕ** зависимостями аккуратно:
 
-- Pin dependency versions for reproducibility
-- Regularly update dependencies for security
-- Minimize number of dependencies
-- Audit dependencies for security vulnerabilities
-- Document why each dependency is needed
+- Фиксируйте версии зависимостей для воспроизводимости
+- Регулярно обновляйте зависимости ради безопасности
+- Минимизируйте число зависимостей
+- Аудируйте зависимости на уязвимости
+- Документируйте, зачем нужна каждая зависимость
 
-## Version Control
+## Контроль версий
 
-**FOLLOW** git best practices:
+**СОБЛЮДАЙТЕ** лучшие практики git:
 
-- Write clear, descriptive commit messages
-- Make atomic commits (one logical change per commit)
-- Use feature branches for development
-- Review code before merging
-- Keep main/master branch stable
+- Пишите понятные, описательные сообщения коммитов
+- Делайте атомарные коммиты (одно логическое изменение на коммит)
+- Используйте feature branches для разработки
+- Ревьюйте код перед merge
+- Держите ветку main/master стабильной
 
-## Code Review Checklist
+## Чеклист ревью кода
 
-**REVIEW** for these common issues:
+**ПРОВЕРЯЙТЕ** типовые проблемы:
 
-- Error handling is comprehensive
-- Input validation is present
-- No hardcoded secrets or credentials
-- Tests cover new functionality
-- Documentation is updated
-- Code follows project conventions
-- No obvious security vulnerabilities
-- Performance considerations addressed
+- Обработка ошибок полная
+- Валидация ввода есть
+- Нет захардкоженных секретов или учетных данных
+- Тесты покрывают новую функциональность
+- Документация обновлена
+- Код следует соглашениям проекта
+- Нет очевидных уязвимостей безопасности
+- Производительность учтена

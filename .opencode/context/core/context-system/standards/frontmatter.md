@@ -1,15 +1,15 @@
-# Frontmatter Format
+# Формат frontmatter
 
-**Purpose**: HTML comment frontmatter format for all context files
+**Назначение**: формат HTML-комментария frontmatter для всех файлов контекста
 
-**Last Updated**: 2026-01-27
+**Последнее обновление**: 2026-01-27
 
 ---
 
-## Format
+## Формат
 
 <rule id="frontmatter_required" enforcement="strict">
-  ALL context files MUST start with:
+  ВСЕ файлы контекста ДОЛЖНЫ начинаться с:
   
   ```markdown
   <!-- Context: {category}/{function} | Priority: {level} | Version: X.Y | Updated: YYYY-MM-DD -->
@@ -18,26 +18,26 @@
 
 ---
 
-## Components
+## Компоненты
 
 **Category/Function**: `{category}/{function}`
-- Examples: `ecommerce/concepts`, `development/examples`, `core/standards`
-- Category = domain (ecommerce, payments, development)
-- Function = file type (concepts, examples, guides, lookup, errors)
+- Примеры: `ecommerce/concepts`, `development/examples`, `core/standards`
+- Category = домен (ecommerce, payments, development)
+- Function = тип файла (concepts, examples, guides, lookup, errors)
 
 **Priority**: `critical` | `high` | `medium` | `low`
-- critical: 80% of use cases (business logic, core concepts)
-- high: 15% of use cases (common workflows, examples)
-- medium: 4% of use cases (edge cases)
-- low: 1% of use cases (rare scenarios)
+- critical: 80% сценариев (бизнес-логика, ключевые концепции)
+- high: 15% сценариев (типовые процессы, примеры)
+- medium: 4% сценариев (крайние случаи)
+- low: 1% сценариев (редкие сценарии)
 
-**Version**: `X.Y` (start 1.0, increment on changes)
+**Version**: `X.Y` (начинайте с 1.0, повышайте при изменениях)
 
-**Updated**: `YYYY-MM-DD` (ISO 8601, must match metadata section)
+**Updated**: `YYYY-MM-DD` (ISO 8601, должно совпадать с разделом metadata)
 
 ---
 
-## Examples
+## Примеры
 
 ```markdown
 <!-- Context: ecommerce/concepts | Priority: critical | Version: 1.0 | Updated: 2026-01-27 -->
@@ -47,18 +47,18 @@
 
 ---
 
-## Validation
+## Валидация
 
-- [ ] Frontmatter is first line?
-- [ ] Format exact: `<!-- Context: ... -->`?
-- [ ] Priority is critical|high|medium|low?
-- [ ] Version is X.Y?
-- [ ] Date is YYYY-MM-DD?
+- [ ] Frontmatter находится на первой строке?
+- [ ] Формат точный: `<!-- Context: ... -->`?
+- [ ] Priority равен critical|high|medium|low?
+- [ ] Version имеет формат X.Y?
+- [ ] Дата имеет формат YYYY-MM-DD?
 
 ---
 
-## Related
+## Связанные материалы
 
-- structure.md - File organization
-- templates.md - File templates
-- codebase-references.md - Linking to code
+- structure.md - организация файлов
+- templates.md - шаблоны файлов
+- codebase-references.md - ссылки на код

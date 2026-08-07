@@ -1,49 +1,49 @@
 <!-- Context: core/organize | Priority: medium | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Organize Operation
+# Операция Organize
 
-**Purpose**: Restructure flat context files into function-based folder structure
+**Назначение**: преобразовать плоские файлы контекста в структуру папок по функциям
 
-**Last Updated**: 2026-01-06
-
----
-
-## When to Use
-
-- Migrating from flat structure to function-based
-- Cleaning up disorganized context directories
-- Splitting ambiguous files into proper categories
-- Resolving duplicate/conflicting files
+**Последнее обновление**: 2026-01-06
 
 ---
 
-## 8-Stage Workflow
+## Когда использовать
 
-### Stage 1: Scan
-**Action**: Scan category for all files and detect structure
-
-**Output**: List of files with current structure type (flat vs organized)
-
----
-
-### Stage 2: Categorize
-**Action**: Categorize each file by function
-
-**Categorization Rules**:
-- Explains concept? → `concepts/`
-- Shows working code? → `examples/`
-- Step-by-step instructions? → `guides/`
-- Reference data (tables, commands)? → `lookup/`
-- Errors/issues? → `errors/`
-
-**Output**: Categorization plan with flagged ambiguous files
+- Миграция с плоской структуры на структуру по функциям
+- Очистка неорганизованных каталогов контекста
+- Разделение неоднозначных файлов на правильные категории
+- Разрешение дублирующихся/конфликтующих файлов
 
 ---
 
-### Stage 3: Resolve Conflicts (APPROVAL REQUIRED)
-**Action**: Present categorization plan and handle conflicts
+## 8-этапный workflow
 
-**Format**:
+### Этап 1: сканирование
+**Действие**: просканировать категорию на все файлы и определить структуру
+
+**Выход**: список файлов с текущим типом структуры (плоская или организованная)
+
+---
+
+### Этап 2: категоризация
+**Действие**: категоризировать каждый файл по функции
+
+**Правила категоризации**:
+- Объясняет концепцию? → `concepts/`
+- Показывает рабочий код? → `examples/`
+- Пошаговые инструкции? → `guides/`
+- Справочные данные (таблицы, команды)? → `lookup/`
+- Ошибки/проблемы? → `errors/`
+
+**Выход**: план категоризации с отмеченными неоднозначными файлами
+
+---
+
+### Этап 3: разрешить конфликты (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
+**Действие**: показать план категоризации и обработать конфликты
+
+**Формат**:
 ```
 Organizing {category}/ (23 files, flat structure)
 
@@ -72,14 +72,14 @@ Conflicts (2):
 Select resolutions (A J or 'auto'):
 ```
 
-**Validation**: MUST wait for user input
+**Валидация**: ОБЯЗАТЕЛЬНО дождаться ввода пользователя
 
 ---
 
-### Stage 4: Preview (APPROVAL REQUIRED)
-**Action**: Show preview of all changes
+### Этап 4: предварительный просмотр (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
+**Действие**: показать предварительный просмотр всех изменений
 
-**Format**:
+**Формат**:
 ```
 Preview changes:
 
@@ -107,47 +107,47 @@ UPDATE:
 Dry-run? (yes/no/show-diff):
 ```
 
-**Dry-run**: Simulates changes without executing
+**Dry-run**: симулирует изменения без выполнения
 
-**Validation**: MUST get approval before proceeding
-
----
-
-### Stage 5: Backup
-**Action**: Create backup before making changes
-
-**Location**: `.tmp/backup/organize-{category}-{timestamp}/`
-
-**Purpose**: Enable rollback if needed
+**Валидация**: ОБЯЗАТЕЛЬНО получить одобрение перед продолжением
 
 ---
 
-### Stage 6: Execute
-**Action**: Perform the reorganization
+### Этап 5: резервная копия
+**Действие**: создать резервную копию перед внесением изменений
 
-**Process**:
-1. Create function folders
-2. Move files to correct locations
-3. Split ambiguous files if requested
-4. Merge conflicts if requested
+**Расположение**: `.tmp/backup/organize-{category}-{timestamp}/`
+
+**Назначение**: включить откат при необходимости
 
 ---
 
-### Stage 7: Update
-**Action**: Update navigation and fix references
+### Этап 6: выполнение
+**Действие**: выполнить реорганизацию
 
-**Process**:
-1. Update README.md with navigation tables
-2. Fix all internal references to moved files
-3. Validate all links work
-4. Update "Last Updated" dates
+**Процесс**:
+1. Создать функциональные папки
+2. Переместить файлы в правильные места
+3. Разделить неоднозначные файлы, если запрошено
+4. Слить конфликты, если запрошено
 
 ---
 
-### Stage 8: Report
-**Action**: Show comprehensive results
+### Этап 7: обновление
+**Действие**: обновить навигацию и исправить ссылки
 
-**Format**:
+**Процесс**:
+1. Обновить навигационные таблицы в `README.md`
+2. Исправить все внутренние ссылки на перемещенные файлы
+3. Проверить, что все ссылки работают
+4. Обновить даты "Last Updated"
+
+---
+
+### Этап 8: отчет
+**Действие**: показать полные результаты
+
+**Формат**:
 ```
 ✅ Organized X files into function folders
 📁 Created Y new folders
@@ -160,45 +160,45 @@ Rollback available if needed.
 
 ---
 
-## Conflict Resolution
+## Разрешение конфликтов
 
-### Ambiguous Files
-File fits multiple categories (e.g., has concepts AND steps)
+### Неоднозначные файлы
+Файл подходит нескольким категориям (например, содержит concepts И steps)
 
-**Options**:
-- Split into multiple files (recommended)
-- Keep in primary category
-- User decides which is primary
+**Варианты**:
+- Разделить на несколько файлов (рекомендуется)
+- Оставить в основной категории
+- Пользователь решает, какая категория основная
 
-### Duplicate Targets
-Target file already exists
+### Дублирующиеся цели
+Целевой файл уже существует
 
-**Options**:
-- Merge content into existing file
-- Rename to avoid conflict (e.g., -v2)
-- Skip (keep in flat structure)
+**Варианты**:
+- Слить содержимое в существующий файл
+- Переименовать, чтобы избежать конфликта (например, -v2)
+- Пропустить (оставить в плоской структуре)
 
-### Auto-Resolution
-Agent suggests best option based on:
-- File size
-- Content analysis
-- Existing structure
+### Авторазрешение
+Агент предлагает лучший вариант на основе:
+- Размера файла
+- Анализа содержимого
+- Существующей структуры
 
 ---
 
-## Examples
+## Примеры
 
-### Organize Flat Directory
+### Организовать плоский каталог
 ```bash
 /context organize development/
 ```
 
-### Dry-Run First
+### Сначала dry-run
 ```bash
 /context organize development/ --dry-run
 ```
 
-### Organize Multiple
+### Организовать несколько
 ```bash
 /context organize development/
 /context organize core/
@@ -206,19 +206,19 @@ Agent suggests best option based on:
 
 ---
 
-## Success Criteria
+## Критерии успеха
 
-- [ ] All files in function folders (not flat)?
-- [ ] Ambiguous files resolved?
-- [ ] Conflicts handled?
-- [ ] README.md created/updated?
-- [ ] All references fixed?
-- [ ] Backup created?
-- [ ] User approved changes?
+- [ ] Все файлы в функциональных папках (не плоско)?
+- [ ] Неоднозначные файлы разрешены?
+- [ ] Конфликты обработаны?
+- [ ] `README.md` создан/обновлен?
+- [ ] Все ссылки исправлены?
+- [ ] Резервная копия создана?
+- [ ] Пользователь одобрил изменения?
 
 ---
 
-## Related
+## Связанные материалы
 
-- standards/structure.md - Folder organization rules
-- guides/workflows.md - Interactive examples
+- standards/structure.md - правила организации папок
+- guides/workflows.md - интерактивные примеры

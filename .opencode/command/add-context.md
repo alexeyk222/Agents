@@ -9,211 +9,202 @@ dependencies:
 ---
 
 <context>
-  <system>Project Intelligence onboarding wizard for teaching agents YOUR coding patterns</system>
-  <domain>Project-specific context creation w/ MVI compliance</domain>
-  <task>Interactive 6-question wizard → structured context files w/ 100% pattern preservation</task>
+  <system>Мастер онбординга Project Intelligence для обучения агентов ВАШИМ шаблонам написания кода</system>
+  <domain>Создание project-specific контекста с соблюдением MVI</domain>
+  <task>Интерактивный мастер из 6 вопросов → структурированные context-файлы со 100% сохранением шаблонов</task>
 </context>
 
-<role>Context Creation Wizard applying Project Intelligence + MVI + frontmatter standards</role>
+<role>Мастер создания контекста, применяющий стандарты Project Intelligence + MVI + frontmatter</role>
 
-<task>6-question wizard → technical-domain.md w/ tech stack, API/component patterns, naming, standards, security</task>
+<task>Мастер из 6 вопросов → technical-domain.md с tech stack, API/component patterns, naming, standards и security</task>
 
-<critical_rules priority="absolute" enforcement="strict">
-  <rule id="project_intelligence">
-    MUST create technical-domain.md in project-intelligence/ dir (NOT single project-context.md)
-  </rule>
-  <rule id="frontmatter_required">
-    ALL files MUST start w/ HTML frontmatter: <!-- Context: {category}/{function} | Priority: {level} | Version: X.Y | Updated: YYYY-MM-DD -->
-  </rule>
-  <rule id="mvi_compliance">
-    Files MUST be <200 lines, scannable <30s. MVI formula: 1-3 sentence concept, 3-5 key points, 5-10 line example, ref link
-  </rule>
-  <rule id="codebase_refs">
-    ALL files MUST include "📂 Codebase References" section linking context→actual code implementation
-  </rule>
-  <rule id="navigation_update">
-    MUST update navigation.md when creating/modifying files (add to Quick Routes or Deep Dives table)
-  </rule>
-  <rule id="priority_assignment">
-    MUST assign priority based on usage: critical (80%) | high (15%) | medium (4%) | low (1%)
-  </rule>
-  <rule id="version_tracking">
-    MUST track versions: New file→1.0 | Content update→MINOR (1.1, 1.2) | Structure change→MAJOR (2.0, 3.0)
-  </rule>
+<critical_rules priority="absolute" enforcement="strict"> <rule id="project_intelligence">
+ОБЯЗАТЕЛЬНО создавать technical-domain.md в директории project-intelligence/ (НЕ единый project-context.md) </rule> <rule id="frontmatter_required">
+ВСЕ файлы ОБЯЗАНЫ начинаться с HTML frontmatter: <!-- Context: {category}/{function} | Priority: {level} | Version: X.Y | Updated: YYYY-MM-DD --> </rule> <rule id="mvi_compliance">
+Файлы ДОЛЖНЫ содержать <200 строк и просматриваться менее чем за 30 секунд. Формула MVI: концепция в 1–3 предложениях, 3–5 ключевых пунктов, пример на 5–10 строк, ссылка на источник </rule> <rule id="codebase_refs">
+ВСЕ файлы ОБЯЗАНЫ содержать раздел "📂 Codebase References", связывающий context→реальную реализацию в коде </rule> <rule id="navigation_update">
+При создании/изменении файлов ОБЯЗАТЕЛЬНО обновлять navigation.md (добавлять запись в таблицу Quick Routes или Deep Dives) </rule> <rule id="priority_assignment">
+ОБЯЗАТЕЛЬНО назначать priority в зависимости от частоты использования: critical (80%) | high (15%) | medium (4%) | low (1%) </rule> <rule id="version_tracking">
+ОБЯЗАТЕЛЬНО отслеживать версии: Новый файл→1.0 | Обновление контента→MINOR (1.1, 1.2) | Изменение структуры→MAJOR (2.0, 3.0) </rule>
 </critical_rules>
 
-<execution_priority>
-  <tier level="1" desc="Project Intelligence + MVI + Standards">
-    - @project_intelligence (technical-domain.md in project-intelligence/ dir)
-    - @mvi_compliance (<200 lines, <30s scannable)
-    - @frontmatter_required (HTML frontmatter w/ metadata)
-    - @codebase_refs (link context→code)
-    - @navigation_update (update navigation.md)
-    - @priority_assignment (critical for tech stack/core patterns)
-    - @version_tracking (1.0 for new, incremented for updates)
-  </tier>
-  <tier level="2" desc="Wizard Workflow">
-    - Detect existing context→Review/Add/Replace
-    - 6-question interactive wizard
-    - Generate/update technical-domain.md
-    - Validation w/ MVI checklist
-  </tier>
-  <tier level="3" desc="User Experience">
-    - Clear formatting w/ ━ dividers
-    - Helpful examples
-    - Next steps guidance
-  </tier>
-  <conflict_resolution>Tier 1 always overrides Tier 2/3 - standards are non-negotiable</conflict_resolution>
+<execution_priority> <tier level="1" desc="Project Intelligence + MVI + Standards">
+- @project_intelligence (technical-domain.md в директории project-intelligence/)
+- @mvi_compliance (<200 строк, просмотр менее чем за 30 секунд)
+- @frontmatter_required (HTML frontmatter с metadata)
+- @codebase_refs (связать context→code)
+- @navigation_update (обновить navigation.md)
+- @priority_assignment (critical для tech stack/core patterns)
+- @version_tracking (1.0 для новых файлов, увеличение версии при обновлениях) </tier> <tier level="2" desc="Workflow мастера">
+- Определить существующий context→Review/Add/Replace
+- Интерактивный мастер из 6 вопросов
+- Создать/обновить technical-domain.md
+- Провести валидацию по MVI checklist </tier> <tier level="3" desc="Пользовательский опыт">
+- Понятное форматирование с разделителями ━
+- Полезные примеры
+- Рекомендации по следующим шагам </tier>
+<conflict_resolution>Tier 1 всегда имеет приоритет над Tier 2/3 — стандарты не подлежат обсуждению</conflict_resolution>
 </execution_priority>
 
 ---
 
-## Purpose
+## Назначение
 
-Help users add project patterns using Project Intelligence standard. **Easiest way** to teach agents YOUR coding patterns.
+Помогает пользователям добавлять проектные шаблоны с использованием стандарта Project Intelligence. **Самый простой способ** обучить агентов ВАШИМ шаблонам написания кода.
 
-**Value**: Answer 6 questions (~5 min) → properly structured context files → agents generate code matching YOUR project.
+**Польза**: Ответьте на 6 вопросов (~5 минут) → получите правильно структурированные context-файлы → агенты будут генерировать код в соответствии с ВАШИМ проектом.
 
-**Standards**: @project_intelligence + @mvi_compliance + @frontmatter_required + @codebase_refs
+**Стандарты**: @project_intelligence + @mvi_compliance + @frontmatter_required + @codebase_refs
 
-**Note**: External context files are stored in `.tmp/` directory (e.g., `.tmp/external-context.md`) for temporary or external knowledge that will be organized into the permanent context system.
+**Примечание**: Внешние context-файлы хранятся в директории `.tmp/` (например, `.tmp/external-context.md`) для временных или внешних знаний, которые впоследствии будут организованы в постоянной context-системе.
 
-**External Context Integration**: The wizard automatically detects external context files in `.tmp/` and offers to extract and use them as source material for your project patterns.
+**Интеграция внешнего контекста**: Мастер автоматически обнаруживает внешние context-файлы в `.tmp/` и предлагает извлечь из них информацию и использовать её как исходный материал для проектных шаблонов.
 
 ---
 
-## Usage
+## Использование
 
 ```bash
-/add-context                 # Interactive wizard (recommended, saves to project)
-/add-context --update        # Update existing context
-/add-context --tech-stack    # Add/update tech stack only
-/add-context --patterns      # Add/update code patterns only
-/add-context --global        # Save to global config (~/.config/opencode/) instead of project
+/add-context                 # Интерактивный мастер (рекомендуется, сохраняет в проект)
+/add-context --update        # Обновить существующий context
+/add-context --tech-stack    # Добавить/обновить только tech stack
+/add-context --patterns      # Добавить/обновить только code patterns
+/add-context --global        # Сохранить в global config (~/.config/opencode/) вместо проекта
 ```
 
 ---
 
-## Quick Start
+## Быстрый старт
 
-**Run**: `/add-context`
+**Запуск**: `/add-context`
 
-**What happens**:
-1. Saves to `.opencode/context/project-intelligence/` in your project (always local)
-2. Checks for external context files in `.tmp/` (if found, offers to extract)
-3. Checks for existing project intelligence
-4. Asks 6 questions (~5 min) OR reviews existing patterns
-5. Shows full preview of files to be created before writing
-6. Generates/updates technical-domain.md + navigation.md
-7. Agents now use YOUR patterns
+**Что произойдёт**:
 
-**6 Questions** (~5 min):
-1. Tech stack?
-2. API endpoint example?
-3. Component example?
-4. Naming conventions?
-5. Code standards?
-6. Security requirements?
+1. Сохраняет данные в `.opencode/context/project-intelligence/` вашего проекта (всегда local)
+2. Проверяет наличие внешних context-файлов в `.tmp/` и предлагает извлечь их, если они найдены
+3. Проверяет существующий Project Intelligence
+4. Задаёт 6 вопросов (~5 минут) ИЛИ предлагает проверить существующие шаблоны
+5. Показывает полный preview создаваемых файлов перед записью
+6. Создаёт/обновляет technical-domain.md + navigation.md
+7. После этого агенты используют ВАШИ шаблоны
 
-**Done!** Agents now use YOUR patterns.
+**6 вопросов** (~5 минут):
 
-**Management Options**:
-- Update patterns: `/add-context --update`
-- Manage external files: `/context harvest` (extract, organize, clean)
-- Harvest to permanent: `/context harvest`
-- Clean context: `/context harvest` (cleans up .tmp/ files)
+1. Какой tech stack?
+2. Пример API endpoint?
+3. Пример component?
+4. Какие naming conventions?
+5. Какие code standards?
+6. Какие security requirements?
+
+**Готово!** Теперь агенты используют ВАШИ шаблоны.
+
+**Варианты управления**:
+
+* Обновить шаблоны: `/add-context --update`
+* Управлять внешними файлами: `/context harvest` (извлечь, организовать, очистить)
+* Перенести данные в постоянный context: `/context harvest`
+* Очистить context: `/context harvest` (очищает файлы .tmp/)
 
 ---
 
-## Workflow
+## Рабочий процесс
 
 ### Stage 0.5: Resolve Context Location
 
-Determine where project intelligence files should be saved. This runs BEFORE anything else.
+Определить, куда должны сохраняться файлы Project Intelligence. Этот этап выполняется ПЕРЕД всеми остальными.
 
-**Default behavior**: Always use local `.opencode/context/project-intelligence/`.
-**Override**: `--global` flag saves to `~/.config/opencode/context/project-intelligence/` instead.
+**Поведение по умолчанию**: Всегда использовать локальный `.opencode/context/project-intelligence/`.
 
-**Resolution:**
-1. If `--global` flag → `$CONTEXT_DIR = ~/.config/opencode/context/project-intelligence/`
-2. Otherwise → `$CONTEXT_DIR = .opencode/context/project-intelligence/` (always local)
+**Переопределение**: Флаг `--global` сохраняет данные в `~/.config/opencode/context/project-intelligence/`.
 
-**If `.opencode/context/` doesn't exist yet**, create it silently — no prompt needed. The directory structure is part of the output shown in Stage 4.
+**Разрешение пути:**
 
-**Variable**: `$CONTEXT_DIR` is set here and used in all subsequent stages.
+1. Если указан флаг `--global` → `$CONTEXT_DIR = ~/.config/opencode/context/project-intelligence/`
+2. В противном случае → `$CONTEXT_DIR = .opencode/context/project-intelligence/` (всегда local)
+
+**Если `.opencode/context/` ещё не существует**, создай директорию без дополнительного запроса — структура директорий является частью результата, который будет показан на Stage 4.
+
+**Переменная**: `$CONTEXT_DIR` устанавливается здесь и используется на всех последующих стадиях.
 
 ---
 
 ### Stage 0: Check for External Context Files
 
-Check: `.tmp/` directory for external context files (e.g., `.tmp/external-context.md`, `.tmp/context-*.md`)
+Проверить директорию `.tmp/` на наличие внешних context-файлов (например, `.tmp/external-context.md`, `.tmp/context-*.md`).
 
-**If external files found**:
-```
+**Если внешние файлы найдены**:
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Found external context files in .tmp/
+Найдены внешние context-файлы в .tmp/
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Files found:
+Найдены файлы:
   📄 .tmp/external-context.md (2.4 KB)
   📄 .tmp/api-patterns.md (1.8 KB)
   📄 .tmp/component-guide.md (3.1 KB)
 
-These files can be extracted and organized into permanent context.
+Эти файлы можно обработать и организовать в постоянный context.
 
-Options:
-  1. Continue with /add-context (ignore external files for now)
-  2. Manage external files first (via /context harvest)
+Варианты:
+  1. Продолжить /add-context (пока игнорировать внешние файлы)
+  2. Сначала обработать внешние файлы (через /context harvest)
 
-Choose [1/2]: _
+Выберите [1/2]: _
 ```
 
-**If option 1 (Continue)**:
-- Proceed to Stage 1 (detect existing project intelligence)
-- External files remain in .tmp/ for later processing
+**Если выбран вариант 1 (Continue)**:
 
-**If option 2 (Manage external files)**:
-```
+* Перейти к Stage 1 (определение существующего Project Intelligence)
+* Внешние файлы остаются в `.tmp/` для последующей обработки
+
+**Если выбран вариант 2 (Manage external files)**:
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Manage External Context Files
+Управление внешними Context Files
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-To manage external context files, use the /context command:
+Для управления внешними context-файлами используйте команду /context:
 
   /context harvest
 
-This will:
-  ✓ Extract knowledge from .tmp/ files
-  ✓ Organize into project-intelligence/
-  ✓ Clean up temporary files
-  ✓ Update navigation.md
+Она выполнит:
 
-After harvesting, run /add-context again to create project intelligence.
+  ✓ Извлечение знаний из файлов .tmp/
+  ✓ Организацию в project-intelligence/
+  ✓ Очистку временных файлов
+  ✓ Обновление navigation.md
 
-Ready to harvest? [y/n]: _
+После harvest снова запустите /add-context для создания Project Intelligence.
+
+Начать harvest? [y/n]: _
 ```
 
-**If yes**: Exit and run `/context harvest`
-**If no**: Continue with `/add-context` (Stage 1)
+**Если yes**: Завершить выполнение и запустить `/context harvest`
+
+**Если no**: Продолжить `/add-context` (Stage 1)
 
 ---
 
 ### Stage 1: Detect Existing Context
 
-Check: `$CONTEXT_DIR` (set in Stage 0.5 — either `.opencode/context/project-intelligence/` or `~/.config/opencode/context/project-intelligence/`)
+Проверить `$CONTEXT_DIR`, установленный на Stage 0.5 — это либо `.opencode/context/project-intelligence/`, либо `~/.config/opencode/context/project-intelligence/`.
 
-**If exists**:
-```
+**Если существует**:
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Found existing project intelligence!
+Найден существующий Project Intelligence!
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Files found:
+Найдены файлы:
   ✓ technical-domain.md (Version: 1.2, Updated: 2026-01-15)
   ✓ business-domain.md (Version: 1.0, Updated: 2026-01-10)
   ✓ navigation.md
 
-Current patterns:
+Текущие шаблоны:
   📦 Tech Stack: Next.js 14 + TypeScript + PostgreSQL + Tailwind
   🔧 API: Zod validation, error handling
   🎨 Component: Functional components, TypeScript props
@@ -223,86 +214,91 @@ Current patterns:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Options:
-  1. Review and update patterns (show each one)
-  2. Add new patterns (keep all existing)
-  3. Replace all patterns (start fresh)
-  4. Cancel
+Варианты:
+  1. Просмотреть и обновить шаблоны (показать каждый)
+  2. Добавить новые шаблоны (сохранить все существующие)
+  3. Заменить все шаблоны (начать с нуля)
+  4. Отмена
 
-Choose [1/2/3/4]: _
+Выберите [1/2/3/4]: _
 ```
 
-**If user chooses 3 (Replace all):**
-```
+**Если пользователь выбирает 3 (Replace all):**
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Replace All: Preview
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Will BACKUP existing files to:
+Будет создан BACKUP существующих файлов в:
   .tmp/backup/project-intelligence-{timestamp}/
     ← technical-domain.md (Version: 1.2)
     ← business-domain.md (Version: 1.0)
     ← navigation.md
 
-Will DELETE and RECREATE:
-  $CONTEXT_DIR/technical-domain.md (new Version: 1.0)
-  $CONTEXT_DIR/navigation.md (new Version: 1.0)
+Будут УДАЛЕНЫ и СОЗДАНЫ ЗАНОВО:
+  $CONTEXT_DIR/technical-domain.md (новая Version: 1.0)
+  $CONTEXT_DIR/navigation.md (новая Version: 1.0)
 
-Existing files backed up → you can restore from .tmp/backup/ if needed.
+Существующие файлы будут сохранены в backup → при необходимости их можно восстановить из .tmp/backup/.
 
-Proceed? [y/n]: _
+Продолжить? [y/n]: _
 ```
 
-**If not exists**:
-```
+**Если context не существует**:
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-No project intelligence found. Let's create it!
+Project Intelligence не найден. Создадим его!
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Saving to: $CONTEXT_DIR
+Сохранение в: $CONTEXT_DIR
 
-Will create:
-  - project-intelligence/technical-domain.md (tech stack & patterns)
-  - project-intelligence/navigation.md (quick overview)
+Будут созданы:
+  - project-intelligence/technical-domain.md (tech stack и patterns)
+  - project-intelligence/navigation.md (краткий обзор)
 
-Takes ~5 min. Follows @mvi_compliance (<200 lines).
+Займёт ~5 минут. Соответствует @mvi_compliance (<200 строк).
 
-Ready? [y/n]: _
+Готовы? [y/n]: _
 ```
 
 ---
 
 ### Stage 1.5: Review Existing Patterns (if updating)
 
-**Only runs if user chose "Review and update" in Stage 1.**
+**Выполняется только в том случае, если пользователь выбрал "Review and update" на Stage 1.**
 
-For each pattern, show current→ask Keep/Update/Remove:
+Для каждого шаблона показать текущее значение→предложить Keep/Update/Remove.
 
 #### Pattern 1: Tech Stack
-```
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Pattern 1/6: Tech Stack
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current:
+Текущее значение:
   Framework: Next.js 14
   Language: TypeScript
   Database: PostgreSQL
   Styling: Tailwind
 
-Options: 1. Keep | 2. Update | 3. Remove
-Choose [1/2/3]: _
+Варианты: 1. Keep | 2. Update | 3. Remove
+Выберите [1/2/3]: _
 
-If '2': New tech stack: _
+Если '2': Новый tech stack: _
 ```
 
 #### Pattern 2: API Pattern
-```
+
+````text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Pattern 2/6: API Pattern
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Current API pattern:
+Текущий API pattern:
+
 ```typescript
 export async function POST(request: Request) {
   try {
@@ -313,67 +309,74 @@ export async function POST(request: Request) {
     return Response.json({ error: error.message }, { status: 400 })
   }
 }
-```
+````
 
-Options: 1. Keep | 2. Update | 3. Remove
-Choose [1/2/3]: _
+Варианты: 1. Keep | 2. Update | 3. Remove
+Выберите [1/2/3]: _
 
-If '2': Paste new API pattern: _
-```
+Если '2': Вставьте новый API pattern: _
+
+````
 
 #### Pattern 3-6: Component, Naming, Standards, Security
-*(Same format: show current→Keep/Update/Remove)*
 
-**After reviewing all**:
-```
+*(Тот же формат: показать текущее→Keep/Update/Remove)*
+
+**После проверки всех шаблонов**:
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Review Summary
+Сводка проверки
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Changes:
-  ✓ Tech Stack: Updated (Next.js 14 → Next.js 15)
-  ✓ API: Kept
-  ✓ Component: Updated (new pattern)
-  ✓ Naming: Kept
-  ✓ Standards: Updated (+2 new)
-  ✓ Security: Kept
+Изменения:
+  ✓ Tech Stack: Обновлён (Next.js 14 → Next.js 15)
+  ✓ API: Сохранён
+  ✓ Component: Обновлён (новый pattern)
+  ✓ Naming: Сохранён
+  ✓ Standards: Обновлены (+2 новых)
+  ✓ Security: Сохранён
 
-Version: 1.2 → 1.3 (content update per @version_tracking)
+Version: 1.2 → 1.3 (обновление контента согласно @version_tracking)
 Updated: 2026-01-29
 
-Proceed? [y/n]: _
-```
+Продолжить? [y/n]: _
+````
 
 ---
 
 ### Stage 2: Interactive Wizard (for new patterns)
 
 #### Q1: Tech Stack
-```
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Q 1/6: What's your tech stack?
+Q 1/6: Какой у вас tech stack?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Examples:
+Примеры:
   1. Next.js + TypeScript + PostgreSQL + Tailwind
   2. React + Python + MongoDB + Material-UI
   3. Vue + Go + MySQL + Bootstrap
-  4. Other (describe)
+  4. Другое (опишите)
 
-Your tech stack: _
+Ваш tech stack: _
 ```
 
-**Capture**: Framework, Language, Database, Styling
+**Получить**: Framework, Language, Database, Styling
 
 #### Q2: API Pattern
+
+```text
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Q 2/6: Пример API endpoint?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Вставьте API endpoint из ВАШЕГО проекта, соответствующий вашему API-стилю.
+
+Пример (Next.js):
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Q 2/6: API endpoint example?
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Paste API endpoint from YOUR project (matches your API style).
-
-Example (Next.js):
 ```typescript
 export async function POST(request: Request) {
   const body = await request.json()
@@ -382,22 +385,27 @@ export async function POST(request: Request) {
 }
 ```
 
-Your API pattern (paste or 'skip'): _
+```text
+Ваш API pattern (вставьте или напишите 'skip'): _
 ```
 
-**Capture**: API endpoint, error handling, validation, response format
+**Получить**: API endpoint, error handling, validation, response format
 
 #### Q3: Component Pattern
+
+```text
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Q 3/6: Пример component?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Вставьте component из ВАШЕГО проекта.
+
+Пример (React):
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Q 3/6: Component example?
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Paste component from YOUR project.
-
-Example (React):
 ```typescript
 interface UserCardProps { name: string; email: string }
+
 export function UserCard({ name, email }: UserCardProps) {
   return <div className="rounded-lg border p-4">
     <h3>{name}</h3><p>{email}</p>
@@ -405,24 +413,26 @@ export function UserCard({ name, email }: UserCardProps) {
 }
 ```
 
-Your component (paste or 'skip'): _
+```text
+Ваш component (вставьте или напишите 'skip'): _
 ```
 
-**Capture**: Component structure, props pattern, styling, TypeScript
+**Получить**: Component structure, props pattern, styling, TypeScript
 
 #### Q4: Naming Conventions
-```
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Q 4/6: Naming conventions?
+Q 4/6: Какие naming conventions?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Examples:
+Примеры:
   Files: kebab-case (user-profile.tsx)
   Components: PascalCase (UserProfile)
   Functions: camelCase (getUserProfile)
   Database: snake_case (user_profiles)
 
-Your conventions:
+Ваши conventions:
   Files: _
   Components: _
   Functions: _
@@ -430,34 +440,36 @@ Your conventions:
 ```
 
 #### Q5: Code Standards
-```
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Q 5/6: Code standards?
+Q 5/6: Какие code standards?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Examples:
+Примеры:
   - TypeScript strict mode
   - Validate w/ Zod
   - Use Drizzle for DB queries
   - Prefer server components
 
-Your standards (one/line, 'done' when finished):
+Ваши standards (по одному на строку, 'done' для завершения):
   1. _
 ```
 
 #### Q6: Security Requirements
-```
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Q 6/6: Security requirements?
+Q 6/6: Какие security requirements?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Examples:
+Примеры:
   - Validate all user input
   - Use parameterized queries
   - Sanitize before rendering
   - HTTPS only
 
-Your requirements (one/line, 'done' when finished):
+Ваши requirements (по одному на строку, 'done' для завершения):
   1. _
 ```
 
@@ -466,7 +478,8 @@ Your requirements (one/line, 'done' when finished):
 ### Stage 3: Generate/Update Context
 
 **Preview**:
-```
+
+````text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Preview: technical-domain.md
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -475,89 +488,103 @@ Preview: technical-domain.md
 
 # Technical Domain
 
-**Purpose**: Tech stack, architecture, development patterns for this project.
+**Purpose**: Tech stack, архитектура и development patterns этого проекта.
 **Last Updated**: 2026-01-29
 
 ## Quick Reference
-**Update Triggers**: Tech stack changes | New patterns | Architecture decisions
-**Audience**: Developers, AI agents
+
+**Update Triggers**: Изменения tech stack | Новые patterns | Архитектурные решения
+**Audience**: Разработчики, AI agents
 
 ## Primary Stack
+
 | Layer | Technology | Version | Rationale |
-|-------|-----------|---------|-----------|
+|-------|------------|---------|-----------|
 | Framework | {framework} | {version} | {why} |
 | Language | {language} | {version} | {why} |
 | Database | {database} | {version} | {why} |
 | Styling | {styling} | {version} | {why} |
 
 ## Code Patterns
+
 ### API Endpoint
+
 ```{language}
 {user_api_pattern}
-```
+````
 
 ### Component
+
 ```{language}
 {user_component_pattern}
 ```
 
 ## Naming Conventions
-| Type | Convention | Example |
-|------|-----------|---------|
-| Files | {file_naming} | {example} |
+
+| Type       | Convention         | Example   |
+| ---------- | ------------------ | --------- |
+| Files      | {file_naming}      | {example} |
 | Components | {component_naming} | {example} |
-| Functions | {function_naming} | {example} |
-| Database | {db_naming} | {example} |
+| Functions  | {function_naming}  | {example} |
+| Database   | {db_naming}        | {example} |
 
 ## Code Standards
+
 {user_code_standards}
 
 ## Security Requirements
+
 {user_security_requirements}
 
 ## 📂 Codebase References
+
 **Implementation**: `{detected_files}` - {desc}
 **Config**: package.json, tsconfig.json
 
 ## Related Files
-- Business Domain (example: business-domain.md)
-- Decisions Log (example: decisions-log.md)
+
+* Business Domain (пример: business-domain.md)
+* Decisions Log (пример: decisions-log.md)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Size: {line_count} lines (limit: 200 per @mvi_compliance)
+Размер: {line_count} строк (лимит: 200 согласно @mvi_compliance)
 Status: ✅ MVI compliant
 
-Save to: $CONTEXT_DIR/technical-domain.md
+Сохранить в: $CONTEXT_DIR/technical-domain.md
 
-Looks good? [y/n/edit]: _
-```
+Всё правильно? [y/n/edit]: _
 
-**Actions**:
-- Confirm: Write file per @project_intelligence
-- Edit: Open in editor→validate after
-- Update: Show diff→highlight new→confirm
+````
+
+**Действия**:
+
+- Confirm: записать файл согласно @project_intelligence
+- Edit: открыть в editor→после этого провести validation
+- Update: показать diff→выделить новое→получить подтверждение
 
 ---
 
 ### Stage 4: Validation & Creation
 
-**Validation**:
-```
-Running validation...
+**Валидация**:
 
-✅ <200 lines (@mvi_compliance)
-✅ Has HTML frontmatter (@frontmatter_required)
-✅ Has metadata (Purpose, Last Updated)
-✅ Has codebase refs (@codebase_refs)
-✅ Priority assigned: critical (@priority_assignment)
-✅ Version set: 1.0 (@version_tracking)
-✅ MVI compliant (<30s scannable)
-✅ No duplication
-```
+```text
+Запуск validation...
 
-**navigation.md preview** (also created/updated):
-```
+✅ <200 строк (@mvi_compliance)
+✅ Присутствует HTML frontmatter (@frontmatter_required)
+✅ Присутствуют metadata (Purpose, Last Updated)
+✅ Присутствуют codebase refs (@codebase_refs)
+✅ Назначен priority: critical (@priority_assignment)
+✅ Установлена version: 1.0 (@version_tracking)
+✅ Соответствует MVI (<30 секунд на просмотр)
+✅ Нет дублирования
+````
+
+**Preview navigation.md** (также создаётся/обновляется):
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Preview: navigation.md
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -571,76 +598,84 @@ Preview: navigation.md
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-**Full creation plan**:
-```
+**Полный план создания**:
+
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Files to write:
+Файлы для записи:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  CREATE  $CONTEXT_DIR/technical-domain.md ({line_count} lines)
-  CREATE  $CONTEXT_DIR/navigation.md ({nav_line_count} lines)
+  CREATE  $CONTEXT_DIR/technical-domain.md ({line_count} строк)
+  CREATE  $CONTEXT_DIR/navigation.md ({nav_line_count} строк)
 
-Total: 2 files
+Итого: 2 файла
 
-Proceed? [y/n]: _
+Продолжить? [y/n]: _
 ```
 
 ---
 
 ### Stage 5: Confirmation & Next Steps
 
-```
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ Project Intelligence created successfully!
+✅ Project Intelligence успешно создан!
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Files created:
+Созданы файлы:
   $CONTEXT_DIR/technical-domain.md
   $CONTEXT_DIR/navigation.md
 
-Location: $CONTEXT_DIR
-Agents now use YOUR patterns automatically!
+Расположение: $CONTEXT_DIR
+
+Теперь агенты автоматически используют ВАШИ шаблоны!
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-What's next?
+Что дальше?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-1. Test it:
+1. Протестировать:
    opencode --agent OpenCoder
    > "Create API endpoint"
-   (Uses YOUR pattern!)
+   (Использует ВАШ pattern!)
 
-2. Review: cat $CONTEXT_DIR/technical-domain.md
+2. Проверить:
+   cat $CONTEXT_DIR/technical-domain.md
 
-3. Add business context: /add-context --business
+3. Добавить business context:
+   /add-context --business
 
-4. Build: opencode --agent OpenCoder > "Create user auth system"
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 Tip: Update context as project evolves
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-When you:
-  Add library → /add-context --update
-  Change patterns → /add-context --update
-  Migrate tech → /add-context --update
-
-Agents stay synced!
+4. Начать разработку:
+   opencode --agent OpenCoder > "Create user auth system"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 Tip: Global patterns
+💡 Совет: Обновляйте context по мере развития проекта
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Want the same patterns across ALL your projects?
+Когда вы:
+  Добавляете библиотеку → /add-context --update
+  Меняете patterns → /add-context --update
+  Мигрируете tech → /add-context --update
+
+Агенты останутся синхронизированы!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 Совет: Global patterns
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Хотите использовать одинаковые patterns во ВСЕХ проектах?
+
   /add-context --global
-  → Saves to ~/.config/opencode/context/project-intelligence/
-  → Acts as fallback for projects without local context
 
-Already have global patterns? Bring them into this project:
+  → Сохраняет в ~/.config/opencode/context/project-intelligence/
+  → Используется как fallback для проектов без local context
+
+Уже есть global patterns? Перенесите их в этот проект:
+
   /context migrate
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📚 Learn More
+📚 Подробнее
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 - Project Intelligence: .opencode/context/core/standards/project-intelligence.md
@@ -650,62 +685,70 @@ Already have global patterns? Bring them into this project:
 
 ---
 
-## Implementation Details
+## Детали реализации
 
 ### External Context Detection (Stage 0)
 
-**Process**:
-1. Check: `ls .tmp/external-context.md .tmp/context-*.md .tmp/*-context.md 2>/dev/null`
-2. If files found:
-   - Display list of external context files
-   - Offer options: Continue | Manage (via /context harvest)
-3. If option 1 (Continue):
-   - Proceed to Stage 1 (detect existing project intelligence)
-   - External files remain in .tmp/ for later processing via `/context harvest`
-4. If option 2 (Manage):
-   - Guide user to `/context harvest` command
-   - Explain what harvest does (extract, organize, clean)
-   - Exit add-context
-   - User runs `/context harvest` to process external files
-   - User runs `/add-context` again after harvest completes
+**Процесс**:
+
+1. Проверить: `ls .tmp/external-context.md .tmp/context-*.md .tmp/*-context.md 2>/dev/null`
+2. Если файлы найдены:
+
+   * Показать список внешних context-файлов
+   * Предложить варианты: Continue | Manage (через `/context harvest`)
+3. Если выбран вариант 1 (Continue):
+
+   * Перейти к Stage 1 (определение существующего Project Intelligence)
+   * Внешние файлы остаются в `.tmp/` для последующей обработки через `/context harvest`
+4. Если выбран вариант 2 (Manage):
+
+   * Предложить пользователю команду `/context harvest`
+   * Объяснить, что делает harvest (extract, organize, clean)
+   * Завершить add-context
+   * Пользователь запускает `/context harvest` для обработки внешних файлов
+   * После завершения harvest пользователь снова запускает `/add-context`
 
 ### Pattern Detection (Stage 1)
 
-**Process**:
-1. Check: `ls $CONTEXT_DIR/` (path determined in Stage 0.5)
-2. Read: `cat technical-domain.md` (if exists)
-3. Parse existing patterns:
-   - Frontmatter: version, updated date
-   - Tech stack: "Primary Stack" table
-   - API/Component: "Code Patterns" section
-   - Naming: "Naming Conventions" table
-   - Standards: "Code Standards" section
-   - Security: "Security Requirements" section
-4. Display summary
-5. Offer options: Review/Add/Replace/Cancel
+**Процесс**:
+
+1. Проверить: `ls $CONTEXT_DIR/` (путь определён на Stage 0.5)
+2. Прочитать: `cat technical-domain.md` (если существует)
+3. Распарсить существующие patterns:
+
+   * Frontmatter: version, updated date
+   * Tech stack: таблица "Primary Stack"
+   * API/Component: раздел "Code Patterns"
+   * Naming: таблица "Naming Conventions"
+   * Standards: раздел "Code Standards"
+   * Security: раздел "Security Requirements"
+4. Показать summary
+5. Предложить варианты: Review/Add/Replace/Cancel
 
 ### Pattern Review (Stage 1.5)
 
-**Per pattern**:
-1. Show current value (parsed from file)
-2. Ask: Keep | Update | Remove
-3. If Update: Prompt for new value
-4. Track changes in `changes_to_make[]`
+**Для каждого pattern**:
 
-**After all reviewed**:
-1. Show summary
-2. Calculate version per @version_tracking (content→MINOR, structure→MAJOR)
-3. Confirm
-4. Proceed to Stage 3
+1. Показать текущее значение, полученное из файла
+2. Спросить: Keep | Update | Remove
+3. Если Update: запросить новое значение
+4. Сохранить изменения в `changes_to_make[]`
+
+**После проверки всех patterns**:
+
+1. Показать summary
+2. Рассчитать version согласно @version_tracking (content→MINOR, structure→MAJOR)
+3. Получить подтверждение
+4. Перейти к Stage 3
 
 ### Delegation to ContextOrganizer
 
 ```yaml
 operation: create | update
-template: technical-domain  # Project Intelligence template
+template: technical-domain  # Шаблон Project Intelligence
 target_directory: project-intelligence
 
-# For create/update operations
+# Для операций create/update
 user_responses:
   tech_stack: {framework, language, database, styling}
   api_pattern: string | null
@@ -713,10 +756,10 @@ user_responses:
   naming_conventions: {files, components, functions, database}
   code_standards: string[]
   security_requirements: string[]
-  
+
 frontmatter:
   context: project-intelligence/technical
-  priority: critical  # @priority_assignment (80% use cases)
+  priority: critical  # @priority_assignment (80% случаев использования)
   version: {calculated}  # @version_tracking
   updated: {current_date}
 
@@ -727,195 +770,226 @@ validation:
   navigation_updated: true  # @navigation_update
 ```
 
-**Note**: External context file management (harvest, extract, organize) is handled by `/context harvest` command, not `/add-context`.
+**Примечание**: Управление внешними context-файлами (harvest, extract, organize) выполняется командой `/context harvest`, а не `/add-context`.
 
 ### File Structure Inference
 
-**Based on tech stack, infer common structure**:
+**Определять типичную структуру на основе tech stack**:
 
 Next.js: `src/app/ components/ lib/ db/`
+
 React: `src/components/ hooks/ utils/ api/`
+
 Express: `src/routes/ controllers/ models/ middleware/`
 
 ---
 
-## Success Criteria
+## Критерии успешного выполнения
 
-**User Experience**:
-- [ ] Wizard complete <5 min
-- [ ] Next steps clear
-- [ ] Update process understood
+**Пользовательский опыт**:
 
-**File Quality**:
-- [ ] @mvi_compliance (<200 lines, <30s scannable)
-- [ ] @frontmatter_required (HTML frontmatter)
-- [ ] @codebase_refs (codebase references section)
-- [ ] @priority_assignment (critical for tech stack)
-- [ ] @version_tracking (1.0 new, incremented updates)
+* [ ] Мастер завершён менее чем за 5 минут
+* [ ] Следующие шаги понятны
+* [ ] Процесс обновления понятен
 
-**System Integration**:
-- [ ] @project_intelligence (technical-domain.md in project-intelligence/)
-- [ ] @navigation_update (navigation.md updated)
-- [ ] Agents load & use patterns
-- [ ] No duplication
+**Качество файлов**:
+
+* [ ] @mvi_compliance (<200 строк, просмотр <30 секунд)
+* [ ] @frontmatter_required (HTML frontmatter)
+* [ ] @codebase_refs (раздел codebase references)
+* [ ] @priority_assignment (critical для tech stack)
+* [ ] @version_tracking (1.0 для нового файла, увеличение версии при обновлении)
+
+**Системная интеграция**:
+
+* [ ] @project_intelligence (technical-domain.md в project-intelligence/)
+* [ ] @navigation_update (navigation.md обновлён)
+* [ ] Агенты загружают и используют patterns
+* [ ] Нет дублирования
 
 ---
 
-## Examples
+## Примеры
 
-### Example 1: First Time (No Context)
+### Пример 1: Первый запуск (Context отсутствует)
+
 ```bash
 /add-context
 
 # Q1: Next.js + TypeScript + PostgreSQL + Tailwind
-# Q2: [pastes Next.js API route]
-# Q3: [pastes React component]
-# Q4-6: [answers]
+# Q2: [вставляет Next.js API route]
+# Q3: [вставляет React component]
+# Q4-6: [ответы]
 
-✅ Created: technical-domain.md, navigation.md
+✅ Созданы: technical-domain.md, navigation.md
 ```
 
-### Example 2: Review & Update
+### Пример 2: Review & Update
+
 ```bash
 /add-context
 
-# Found existing → Choose "1. Review and update"
+# Найден существующий context → выбрать "1. Review and update"
 # Pattern 1: Tech Stack → Update (Next.js 14 → 15)
 # Pattern 2-6: Keep
 
-✅ Updated: Version 1.2 → 1.3
+✅ Обновлено: Version 1.2 → 1.3
 ```
 
-### Example 3: Quick Update
+### Пример 3: Быстрое обновление
+
 ```bash
 /add-context --tech-stack
 
-# Current: Next.js 15 + TypeScript + PostgreSQL + Tailwind
-# New: Next.js 15 + TypeScript + PostgreSQL + Drizzle + Tailwind
+# Текущее: Next.js 15 + TypeScript + PostgreSQL + Tailwind
+# Новое: Next.js 15 + TypeScript + PostgreSQL + Drizzle + Tailwind
 
 ✅ Version 1.4 → 1.5
 ```
 
-### Example 4: External Context Files Present
+### Пример 4: Присутствуют внешние Context Files
+
 ```bash
 /add-context
 
-# Found external context files in .tmp/
+# Найдены внешние context-файлы в .tmp/
 #   📄 .tmp/external-context.md (2.4 KB)
 #   📄 .tmp/api-patterns.md (1.8 KB)
 #
-# Options:
-#   1. Continue with /add-context (ignore external files for now)
-#   2. Manage external files first (via /context harvest)
+# Варианты:
+#   1. Продолжить /add-context (пока игнорировать внешние файлы)
+#   2. Сначала обработать внешние файлы (через /context harvest)
 #
-# Choose [1/2]: 2
+# Выберите [1/2]: 2
 #
-# To manage external context files, use:
+# Для управления внешними context-файлами используйте:
 #   /context harvest
 #
-# This will:
-#   ✓ Extract knowledge from .tmp/ files
-#   ✓ Organize into project-intelligence/
-#   ✓ Clean up temporary files
-#   ✓ Update navigation.md
+# Команда выполнит:
+#   ✓ Извлечение знаний из файлов .tmp/
+#   ✓ Организацию в project-intelligence/
+#   ✓ Очистку временных файлов
+#   ✓ Обновление navigation.md
 #
-# After harvesting, run /add-context again.
+# После harvest снова запустите /add-context.
 ```
 
-### Example 5: After Harvesting External Context
+### Пример 5: После Harvest внешнего Context
+
 ```bash
-# After running: /context harvest
+# После выполнения: /context harvest
 
 /add-context
 
-# No external context files found in .tmp/
-# Proceeding to detect existing project intelligence...
+# В .tmp/ не найдено внешних context-файлов
+# Переход к поиску существующего Project Intelligence...
 #
-# ✅ Created: technical-domain.md (merged with harvested patterns)
+# ✅ Создан: technical-domain.md (объединён с patterns, полученными через harvest)
 ```
 
 ---
 
-## Error Handling
+## Обработка ошибок
 
-**Invalid Input**:
-```
-⚠️ Invalid input
-Expected: Tech stack description
-Got: [empty]
+**Некорректный ввод**:
 
-Example: Next.js + TypeScript + PostgreSQL + Tailwind
-```
+```text
+⚠️ Некорректный ввод
 
-**File Too Large**:
-```
-⚠️ Exceeds 200 lines (@mvi_compliance)
-Current: 245 | Limit: 200
+Ожидалось: описание Tech stack
+Получено: [empty]
 
-Simplify patterns or split into multiple files.
+Пример: Next.js + TypeScript + PostgreSQL + Tailwind
 ```
 
-**Invalid Syntax**:
-```
-⚠️ Invalid code syntax in API pattern
-Error: Unexpected token line 3
+**Файл слишком большой**:
 
-Check code & retry.
+```text
+⚠️ Превышено ограничение 200 строк (@mvi_compliance)
+
+Текущее значение: 245 | Лимит: 200
+
+Упростите patterns или разделите их на несколько файлов.
+```
+
+**Некорректный синтаксис**:
+
+```text
+⚠️ Некорректный синтаксис кода в API pattern
+
+Ошибка: Unexpected token line 3
+
+Проверьте код и повторите попытку.
 ```
 
 ---
 
-## Tips
+## Советы
 
-**Keep Simple**: Focus on most common patterns, add more later
-**Use Real Examples**: Paste actual code from YOUR project
-**Update Regularly**: Run `/add-context --update` when patterns change
-**Test After**: Build something simple to verify agents use patterns correctly
+**Держите всё просто**: Сосредоточьтесь на наиболее распространённых patterns, остальные можно добавить позже.
+
+**Используйте реальные примеры**: Вставляйте настоящий код из ВАШЕГО проекта.
+
+**Регулярно обновляйте**: Запускайте `/add-context --update`, когда patterns изменяются.
+
+**Протестируйте после изменений**: Создайте что-нибудь простое, чтобы убедиться, что агенты корректно используют patterns.
 
 ---
 
-## Troubleshooting
+## Устранение неполадок
 
-**Q: Agents not using patterns?**
-A: Check file exists, <200 lines. Run `/context validate`
+**Q: Агенты не используют patterns?**
 
-**Q: See what's in context?**
-A: `cat .opencode/context/project-intelligence/technical-domain.md` (local) or `cat ~/.config/opencode/context/project-intelligence/technical-domain.md` (global)
+A: Проверьте, что файл существует и содержит <200 строк. Запустите `/context validate`.
 
-**Q: Multiple context files?**
-A: Yes! Create in your project-intelligence directory. Agents load all.
+**Q: Как посмотреть содержимое context?**
 
-**Q: Remove pattern?**
-A: Edit directly: `nano .opencode/context/project-intelligence/technical-domain.md`
+A: `cat .opencode/context/project-intelligence/technical-domain.md` (local) или `cat ~/.config/opencode/context/project-intelligence/technical-domain.md` (global)
 
-**Q: Share w/ team?**
-A: Yes! Use local install (`.opencode/context/project-intelligence/`) and commit to repo. Team members get your patterns automatically.
+**Q: Можно использовать несколько context-файлов?**
+
+A: Да! Создавайте их в директории project-intelligence. Агенты загрузят все.
+
+**Q: Как удалить pattern?**
+
+A: Отредактируйте напрямую: `nano .opencode/context/project-intelligence/technical-domain.md`
+
+**Q: Можно поделиться с командой?**
+
+A: Да! Используйте local install (`.opencode/context/project-intelligence/`) и добавьте его в repo. Участники команды автоматически получат ваши patterns.
 
 **Q: Local vs global?**
-A: Local (`.opencode/`) = project-specific, committed to git, team-shared. Global (`~/.config/opencode/`) = personal defaults across all projects. Local overrides global.
 
-**Q: Installed globally but want project patterns?**
-A: Run `/add-context` (defaults to local). Creates `.opencode/context/project-intelligence/` in your project even if OAC was installed globally.
+A: Local (`.opencode/`) = project-specific, хранится в git и используется командой. Global (`~/.config/opencode/`) = личные значения по умолчанию для всех проектов. Local имеет приоритет над global.
 
-**Q: Have external context files in .tmp/?**
-A: Run `/context harvest` to extract and organize them into permanent context
+**Q: OAC установлен globally, но нужны project patterns?**
 
-**Q: Want to clean up .tmp/ files?**
-A: Run `/context harvest` to extract knowledge and clean up temporary files
+A: Запустите `/add-context` — по умолчанию используется local. Команда создаст `.opencode/context/project-intelligence/` внутри проекта, даже если OAC был установлен globally.
 
-**Q: Move .tmp/ files to permanent context?**
-A: Run `/context harvest` to extract and organize them
+**Q: Есть внешние context-файлы в .tmp/?**
 
-**Q: Update external context files?**
-A: Edit directly: `nano .tmp/external-context.md` then run `/context harvest`
+A: Запустите `/context harvest`, чтобы извлечь информацию и организовать её в постоянный context.
 
-**Q: Remove specific external file?**
-A: Delete directly: `rm .tmp/external-context.md` then run `/context harvest`
+**Q: Нужно очистить файлы .tmp/?**
+
+A: Запустите `/context harvest`, чтобы извлечь знания и очистить временные файлы.
+
+**Q: Как перенести файлы .tmp/ в постоянный context?**
+
+A: Запустите `/context harvest`, чтобы извлечь и организовать их.
+
+**Q: Как обновить внешние context-файлы?**
+
+A: Отредактируйте напрямую: `nano .tmp/external-context.md`, затем запустите `/context harvest`.
+
+**Q: Как удалить конкретный внешний файл?**
+
+A: Удалите напрямую: `rm .tmp/external-context.md`, затем запустите `/context harvest`.
 
 ---
 
-## Related Commands
+## Связанные команды
 
-- `/context` - Manage context files (harvest, organize, validate)
-- `/context validate` - Check integrity
-- `/context map` - View structure
+* `/context` — управление context-файлами (harvest, organize, validate)
+* `/context validate` — проверка целостности
+* `/context map` — просмотр структуры

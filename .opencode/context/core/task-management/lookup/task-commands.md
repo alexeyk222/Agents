@@ -1,35 +1,35 @@
 <!-- Context: core/task-commands | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Lookup: Task CLI Commands
+# Справочник: команды Task CLI
 
-**Purpose**: Quick reference for task-cli.ts commands
+**Назначение**: краткий справочник по командам `task-cli.ts`
 
-**Last Updated**: 2026-02-14
+**Последнее обновление**: 2026-02-14
 
 ---
 
-## Usage
+## Использование
 
 ```bash
 npx ts-node .opencode/context/tasks/scripts/task-cli.ts <command> [args]
 ```
 
-Task files are stored in `.tmp/tasks/` at the project root.
+Файлы задач хранятся в `.tmp/tasks/` в корне проекта.
 
 ---
 
-## Commands
+## Команды
 
 ### status [feature]
 
-Show task status summary for all features or specific feature.
+Показать сводку статуса задач для всех фич или конкретной фичи.
 
 ```bash
 task-cli.ts status
 task-cli.ts status my-feature
 ```
 
-**Output**:
+**Вывод**:
 ```
 [my-feature] My Feature Name
   Status: active | Progress: 40% (2/5)
@@ -40,14 +40,14 @@ task-cli.ts status my-feature
 
 ### next [feature]
 
-Show tasks ready to work on (deps satisfied).
+Показать задачи, готовые к работе (зависимости выполнены).
 
 ```bash
 task-cli.ts next
 task-cli.ts next my-feature
 ```
 
-**Output**:
+**Вывод**:
 ```
 === Ready Tasks (deps satisfied) ===
 
@@ -60,26 +60,26 @@ task-cli.ts next my-feature
 
 ### parallel [feature]
 
-Show only parallelizable tasks ready now.
+Показать только параллелизуемые задачи, готовые сейчас.
 
 ```bash
 task-cli.ts parallel
 task-cli.ts parallel my-feature
 ```
 
-**Use**: Batch multiple isolated tasks for parallel execution.
+**Использование**: объединить несколько изолированных задач для параллельного выполнения.
 
 ---
 
 ### deps \<feature\> \<seq\>
 
-Show dependency tree for a specific task.
+Показать дерево зависимостей для конкретной задачи.
 
 ```bash
 task-cli.ts deps my-feature 04
 ```
 
-**Output**:
+**Вывод**:
 ```
 === Dependency Tree: my-feature/04 ===
 
@@ -93,14 +93,14 @@ task-cli.ts deps my-feature 04
 
 ### blocked [feature]
 
-Show blocked tasks and reasons.
+Показать заблокированные задачи и причины.
 
 ```bash
 task-cli.ts blocked
 task-cli.ts blocked my-feature
 ```
 
-**Output**:
+**Вывод**:
 ```
 === Blocked Tasks ===
 
@@ -113,37 +113,37 @@ task-cli.ts blocked my-feature
 
 ### complete \<feature\> \<seq\> "summary"
 
-Mark task as completed with summary (max 200 chars).
+Отметить задачу выполненной со сводкой (макс. 200 символов).
 
 ```bash
 task-cli.ts complete my-feature 02 "Created JWT service with RS256 signing"
 ```
 
-**Effect**:
-- Sets `status: "completed"`
-- Sets `completed_at` timestamp
-- Sets `completion_summary`
-- Updates `task.json` counts
+**Эффект**:
+- Устанавливает `status: "completed"`
+- Устанавливает временную метку `completed_at`
+- Устанавливает `completion_summary`
+- Обновляет счетчики в `task.json`
 
 ---
 
 ### validate [feature]
 
-Check JSON validity, dependencies, circular refs.
+Проверить валидность JSON, зависимости и циклические ссылки.
 
 ```bash
 task-cli.ts validate
 task-cli.ts validate my-feature
 ```
 
-**Checks**:
-- task.json exists
-- ID format correct
-- Dependencies exist
-- No circular dependencies
-- Counts match
+**Проверки**:
+- `task.json` существует
+- Формат ID корректен
+- Зависимости существуют
+- Нет циклических зависимостей
+- Счетчики совпадают
 
-**Output**:
+**Вывод**:
 ```
 [my-feature]
   ✓ All checks passed
@@ -155,50 +155,50 @@ task-cli.ts validate my-feature
 
 ---
 
-## Exit Codes
+## Коды выхода
 
-| Code | Meaning |
+| Код | Значение |
 |------|---------|
-| 0 | Success |
-| 1 | Error (validate found issues, missing args) |
+| 0 | Успех |
+| 1 | Ошибка (`validate` нашел проблемы, не хватает args) |
 
 ---
 
-## Enhanced Schema Support
+## Поддержка расширенной схемы
 
-The CLI fully supports the enhanced task schema (v2.0) with:
-- **Line-number precision** - Context files with specific line ranges
-- **Domain modeling** - bounded_context, module, vertical_slice fields
-- **Contract tracking** - API/interface dependencies
+CLI полностью поддерживает расширенную схему задач (v2.0) с:
+- **Line-number precision** - файлы контекста с конкретными диапазонами строк
+- **Domain modeling** - поля `bounded_context`, `module`, `vertical_slice`
+- **Contract tracking** - зависимости API/interface
 - **Design artifacts** - Figma, wireframes, mockups
-- **ADR references** - Architecture decision records
-- **Prioritization** - RICE/WSJF scores
+- **ADR references** - architecture decision records
+- **Prioritization** - scores RICE/WSJF
 
-All enhanced fields are optional and backward compatible. See `../standards/enhanced-task-schema.md` for details.
+Все расширенные поля необязательны и обратно совместимы. Подробности см. в `../standards/enhanced-task-schema.md`.
 
 ---
 
-## Planning Workflow Integration
+## Интеграция с planning workflow
 
-For multi-stage orchestration workflows, use these planning agents before task creation:
+Для multi-stage orchestration workflows используйте эти planning agents перед созданием задач:
 
-| Agent | Purpose | Output |
+| Агент | Назначение | Выход |
 |-------|---------|--------|
-| **ArchitectureAnalyzer** | DDD bounded context identification | `.tmp/architecture/contexts.json` |
-| **StoryMapper** | User journey and story mapping | `.tmp/story-maps/map.json` |
-| **PrioritizationEngine** | RICE/WSJF scoring | `.tmp/backlog/prioritized.json` |
-| **ContractManager** | API contract definition | `.tmp/contracts/{service}.json` |
-| **ADRManager** | Architecture decision records | `docs/adr/` |
+| **ArchitectureAnalyzer** | определение DDD bounded context | `.tmp/architecture/contexts.json` |
+| **StoryMapper** | user journey и story mapping | `.tmp/story-maps/map.json` |
+| **PrioritizationEngine** | scoring RICE/WSJF | `.tmp/backlog/prioritized.json` |
+| **ContractManager** | определение API contract | `.tmp/contracts/{service}.json` |
+| **ADRManager** | architecture decision records | `docs/adr/` |
 
-These agents populate enhanced schema fields (bounded_context, contracts, related_adrs, rice_score, etc.) automatically.
+Эти агенты автоматически заполняют поля расширенной схемы (`bounded_context`, `contracts`, `related_adrs`, `rice_score` и т. д.).
 
-See `.opencode/context/core/workflows/multi-stage-orchestration.md` for the complete workflow.
+Полный workflow см. в `.opencode/context/core/workflows/multi-stage-orchestration.md`.
 
 ---
 
-## Related
+## Связанные материалы
 
-- `../standards/task-schema.md` - Base JSON schema reference
-- `../standards/enhanced-task-schema.md` - Extended schema with advanced features
-- `../guides/managing-tasks.md` - Workflow guide
-- `../workflows/multi-stage-orchestration.md` - Planning workflow
+- `../standards/task-schema.md` - справочник базовой JSON-схемы
+- `../standards/enhanced-task-schema.md` - расширенная схема с advanced features
+- `../guides/managing-tasks.md` - руководство по workflow
+- `../workflows/multi-stage-orchestration.md` - planning workflow

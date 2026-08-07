@@ -1,46 +1,46 @@
 <!-- Context: development/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Development Principles Navigation
+# Навигация по принципам разработки
 
-**Purpose**: Universal development principles (language-agnostic)
+**Назначение**: Универсальные принципы разработки (не зависят от языка)
 
 ---
 
-## Files
+## Файлы
 
-| File | Topic | Priority | Load When |
+| Файл | Тема | Приоритет | Когда загружать |
 |------|-------|----------|-----------|
-| `clean-code.md` | Clean code practices | ⭐⭐⭐⭐ | Writing any code |
-| `api-design.md` | API design principles | ⭐⭐⭐⭐ | Designing APIs |
+| `clean-code.md` | Практики чистого кода | ⭐⭐⭐⭐ | При написании любого кода |
+| `api-design.md` | Принципы проектирования API | ⭐⭐⭐⭐ | При проектировании API |
 
 ---
 
-## Loading Strategy
+## Стратегия загрузки
 
-**For general development**:
-1. Load `clean-code.md` (high)
-2. Also load: `../../core/standards/code-quality.md` (critical)
+**Для общей разработки**:
+1. Загрузите `clean-code.md` (high)
+2. Также загрузите: `../../core/standards/code-quality.md` (critical)
 
-**For API development**:
-1. Load `api-design.md` (high)
-2. Also load: `../../core/standards/code-quality.md` (critical)
+**Для разработки API**:
+1. Загрузите `api-design.md` (high)
+2. Также загрузите: `../../core/standards/code-quality.md` (critical)
 
 ---
 
-## Scope
+## Область действия
 
-**This directory**: Development-specific principles
-**Core standards**: Universal standards (all projects, all languages)
+**Этот каталог**: принципы, специфичные для разработки
+**Базовые стандарты**: универсальные стандарты (все проекты, все языки)
 
-| Location | Scope | Examples |
+| Расположение | Область | Примеры |
 |----------|-------|----------|
-| `core/standards/` | **Universal** (all projects) | Code quality, testing, docs, security |
-| `development/principles/` | **Development-specific** | Clean code, API design, error handling |
+| `core/standards/` | **Универсальные** (все проекты) | Качество кода, тестирование, документация, безопасность |
+| `development/principles/` | **Для разработки** | Чистый код, проектирование API, обработка ошибок |
 
 ---
 
-## Related
+## Связанное
 
-- **Core Standards** → `../../core/standards/navigation.md`
-- **Backend Patterns** → `../backend-navigation.md`
-- **Frontend Patterns** → `../ui-navigation.md`
+- **Базовые стандарты** → `../../core/standards/navigation.md`
+- **Паттерны backend** → `../backend-navigation.md`
+- **Паттерны frontend** → `../ui-navigation.md`

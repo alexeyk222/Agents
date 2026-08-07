@@ -1,40 +1,40 @@
 <!-- Context: openagents-repo/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Errors
+# Ошибки OpenAgents
 
-**Purpose**: Common errors and troubleshooting for OpenAgents Control
+**Назначение**: типовые ошибки и диагностика для OpenAgents Control
 
 ---
 
-## Structure
+## Структура
 
 ```
 openagents-repo/errors/
-├── navigation.md (this file)
-└── [error documentation]
+├── navigation.md (этот файл)
+└── [документация по ошибкам]
 ```
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **View errors** | `./` |
-| **Guides** | `../guides/navigation.md` |
-| **Quality** | `../quality/navigation.md` |
+| **Посмотреть ошибки** | `./` |
+| **Руководства** | `../guides/navigation.md` |
+| **Качество** | `../quality/navigation.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Errors** → Common errors and how to fix them  
-**Troubleshooting** → Solutions for common issues
+**Ошибки** → типовые ошибки и способы исправления  
+**Диагностика** → решения частых проблем
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **OpenAgents Navigation** → `../navigation.md`
-- **Guides** → `../guides/navigation.md`
-- **Quality** → `../quality/navigation.md`
+- **Навигация OpenAgents** → `../navigation.md`
+- **Руководства** → `../guides/navigation.md`
+- **Качество** → `../quality/navigation.md`

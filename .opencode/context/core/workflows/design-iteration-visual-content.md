@@ -1,16 +1,16 @@
 <!-- Context: workflows/design-iteration-visual-content | Priority: medium | Version: 1.0 | Updated: 2025-12-09 -->
-# Visual Content Generation
+# Генерация визуального контента
 
-## When to Use Image Specialist
+## Когда использовать Image Specialist
 
-Delegate to **Image Specialist** subagent when users request:
+Делегируйте subagent **Image Specialist**, когда пользователи просят:
 
-- **Diagrams & Visualizations**: Architecture diagrams, flowcharts, system visualizations
-- **UI Mockups & Wireframes**: Visual mockups, design concepts, interface previews
-- **Graphics & Assets**: Social media graphics, promotional images, icons, illustrations
-- **Image Editing**: Photo enhancement, image modifications, visual adjustments
+- **Диаграммы и визуализации**: архитектурные диаграммы, flowcharts, визуализации систем
+- **UI-макеты и wireframes**: визуальные макеты, дизайн-концепты, previews интерфейса
+- **Графика и assets**: графика для соцсетей, промо-изображения, иконки, иллюстрации
+- **Редактирование изображений**: улучшение фото, модификации изображений, визуальные корректировки
 
-## Invocation Pattern
+## Паттерн вызова
 
 ```javascript
 task(
@@ -31,9 +31,9 @@ task(
 )
 ```
 
-## Example Use Cases
+## Примеры использования
 
-### Architecture Diagram
+### Диаграмма архитектуры
 
 ```javascript
 task(
@@ -50,7 +50,7 @@ task(
 )
 ```
 
-### UI Mockup
+### UI-макет
 
 ```javascript
 task(
@@ -67,7 +67,7 @@ task(
 )
 ```
 
-### Social Media Graphic
+### Графика для соцсетей
 
 ```javascript
 task(
@@ -83,28 +83,28 @@ task(
 )
 ```
 
-## Tools Required
+## Требуемые инструменты
 
-- **tool:gemini** - Gemini Nano Banana AI for image generation/editing
-- Automatically available in Developer profile
+- **tool:gemini** - Gemini Nano Banana AI для генерации/редактирования изображений
+- Автоматически доступен в Developer profile
 
-## When NOT to Delegate
+## Когда НЕ делегировать
 
-**Use design-iteration workflow instead** when:
-- Creating interactive HTML/CSS designs
-- Building complete UI implementations
-- Iterating on existing HTML files
-- Need responsive, production-ready code
+**Вместо этого используйте design-iteration workflow**, когда:
+- Создаете интерактивные HTML/CSS-дизайны
+- Собираете полноценные UI-реализации
+- Выполняете итерации существующих HTML-файлов
+- Нужен адаптивный, production-ready код
 
-**Use image-specialist** when:
-- Need static visual assets
-- Creating diagrams or illustrations
-- Generating mockups for presentation
-- Quick visual concepts without code
+**Используйте image-specialist**, когда:
+- Нужны статичные визуальные assets
+- Создаете диаграммы или иллюстрации
+- Генерируете mockups для презентации
+- Нужны быстрые визуальные концепции без кода
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Overview](./design-iteration-overview.md)
-- [Visual Development](../visual-development.md)
+- [Обзор](./design-iteration-overview.md)
+- [Визуальная разработка](../visual-development.md)

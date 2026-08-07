@@ -1,19 +1,19 @@
 <!-- Context: core/organizing-context | Priority: high | Version: 1.1 | Updated: 2026-02-15 -->
 
-# Guide: Organizing Context by Concern
+# Руководство: организация контекста по задачам
 
-**Purpose**: How to choose and apply the right organizational pattern
+**Назначение**: как выбрать и применить правильный организационный паттерн
 
-**Last Updated**: 2026-02-15
+**Последнее обновление**: 2026-02-15
 
 ---
 
-## Two Organizational Patterns
+## Два организационных паттерна
 
-### Pattern A: Function-Based
-**Use for**: Repository-specific context
+### Паттерн A: по функциям
+**Использовать для**: контекста конкретного репозитория
 
-**Structure**: Organize by what the information does
+**Структура**: организовать по функции информации
 ```
 {repo}/
 ├── concepts/     # What it is
@@ -23,71 +23,71 @@
 └── errors/       # Troubleshooting
 ```
 
-**Example**: `openagents-repo/`
+**Пример**: `openagents-repo/`
 
 ---
 
-### Pattern B: Concern-Based
-**Use for**: Multi-technology development context
+### Паттерн B: по задачам
+**Использовать для**: контекста разработки с несколькими технологиями
 
-**Structure**: Organize by what you're doing (concern), then how (approach/tech)
+**Структура**: организовать по тому, что вы делаете (задача), затем по тому, как (подход/технология)
 ```
 {concern}/
 ├── {approach}/   # How you're doing it
 └── {tech}/       # What you're using
 ```
 
-**Example**: `development/frontend/react/`, `ui/web/design/`
+**Пример**: `development/frontend/react/`, `ui/web/design/`
 
 ---
 
-## Decision Tree
+## Дерево решений
 
-| Question | Answer | Use Pattern |
+| Вопрос | Ответ | Использовать паттерн |
 |----------|--------|-------------|
-| Is this repository-specific? | YES | **Pattern A** (Function-Based) |
-| Does content span multiple technologies? | YES | **Pattern B** (Concern-Based) |
-| Single domain/technology? | YES | **Pattern A** (Function-Based) |
+| Это специфично для репозитория? | ДА | **Паттерн A** (по функциям) |
+| Контент охватывает несколько технологий? | ДА | **Паттерн B** (по задачам) |
+| Один домен/технология? | ДА | **Паттерн A** (по функциям) |
 
 ---
 
-## Quick Steps to Organize
+## Быстрые шаги организации
 
-### 1. Audit Existing Content
-- List all files
-- Identify natural groupings
-- Note overlaps/duplicates
+### 1. Аудит существующего контента
+- Перечислить все файлы
+- Определить естественные группы
+- Отметить пересечения/дубликаты
 
-### 2. Choose Pattern
-- Use decision tree above
-- Consider future growth
-- Check existing patterns in `.opencode/context/`
+### 2. Выбрать паттерн
+- Использовать дерево решений выше
+- Учитывать будущий рост
+- Проверить существующие паттерны в `.opencode/context/`
 
-### 3. Create Directory Structure
+### 3. Создать структуру каталогов
 ```bash
 mkdir -p {category}/{subcategory}
 ```
 
-### 4. Move Files
-- Move files to new structure
-- Keep filenames descriptive
-- Follow naming conventions
+### 4. Переместить файлы
+- Переместить файлы в новую структуру
+- Оставлять имена файлов описательными
+- Следовать соглашениям об именовании
 
-### 5. Create Navigation Files
-- Add `navigation.md` to each directory
-- Follow navigation template (see navigation-templates.md)
-- Keep to 200-300 tokens
+### 5. Создать файлы навигации
+- Добавить `navigation.md` в каждый каталог
+- Следовать шаблону навигации (см. navigation-templates.md)
+- Держать 200–300 токенов
 
-### 6. Update References
-- Update links in moved files
-- Update parent navigation.md
-- Test navigation paths
+### 6. Обновить ссылки
+- Обновить ссылки в перемещенных файлах
+- Обновить parent `navigation.md`
+- Проверить пути навигации
 
 ---
 
-## Pattern Examples
+## Примеры паттернов
 
-### Function-Based (openagents-repo/)
+### По функциям (`openagents-repo/`)
 ```
 openagents-repo/
 ├── concepts/agents.md
@@ -97,7 +97,7 @@ openagents-repo/
 └── errors/tool-errors.md
 ```
 
-### Concern-Based (development/)
+### По задачам (`development/`)
 ```
 development/
 ├── frontend/
@@ -110,7 +110,7 @@ development/
     └── postgres/
 ```
 
-### Hybrid (ui/)
+### Гибридный (`ui/`)
 ```
 ui/
 ├── web/
@@ -123,30 +123,30 @@ ui/
 
 ---
 
-## Verification Checklist
+## Чеклист проверки
 
-- [ ] Every directory has navigation.md?
-- [ ] Navigation files follow template?
-- [ ] All files have frontmatter?
-- [ ] Links updated and working?
-- [ ] Pattern is consistent?
-- [ ] Files under line limits?
+- [ ] В каждом каталоге есть `navigation.md`?
+- [ ] Файлы навигации следуют шаблону?
+- [ ] У всех файлов есть frontmatter?
+- [ ] Ссылки обновлены и работают?
+- [ ] Паттерн консистентен?
+- [ ] Файлы укладываются в лимиты строк?
 
 ---
 
-## Troubleshooting
+## Устранение неполадок
 
-| Issue | Solution |
+| Проблема | Решение |
 |-------|----------|
-| File fits multiple categories | Choose primary purpose, reference from others |
-| Too many files in one directory | Create subcategories |
-| Unclear hierarchy | Use concern-based pattern |
-| Navigation too complex | Simplify structure, use specialized navigation |
+| Файл подходит нескольким категориям | Выберите основное назначение, ссылайтесь из других |
+| Слишком много файлов в одном каталоге | Создайте подкатегории |
+| Неясная иерархия | Используйте паттерн по задачам |
+| Навигация слишком сложная | Упростите структуру, используйте специализированную навигацию |
 
 ---
 
-## Related
+## Связанные материалы
 
-- structure.md - Directory structure standards
-- navigation-templates.md - Navigation file templates
-- creation.md - Creating new context files
+- structure.md - стандарты структуры каталогов
+- navigation-templates.md - шаблоны файлов навигации
+- creation.md - создание новых файлов контекста

@@ -1,21 +1,21 @@
 <!-- Context: workflows/delegation-specialists | Priority: high | Version: 1.0 | Updated: 2026-02-05 -->
-# When to Delegate to Specialists
+# Когда делегировать специалистам
 
-**Purpose**: Guidance on when to delegate to specific specialist agents
+**Назначение**: рекомендации, когда делегировать конкретным агентам-специалистам
 
 ---
 
-## OpenFrontendSpecialist - UI/UX Design
+## OpenFrontendSpecialist - UI/UX-дизайн
 
-**✅ DELEGATE when:**
-- Creating new UI/UX designs (landing pages, dashboards)
-- Building design systems (components, themes, style guides)
-- Complex layouts requiring responsive design
-- Visual polish (animations, transitions, micro-interactions)
-- Brand-focused pages (marketing, product showcases)
-- Accessibility-critical UI
+**✅ ДЕЛЕГИРУЙТЕ, когда:**
+- Создаете новый UI/UX-дизайн (landing pages, dashboards)
+- Собираете дизайн-системы (компоненты, темы, style guides)
+- Нужны сложные макеты с адаптивным дизайном
+- Требуется визуальная полировка (анимации, transitions, micro-interactions)
+- Страницы сфокусированы на бренде (маркетинг, showcases продукта)
+- UI критичен для доступности
 
-**Delegation pattern:**
+**Паттерн делегирования:**
 ```javascript
 task(
   subagent_type="OpenFrontendSpecialist",
@@ -33,19 +33,19 @@ task(
 )
 ```
 
-**Why?** Follows structured 4-stage workflow with approval gates, produces polished UI.
+**Почему?** Следует структурированному 4-этапному процессу с точками одобрения и выдает отполированный UI.
 
 ---
 
-## TestEngineer - Test Authoring
+## TestEngineer - написание тестов
 
-**✅ DELEGATE when:**
-- Writing comprehensive test suites
-- TDD workflows (tests before implementation)
-- Complex test scenarios (edge cases, error handling)
-- Integration tests across multiple components
+**✅ ДЕЛЕГИРУЙТЕ, когда:**
+- Пишете комплексные наборы тестов
+- Используете TDD-workflows (тесты до реализации)
+- Нужны сложные тестовые сценарии (крайние случаи, обработка ошибок)
+- Нужны интеграционные тесты для нескольких компонентов
 
-**Delegation pattern:**
+**Паттерн делегирования:**
 ```javascript
 task(
   subagent_type="TestEngineer",
@@ -60,15 +60,15 @@ task(
 
 ---
 
-## CodeReviewer - Quality Assurance
+## CodeReviewer - контроль качества
 
-**✅ DELEGATE when:**
-- Reviewing complex implementations
-- Security-critical code review
-- Pre-merge quality checks
-- Architecture validation
+**✅ ДЕЛЕГИРУЙТЕ, когда:**
+- Проверяете сложные реализации
+- Нужен security-critical code review
+- Нужны pre-merge проверки качества
+- Нужна валидация архитектуры
 
-**Delegation pattern:**
+**Паттерн делегирования:**
 ```javascript
 task(
   subagent_type="CodeReviewer",
@@ -83,14 +83,14 @@ task(
 
 ---
 
-## CoderAgent - Focused Implementation
+## CoderAgent - сфокусированная реализация
 
-**✅ DELEGATE when:**
-- Implementing atomic subtasks from TaskManager
-- Isolated feature work (single component/module)
-- Following specific implementation specs
+**✅ ДЕЛЕГИРУЙТЕ, когда:**
+- Реализуете атомарные подзадачи от TaskManager
+- Работа изолирована (один компонент/модуль)
+- Нужно строго следовать спецификациям реализации
 
-**Delegation pattern:**
+**Паттерн делегирования:**
 ```javascript
 task(
   subagent_type="CoderAgent",
@@ -105,26 +105,26 @@ task(
 
 ---
 
-## Decision Matrix
+## Матрица решений
 
-| Scenario | Agent | Why |
+| Сценарий | Агент | Почему |
 |----------|-------|-----|
-| New landing page | OpenFrontendSpecialist | 4-stage design workflow |
-| Test suite for auth | TestEngineer | Comprehensive coverage |
-| Security review | CodeReviewer | Security focus |
-| Single API endpoint | CoderAgent | Focused implementation |
-| Complex multi-file feature | TaskManager → CoderAgent | Breakdown then implement |
+| Новый landing page | OpenFrontendSpecialist | 4-этапный процесс дизайна |
+| Набор тестов для auth | TestEngineer | Комплексное покрытие |
+| Security review | CodeReviewer | Фокус на безопасности |
+| Один API-endpoint | CoderAgent | Сфокусированная реализация |
+| Сложная multi-file фича | TaskManager → CoderAgent | Сначала декомпозиция, затем реализация |
 
 ---
 
-## Key Principle
+## Ключевой принцип
 
-**TestEngineer and CodeReviewer should ALWAYS receive session context path.** This ensures they review against the same standards used during implementation.
+**TestEngineer и CodeReviewer должны ВСЕГДА получать путь к контексту сессии.** Это гарантирует проверку по тем же стандартам, которые использовались при реализации.
 
 ---
 
-## Related
+## Связанные материалы
 
-- `task-delegation-basics.md` - Core delegation workflow
-- `task-delegation-caching.md` - Context caching
-- `design-iteration-overview.md` - OpenFrontendSpecialist workflow
+- `task-delegation-basics.md` - основной workflow делегирования
+- `task-delegation-caching.md` - кэширование контекста
+- `design-iteration-overview.md` - workflow OpenFrontendSpecialist

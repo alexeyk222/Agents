@@ -4,23 +4,23 @@ description: Run the complete testing pipeline
 
 # Testing Pipeline
 
-This command runs the complete testing pipeline for the project.
+Эта команда запускает полный testing pipeline проекта.
 
-## Usage
+## Использование
 
-To run the complete testing pipeline, just type:
+Чтобы запустить полный testing pipeline, достаточно выполнить следующие шаги:
 
-1. Run pnpm type:check
-2. Run pnpm lint
-3. Run pnpm test
-4. Report any failures
-5. Fix any failures
-6. Repeat until all tests pass
-7. Report success
+1. Запустить `pnpm type:check`
+2. Запустить `pnpm lint`
+3. Запустить `pnpm test`
+4. Сообщить обо всех ошибках
+5. Исправить все найденные ошибки
+6. Повторять проверки, пока все тесты не будут успешно пройдены
+7. Сообщить об успешном завершении
 
-## What This Command Does
+## Что делает эта команда
 
-1. Runs `pnpm type:check` to check for type errors
-2. Runs `pnpm lint` to check for linting errors
-3. Runs `pnpm test` to run the tests
-4. Reports any failures
+1. Запускает `pnpm type:check` для проверки type errors
+2. Запускает `pnpm lint` для проверки linting errors
+3. Запускает `pnpm test` для выполнения тестов
+4. Сообщает обо всех найденных ошибках

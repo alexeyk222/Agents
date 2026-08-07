@@ -1,49 +1,49 @@
 <!-- Context: core/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Context Navigation
+# Навигация по контексту
 
-**New here?** → `openagents-repo/quick-start.md`
+**Впервые здесь?** → `openagents-repo/quick-start.md`
 
 ---
 
-## Structure
+## Структура
 
 ```
 .opencode/context/
-├── core/                   # Universal standards & workflows
-├── openagents-repo/        # OpenAgents Control repository work
-├── development/            # Software development (all stacks)
-├── ui/                     # Visual design & UX
-├── content-creation/       # Content creation (all formats)
-├── data/                   # Data engineering & analytics
-├── product/                # Product management
-└── learning/               # Educational content
+├── core/                   # Универсальные стандарты и процессы
+├── openagents-repo/        # Работа с репозиторием OpenAgents Control
+├── development/            # Разработка ПО (все стеки)
+├── ui/                     # Визуальный дизайн и UX
+├── content-creation/       # Создание контента (все форматы)
+├── data/                   # Инженерия данных и аналитика
+├── product/                # Управление продуктом
+└── learning/               # Образовательный контент
 ```
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **Write code** | `core/standards/code-quality.md` |
-| **Write tests** | `core/standards/test-coverage.md` |
-| **Write docs** | `core/standards/documentation.md` |
-| **Review code** | `core/workflows/code-review.md` |
-| **Delegate task** | `core/workflows/task-delegation-basics.md` |
-| **Add agent** | `openagents-repo/guides/adding-agent.md` |
-| **UI development** | `development/ui-navigation.md` |
-| **API development** | `development/backend-navigation.md` |
+| **Писать код** | `core/standards/code-quality.md` |
+| **Писать тесты** | `core/standards/test-coverage.md` |
+| **Писать документацию** | `core/standards/documentation.md` |
+| **Ревью кода** | `core/workflows/code-review.md` |
+| **Делегировать задачу** | `core/workflows/task-delegation-basics.md` |
+| **Добавить агента** | `openagents-repo/guides/adding-agent.md` |
+| **Разработка UI** | `development/ui-navigation.md` |
+| **Разработка API** | `development/backend-navigation.md` |
 
 ---
 
-## By Category
+## По категориям
 
-**core/** - Standards, workflows, patterns → `core/navigation.md`
-**openagents-repo/** - Repository-specific → `openagents-repo/navigation.md`
-**development/** - All development → `development/navigation.md`
-**ui/** - Design & UX → `ui/navigation.md`
-**content-creation/** - Content creation (all formats) → `content-creation/navigation.md`
-**data/** - Data engineering → `data/navigation.md`
-**product/** - Product management → `product/navigation.md`
-**learning/** - Educational → `learning/navigation.md`
+**core/** - Стандарты, процессы, паттерны → `core/navigation.md`
+**openagents-repo/** - Специфика репозитория → `openagents-repo/navigation.md`
+**development/** - Вся разработка → `development/navigation.md`
+**ui/** - Дизайн и UX → `ui/navigation.md`
+**content-creation/** - Создание контента (все форматы) → `content-creation/navigation.md`
+**data/** - Инженерия данных → `data/navigation.md`
+**product/** - Управление продуктом → `product/navigation.md`
+**learning/** - Обучающие материалы → `learning/navigation.md`

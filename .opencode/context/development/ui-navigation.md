@@ -1,20 +1,20 @@
 <!-- Context: development/navigation | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# UI Development Navigation
+# Навигация по UI-разработке
 
-**Scope**: Frontend code + visual design
+**Область**: Frontend-код + визуальный дизайн
 
 ---
 
-## Structure
+## Структура
 
 ```
-Frontend Code (development/frontend/):
+Frontend-код (development/frontend/):
 └── react/
     ├── navigation.md
     └── react-patterns.md
 
-Visual Design (ui/web/):
+Визуальный дизайн (ui/web/):
 ├── animation-patterns.md
 ├── ui-styling-standards.md
 ├── design-systems.md
@@ -25,29 +25,29 @@ Visual Design (ui/web/):
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **React patterns** | `frontend/react/react-patterns.md` |
-| **Animations** | `../../ui/web/animation-patterns.md` |
-| **Styling** | `../../ui/web/ui-styling-standards.md` |
-| **Design systems** | `../../ui/web/design-systems.md` |
+| **Паттерны React** | `frontend/react/react-patterns.md` |
+| **Анимации** | `../../ui/web/animation-patterns.md` |
+| **Стилизация** | `../../ui/web/ui-styling-standards.md` |
+| **Дизайн-системы** | `../../ui/web/design-systems.md` |
 
 ---
 
-## By Framework
+## По фреймворку
 
 **React** → `frontend/react/`
 
-## By Concern
+## По области
 
-**Code patterns** → `development/frontend/`
-**Visual design** → `ui/web/`
+**Паттерны кода** → `development/frontend/`
+**Визуальный дизайн** → `ui/web/`
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Core Standards** → `../core/standards/code-quality.md`
-- **UI Category** → `../ui/navigation.md`
+- **Базовые стандарты** → `../core/standards/code-quality.md`
+- **Категория UI** → `../ui/navigation.md`

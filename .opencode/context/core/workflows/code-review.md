@@ -1,68 +1,68 @@
 <!-- Context: workflows/review | Priority: high | Version: 2.0 | Updated: 2025-01-21 -->
 
-# Code Review Guidelines
+# Руководство по ревью кода
 
-## Quick Reference
+## Краткая справка
 
-**Golden Rule**: Review code as you'd want yours reviewed - thoroughly but kindly
+**Золотое правило**: проверяйте код так, как хотели бы, чтобы проверяли ваш — тщательно, но доброжелательно
 
-**Checklist**: Functionality, Code Quality, Security, Testing, Performance, Maintainability
+**Чеклист**: функциональность, качество кода, безопасность, тестирование, производительность, сопровождаемость
 
-**Report Format**: Summary, Assessment, Issues (🔴🟡🔵), Positive Observations, Recommendations
+**Формат отчета**: резюме, оценка, проблемы (🔴🟡🔵), положительные наблюдения, рекомендации
 
-**Principles**: Constructive, Thorough, Timely
+**Принципы**: конструктивно, тщательно, своевременно
 
 ---
 
-## Principles
+## Принципы
 
-**Constructive**: Focus on code not person, explain WHY, suggest improvements, acknowledge good practices
-**Thorough**: Check functionality not just style, consider edge cases, think maintainability, look for security
-**Timely**: Review promptly, don't block unnecessarily, prioritize critical issues
+**Конструктивно**: фокусируйтесь на коде, а не на человеке; объясняйте ПОЧЕМУ; предлагайте улучшения; отмечайте хорошие практики
+**Тщательно**: проверяйте функциональность, а не только стиль; учитывайте крайние случаи; думайте о сопровождаемости; ищите проблемы безопасности
+**Своевременно**: проверяйте оперативно, не блокируйте без необходимости, приоритизируйте критичные проблемы
 
-## Review Checklist
+## Чеклист ревью
 
-### Functionality
-- [ ] Does what it's supposed to do
-- [ ] Edge cases handled
-- [ ] Error cases handled
-- [ ] No obvious bugs
+### Функциональность
+- [ ] Делает то, что должно
+- [ ] Крайние случаи обработаны
+- [ ] Ошибочные сценарии обработаны
+- [ ] Нет очевидных багов
 
-### Code Quality
-- [ ] Clear, descriptive naming
-- [ ] Functions small and focused
-- [ ] No unnecessary complexity
-- [ ] Follows coding standards
-- [ ] DRY - no duplication
+### Качество кода
+- [ ] Имена понятные и описательные
+- [ ] Функции маленькие и сфокусированные
+- [ ] Нет лишней сложности
+- [ ] Соблюдаются стандарты кодирования
+- [ ] DRY — нет дублирования
 
-### Security
-- [ ] Input validation present
-- [ ] No SQL injection vulnerabilities
-- [ ] No XSS vulnerabilities
-- [ ] No hardcoded secrets
-- [ ] Sensitive data handled properly
-- [ ] Auth/authorization appropriate
+### Безопасность
+- [ ] Есть валидация входных данных
+- [ ] Нет уязвимостей SQL injection
+- [ ] Нет уязвимостей XSS
+- [ ] Нет захардкоженных секретов
+- [ ] Чувствительные данные обрабатываются правильно
+- [ ] Аутентификация/авторизация реализованы корректно
 
-### Testing
-- [ ] Tests present
-- [ ] Happy path covered
-- [ ] Edge cases covered
-- [ ] Error cases covered
-- [ ] All tests pass
+### Тестирование
+- [ ] Тесты есть
+- [ ] Основной сценарий покрыт
+- [ ] Крайние случаи покрыты
+- [ ] Ошибочные сценарии покрыты
+- [ ] Все тесты проходят
 
-### Performance
-- [ ] No obvious performance issues
-- [ ] Efficient algorithms
-- [ ] No unnecessary operations
-- [ ] Resources properly managed
+### Производительность
+- [ ] Нет очевидных проблем производительности
+- [ ] Алгоритмы эффективны
+- [ ] Нет лишних операций
+- [ ] Ресурсы управляются корректно
 
-### Maintainability
-- [ ] Easy to understand
-- [ ] Complex logic documented
-- [ ] Follows project conventions
-- [ ] Easy to modify/extend
+### Сопровождаемость
+- [ ] Легко понять
+- [ ] Сложная логика документирована
+- [ ] Соблюдены конвенции проекта
+- [ ] Легко изменять/расширять
 
-## Review Report Format
+## Формат отчета ревью
 
 ```markdown
 ## Code Review: {Feature/PR Name}
@@ -102,35 +102,35 @@
 {Next steps, improvements, follow-up items}
 ```
 
-## Common Issues
+## Распространенные проблемы
 
-### Security
-🔴 Hardcoded credentials
-🔴 SQL injection vulnerabilities
-🔴 Missing input validation
-🔴 Exposed sensitive data
+### Безопасность
+🔴 Захардкоженные учетные данные
+🔴 Уязвимости SQL injection
+🔴 Отсутствует валидация входных данных
+🔴 Раскрыты чувствительные данные
 
-### Code Quality
-🟡 Large functions (>50 lines)
-🟡 Deep nesting (>3 levels)
-🟡 Code duplication
-🟡 Unclear naming
+### Качество кода
+🟡 Большие функции (>50 строк)
+🟡 Глубокая вложенность (>3 уровней)
+🟡 Дублирование кода
+🟡 Непонятные имена
 
-### Testing
-🟡 Missing tests
-🟡 Low coverage (<80%)
-🟡 Flaky tests
-🟡 Tests testing implementation
+### Тестирование
+🟡 Нет тестов
+🟡 Низкое покрытие (<80%)
+🟡 Нестабильные тесты
+🟡 Тесты проверяют реализацию, а не поведение
 
-## Best Practices
+## Лучшие практики
 
-✅ Review within 24 hours
-✅ Provide specific, actionable feedback
-✅ Explain WHY, not just WHAT
-✅ Suggest alternatives
-✅ Acknowledge good work
-✅ Use severity levels (Critical/Warning/Suggestion)
-✅ Test the code if possible
-✅ Check for security issues first
+✅ Выполняйте ревью в течение 24 часов
+✅ Давайте конкретную, применимую обратную связь
+✅ Объясняйте ПОЧЕМУ, а не только ЧТО
+✅ Предлагайте альтернативы
+✅ Отмечайте хорошую работу
+✅ Используйте уровни серьезности (Critical/Warning/Suggestion)
+✅ Тестируйте код, если возможно
+✅ Сначала проверяйте вопросы безопасности
 
-**Golden Rule**: Review code as you'd want yours reviewed - thoroughly but kindly.
+**Золотое правило**: проверяйте код так, как хотели бы, чтобы проверяли ваш — тщательно, но доброжелательно.

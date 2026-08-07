@@ -1,24 +1,24 @@
 <!-- Context: development/navigation | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Backend Development Navigation
+# Навигация по backend-разработке
 
-**Scope**: Server-side, APIs, databases, auth
+**Область**: Серверная часть, API, базы данных, аутентификация
 
 ---
 
-## Structure
+## Структура
 
 ```
 development/backend/           # [future]
 ├── navigation.md
 │
-├── api-patterns/              # Approach-based
+├── api-patterns/              # По подходу
 │   ├── rest-design.md
 │   ├── graphql-design.md
 │   ├── grpc-patterns.md
 │   └── websocket-patterns.md
 │
-├── nodejs/                    # Tech-specific
+├── nodejs/                    # По технологии
 │   ├── express-patterns.md
 │   ├── fastify-patterns.md
 │   └── error-handling.md
@@ -27,7 +27,7 @@ development/backend/           # [future]
 │   ├── fastapi-patterns.md
 │   └── django-patterns.md
 │
-├── authentication/            # Functional concern
+├── authentication/            # Функциональная область
 │   ├── jwt-patterns.md
 │   ├── oauth-patterns.md
 │   └── session-management.md
@@ -40,40 +40,40 @@ development/backend/           # [future]
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
 | **REST API** | `backend/api-patterns/rest-design.md` [future] |
 | **GraphQL** | `backend/api-patterns/graphql-design.md` [future] |
-| **API design principles** | `principles/api-design.md` |
+| **Принципы проектирования API** | `principles/api-design.md` |
 | **Node.js** | `backend/nodejs/express-patterns.md` [future] |
 | **Python** | `backend/python/fastapi-patterns.md` [future] |
-| **Auth (JWT)** | `backend/authentication/jwt-patterns.md` [future] |
+| **Аутентификация (JWT)** | `backend/authentication/jwt-patterns.md` [future] |
 
 ---
 
-## By Approach
+## По подходу
 
 **REST** → `backend/api-patterns/rest-design.md` [future]
 **GraphQL** → `backend/api-patterns/graphql-design.md` [future]
 **gRPC** → `backend/api-patterns/grpc-patterns.md` [future]
 
-## By Language
+## По языку
 
 **Node.js** → `backend/nodejs/` [future]
 **Python** → `backend/python/` [future]
 
-## By Concern
+## По области
 
-**Authentication** → `backend/authentication/` [future]
+**Аутентификация** → `backend/authentication/` [future]
 **Middleware** → `backend/middleware/` [future]
-**Data layer** → `data/` [future]
+**Слой данных** → `data/` [future]
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **API Design Principles** → `principles/api-design.md`
-- **Core Standards** → `../core/standards/code-quality.md`
-- **Data Patterns** → `data/navigation.md` [future]
+- **Принципы проектирования API** → `principles/api-design.md`
+- **Базовые стандарты** → `../core/standards/code-quality.md`
+- **Паттерны данных** → `data/navigation.md` [future]

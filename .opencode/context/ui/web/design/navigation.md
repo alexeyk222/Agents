@@ -1,95 +1,95 @@
 <!-- Context: ui/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
 ---
-description: "Advanced web UI patterns - scroll animations, visual effects, and interactive design"
+description: "Продвинутые Web UI-паттерны — scroll-анимации, визуальные эффекты и интерактивный дизайн"
 ---
 
-# Web Design Patterns
+# Web design-паттерны
 
-**Purpose**: Advanced web UI patterns - scroll animations, visual effects, and interactive design
+**Purpose**: Продвинутые Web UI-паттерны — scroll-анимации, визуальные эффекты и интерактивный дизайн
 
 **Last Updated**: 2026-01-31
 
 ---
 
-## Quick Navigation
+## Быстрая навигация
 
 ### Concepts
-| File | Description | Priority |
+| Файл | Описание | Приоритет |
 |------|-------------|----------|
-| [navigation.md](concepts/navigation.md) | Concepts navigation | high |
-| [scroll-linked-animations.md](concepts/scroll-linked-animations.md) | Scroll-synced image sequences (scrollytelling) | high |
+| [navigation.md](concepts/navigation.md) | Навигация по concepts | high |
+| [scroll-linked-animations.md](concepts/scroll-linked-animations.md) | Image sequences, синхронизированные со scroll (scrollytelling) | high |
 
-### Examples
-| File | Description | Priority |
+### Примеры
+| Файл | Описание | Приоритет |
 |------|-------------|----------|
-| [navigation.md](examples/navigation.md) | Examples navigation | high |
-| [scrollytelling-headphone.md](examples/scrollytelling-headphone.md) | Full Next.js scroll animation example | high |
+| [navigation.md](examples/navigation.md) | Навигация по examples | high |
+| [scrollytelling-headphone.md](examples/scrollytelling-headphone.md) | Полный пример scroll animation на Next.js | high |
 
-### Guides
-| File | Description | Priority |
+### Гайды
+| Файл | Описание | Приоритет |
 |------|-------------|----------|
-| [navigation.md](guides/navigation.md) | Guides navigation | high |
-| [building-scrollytelling-pages.md](guides/building-scrollytelling-pages.md) | Complete implementation guide | high |
-| [premium-dark-ui-visual-reference.md](guides/premium-dark-ui-visual-reference.md) | Visual reference for premium dark UI | medium |
+| [navigation.md](guides/navigation.md) | Навигация по guides | high |
+| [building-scrollytelling-pages.md](guides/building-scrollytelling-pages.md) | Полный гайд по реализации | high |
+| [premium-dark-ui-visual-reference.md](guides/premium-dark-ui-visual-reference.md) | Визуальный reference для premium dark UI | medium |
 
 ### Lookup
-| File | Description | Priority |
+| Файл | Описание | Приоритет |
 |------|-------------|----------|
-| [navigation.md](lookup/navigation.md) | Lookup navigation | high |
-| [scroll-animation-prompts.md](lookup/scroll-animation-prompts.md) | AI prompts for generating animation sequences | medium |
+| [navigation.md](lookup/navigation.md) | Навигация по lookup | high |
+| [scroll-animation-prompts.md](lookup/scroll-animation-prompts.md) | AI-промпты для генерации animation sequences | medium |
 
-### Errors
-| File | Description | Priority |
+### Ошибки
+| Файл | Описание | Приоритет |
 |------|-------------|----------|
-| _(No error files yet)_ | | |
+| _(Пока нет error files)_ | | |
 
 ---
 
-## Loading Strategy
+## Стратегия загрузки
 
-**For scroll animation work**:
-1. Load `concepts/scroll-linked-animations.md` (understand technique)
-2. Load `lookup/scroll-animation-prompts.md` (generate image sequences)
-3. Load `examples/scrollytelling-headphone.md` (see full code)
-4. Reference `guides/building-scrollytelling-pages.md` (step-by-step)
+**Для работы со scroll animations**:
+1. Загрузите `concepts/scroll-linked-animations.md` (понять технику)
+2. Загрузите `lookup/scroll-animation-prompts.md` (сгенерировать image sequences)
+3. Загрузите `examples/scrollytelling-headphone.md` (посмотреть полный код)
+4. Смотрите `guides/building-scrollytelling-pages.md` (пошагово)
 
-**For premium dark UI design**:
-1. Load `guides/premium-dark-ui-visual-reference.md` (visual patterns and implementation)
+**Для premium dark UI design**:
+1. Загрузите `guides/premium-dark-ui-visual-reference.md` (визуальные паттерны и реализация)
 
 ---
 
-## Scope
+## Область
 
-This subcategory covers:
+Эта подкатегория охватывает:
 - ✅ Scroll-linked animations (scrollytelling)
 - ✅ Canvas-based rendering
-- ✅ Framer Motion patterns
-- ✅ Image sequence generation
+- ✅ Паттерны Framer Motion
+- ✅ Генерацию image sequences
 - ✅ Premium dark UI design system
-- ✅ Glassmorphism patterns
-- ⏳ CSS animations (future)
-- ⏳ SVG animations (future)
-- ⏳ WebGL effects (future)
+- ✅ Паттерны glassmorphism
+- ⏳ CSS animations (будущее)
+- ⏳ SVG animations (будущее)
+- ⏳ WebGL effects (будущее)
 
 ---
 
-## Related Categories
+## Связанные категории
 
-- `ui/web/` - Core web UI patterns (parent directory)
-- `ui/web/animation-patterns.md` - CSS animations and transitions
-- `development/` - General development patterns
+- `ui/web/` - базовые Web UI-паттерны (родительский каталог)
+- `ui/web/animation-patterns.md` - CSS animations и transitions
+- `development/` - общие паттерны разработки
 
 ---
 
-## Used By
+## Используется
 
 **Agents**: frontend-specialist, design-specialist, animation-expert
 
-## Statistics
+## Статистика
 - Concepts: 1 + navigation
-- Examples: 1 + navigation
-- Guides: 6 + navigation
+- Примеры: 1 + navigation
+- Гайды: 6 + navigation
 - Lookup: 1 + navigation
-- Errors: 0
-- **Total**: 13 files
+- Ошибки: 0
+- **Всего**: 13 файлов

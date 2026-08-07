@@ -1,26 +1,26 @@
 <!-- Context: ui/scrollytelling-headphone | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
 ---
-description: "Full Next.js implementation of scroll-linked image sequence animation"
+description: "Полная Next.js-реализация scroll-linked-анимации последовательности изображений"
 ---
 
-# Example: Scrollytelling Headphone Animation
+# Example: Scrollytelling-анимация наушников
 
-**Purpose**: Full Next.js implementation of scroll-linked image sequence animation
+**Purpose**: Полная Next.js-реализация scroll-linked-анимации последовательности изображений
 
 **Last Updated**: 2026-01-07
 
 ---
 
-## Overview
+## Обзор
 
-Complete working example of "Zenith X" headphone scrollytelling page using Next.js 14, Framer Motion, and Canvas.
+Полный рабочий пример scrollytelling-страницы для наушников "Zenith X" на Next.js 14, Framer Motion и Canvas.
 
-**Tech Stack**: Next.js 14 (App Router) + Framer Motion + Canvas + Tailwind CSS
+**Стек**: Next.js 14 (App Router) + Framer Motion + Canvas + Tailwind CSS
 
 ---
 
-## File Structure
+## Структура файлов
 
 ```
 app/
@@ -223,43 +223,43 @@ export default function HeadphoneScroll() {
 
 ---
 
-## Key Implementation Details
+## Ключевые детали реализации
 
-**Line 15-18**: `useScroll` tracks scroll progress from container start to end
-**Line 21**: `useTransform` maps 0-1 scroll to 0-119 frame index
-**Line 32-46**: Preload all 120 frames using Promise.all
-**Line 49-70**: Draw current frame to canvas, scaled and centered
-**Line 73-76**: Text opacity transforms for fade in/out at specific scroll positions
-
----
-
-## Usage
-
-1. Install dependencies: `npm install framer-motion`
-2. Place 120 WebP frames in `/public/frames/`
-3. Copy code into respective files
-4. Run: `npm run dev`
+**Строки 15-18**: `useScroll` отслеживает scroll progress от начала до конца контейнера
+**Строка 21**: `useTransform` мапит scroll 0-1 на frame index 0-119
+**Строки 32-46**: preload всех 120 кадров через Promise.all
+**Строки 49-70**: отрисовка текущего кадра в canvas с масштабированием и центровкой
+**Строки 73-76**: opacity transforms для fade in/out текста в заданных scroll positions
 
 ---
 
-## Customization
+## Использование
 
-**Change frame count**: Update `FRAME_COUNT` constant (line 7)
-**Adjust scroll length**: Change `h-[400vh]` to `h-[300vh]` or `h-[500vh]` (line 120)
-**Modify text timing**: Update transform ranges in lines 73-76
-**Change colors**: Update `bg-[#050505]` to match your image background
-
----
-
-## Related
-
-- concepts/scroll-linked-animations.md - Understanding the technique
-- guides/scrollytelling-setup.md - Getting started
-- lookup/scroll-animation-prompts.md - Generating image sequences
+1. Установите зависимости: `npm install framer-motion`
+2. Поместите 120 WebP-кадров в `/public/frames/`
+3. Скопируйте код в соответствующие файлы
+4. Запустите: `npm run dev`
 
 ---
 
-## References
+## Кастомизация
+
+**Изменить frame count**: обновите константу `FRAME_COUNT` (строка 7)
+**Настроить scroll length**: замените `h-[400vh]` на `h-[300vh]` или `h-[500vh]` (строка 120)
+**Изменить text timing**: обновите диапазоны transform в строках 73-76
+**Изменить цвета**: обновите `bg-[#050505]`, чтобы совпадал с фоном изображения
+
+---
+
+## Связано
+
+- concepts/scroll-linked-animations.md - понять технику
+- guides/scrollytelling-setup.md - быстрый старт
+- lookup/scroll-animation-prompts.md - генерация последовательностей изображений
+
+---
+
+## Ссылки
 
 - [Framer Motion Docs](https://www.framer.com/motion/)
 - [Next.js App Router](https://nextjs.org/docs/app)

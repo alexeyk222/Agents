@@ -1,41 +1,41 @@
 <!-- Context: development/mastra-config | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Lookup: Mastra Configuration
+# Справочник: конфигурация Mastra
 
-**Purpose**: Quick reference for Mastra file locations and registration.
+**Назначение**: Краткий справочник по расположению файлов Mastra и регистрации.
 
-**Last Updated**: 2026-01-09
+**Обновлено**: 2026-01-09
 
 ---
 
-## File Locations
+## Расположение файлов
 
-| Component | Directory | Registration File |
+| Компонент | Каталог | Файл регистрации |
 |-----------|-----------|-------------------|
-| **Mastra Instance** | `src/mastra/` | `src/mastra/index.ts` |
+| **Экземпляр Mastra** | `src/mastra/` | `src/mastra/index.ts` |
 | **Agents** | `src/mastra/agents/` | `src/mastra/index.ts` |
 | **Tools** | `src/mastra/tools/` | `src/mastra/index.ts` |
 | **Workflows** | `src/mastra/workflows/` | `src/mastra/index.ts` |
 | **Scorers** | `src/mastra/scorers/` | `src/mastra/index.ts` |
-| **Services** | `src/services/` | `src/mastra/shared.ts` |
+| **Сервисы** | `src/services/` | `src/mastra/shared.ts` |
 
-## Database Tables
+## Таблицы базы данных
 
-| Table Name | Description |
+| Имя таблицы | Описание |
 |------------|-------------|
-| `mastra_traces` | Workflow execution traces |
-| `mastra_ai_spans` | LLM call spans and token usage |
-| `mastra_scorers` | Evaluation results and scores |
-| `mastra_workflow_state` | Current state of running workflows |
+| `mastra_traces` | Трассировки выполнения workflow |
+| `mastra_ai_spans` | Span-ы вызовов LLM и использование токенов |
+| `mastra_scorers` | Результаты оценок и баллы |
+| `mastra_workflow_state` | Текущее состояние запущенных workflows |
 
-## Common Commands
+## Типовые команды
 
-| Command | Description |
+| Команда | Описание |
 |---------|-------------|
-| `npm run dev` | Start Mastra in development mode |
-| `npm run traces` | View recent execution traces |
-| `npm run test:workflow` | Run the test workflow script |
+| `npm run dev` | Запустить Mastra в режиме разработки |
+| `npm run traces` | Посмотреть последние трассировки выполнения |
+| `npm run test:workflow` | Запустить скрипт тестового workflow |
 
-**Related**:
+**Связано**:
 - concepts/core.md
 - concepts/workflows.md

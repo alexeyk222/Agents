@@ -2,31 +2,31 @@
 
 # Project Intelligence
 
-> **What**: Living documentation that bridges business domain and technical implementation.
-> **Why**: Quick project understanding and onboarding for developers, agents, and stakeholders.
-> **Where**: `.opencode/context/project-intelligence/` (dedicated folder)
+> **Что**: Живая документация, связывающая бизнес-домен и техническую реализацию.
+> **Зачем**: Быстрое понимание проекта и онбординг для разработчиков, агентов и стейкхолдеров.
+> **Где**: `.opencode/context/project-intelligence/` (выделенная папка)
 
-## Quick Reference
+## Краткая справка
 
-| What You Need | File | Description |
+| Что нужно | Файл | Описание |
 |---------------|------|-------------|
-| Understand the "why" | `business-domain.md` | Problem, users, value |
-| Understand the "how" | `technical-domain.md` | Stack, architecture |
-| See the connection | `business-tech-bridge.md` | Business → technical mapping |
-| Know the context | `decisions-log.md` | Why decisions were made |
-| Current state | `living-notes.md` | Active issues, debt, questions |
+| Понять «зачем» | `business-domain.md` | Проблема, пользователи, ценность |
+| Понять «как» | `technical-domain.md` | Стек, архитектура |
+| Увидеть связь | `business-tech-bridge.md` | Маппинг бизнес → техника |
+| Узнать контекст | `decisions-log.md` | Почему приняты решения |
+| Текущее состояние | `living-notes.md` | Активные проблемы, долг, вопросы |
 
-## Why This Exists
+## Зачем это нужно
 
-Projects fail when:
-- Business intent is lost in code
-- Technical decisions aren't documented with context
-- New members spend weeks instead of hours understanding the project
-- Context lives only in people's heads (who leave)
+Проекты буксуют, когда:
+- Бизнес-замысел теряется в коде
+- Технические решения не документируются с контекстом
+- Новые участники тратят недели вместо часов на понимание проекта
+- Контекст хранится только в головах людей, которые могут уйти
 
-This ensures **business and technical domains speak the same language**.
+Это помогает **бизнесу и технической команде говорить на одном языке**.
 
-## Structure
+## Структура
 
 ```
 .opencode/context/
@@ -40,38 +40,38 @@ This ensures **business and technical domains speak the same language**.
 └── core/                              # Universal standards
 ```
 
-## Onboarding Checklist
+## Чеклист онбординга
 
-For new team members or agents:
+Для новых участников команды или агентов:
 
-- [ ] Read `navigation.md` (this file)
-- [ ] Read `business-domain.md` to understand the "why"
-- [ ] Read `technical-domain.md` to understand the "how"
-- [ ] Review `business-tech-bridge.md` to see the connection
-- [ ] Check `decisions-log.md` for context on key choices
-- [ ] Review `living-notes.md` for current state
-- [ ] Explore codebase with this context loaded
+- [ ] Прочитать `navigation.md` (этот файл)
+- [ ] Прочитать `business-domain.md`, чтобы понять «зачем»
+- [ ] Прочитать `technical-domain.md`, чтобы понять «как»
+- [ ] Изучить `business-tech-bridge.md`, чтобы увидеть связь
+- [ ] Проверить `decisions-log.md` для контекста ключевых решений
+- [ ] Изучить `living-notes.md` для текущего состояния
+- [ ] Исследовать кодовую базу с загруженным контекстом
 
-## How to Keep This Alive
+## Как поддерживать актуальность
 
-| Trigger | Action |
+| Триггер | Действие |
 |---------|--------|
-| Business direction shifts | Update `business-domain.md` |
-| New technical decision | Add to `decisions-log.md` |
-| New issues or debt | Update `living-notes.md` |
-| Feature launch | Update `business-tech-bridge.md` |
-| Stack changes | Update `technical-domain.md` |
+| Меняется бизнес-направление | Обновить `business-domain.md` |
+| Новое техническое решение | Добавить в `decisions-log.md` |
+| Новые проблемы или долг | Обновить `living-notes.md` |
+| Запуск фичи | Обновить `business-tech-bridge.md` |
+| Изменения стека | Обновить `technical-domain.md` |
 
-**Full Management Guide**: See `.opencode/context/core/standards/project-intelligence-management.md`
+**Полное руководство по управлению**: см. `.opencode/context/core/standards/project-intelligence-management.md`
 
-## Integration with Context System
+## Интеграция с системой контекста
 
-- **Lazy Loading**: Load project intelligence first when joining a project
-- **Layering**: Then load standards and specific context as needed
-- **Reference**: See `.opencode/context/core/context-system.md` for system overview
+- **Ленивая загрузка**: сначала загружайте project intelligence при подключении к проекту
+- **Слои**: затем загружайте стандарты и конкретный контекст по необходимости
+- **Справка**: обзор системы см. в `.opencode/context/core/context-system.md`
 
-## Related Files
+## Связанные файлы
 
-- **Management Guide**: `.opencode/context/core/standards/project-intelligence-management.md`
-- **Context System**: `.opencode/context/core/context-system.md`
-- **Standards Index**: `.opencode/context/core/standards/navigation.md`
+- **Руководство по управлению**: `.opencode/context/core/standards/project-intelligence-management.md`
+- **Система контекста**: `.opencode/context/core/context-system.md`
+- **Индекс стандартов**: `.opencode/context/core/standards/navigation.md`

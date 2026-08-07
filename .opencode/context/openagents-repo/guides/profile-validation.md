@@ -1,30 +1,30 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Profile Validation
+# Руководство: валидация profiles
 
-**Purpose**: Ensure installation profiles include all appropriate components  
-**Priority**: HIGH - Check this when adding new agents or updating registry
-
----
-
-## What Are Profiles?
-
-Profiles are pre-configured component bundles in `registry.json` that users install:
-- **essential** - Minimal setup (openagent + core subagents)
-- **developer** - Full dev environment (all dev agents + tools)
-- **business** - Content/product focus (content agents + tools)
-- **full** - Everything (all agents, subagents, tools)
-- **advanced** - Full + meta-level (system-builder, repo-manager)
+**Цель**: убедиться, что installation profiles включают все нужные компоненты  
+**Приоритет**: HIGH — проверяйте это при добавлении новых агентов или обновлении registry
 
 ---
 
-## The Problem
+## Что такое profiles?
 
-**Issue**: New agents added to `components.agents[]` but NOT added to profiles
+Profiles — это заранее настроенные bundles компонентов в `registry.json`, которые устанавливают пользователи:
+- **essential** — минимальная установка (openagent + core subagents)
+- **developer** — полное dev-окружение (все dev agents + tools)
+- **business** — фокус на content/product (content agents + tools)
+- **full** — всё (все agents, subagents, tools)
+- **advanced** — full + meta-level (system-builder, repo-manager)
 
-**Result**: Users install a profile but don't get the new agents
+---
 
-**Example** (v0.5.0 bug):
+## Проблема
+
+**Проблема**: новые агенты добавлены в `components.agents[]`, но НЕ добавлены в profiles
+
+**Результат**: пользователи устанавливают profile, но не получают новых агентов
+
+**Пример** (bug v0.5.0):
 ```json
 // ✅ Agent exists in components
 {
@@ -44,41 +44,41 @@ Profiles are pre-configured component bundles in `registry.json` that users inst
 
 ---
 
-## Validation Checklist
+## Чеклист валидации
 
-When adding a new agent, **ALWAYS** check:
+При добавлении нового агента **ВСЕГДА** проверяйте:
 
-### 1. Agent Added to Components
+### 1. Агент добавлен в components
 ```bash
 # Check agent exists in registry
 cat registry.json | jq '.components.agents[] | select(.id == "your-agent")'
 ```
 
-### 2. Agent Added to Appropriate Profiles
+### 2. Агент добавлен в подходящие profiles
 
-**Development agents** → Add to:
+**Development-агенты** → добавить в:
 - ✅ `developer` profile
 - ✅ `full` profile
 - ✅ `advanced` profile
 
-**Content agents** → Add to:
+**Content-агенты** → добавить в:
 - ✅ `business` profile
 - ✅ `full` profile
 - ✅ `advanced` profile
 
-**Data agents** → Add to:
-- ✅ `business` profile (if business-focused)
+**Data-агенты** → добавить в:
+- ✅ `business` profile (если business-focused)
 - ✅ `full` profile
 - ✅ `advanced` profile
 
-**Meta agents** → Add to:
-- ✅ `advanced` profile only
+**Meta-агенты** → добавить в:
+- ✅ только `advanced` profile
 
-**Core agents** → Add to:
+**Core-агенты** → добавить в:
 - ✅ `essential` profile
-- ✅ All other profiles
+- ✅ все остальные profiles
 
-### 3. Verify Profile Includes Agent
+### 3. Проверьте, что profile включает агента
 
 ```bash
 # Check if agent is in developer profile
@@ -93,57 +93,57 @@ cat registry.json | jq '.profiles.full.components[] | select(. == "agent:your-ag
 
 ---
 
-## Profile Assignment Rules
+## Правила назначения profiles
 
-### Developer Profile
-**Include**:
-- Core agents (openagent, opencoder)
-- Development specialist subagents (frontend, devops)
-- All code subagents (tester, reviewer, coder-agent, build-agent)
-- Dev commands (commit, test, validate-repo, analyze-patterns)
-- Dev context (standards/code, standards/tests, workflows/*)
-- Utility subagents (image-specialist for website images)
-- Tools (env, gemini for image generation)
+### Профиль Developer
+**Включать**:
+- Core-агенты (openagent, opencoder)
+- Development-субагенты-специалисты (frontend, devops)
+- Все code-субагенты (tester, reviewer, coder-agent, build-agent)
+- Dev-команды (commit, test, validate-repo, analyze-patterns)
+- Dev-контекст (standards/code, standards/tests, workflows/*)
+- Utility-субагенты (image-specialist для изображений сайта)
+- Инструменты (env, gemini для генерации изображений)
 
-**Exclude**:
-- Content agents (copywriter, technical-writer)
-- Data agents (data-analyst)
-- Meta agents (system-builder, repo-manager)
+**Исключать**:
+- Content-агенты (copywriter, technical-writer)
+- Data-агенты (data-analyst)
+- Meta-агенты (system-builder, repo-manager)
 
-### Business Profile
-**Include**:
-- Core agent (openagent)
-- Content specialists (copywriter, technical-writer)
-- Data specialists (data-analyst)
-- Image tools (gemini, image-specialist)
-- Notification tools (notify)
+### Профиль Business
+**Включать**:
+- Core-агент (openagent)
+- Content-специалисты (copywriter, technical-writer)
+- Data-специалисты (data-analyst)
+- Инструменты изображений (gemini, image-specialist)
+- Инструменты уведомлений (notify)
 
-**Exclude**:
-- Development specialists
-- Code subagents
-- Meta agents
+**Исключать**:
+- Development-специалисты
+- Code-субагенты
+- Meta-агенты
 
-### Full Profile
-**Include**:
-- Everything from developer profile
-- Everything from business profile
-- All agents except meta agents
+### Профиль Full
+**Включать**:
+- Всё из developer profile
+- Всё из business profile
+- Все agents, кроме meta agents
 
-**Exclude**:
-- Meta agents (system-builder, repo-manager)
+**Исключать**:
+- Meta-агенты (system-builder, repo-manager)
 
-### Advanced Profile
-**Include**:
-- Everything from full profile
-- Meta agents (system-builder, repo-manager)
-- Meta subagents (domain-analyzer, agent-generator, etc.)
-- Meta commands (build-context-system)
+### Профиль Advanced
+**Включать**:
+- Всё из full profile
+- Meta-агенты (system-builder, repo-manager)
+- Meta-субагенты (domain-analyzer, agent-generator и т. д.)
+- Meta-команды (build-context-system)
 
 ---
 
-## Automated Validation
+## Автоматическая валидация
 
-### Script to Check Profile Coverage
+### Скрипт для проверки покрытия profiles
 
 ```bash
 #!/bin/bash
@@ -207,28 +207,28 @@ done
 echo "✅ Profile coverage check complete"
 ```
 
-Save this as: `scripts/registry/validate-profile-coverage.sh`
+Сохраните как: `scripts/registry/validate-profile-coverage.sh`
 
 ---
 
-## Manual Validation Steps
+## Шаги ручной проверки
 
-### After Adding a New Agent
+### После добавления нового агента
 
-1. **Add agent to components**:
+1. **Добавьте агента в components**:
    ```bash
    ./scripts/registry/auto-detect-components.sh --auto-add
    ```
 
-2. **Manually add to profiles**:
-   Edit `registry.json` and add `"agent:your-agent"` to appropriate profiles
+2. **Вручную добавьте в profiles**:
+   отредактируйте `registry.json` и добавьте `"agent:your-agent"` в подходящие profiles
 
-3. **Validate registry**:
+3. **Проверьте registry**:
    ```bash
    ./scripts/registry/validate-registry.sh
    ```
 
-4. **Test local install**:
+4. **Проверьте локальную установку**:
    ```bash
    # Test developer profile
    REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list
@@ -237,7 +237,7 @@ Save this as: `scripts/registry/validate-profile-coverage.sh`
    REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list | grep "your-agent"
    ```
 
-5. **Test actual install**:
+5. **Проверьте фактическую установку**:
    ```bash
    # Install to temp directory
    mkdir -p /tmp/test-install
@@ -250,9 +250,9 @@ Save this as: `scripts/registry/validate-profile-coverage.sh`
 
 ---
 
-## Common Mistakes
+## Частые ошибки
 
-### ❌ Mistake 1: Only Adding to Components
+### ❌ Ошибка 1: добавление только в components
 ```json
 // Added to components
 "components": {
@@ -271,7 +271,7 @@ Save this as: `scripts/registry/validate-profile-coverage.sh`
 }
 ```
 
-### ❌ Mistake 2: Wrong Profile Assignment
+### ❌ Ошибка 2: неверное назначение profile
 ```json
 // Development agent added to business profile
 "business": {
@@ -281,7 +281,7 @@ Save this as: `scripts/registry/validate-profile-coverage.sh`
 }
 ```
 
-### ❌ Mistake 3: Inconsistent Profile Coverage
+### ❌ Ошибка 3: несогласованное покрытие profiles
 ```json
 // Added to full but not advanced
 "full": {
@@ -296,19 +296,19 @@ Save this as: `scripts/registry/validate-profile-coverage.sh`
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-✅ **Use auto-detect** - Adds to components automatically  
-✅ **Check all profiles** - Verify agent in correct profiles  
-✅ **Test locally** - Install and verify before pushing  
-✅ **Validate** - Run validation script after changes  
-✅ **Document** - Update CHANGELOG with profile changes  
+✅ **Используйте auto-detect** — автоматически добавляет в components  
+✅ **Проверяйте все profiles** — убедитесь, что агент в правильных profiles  
+✅ **Тестируйте локально** — установите и проверьте перед push  
+✅ **Валидируйте** — запускайте скрипт валидации после изменений  
+✅ **Документируйте** — обновляйте CHANGELOG с изменениями profiles  
 
 ---
 
-## CI/CD Integration
+## Интеграция CI/CD
 
-Add profile validation to CI:
+Добавьте валидацию profiles в CI:
 
 ```yaml
 # .github/workflows/validate-registry.yml
@@ -321,9 +321,9 @@ Add profile validation to CI:
 
 ---
 
-## Quick Reference
+## Краткий справочник
 
-| Agent Category | Essential | Developer | Business | Full | Advanced |
+| Категория агента | Essential | Developer | Business | Full | Advanced |
 |---------------|-----------|-----------|----------|------|----------|
 | core          | ✅        | ✅        | ✅       | ✅   | ✅       |
 | development*  | ❌        | ✅        | ❌       | ✅   | ✅       |
@@ -331,40 +331,40 @@ Add profile validation to CI:
 | data          | ❌        | ❌        | ✅       | ✅   | ✅       |
 | meta          | ❌        | ❌        | ❌       | ❌   | ✅       |
 
-*Note: Development category includes agents (opencoder) and specialist subagents (frontend, devops)
+*Примечание: категория development включает agents (opencoder) и specialist subagents (frontend, devops)
 
 ---
 
-## Development Profile Changes (v2.0.0)
+## Изменения профиля Developer (v2.0.0)
 
-**What Changed**:
+**Что изменилось**:
 - frontend-specialist: Agent → Subagent (specialized executor)
 - devops-specialist: Agent → Subagent (specialized executor)
-- backend-specialist: Removed (functionality covered by opencoder)
-- codebase-pattern-analyst: Removed (replaced by analyze-patterns command)
-- analyze-patterns: New command for pattern analysis
+- backend-specialist: удален (функциональность покрыта opencoder)
+- codebase-pattern-analyst: удален (заменен command analyze-patterns)
+- analyze-patterns: новая command для pattern analysis
 
-**Why**:
-- Streamlined main agents to 2 (openagent, opencoder)
-- Specialist subagents provide focused expertise when needed
-- Reduced cognitive load for new users
-- Clearer separation between main agents and specialized tools
+**Почему**:
+- Основные агенты сокращены до 2 (openagent, opencoder)
+- Субагенты-специалисты дают сфокусированную экспертизу при необходимости
+- Снижена когнитивная нагрузка для новых пользователей
+- Более четкое разделение между основными agents и specialized tools
 
-**Impact**:
-- Developer profile now has 2 main agents + 8 subagents
-- Smaller, more focused profile
-- Same capabilities, better organization
-- No breaking changes for existing workflows
-
----
-
-## Related Files
-
-- **Registry concepts**: `core-concepts/registry.md`
-- **Updating registry**: `guides/updating-registry.md`
-- **Adding agents**: `guides/adding-agent.md`
+**Влияние**:
+- Профиль Developer теперь содержит 2 main agents + 8 subagents
+- Профиль стал меньше и сфокусированнее
+- Те же возможности, лучшая организация
+- Нет breaking changes для существующих процессов
 
 ---
 
-**Last Updated**: 2025-01-28  
-**Version**: 0.5.2
+## Связанные файлы
+
+- **Концепции registry**: `core-concepts/registry.md`
+- **Обновление registry**: `guides/updating-registry.md`
+- **Добавление агентов**: `guides/adding-agent.md`
+
+---
+
+**Последнее обновление**: 2025-01-28  
+**Версия**: 0.5.2

@@ -1,28 +1,28 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# NPM Publishing Guide
+# Руководство по публикации в NPM
 
-**Purpose**: Quick reference for publishing OpenAgents Control to npm
+**Цель**: быстрый справочник по публикации OpenAgents Control в npm
 
-**Time to Read**: 3 minutes
-
----
-
-## Core Concept
-
-OpenAgents Control is published as `@nextsystems/oac` on npm. Users install globally and run `oac [profile]` to set up their projects.
-
-**Key files**:
-- `package.json` - Package configuration
-- `bin/oac.js` - CLI entry point
-- `.npmignore` - Exclude dev files
-- `install.sh` - Main installer (runs when user executes `oac`)
+**Время чтения**: 3 минуты
 
 ---
 
-## Publishing Workflow
+## Ключевая концепция
 
-### 1. Prepare Release
+OpenAgents Control публикуется как `@nextsystems/oac` в npm. Пользователи устанавливают его глобально и запускают `oac [profile]`, чтобы настроить проекты.
+
+**Ключевые файлы**:
+- `package.json` — конфигурация пакета
+- `bin/oac.js` — точка входа CLI
+- `.npmignore` — исключение dev-файлов
+- `install.sh` — основной installer (запускается при выполнении `oac` пользователем)
+
+---
+
+## Процесс публикации
+
+### 1. Подготовьте релиз
 
 ```bash
 # Update version
@@ -35,7 +35,7 @@ node -p "require('./package.json').version" > VERSION
 # Update CHANGELOG.md with changes
 ```
 
-### 2. Test Locally
+### 2. Проверьте локально
 
 ```bash
 # Create package
@@ -52,7 +52,7 @@ oac --help
 npm uninstall -g @nextsystems/oac
 ```
 
-### 3. Publish
+### 3. Опубликуйте
 
 ```bash
 # Login (one-time)
@@ -62,7 +62,7 @@ npm login
 npm publish --access public
 ```
 
-### 4. Verify
+### 4. Проверьте
 
 ```bash
 # Check it's live
@@ -73,7 +73,7 @@ npm install -g @nextsystems/oac
 oac --version
 ```
 
-### 5. Create GitHub Release
+### 5. Создайте GitHub Release
 
 ```bash
 git tag v0.7.1
@@ -83,9 +83,9 @@ git push --tags
 
 ---
 
-## User Installation
+## Установка пользователями
 
-Once published, users can:
+После публикации пользователи могут:
 
 ```bash
 # Global install (recommended)
@@ -98,7 +98,7 @@ npx @nextsystems/oac developer
 
 ---
 
-## Common Issues
+## Частые проблемы
 
 **"You do not have permission to publish"**
 ```bash
@@ -118,38 +118,38 @@ npm profile get  # Check email verification status
 
 ---
 
-## Package Configuration
+## Конфигурация пакета
 
-**What's included** (see `package.json` → `files`):
-- `.opencode/` - Agents, commands, context, profiles, skills, tools
-- `scripts/` - Installation scripts
-- `bin/` - CLI entry point
-- `registry.json` - Component registry
-- `install.sh` - Main installer
-- Docs (README, CHANGELOG, LICENSE)
+**Что включено** (см. `package.json` → `files`):
+- `.opencode/` — агенты, команды, context, profiles, skills, tools
+- `scripts/` — installation scripts
+- `bin/` — точка входа CLI
+- `registry.json` — component registry
+- `install.sh` — основной installer
+- Документация (README, CHANGELOG, LICENSE)
 
-**What's excluded** (see `.npmignore`):
+**Что исключено** (см. `.npmignore`):
 - `node_modules/`
 - `evals/`
 - `.tmp/`
-- Dev files
+- Dev-файлы
 
 ---
 
-## Security
+## Безопасность
 
-- ✅ Enable 2FA: `npm profile enable-2fa auth-and-writes`
-- ✅ Use strong npm password
-- ✅ `@nextsystems` scope is protected (only you can publish)
-
----
-
-## References
-
-- **Package**: https://www.npmjs.com/package/@nextsystems/oac
-- **Stats**: https://npm-stat.com/charts.html?package=@nextsystems/oac
-- **Codebase**: `package.json`, `bin/oac.js`, `.npmignore`
+- ✅ Включите 2FA: `npm profile enable-2fa auth-and-writes`
+- ✅ Используйте надежный npm-пароль
+- ✅ Scope `@nextsystems` защищен (публиковать можете только вы)
 
 ---
 
-**Last Updated**: 2026-01-30
+## Ссылки
+
+- **Пакет**: https://www.npmjs.com/package/@nextsystems/oac
+- **Статистика**: https://npm-stat.com/charts.html?package=@nextsystems/oac
+- **Кодовая база**: `package.json`, `bin/oac.js`, `.npmignore`
+
+---
+
+**Последнее обновление**: 2026-01-30

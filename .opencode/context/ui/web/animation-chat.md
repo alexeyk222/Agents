@@ -1,11 +1,11 @@
 <!-- Context: ui/web/animation-chat | Priority: medium | Version: 1.0 | Updated: 2025-12-09 -->
-# Chat UI Animation Patterns
+# Паттерны анимации Chat UI
 
-Animation patterns for message entrances, typing indicators, and chat interactions.
+Паттерны анимации для появления сообщений, индикаторов набора и взаимодействий в чате.
 
 ---
 
-## Message Entrance
+## Появление сообщения
 
 ```css
 /* User message - slide from right */
@@ -44,7 +44,7 @@ Animation patterns for message entrances, typing indicators, and chat interactio
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 userMsg: 400ms ease-out [Y+20→0, X+10→0, S0.9→1]
 aiMsg: 600ms bounce [Y+15→0, S0.95→1] +200ms
@@ -52,7 +52,7 @@ aiMsg: 600ms bounce [Y+15→0, S0.95→1] +200ms
 
 ---
 
-## Typing Indicator
+## Индикатор набора
 
 ```css
 .typing-indicator span {
@@ -73,14 +73,14 @@ aiMsg: 600ms bounce [Y+15→0, S0.95→1] +200ms
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 typing: 1400ms ∞ [Y±8, α0.4→1] stagger+200ms
 ```
 
 ---
 
-## Chat Message Micro-Interactions
+## Микроинтеракции сообщений чата
 
 ```css
 /* Message hover */
@@ -98,7 +98,7 @@ typing: 1400ms ∞ [Y±8, α0.4→1] stagger+200ms
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 msgHover: 200ms [Y0→-2, shadow↗]
 msgSelect: 200ms [bg→accent, S1→1.02]
@@ -106,8 +106,8 @@ msgSelect: 200ms [bg→accent, S1→1.02]
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Animation Basics](./animation-basics.md) - Fundamentals
-- [Component Animations](./animation-components.md) - UI components
-- [Loading Animations](./animation-loading.md) - Loading states
+- [Основы анимации](./animation-basics.md) - базовые принципы
+- [Анимации компонентов](./animation-components.md) - UI-компоненты
+- [Анимации загрузки](./animation-loading.md) - состояния загрузки

@@ -1,57 +1,57 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Subagent Invocation
+# Руководство: вызов subagent
 
-**Purpose**: How to correctly invoke subagents using the task tool  
-**Priority**: HIGH - Critical for agent delegation
+**Цель**: как корректно вызывать subagents через task tool  
+**Приоритет**: HIGH — критично для делегирования агентами
 
 ---
 
-## The Problem
+## Проблема
 
-**Issue**: Agents trying to invoke subagents with incorrect `subagent_type` format
+**Проблема**: агенты пытаются вызывать subagents с неверным форматом `subagent_type`
 
-**Error**:
+**Ошибка**:
 ```
 Unknown agent type: ContextScout is not a valid agent type
 ```
 
-**Root Cause**: The `subagent_type` parameter in the task tool must match the registered agent type in the OpenCode CLI, not the file path.
+**Причина**: параметр `subagent_type` в task tool должен совпадать с зарегистрированным agent type в OpenCode CLI, а не с path файла.
 
 ---
 
-## Correct Subagent Invocation
+## Корректный вызов subagent
 
-### Available Subagent Types
+### Доступные типы subagent
 
-Based on the OpenCode CLI registration, use these exact strings for `subagent_type`:
+На основе регистрации OpenCode CLI используйте эти точные строки для `subagent_type`:
 
-**Core Subagents**:
-- `"Task Manager"` - Task breakdown and planning
-- `"Documentation"` - Documentation generation
-- `"ContextScout"` - Context file discovery
+**Core-субагенты**:
+- `"Task Manager"` — декомпозиция задач и планирование
+- `"Documentation"` — генерация документации
+- `"ContextScout"` — поиск context files
 
-**Code Subagents**:
-- `"Coder Agent"` - Code implementation
-- `"TestEngineer"` - Test authoring
-- `"Reviewer"` - Code review
-- `"Build Agent"` - Build validation
+**Code-субагенты**:
+- `"Coder Agent"` — реализация кода
+- `"TestEngineer"` — написание тестов
+- `"Reviewer"` — code review
+- `"Build Agent"` — build validation
 
-**System Builder Subagents**:
-- `"Domain Analyzer"` - Domain analysis
-- `"Agent Generator"` - Agent generation
-- `"Context Organizer"` - Context organization
-- `"Workflow Designer"` - Workflow design
-- `"Command Creator"` - Command creation
+**Субагенты System Builder**:
+- `"Domain Analyzer"` — domain analysis
+- `"Agent Generator"` — agent generation
+- `"Context Organizer"` — context organization
+- `"Workflow Designer"` — проектирование workflow
+- `"Command Creator"` — command creation
 
-**Utility Subagents**:
-- `"Image Specialist"` - Image generation/editing
+**Utility-субагенты**:
+- `"Image Specialist"` — image generation/editing
 
 ---
 
-## Invocation Syntax
+## Синтаксис вызова
 
-### ✅ Correct Format
+### ✅ Правильный формат
 
 ```javascript
 task(
@@ -61,7 +61,7 @@ task(
 )
 ```
 
-### ❌ Incorrect Formats
+### ❌ Неправильные форматы
 
 ```javascript
 // ❌ Using file path
@@ -85,16 +85,16 @@ task(
 
 ---
 
-## How to Find the Correct Type
+## Как найти правильный type
 
-### Method 1: Check Registry
+### Метод 1: проверьте registry
 
 ```bash
 # List all subagent names
 cat registry.json | jq -r '.components.subagents[] | "\(.name)"'
 ```
 
-**Output**:
+**Вывод**:
 ```
 Task Manager
 Image Specialist
@@ -111,16 +111,16 @@ Command Creator
 ContextScout
 ```
 
-### Method 2: Check OpenCode CLI
+### Метод 2: проверьте OpenCode CLI
 
 ```bash
 # List available agents (if CLI supports it)
 opencode list agents
 ```
 
-### Method 3: Check Agent Frontmatter
+### Метод 3: проверьте frontmatter агента
 
-Look at the `name` field in the subagent's frontmatter:
+Смотрите поле `name` во frontmatter subagent:
 
 ```yaml
 ---
@@ -132,7 +132,7 @@ type: subagent
 
 ---
 
-## Common Subagent Invocations
+## Частые вызовы subagent
 
 ### Task Manager
 
@@ -229,15 +229,15 @@ task(
 
 ---
 
-## ContextScout Special Case
+## Особый случай ContextScout
 
-**Status**: ⚠️ May not be registered in OpenCode CLI yet
+**Статус**: ⚠️ может быть еще не зарегистрирован в OpenCode CLI
 
-The `ContextScout` subagent exists in the repository but may not be registered in the OpenCode CLI's available agent types.
+Subagent `ContextScout` есть в repository, но может отсутствовать среди доступных agent types в OpenCode CLI.
 
-### Workaround
+### Обходной путь
 
-Until ContextScout is properly registered, use direct file operations instead:
+Пока ContextScout не зарегистрирован корректно, используйте прямые операции с файлами:
 
 ```javascript
 // ❌ This may fail
@@ -260,28 +260,28 @@ read(filePath=".opencode/context/openagents-repo/core-concepts/registry.md")
 
 ---
 
-## Fixing Existing Agents
+## Исправление существующих агентов
 
-### Agents That Need Fixing
+### Агенты, которые нужно исправить
 
-1. **repo-manager.md** - Uses `ContextScout`
-2. **opencoder.md** - Check if uses incorrect format
+1. **repo-manager.md** — использует `ContextScout`
+2. **opencoder.md** — проверьте, использует ли неверный формат
 
-### Fix Process
+### Процесс исправления
 
-1. **Find incorrect invocations**:
+1. **Найдите неправильные вызовы**:
    ```bash
    grep -r 'subagent_type="subagents/' .opencode/agent --include="*.md"
    ```
 
-2. **Replace with correct format**:
+2. **Замените на правильный формат**:
    ```bash
    # Example: Fix task-manager invocation
    # Old: subagent_type="TaskManager"
    # New: subagent_type="Task Manager"
    ```
 
-3. **Test the fix**:
+3. **Проверьте исправление**:
    ```bash
    # Run agent with test prompt
    # Verify subagent delegation works
@@ -289,9 +289,9 @@ read(filePath=".opencode/context/openagents-repo/core-concepts/registry.md")
 
 ---
 
-## Validation
+## Валидация
 
-### Check Subagent Type Before Using
+### Проверяйте subagent type перед использованием
 
 ```javascript
 // Pseudo-code for validation
@@ -316,58 +316,58 @@ if subagent_type not in available_types:
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-✅ **Use exact names** - Match registry `name` field exactly  
-✅ **Check registry first** - Verify subagent exists before using  
-✅ **Test invocations** - Test delegation before committing  
-✅ **Document dependencies** - List required subagents in agent frontmatter  
+✅ **Используйте точные имена** — совпадающие с полем `name` в registry  
+✅ **Сначала проверяйте registry** — убедитесь, что subagent существует  
+✅ **Тестируйте вызовы** — проверяйте делегирование перед commit  
+✅ **Документируйте dependencies** — перечисляйте нужных subagents во frontmatter агента  
 
-❌ **Don't use paths** - Never use file paths as subagent_type  
-❌ **Don't use IDs** - Don't use kebab-case IDs  
-❌ **Don't assume** - Always verify subagent is registered  
-
----
-
-## Troubleshooting
-
-### Error: "Unknown agent type"
-
-**Cause**: Subagent type not registered in CLI or incorrect format
-
-**Solutions**:
-1. Check registry for correct name
-2. Verify subagent exists in `.opencode/agent/subagents/`
-3. Use exact name from registry `name` field
-4. If subagent not registered, use direct operations instead
-
-### Error: "Subagent not found"
-
-**Cause**: Subagent file doesn't exist
-
-**Solutions**:
-1. Check file exists at expected path
-2. Verify registry entry is correct
-3. Run `./scripts/registry/validate-registry.sh`
-
-### Delegation Fails Silently
-
-**Cause**: Subagent invoked but doesn't execute
-
-**Solutions**:
-1. Check subagent has required tools enabled
-2. Verify subagent permissions allow operation
-3. Check subagent prompt is clear and actionable
+❌ **Не используйте paths** — никогда не используйте file paths как subagent_type  
+❌ **Не используйте IDs** — не используйте kebab-case IDs  
+❌ **Не предполагайте** — всегда проверяйте, что subagent зарегистрирован  
 
 ---
 
-## Related Files
+## Диагностика
 
-- **Registry**: `registry.json` - Component catalog
-- **Subagents**: `.opencode/agent/subagents/` - Subagent definitions
-- **Validation**: `scripts/registry/validate-registry.sh`
+### Ошибка: "Unknown agent type"
+
+**Причина**: subagent type не зарегистрирован в CLI или указан неверно
+
+**Решения**:
+1. Проверьте registry на правильное name
+2. Убедитесь, что subagent существует в `.opencode/agent/subagents/`
+3. Используйте точное name из поля `name` в registry
+4. Если subagent не зарегистрирован, используйте прямые операции вместо него
+
+### Ошибка: "Subagent not found"
+
+**Причина**: файл subagent не существует
+
+**Решения**:
+1. Проверьте, что файл существует по ожидаемому path
+2. Убедитесь, что запись registry корректна
+3. Запустите `./scripts/registry/validate-registry.sh`
+
+### Делегирование тихо не срабатывает
+
+**Причина**: subagent вызван, но не выполняется
+
+**Решения**:
+1. Проверьте, что у subagent включены required tools
+2. Убедитесь, что permissions subagent разрешают операцию
+3. Проверьте, что prompt subagent понятен и actionable
 
 ---
 
-**Last Updated**: 2025-12-29  
-**Version**: 0.5.1
+## Связанные файлы
+
+- **Registry**: `registry.json` — каталог компонентов
+- **Субагенты**: `.opencode/agent/subagents/` — определения subagent
+- **Валидация**: `scripts/registry/validate-registry.sh`
+
+---
+
+**Последнее обновление**: 2025-12-29  
+**Версия**: 0.5.1

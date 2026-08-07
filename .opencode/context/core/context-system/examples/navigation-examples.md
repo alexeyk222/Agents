@@ -1,20 +1,20 @@
 <!-- Context: core/navigation-examples | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Examples: Navigation Files
+# Примеры: файлы навигации
 
-**Purpose**: Real-world examples of good navigation files
+**Назначение**: практические примеры хороших файлов навигации
 
-**Last Updated**: 2026-01-08
+**Последнее обновление**: 2026-01-08
 
 ---
 
-## Example 1: Category Navigation (Function-Based)
+## Пример 1: навигация категории (по функциям)
 
-**File**: `openagents-repo/navigation.md`
+**Файл**: `openagents-repo/navigation.md`
 
-**Pattern**: Function-Based (repository-specific)
+**Паттерн**: по функциям (специфично для репозитория)
 
-**Token count**: ~250 tokens
+**Количество токенов**: ~250 токенов
 
 ```markdown
 # OpenAgents Control Repository Navigation
@@ -50,7 +50,7 @@ openagents-repo/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -71,21 +71,21 @@ openagents-repo/
 **Errors** → Troubleshooting
 ```
 
-**Why this works**:
-- ✅ Token-efficient (~250 tokens)
-- ✅ ASCII tree shows structure
-- ✅ Quick routes for common tasks
-- ✅ Organized by information type
+**Почему это работает**:
+- ✅ Токен-эффективно (~250 токенов)
+- ✅ ASCII-дерево показывает структуру
+- ✅ Быстрые маршруты для частых задач
+- ✅ Организовано по типу информации
 
 ---
 
-## Example 2: Category Navigation (Concern-Based)
+## Пример 2: навигация категории (по задачам)
 
-**File**: `development/navigation.md`
+**Файл**: `development/navigation.md`
 
-**Pattern**: Concern-Based (multi-technology)
+**Паттерн**: по задачам (несколько технологий)
 
-**Token count**: ~280 tokens
+**Количество токенов**: ~280 токенов
 
 ```markdown
 # Development Navigation
@@ -122,7 +122,7 @@ development/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -141,21 +141,21 @@ development/
 **Data** → SQL, NoSQL, ORMs
 ```
 
-**Why this works**:
-- ✅ Token-efficient (~280 tokens)
-- ✅ Shows specialized navigation files
-- ✅ Organized by concern (frontend, backend, data)
-- ✅ Points to specialized navigation for complex workflows
+**Почему это работает**:
+- ✅ Токен-эффективно (~280 токенов)
+- ✅ Показывает специализированные файлы навигации
+- ✅ Организовано по задаче (frontend, backend, data)
+- ✅ Указывает на специализированную навигацию для сложных процессов
 
 ---
 
-## Example 3: Specialized Navigation
+## Пример 3: специализированная навигация
 
-**File**: `development/ui-navigation.md`
+**Файл**: `development/ui-navigation.md`
 
-**Pattern**: Cross-cutting (spans multiple categories)
+**Паттерн**: сквозной (охватывает несколько категорий)
 
-**Token count**: ~270 tokens
+**Количество токенов**: ~270 токенов
 
 ```markdown
 # UI Development Navigation
@@ -184,7 +184,7 @@ Visual Design (ui/web/):
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -207,21 +207,21 @@ Visual Design (ui/web/):
 **Visual design** → `ui/web/`
 ```
 
-**Why this works**:
-- ✅ Token-efficient (~270 tokens)
-- ✅ Spans multiple categories (development/ + ui/)
-- ✅ Task-focused (UI development)
-- ✅ Shows both code and design paths
+**Почему это работает**:
+- ✅ Токен-эффективно (~270 токенов)
+- ✅ Охватывает несколько категорий (`development/` + `ui/`)
+- ✅ Сфокусировано на задаче (UI-разработка)
+- ✅ Показывает пути и к коду, и к дизайну
 
 ---
 
-## Example 4: Subcategory Navigation
+## Пример 4: навигация подкатегории
 
-**File**: `development/backend/navigation.md`
+**Файл**: `development/backend/navigation.md`
 
-**Pattern**: Concern-based subcategory
+**Паттерн**: подкатегория по задачам
 
-**Token count**: ~240 tokens
+**Количество токенов**: ~240 токенов
 
 ```markdown
 # Backend Development Navigation
@@ -255,7 +255,7 @@ backend/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -277,21 +277,21 @@ backend/
 **Python** → `python/`
 ```
 
-**Why this works**:
-- ✅ Token-efficient (~240 tokens)
-- ✅ Organized by approach first (REST, GraphQL)
-- ✅ Then by tech (Node.js, Python)
-- ✅ Functional concerns separate (authentication/)
+**Почему это работает**:
+- ✅ Токен-эффективно (~240 токенов)
+- ✅ Сначала организовано по подходу (REST, GraphQL)
+- ✅ Затем по технологии (Node.js, Python)
+- ✅ Функциональные задачи разделены (`authentication/`)
 
 ---
 
-## Example 5: Full-Stack Navigation
+## Пример 5: full-stack навигация
 
-**File**: `development/fullstack-navigation.md`
+**Файл**: `development/fullstack-navigation.md`
 
-**Pattern**: Workflow-focused
+**Паттерн**: сфокусирован на workflow
 
-**Token count**: ~300 tokens
+**Количество токенов**: ~300 токенов
 
 ```markdown
 # Full-Stack Development Navigation
@@ -319,7 +319,7 @@ Data:     development/data/orm-patterns/prisma.md
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Layer | Navigate To |
 |-------|-------------|
@@ -342,21 +342,21 @@ Data:     development/data/orm-patterns/prisma.md
 3. `ui/web/ui-styling-standards.md` (styling)
 ```
 
-**Why this works**:
-- ✅ Token-efficient (~300 tokens)
-- ✅ Shows common tech stacks
-- ✅ Workflow-focused (how to build features)
-- ✅ Points to layer-specific navigation
+**Почему это работает**:
+- ✅ Токен-эффективно (~300 токенов)
+- ✅ Показывает типовые технологические стеки
+- ✅ Сфокусировано на workflow (как строить фичи)
+- ✅ Указывает на навигацию по слоям
 
 ---
 
-## Example 6: Minimal Navigation
+## Пример 6: минимальная навигация
 
-**File**: `content/navigation.md`
+**Файл**: `content/navigation.md`
 
-**Pattern**: Simple category (few files)
+**Паттерн**: простая категория (мало файлов)
 
-**Token count**: ~150 tokens
+**Количество токенов**: ~150 токенов
 
 ```markdown
 # Content Navigation
@@ -376,7 +376,7 @@ content/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -391,17 +391,17 @@ content/
 **tone-voice.md** → Brand voice, tone guidelines
 ```
 
-**Why this works**:
-- ✅ Token-efficient (~150 tokens)
-- ✅ Simple structure (only 2 files)
-- ✅ No unnecessary complexity
-- ✅ Clear and scannable
+**Почему это работает**:
+- ✅ Токен-эффективно (~150 токенов)
+- ✅ Простая структура (только 2 файла)
+- ✅ Нет лишней сложности
+- ✅ Понятно и быстро просматривается
 
 ---
 
-## Anti-Patterns (What NOT to Do)
+## Антипаттерны (чего НЕ делать)
 
-### ❌ Too Verbose
+### ❌ Слишком многословно
 
 ```markdown
 # Development Navigation
@@ -415,14 +415,14 @@ The development category represents a significant portion of our context system.
 [Continues for 800+ tokens]
 ```
 
-**Problems**:
-- ❌ 800+ tokens (should be 200-300)
-- ❌ Verbose explanations (should be concise)
-- ❌ Hard to scan (should use tables/trees)
+**Проблемы**:
+- ❌ 800+ токенов (должно быть 200–300)
+- ❌ Многословные объяснения (нужно кратко)
+- ❌ Трудно сканировать (нужны таблицы/деревья)
 
 ---
 
-### ❌ Missing Structure
+### ❌ Нет структуры
 
 ```markdown
 # Development Navigation
@@ -434,14 +434,14 @@ Here are the files:
 - express-patterns.md
 ```
 
-**Problems**:
-- ❌ No ASCII tree (hard to see hierarchy)
-- ❌ No quick routes (hard to find tasks)
-- ❌ No organization (just a list)
+**Проблемы**:
+- ❌ Нет ASCII-дерева (иерархию трудно увидеть)
+- ❌ Нет быстрых маршрутов (задачи трудно найти)
+- ❌ Нет организации (просто список)
 
 ---
 
-### ❌ Too Detailed
+### ❌ Слишком подробно
 
 ```markdown
 # Development Navigation
@@ -459,35 +459,35 @@ React hooks allow you to use state and lifecycle features in functional componen
    [... continues with full documentation]
 ```
 
-**Problems**:
-- ❌ Contains file contents (should just point to files)
-- ❌ Duplicates information (should reference, not repeat)
-- ❌ Too detailed (navigation, not documentation)
+**Проблемы**:
+- ❌ Содержит содержимое файлов (должен только указывать на файлы)
+- ❌ Дублирует информацию (нужны ссылки, не повторы)
+- ❌ Слишком подробно (это navigation, не документация)
 
 ---
 
-## Key Takeaways
+## Ключевые выводы
 
-### ✅ Good Navigation Files
+### ✅ Хорошие файлы навигации
 
-1. **Token-efficient** (200-300 tokens)
-2. **Scannable** (ASCII trees, tables)
-3. **Task-focused** (quick routes)
-4. **Organized** (by concern/type)
-5. **Concise** (3-5 word descriptions)
+1. **Токен-эффективные** (200–300 токенов)
+2. **Быстро просматриваемые** (ASCII-деревья, таблицы)
+3. **Сфокусированные на задачах** (быстрые маршруты)
+4. **Организованные** (по задаче/типу)
+5. **Краткие** (описания 3–5 слов)
 
-### ❌ Bad Navigation Files
+### ❌ Плохие файлы навигации
 
-1. **Verbose** (500+ tokens)
-2. **Hard to scan** (paragraphs)
-3. **Unfocused** (no clear routes)
-4. **Unorganized** (just lists)
-5. **Detailed** (duplicates content)
+1. **Многословные** (500+ токенов)
+2. **Трудно сканировать** (абзацы)
+3. **Без фокуса** (нет ясных маршрутов)
+4. **Неорганизованные** (просто списки)
+5. **Слишком подробные** (дублируют содержимое)
 
 ---
 
-## Related
+## Связанные материалы
 
-- `../guides/navigation-design.md` - How to create navigation files
-- `../guides/organizing-context.md` - How to choose organizational pattern
-- `../standards/mvi.md` - Minimal Viable Information principle
+- `../guides/navigation-design.md` - как создавать файлы навигации
+- `../guides/organizing-context.md` - как выбрать организационный паттерн
+- `../standards/mvi.md` - принцип MVI

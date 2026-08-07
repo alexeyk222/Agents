@@ -1,12 +1,12 @@
 <!-- Context: core/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Context System
+# Система контекста
 
-**Purpose**: Documentation for the context system architecture and operations
+**Назначение**: документация по архитектуре и операциям системы контекста
 
 ---
 
-## Structure
+## Структура
 
 ```
 core/context-system/
@@ -24,30 +24,30 @@ core/context-system/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **Understand context system** | `../context-system.md` |
-| **Operations & procedures** | `operations/navigation.md` |
-| **Implementation guides** | `guides/navigation.md` |
-| **Standards & templates** | `standards/navigation.md` |
-| **Examples** | `examples/navigation.md` |
-| **Migrate global → local** | `operations/migrate.md` |
+| **Понять систему контекста** | `../context-system.md` |
+| **Операции и процедуры** | `operations/navigation.md` |
+| **Руководства по реализации** | `guides/navigation.md` |
+| **Стандарты и шаблоны** | `standards/navigation.md` |
+| **Примеры** | `examples/navigation.md` |
+| **Миграция global → local** | `operations/migrate.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Examples** → Working examples of navigation files  
-**Guides** → Step-by-step guides for working with context  
-**Operations** → How to operate and maintain the context system  
-**Standards** → Templates and standards for context files
+**Примеры** → рабочие примеры файлов навигации  
+**Руководства** → пошаговые руководства по работе с контекстом  
+**Операции** → эксплуатация и сопровождение системы контекста  
+**Стандарты** → шаблоны и стандарты файлов контекста
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Core Navigation** → `../navigation.md`
-- **Core Standards** → `../standards/navigation.md`
-- **Core System** → `../system/navigation.md`
+- **Базовая навигация** → `../navigation.md`
+- **Базовые стандарты** → `../standards/navigation.md`
+- **Базовая система** → `../system/navigation.md`

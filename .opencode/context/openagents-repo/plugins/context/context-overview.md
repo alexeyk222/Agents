@@ -1,36 +1,36 @@
 <!-- Context: openagents-repo/context-overview | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenCode Plugin Context Library
+# Библиотека контекста плагинов OpenCode
 
-This library provides structured context for AI coding assistants to understand, build, and extend OpenCode plugins. Depending on your task, you can load specific parts of this library.
+Эта библиотека дает структурированный контекст для AI-ассистентов по коду, чтобы понимать, создавать и расширять плагины OpenCode. Загружайте нужные части под задачу.
 
-## 📚 Library Map
+## 📚 Карта библиотеки
 
-### 🏗️ Architecture
-Foundational concepts of how plugins are registered and executed.
-- [Overview](./architecture/overview.md): Basic structure, registration, and context object.
-- [Lifecycle](./architecture/lifecycle.md): Packaging, manifest, and session lifecycle.
+### 🏗️ Архитектура
+Базовые сведения о регистрации и выполнении плагинов.
+- [Обзор](./architecture/overview.md): базовая структура, регистрация и объект контекста.
+- [Жизненный цикл](./architecture/lifecycle.md): упаковка, манифест и жизненный цикл сессии.
 
-### 🛠️ Capabilities
-Deep dives into specific plugin features.
-- [Events](./capabilities/events.md): Detailed list of all 25+ hookable events.
-- [Events: Skills Plugin](./capabilities/events_skills.md): Practical example of event hooks in the Skills Plugin.
-- [Tools](./capabilities/tools.md): How to build and register custom tools using Zod.
-- [Agents](./capabilities/agents.md): Creating and configuring custom AI agents.
+### 🛠️ Возможности
+Подробности по отдельным возможностям плагинов.
+- [События](./capabilities/events.md): подробный список 25+ событий для хуков.
+- [События: Skills Plugin](./capabilities/events_skills.md): практический пример хуков событий в Skills Plugin.
+- [Инструменты](./capabilities/tools.md): как создавать и регистрировать пользовательские инструменты через Zod.
+- [Агенты](./capabilities/agents.md): создание и настройка пользовательских AI-агентов.
 
-### 📖 Reference
-Guidelines and troubleshooting.
-- [Best Practices](./reference/best-practices.md): Message injection workarounds, security, and performance.
+### 📖 Справка
+Рекомендации и устранение неполадок.
+- [Лучшие практики](./reference/best-practices.md): обходные пути для внедрения сообщений, безопасность и производительность.
 
-### 🧩 Claude Code Plugins (External)
-Claude Code plugin system documentation (harvested from external docs).
-- [Concepts: Plugin Architecture](./concepts/plugin-architecture.md): Core concepts and structure
-- [Guides: Creating Plugins](./guides/creating-plugins.md): Step-by-step creation
-- [Guides: Migrating to Plugins](./guides/migrating-to-plugins.md): Convert standalone to plugin
-- [Lookup: Plugin Structure](./lookup/plugin-structure.md): Directory reference
+### 🧩 Плагины Claude Code (внешние)
+Документация системы плагинов Claude Code (из внешней документации).
+- [Концепции: архитектура плагинов](./concepts/plugin-architecture.md): основные концепции и структура
+- [Руководства: создание плагинов](./guides/creating-plugins.md): пошаговое создание
+- [Руководства: миграция на плагины](./guides/migrating-to-plugins.md): преобразование отдельного решения в плагин
+- [Справочник: структура плагина](./lookup/plugin-structure.md): справочник по директориям
 
-## 🚀 How to use this library
-If you are asking an AI to build a new feature:
-1. **For a new tool**: Provide `architecture/overview.md` and `capabilities/tools.md`.
-2. **For reacting to events**: Provide `capabilities/events.md`.
-3. **For overall plugin architecture**: Provide `architecture/overview.md` and `architecture/lifecycle.md`.
+## 🚀 Как использовать эту библиотеку
+Если просите AI создать новую функцию:
+1. **Для нового инструмента**: дайте `architecture/overview.md` и `capabilities/tools.md`.
+2. **Для реакции на события**: дайте `capabilities/events.md`.
+3. **Для общей архитектуры плагинов**: дайте `architecture/overview.md` и `architecture/lifecycle.md`.

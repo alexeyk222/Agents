@@ -12,265 +12,305 @@ dependencies:
 
 # Check Context Dependencies
 
-**Purpose**: Ensure agents properly declare their context file dependencies in frontmatter and registry.
+**Purpose**: Убедиться, что агенты корректно объявляют зависимости от context-файлов в frontmatter и registry.
 
 **Arguments**: `$ARGUMENTS`
 
 ---
 
-## What It Does
+## Что делает команда
 
-Validates consistency between:
-1. **Actual usage** - Context files referenced in agent prompts
-2. **Declared dependencies** - Dependencies in agent frontmatter
-3. **Registry entries** - Dependencies in registry.json
+Проверяет согласованность между:
 
-**Identifies**:
-- ✅ Missing dependency declarations (agents use context but don't declare it)
-- ✅ Unused context files (exist but no agent references them)
-- ✅ Broken references (referenced but don't exist)
-- ✅ Format inconsistencies (wrong dependency format)
+1. **Фактическим использованием** — context-файлы, на которые ссылаются agent prompts
+2. **Объявленными зависимостями** — зависимости в agent frontmatter
+3. **Записями Registry** — зависимости в `registry.json`
+
+**Определяет**:
+
+* ✅ Отсутствующие объявления зависимостей — агент использует context, но не объявляет его
+* ✅ Неиспользуемые context-файлы — существуют, но ни один агент на них не ссылается
+* ✅ Сломанные ссылки — на файл ссылаются, но он не существует
+* ✅ Несоответствия формата — используется неправильный формат зависимости
 
 ---
 
-## Usage
+## Использование
 
 ```bash
-# Analyze all agents
+# Проанализировать всех агентов
 /check-context-deps
 
-# Analyze specific agent
+# Проанализировать конкретного агента
 /check-context-deps contextscout
 
-# Auto-fix missing dependencies
+# Автоматически исправить отсутствующие зависимости
 /check-context-deps --fix
 
-# Verbose output (show all reference locations)
+# Подробный вывод (показать все места ссылок)
 /check-context-deps --verbose
 
-# Combine flags
+# Комбинировать флаги
 /check-context-deps contextscout --verbose
 ```
 
 ---
 
-## Workflow
+## Рабочий процесс
 
 <workflow id="analyze_context_dependencies">
   <stage id="1" name="ScanAgents" required="true">
-    Scan agent files for context references:
-    
-    **Search patterns**:
-    - `.opencode/context/` (direct path references)
-    - `@.opencode/context/` (@ symbol references)
-    - `context:` (dependency declarations in frontmatter)
-    
-    **Locations**:
-    - `.opencode/agent/**/*.md` (all agents and subagents)
-    - `.opencode/command/**/*.md` (commands that use context)
-    
-    **Extract**:
-    - Agent/command ID
-    - Context file path
-    - Line number
-    - Reference type (path, @-reference, dependency)
+    Просканировать agent-файлы на наличие ссылок на context:
+
+```
+**Шаблоны поиска**:
+- `.opencode/context/` — прямые ссылки на пути
+- `@.opencode/context/` — ссылки с символом @
+- `context:` — объявления зависимостей во frontmatter
+
+**Расположение**:
+- `.opencode/agent/**/*.md` — все agents и subagents
+- `.opencode/command/**/*.md` — команды, использующие context
+
+**Извлечь**:
+- ID агента/команды
+- Путь к context-файлу
+- Номер строки
+- Тип ссылки (path, @-reference, dependency)
+```
+
   </stage>
-  
+
   <stage id="2" name="CheckRegistry" required="true">
-    For each agent found, check registry.json:
-    
-    ```bash
-    jq '.components.agents[] | select(.id == "AGENT_ID") | .dependencies' registry.json
-    jq '.components.subagents[] | select(.id == "AGENT_ID") | .dependencies' registry.json
-    ```
-    
-    **Verify**:
-    - Does the agent have a dependencies array?
-    - Are context file references declared as `context:core/standards/code`?
-    - Are the dependency formats correct (`context:path/to/file`)?
+    Для каждого найденного агента проверить `registry.json`:
+
+````
+```bash
+jq '.components.agents[] | select(.id == "AGENT_ID") | .dependencies' registry.json
+jq '.components.subagents[] | select(.id == "AGENT_ID") | .dependencies' registry.json
+```
+
+**Проверить**:
+- Есть ли у агента массив dependencies?
+- Объявлены ли ссылки на context-файлы в формате `context:core/standards/code`?
+- Корректен ли формат зависимостей (`context:path/to/file`)?
+````
+
   </stage>
-  
+
   <stage id="3" name="ValidateContextFiles" required="true">
-    For each context file referenced:
-    
-    **Check existence**:
-    ```bash
-    test -f .opencode/context/core/standards/code-quality.md
-    ```
-    
-    **Check registry**:
-    ```bash
-    jq '.components.contexts[] | select(.id == "core/standards/code")' registry.json
-    ```
-    
-    **Identify issues**:
-    - Context file referenced but doesn't exist
-    - Context file exists but not in registry
-    - Context file in registry but never used
+    Для каждого упомянутого context-файла:
+
+````
+**Проверить существование**:
+
+```bash
+test -f .opencode/context/core/standards/code-quality.md
+```
+
+**Проверить registry**:
+
+```bash
+jq '.components.contexts[] | select(.id == "core/standards/code")' registry.json
+```
+
+**Определить проблемы**:
+- На context-файл ссылаются, но он не существует
+- Context-файл существует, но отсутствует в registry
+- Context-файл есть в registry, но нигде не используется
+````
+
   </stage>
-  
+
   <stage id="4" name="Report" required="true">
-    Generate comprehensive report:
-    
-    ```markdown
-    # Context Dependency Analysis Report
-    
-    ## Summary
-    - Agents scanned: 25
-    - Context files referenced: 12
-    - Missing dependencies: 8
-    - Unused context files: 2
-    - Missing context files: 0
-    
-    ## Missing Dependencies (agents using context but not declaring)
-    
-    ### opencoder
-    **Uses but not declared**:
-    - context:core/standards/code (referenced 3 times)
-      - Line 64: "Code tasks → .opencode/context/core/standards/code-quality.md (MANDATORY)"
-      - Line 170: "Read .opencode/context/core/standards/code-quality.md NOW"
-      - Line 229: "NEVER execute write/edit without loading required context first"
-    
-    **Current dependencies**: subagent:task-manager, subagent:coder-agent
-    **Recommended fix**: Add to frontmatter:
-    ```yaml
-    dependencies:
-      - subagent:task-manager
-      - subagent:coder-agent
-      - context:core/standards/code  # ADD THIS
-    ```
-    
-    ### openagent
-    **Uses but not declared**:
-    - context:core/standards/code (referenced 5 times)
-    - context:core/standards/docs (referenced 3 times)
-    - context:core/standards/tests (referenced 3 times)
-    - context:core/workflows/review (referenced 2 times)
-    - context:core/workflows/delegation (referenced 4 times)
-    
-    **Recommended fix**: Add to frontmatter:
-    ```yaml
-    dependencies:
-      - subagent:task-manager
-      - subagent:documentation
-      - context:core/standards/code
-      - context:core/standards/docs
-      - context:core/standards/tests
-      - context:core/workflows/review
-      - context:core/workflows/delegation
-    ```
-    
-    ## Unused Context Files (exist but no agent references them)
-    
-    - context:core/standards/analysis (0 references)
-    - context:core/workflows/sessions (0 references)
-    
-    **Recommendation**: Consider removing or documenting intended use
-    
-    ## Missing Context Files (referenced but don't exist)
-    
-    None found ✅
-    
-    ## Context File Usage Map
-    
-    | Context File | Used By | Reference Count |
-    |--------------|---------|-----------------|
-    | core/standards/code | opencoder, openagent, frontend-specialist, reviewer | 15 |
-    | core/standards/docs | openagent, documentation, technical-writer | 8 |
-    | core/standards/tests | openagent, tester | 6 |
-    | core/workflows/delegation | openagent, task-manager | 5 |
-    | core/workflows/review | openagent, reviewer | 4 |
-    
-    ---
-    
-    ## Next Steps
-    
-    1. Review missing dependencies above
-    2. Run `/check-context-deps --fix` to auto-update frontmatter
-    3. Run `./scripts/registry/auto-detect-components.sh` to update registry
-    4. Verify with `./scripts/registry/validate-registry.sh`
-    ```
+    Сформировать подробный отчёт:
+
+````
+```markdown
+# Отчёт по анализу зависимостей Context
+
+## Сводка
+
+- Просканировано агентов: 25
+- Упомянуто context-файлов: 12
+- Отсутствующих зависимостей: 8
+- Неиспользуемых context-файлов: 2
+- Отсутствующих context-файлов: 0
+
+## Отсутствующие зависимости
+(агенты используют context, но не объявляют его)
+
+### opencoder
+
+**Используется, но не объявлено**:
+- context:core/standards/code (упоминается 3 раза)
+  - Строка 64: "Code tasks → .opencode/context/core/standards/code-quality.md (MANDATORY)"
+  - Строка 170: "Read .opencode/context/core/standards/code-quality.md NOW"
+  - Строка 229: "NEVER execute write/edit without loading required context first"
+
+**Текущие зависимости**:
+subagent:task-manager, subagent:coder-agent
+
+**Рекомендуемое исправление**:
+Добавить во frontmatter:
+
+```yaml
+dependencies:
+  - subagent:task-manager
+  - subagent:coder-agent
+  - context:core/standards/code  # ДОБАВИТЬ
+```
+
+### openagent
+
+**Используется, но не объявлено**:
+- context:core/standards/code (упоминается 5 раз)
+- context:core/standards/docs (упоминается 3 раза)
+- context:core/standards/tests (упоминается 3 раза)
+- context:core/workflows/review (упоминается 2 раза)
+- context:core/workflows/delegation (упоминается 4 раза)
+
+**Рекомендуемое исправление**:
+Добавить во frontmatter:
+
+```yaml
+dependencies:
+  - subagent:task-manager
+  - subagent:documentation
+  - context:core/standards/code
+  - context:core/standards/docs
+  - context:core/standards/tests
+  - context:core/workflows/review
+  - context:core/workflows/delegation
+```
+
+## Неиспользуемые Context Files
+(существуют, но ни один агент на них не ссылается)
+
+- context:core/standards/analysis (0 ссылок)
+- context:core/workflows/sessions (0 ссылок)
+
+**Рекомендация**:
+Рассмотреть удаление или задокументировать предполагаемое использование
+
+## Отсутствующие Context Files
+(на них ссылаются, но они не существуют)
+
+Не найдено ✅
+
+## Карта использования Context Files
+
+| Context File | Используется | Количество ссылок |
+|--------------|--------------|-------------------|
+| core/standards/code | opencoder, openagent, frontend-specialist, reviewer | 15 |
+| core/standards/docs | openagent, documentation, technical-writer | 8 |
+| core/standards/tests | openagent, tester | 6 |
+| core/workflows/delegation | openagent, task-manager | 5 |
+| core/workflows/review | openagent, reviewer | 4 |
+
+---
+
+## Следующие шаги
+
+1. Проверить перечисленные выше отсутствующие зависимости
+2. Выполнить `/check-context-deps --fix` для автоматического обновления frontmatter
+3. Выполнить `./scripts/registry/auto-detect-components.sh` для обновления registry
+4. Проверить результат через `./scripts/registry/validate-registry.sh`
+```
+````
+
   </stage>
-  
+
   <stage id="5" name="Fix" when="--fix flag provided">
-    For each agent with missing context dependencies:
-    
-    1. Read the agent file
-    2. Parse frontmatter YAML
-    3. Add missing context dependencies to dependencies array
-    4. Preserve existing dependencies
-    5. Write updated file
-    6. Report what was changed
-    
-    **Example**:
-    ```diff
-    ---
-    id: opencoder
-    dependencies:
-      - subagent:task-manager
-      - subagent:coder-agent
-    + - context:core/standards/code
-    ---
-    ```
-    
-    **Safety**:
-    - Only add dependencies that are actually referenced in the file
-    - Don't remove existing dependencies
-    - Preserve frontmatter formatting
-    - Show diff before applying (if interactive)
+    Для каждого агента с отсутствующими context-зависимостями:
+
+````
+1. Прочитать agent-файл
+2. Распарсить frontmatter YAML
+3. Добавить отсутствующие context dependencies в массив dependencies
+4. Сохранить существующие зависимости
+5. Записать обновлённый файл
+6. Сообщить, что было изменено
+
+**Пример**:
+
+```diff
+---
+id: opencoder
+dependencies:
+  - subagent:task-manager
+  - subagent:coder-agent
++ - context:core/standards/code
+---
+```
+
+**Безопасность**:
+- Добавляй только те dependencies, на которые действительно есть ссылки в файле
+- Не удаляй существующие dependencies
+- Сохраняй форматирование frontmatter
+- Перед применением показывай diff, если работа выполняется в интерактивном режиме
+````
+
   </stage>
 </workflow>
 
 ---
 
-## Implementation Details
+## Детали реализации
 
-### Search Patterns
+### Шаблоны поиска
 
-**Find direct path references**:
+**Найти прямые ссылки на пути**:
+
 ```bash
-grep -rn "\.opencode/context/" .opencode/agent/ .opencode/command/
+grep -rn "\\.opencode/context/" .opencode/agent/ .opencode/command/
 ```
 
-**Find @ references**:
+**Найти @ references**:
+
 ```bash
-grep -rn "@\.opencode/context/" .opencode/agent/ .opencode/command/
+grep -rn "@\\.opencode/context/" .opencode/agent/ .opencode/command/
 ```
 
-**Find dependency declarations**:
+**Найти объявления dependencies**:
+
 ```bash
 grep -rn "^\s*-\s*context:" .opencode/agent/ .opencode/command/
 ```
 
-### Path Normalization
+### Нормализация путей
 
-**Convert to dependency format**:
-- `.opencode/context/core/standards/code-quality.md` → `context:core/standards/code`
-- `@.opencode/context/openagents-repo/quick-start.md` → `context:openagents-repo/quick-start`
-- `context/core/standards/code` → `context:core/standards/code`
+**Преобразование в формат dependency**:
 
-**Rules**:
-1. Strip `.opencode/` prefix
-2. Strip `.md` extension
-3. Add `context:` prefix for dependencies
+* `.opencode/context/core/standards/code-quality.md` → `context:core/standards/code`
+* `@.opencode/context/openagents-repo/quick-start.md` → `context:openagents-repo/quick-start`
+* `context/core/standards/code` → `context:core/standards/code`
 
-### Registry Lookup
+**Правила**:
 
-**Check if context file is in registry**:
+1. Удалить префикс `.opencode/`
+2. Удалить расширение `.md`
+3. Добавить префикс `context:` для dependencies
+
+### Поиск в Registry
+
+**Проверить наличие context-файла в registry**:
+
 ```bash
 jq '.components.contexts[] | select(.id == "core/standards/code")' registry.json
 ```
 
-**Get agent dependencies**:
+**Получить dependencies агента**:
+
 ```bash
 jq '.components.agents[] | select(.id == "opencoder") | .dependencies[]?' registry.json
 ```
 
 ---
 
-## Delegation
+## Делегирование
 
-This command delegates to an analysis agent to perform the work:
+Эта команда делегирует выполнение работы analysis-агенту:
 
 ```javascript
 task(
@@ -278,34 +318,34 @@ task(
   description="Analyze context dependencies",
   prompt=`
     Analyze context file usage across all agents in this repository.
-    
+
     TASK:
     1. Use grep to find all references to context files in:
        - .opencode/agent/**/*.md
        - .opencode/command/**/*.md
-    
+
     2. Search for these patterns:
        - ".opencode/context/core/" (direct paths)
        - "@.opencode/context/" (@ references)
        - "context:" in frontmatter (dependency declarations)
-    
+
     3. For each agent file found:
        - Extract agent ID from frontmatter
        - List all context files it references
        - Check registry.json for declared dependencies
        - Identify missing dependency declarations
-    
+
     4. For each context file in .opencode/context/core/:
        - Count how many agents reference it
        - Check if it exists in registry.json
        - Identify unused context files
-    
+
     5. Generate a comprehensive report showing:
        - Agents with missing context dependencies
        - Unused context files
        - Missing context files (referenced but don't exist)
        - Context file usage map (which agents use which files)
-    
+
     ${ARGUMENTS.includes('--fix') ? `
     6. AUTO-FIX MODE:
        - Update agent frontmatter to add missing context dependencies
@@ -313,22 +353,22 @@ task(
        - Preserve existing dependencies
        - Show what was changed
     ` : ''}
-    
+
     ${ARGUMENTS.includes('--verbose') ? `
     VERBOSE MODE: Include all reference locations (file:line) in report
     ` : ''}
-    
+
     ${ARGUMENTS.length > 0 && !ARGUMENTS.includes('--') ? `
     FILTER: Only analyze agent: ${ARGUMENTS[0]}
     ` : ''}
-    
+
     REPORT FORMAT:
     - Summary statistics
     - Missing dependencies by agent (with recommended fixes)
     - Unused context files
     - Context file usage map
     - Next steps
-    
+
     DO NOT make changes without --fix flag.
     ALWAYS show what would be changed before applying fixes.
   `
@@ -337,97 +377,104 @@ task(
 
 ---
 
-## Examples
+## Примеры
 
-### Example 1: Basic Analysis
+### Пример 1: Базовый анализ
 
 ```bash
 /check-context-deps
 ```
 
-**Output**:
-```
-Analyzing context file usage across 25 agents...
+**Вывод**:
 
-Found 8 agents with missing context dependencies:
-- opencoder: missing context:core/standards/code
-- openagent: missing 5 context dependencies
-- frontend-specialist: missing context:core/standards/code
+```text
+Анализ использования context-файлов среди 25 агентов...
+
+Найдено 8 агентов с отсутствующими context dependencies:
+- opencoder: отсутствует context:core/standards/code
+- openagent: отсутствует 5 context dependencies
+- frontend-specialist: отсутствует context:core/standards/code
 ...
 
-Run /check-context-deps --fix to auto-update frontmatter
+Выполни /check-context-deps --fix для автоматического обновления frontmatter
 ```
 
-### Example 2: Analyze Specific Agent
+### Пример 2: Анализ конкретного агента
 
 ```bash
 /check-context-deps contextscout
 ```
 
-**Output**:
-```
-Analyzing agent: contextscout
+**Вывод**:
 
-Context files referenced:
-✓ .opencode/context/core/context-system.md (1 reference)
-  - Line 15: "Load: context:core/context-system"
-✓ .opencode/context/core/context-system/standards/mvi.md (2 references)
-  - Line 16: "Load: context:core/context-system/standards/mvi"
-  - Line 89: "MVI-aware prioritization"
+```text
+Анализ агента: contextscout
 
-Registry dependencies:
+Упомянутые context-файлы:
+✓ .opencode/context/core/context-system.md (1 ссылка)
+  - Строка 15: "Load: context:core/context-system"
+
+✓ .opencode/context/core/context-system/standards/mvi.md (2 ссылки)
+  - Строка 16: "Load: context:core/context-system/standards/mvi"
+  - Строка 89: "MVI-aware prioritization"
+
+Dependencies в Registry:
 ✓ context:core/context-system DECLARED
 ✓ context:core/context-system/standards/mvi DECLARED
 
-All dependencies properly declared ✅
+Все зависимости объявлены корректно ✅
 ```
 
-### Example 3: Auto-Fix
+### Пример 3: Auto-Fix
 
 ```bash
 /check-context-deps --fix
 ```
 
-**Output**:
-```
-Analyzing and fixing context dependencies...
+**Вывод**:
 
-Updated opencoder:
-+ Added: context:core/standards/code
+```text
+Анализ и исправление context dependencies...
 
-Updated openagent:
-+ Added: context:core/standards/code
-+ Added: context:core/standards/docs
-+ Added: context:core/standards/tests
-+ Added: context:core/workflows/review
-+ Added: context:core/workflows/delegation
+Обновлён opencoder:
++ Добавлено: context:core/standards/code
 
-Total: 2 agents updated, 6 dependencies added
+Обновлён openagent:
++ Добавлено: context:core/standards/code
++ Добавлено: context:core/standards/docs
++ Добавлено: context:core/standards/tests
++ Добавлено: context:core/workflows/review
++ Добавлено: context:core/workflows/delegation
 
-Next: Run ./scripts/registry/auto-detect-components.sh to update registry
+Итого: обновлено 2 агента, добавлено 6 dependencies
+
+Далее: выполни ./scripts/registry/auto-detect-components.sh для обновления registry
 ```
 
 ---
 
-## Success Criteria
+## Критерии успешного выполнения
 
-✅ All agents that reference context files have them declared in dependencies
-✅ All context files in registry are actually used by at least one agent
-✅ No broken references (context files referenced but don't exist)
-✅ Dependency format is consistent (`context:path/to/file`)
+✅ Все агенты, которые ссылаются на context-файлы, объявляют их в dependencies
+
+✅ Все context-файлы из registry действительно используются хотя бы одним агентом
+
+✅ Нет сломанных ссылок — все упомянутые context-файлы существуют
+
+✅ Формат dependencies единообразен: `context:path/to/file`
 
 ---
 
-## Notes
+## Примечания
 
-- **Read-only by default** - Only reports findings, doesn't modify files
-- **Use `--fix` to update** - Auto-adds missing dependencies to frontmatter
-- **After fixing** - Run `./scripts/registry/auto-detect-components.sh --auto-add` to sync registry
-- **Dependency format** - `context:path/to/file` (no `.opencode/` prefix, no `.md` extension)
-- **Scans both** - Direct path references and @ references
+* **По умолчанию read-only** — команда только сообщает о найденных проблемах и не изменяет файлы
+* **Используй `--fix` для обновления** — автоматически добавляет отсутствующие dependencies во frontmatter
+* **После исправления** — выполни `./scripts/registry/auto-detect-components.sh --auto-add` для синхронизации registry
+* **Формат dependency** — `context:path/to/file` без префикса `.opencode/` и без расширения `.md`
+* **Сканируются оба варианта** — прямые ссылки на пути и @ references
 
-## Related
+## Связанные инструменты
 
-- **Registry validation**: `./scripts/registry/validate-registry.sh`
-- **Auto-detect components**: `./scripts/registry/auto-detect-components.sh`
-- **Context guide**: `.opencode/context/openagents-repo/quality/registry-dependencies.md`
+* **Проверка Registry**: `./scripts/registry/validate-registry.sh`
+* **Auto-detect components**: `./scripts/registry/auto-detect-components.sh`
+* **Context guide**: `.opencode/context/openagents-repo/quality/registry-dependencies.md`

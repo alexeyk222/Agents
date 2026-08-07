@@ -1,10 +1,10 @@
 <!-- Context: openagents-repo/lifecycle | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Plugin Lifecycle & Packaging
+# Жизненный цикл и упаковка плагина
 
-## File Structure for Complex Plugins
+## Структура файлов для сложных плагинов
 
-For larger plugins, follow this recommended structure:
+Для крупных плагинов используйте такую структуру:
 
 ```
 my-plugin/
@@ -16,7 +16,7 @@ my-plugin/
 └── README.md               # Documentation
 ```
 
-## The Manifest (`plugin.json`)
+## Манифест (`plugin.json`)
 
 ```json
 {
@@ -29,12 +29,12 @@ my-plugin/
 }
 ```
 
-The `name` becomes the namespace prefix for commands: `/my-plugin:command`.
+`name` становится префиксом пространства имен для команд: `/my-plugin:command`.
 
-## SDK Access
+## Доступ к SDK
 
-Plugins have full access to the OpenCode SDK via `context.client`. This allows:
-- Sending prompts programmatically: `client.session.prompt()`
-- Managing sessions: `client.session.list()`, `client.session.get()`
-- Showing UI elements: `client.tui.showToast()`
-- Appending to prompt: `client.tui.appendPrompt()`
+Плагины имеют полный доступ к OpenCode SDK через `context.client`. Это позволяет:
+- Отправлять prompt-сообщения программно: `client.session.prompt()`
+- Управлять сессиями: `client.session.list()`, `client.session.get()`
+- Показывать элементы UI: `client.tui.showToast()`
+- Добавлять текст в prompt: `client.tui.appendPrompt()`

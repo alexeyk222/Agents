@@ -1,12 +1,12 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Creating a Release
+# Руководство: создание релиза
 
-**Purpose**: Step-by-step workflow for creating a new release
+**Цель**: пошаговый процесс создания нового релиза
 
 ---
 
-## Quick Steps
+## Быстрые шаги
 
 ```bash
 # 1. Update version
@@ -28,9 +28,9 @@ git push origin v0.X.Y
 
 ---
 
-## Step 1: Determine Version
+## Шаг 1: определите версию
 
-### Semantic Versioning
+### Семантическое версионирование
 
 ```
 MAJOR.MINOR.PATCH
@@ -40,17 +40,17 @@ MAJOR.MINOR.PATCH
 - PATCH: Bug fixes
 ```
 
-### Examples
+### Примеры
 
 - `0.5.0` → `0.5.1` (bug fix)
-- `0.5.0` → `0.6.0` (new feature)
+- `0.5.0` → `0.6.0` (новая feature)
 - `0.5.0` → `1.0.0` (breaking change)
 
 ---
 
-## Step 2: Update Version Files
+## Шаг 2: обновите файлы версии
 
-### VERSION File
+### Файл VERSION
 
 ```bash
 echo "0.X.Y" > VERSION
@@ -62,7 +62,7 @@ echo "0.X.Y" > VERSION
 jq '.version = "0.X.Y"' package.json > tmp && mv tmp package.json
 ```
 
-### Verify Consistency
+### Проверьте согласованность
 
 ```bash
 cat VERSION
@@ -72,9 +72,9 @@ cat package.json | jq '.version'
 
 ---
 
-## Step 3: Update CHANGELOG
+## Шаг 3: обновите CHANGELOG
 
-### Format
+### Формат
 
 ```markdown
 # Changelog
@@ -100,16 +100,16 @@ cat package.json | jq '.version'
 ...
 ```
 
-### Tips
+### Советы
 
-✅ **Group by type** - Added, Changed, Fixed, Removed  
-✅ **User-focused** - Describe impact, not implementation  
-✅ **Link PRs** - Reference PR numbers  
-✅ **Breaking changes** - Clearly mark breaking changes  
+✅ **Группируйте по типу** — Added, Changed, Fixed, Removed  
+✅ **Фокус на пользователе** — описывайте влияние, а не реализацию  
+✅ **Ссылайтесь на PR** — указывайте номера PR  
+✅ **Breaking changes** — явно отмечайте breaking changes  
 
 ---
 
-## Step 4: Commit Changes
+## Шаг 4: зафиксируйте изменения
 
 ```bash
 # Stage files
@@ -121,7 +121,7 @@ git commit -m "chore: bump version to 0.X.Y"
 
 ---
 
-## Step 5: Create Git Tag
+## Шаг 5: создайте Git tag
 
 ```bash
 # Create annotated tag
@@ -134,7 +134,7 @@ git show v0.X.Y
 
 ---
 
-## Step 6: Push to GitHub
+## Шаг 6: отправьте в GitHub
 
 ```bash
 # Push commit
@@ -146,19 +146,19 @@ git push origin v0.X.Y
 
 ---
 
-## Step 7: Create GitHub Release
+## Шаг 7: создайте GitHub Release
 
-### Via GitHub UI
+### Через GitHub UI
 
-1. Go to repository on GitHub
-2. Click "Releases"
-3. Click "Create a new release"
-4. Select tag: `v0.X.Y`
+1. Перейдите в repository на GitHub
+2. Нажмите "Releases"
+3. Нажмите "Create a new release"
+4. Выберите tag: `v0.X.Y`
 5. Title: `v0.X.Y`
-6. Description: Copy from CHANGELOG
-7. Click "Publish release"
+6. Description: скопируйте из CHANGELOG
+7. Нажмите "Publish release"
 
-### Via GitHub CLI
+### Через GitHub CLI
 
 ```bash
 gh release create v0.X.Y \
@@ -168,16 +168,16 @@ gh release create v0.X.Y \
 
 ---
 
-## Step 8: Verify Release
+## Шаг 8: проверьте релиз
 
-### Check GitHub
+### Проверьте GitHub
 
-- ✅ Release appears on GitHub
-- ✅ Tag is correct
-- ✅ CHANGELOG is included
-- ✅ Assets are attached (if any)
+- ✅ Release отображается на GitHub
+- ✅ Tag корректный
+- ✅ CHANGELOG включен
+- ✅ Assets прикреплены (если есть)
 
-### Test Installation
+### Проверьте установку
 
 ```bash
 # Test install from GitHub
@@ -189,7 +189,7 @@ cat VERSION
 
 ---
 
-## Complete Example
+## Полный пример
 
 ```bash
 # Releasing v0.6.0
@@ -234,43 +234,43 @@ gh release create v0.6.0 \
 
 ---
 
-## Checklist
+## Чеклист
 
-Before releasing:
+Перед релизом:
 
-- [ ] All tests pass
-- [ ] Registry validates
-- [ ] VERSION updated
-- [ ] package.json updated
-- [ ] CHANGELOG updated
-- [ ] Changes committed
-- [ ] Tag created
-- [ ] Pushed to GitHub
-- [ ] GitHub release created
-- [ ] Installation tested
+- [ ] Все тесты проходят
+- [ ] Registry валиден
+- [ ] VERSION обновлен
+- [ ] package.json обновлен
+- [ ] CHANGELOG обновлен
+- [ ] Изменения закоммичены
+- [ ] Tag создан
+- [ ] Отправлено в GitHub
+- [ ] GitHub release создан
+- [ ] Установка протестирована
 
 ---
 
-## Common Issues
+## Частые проблемы
 
-### Version Mismatch
+### Несовпадение версий
 
-**Problem**: VERSION and package.json don't match  
-**Solution**: Update both to same version
+**Проблема**: VERSION и package.json не совпадают  
+**Решение**: обновите оба до одной версии
 
-### Tag Already Exists
+### Tag уже существует
 
-**Problem**: Tag already exists  
-**Solution**: Delete tag and recreate
+**Проблема**: tag уже существует  
+**Решение**: удалите tag и создайте заново
 ```bash
 git tag -d v0.X.Y
 git push origin :refs/tags/v0.X.Y
 ```
 
-### Push Rejected
+### Push отклонен
 
-**Problem**: Push rejected (not up to date)  
-**Solution**: Pull latest changes first
+**Проблема**: push отклонен (ветка не актуальна)  
+**Решение**: сначала подтяните последние изменения
 ```bash
 git pull origin main
 git push origin main
@@ -279,13 +279,13 @@ git push origin v0.X.Y
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- **Version management**: `scripts/versioning/bump-version.sh`
+- **Управление версиями**: `scripts/versioning/bump-version.sh`
 - **CHANGELOG**: `CHANGELOG.md`
 - **VERSION**: `VERSION`
 
 ---
 
-**Last Updated**: 2025-12-10  
-**Version**: 0.5.0
+**Последнее обновление**: 2025-12-10  
+**Версия**: 0.5.0

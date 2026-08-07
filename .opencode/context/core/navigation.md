@@ -1,12 +1,12 @@
 <!-- Context: core/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Core Context Navigation
+# Навигация по базовому контексту
 
-**Purpose**: Universal standards and workflows for all development
+**Назначение**: Универсальные стандарты и процессы для всей разработки
 
 ---
 
-## Structure
+## Структура
 
 ```
 core/
@@ -60,34 +60,34 @@ core/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **Write code** | `standards/code-quality.md` |
-| **Write tests** | `standards/test-coverage.md` |
-| **Write docs** | `standards/documentation.md` |
-| **Security patterns** | `standards/security-patterns.md` |
-| **Review code** | `workflows/code-review.md` |
-| **Delegate task** | `workflows/task-delegation-basics.md` |
-| **Break down feature** | `workflows/feature-breakdown.md` |
-| **Resume session** | `guides/resuming-sessions.md` |
-| **Manage tasks** | `task-management/navigation.md` |
-| **Task CLI commands** | `task-management/lookup/task-commands.md` |
-| **Context system** | `context-system.md` |
+| **Писать код** | `standards/code-quality.md` |
+| **Писать тесты** | `standards/test-coverage.md` |
+| **Писать документацию** | `standards/documentation.md` |
+| **Паттерны безопасности** | `standards/security-patterns.md` |
+| **Ревью кода** | `workflows/code-review.md` |
+| **Делегировать задачу** | `workflows/task-delegation-basics.md` |
+| **Декомпозировать фичу** | `workflows/feature-breakdown.md` |
+| **Возобновить сессию** | `guides/resuming-sessions.md` |
+| **Управлять задачами** | `task-management/navigation.md` |
+| **CLI-команды задач** | `task-management/lookup/task-commands.md` |
+| **Система контекста** | `context-system.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Standards** → Code quality, testing, docs, security (critical priority)
-**Workflows** → Review, delegation, task breakdown (high priority)
-**Task Management** → JSON-driven task tracking with CLI (high priority)
-**System** → Context management and guides (medium priority)
+**Стандарты** → Качество кода, тестирование, документация, безопасность (критический приоритет)
+**Процессы** → Ревью, делегирование, декомпозиция задач (высокий приоритет)
+**Управление задачами** → Отслеживание задач через JSON и CLI (высокий приоритет)
+**Система** → Управление контекстом и руководства (средний приоритет)
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Development** → `../development/navigation.md`
-- **OpenAgents Control Repo** → `../openagents-repo/navigation.md`
+- **Разработка** → `../development/navigation.md`
+- **Репозиторий OpenAgents Control** → `../openagents-repo/navigation.md`

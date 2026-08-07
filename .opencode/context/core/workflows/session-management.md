@@ -1,28 +1,28 @@
 <!-- Context: workflows/sessions | Priority: medium | Version: 2.0 | Updated: 2025-01-21 -->
-# Session Management
+# Управление сессиями
 
-## Quick Reference
+## Краткая справка
 
-**Key Principle**: Lazy initialization - only create when needed
+**Ключевой принцип**: ленивая инициализация — создавайте только при необходимости
 
-**Session ID**: `{timestamp}-{random-4-chars}` (e.g., `20250118-143022-a4f2`)
+**ID сессии**: `{timestamp}-{random-4-chars}` (например, `20250118-143022-a4f2`)
 
-**Cleanup**: Always ask user confirmation before deleting
+**Очистка**: всегда запрашивайте подтверждение пользователя перед удалением
 
-**Safety**: NEVER delete outside current session, ONLY delete tracked files, ALWAYS confirm
+**Безопасность**: НИКОГДА не удаляйте вне текущей сессии, удаляйте ТОЛЬКО отслеживаемые файлы, ВСЕГДА подтверждайте
 
 ---
 
-## Lazy Initialization
+## Ленивая инициализация
 
-**Only create session when first context file needed**
+**Создавайте сессию только когда нужен первый файл контекста**
 
-- Don't create sessions for simple questions or direct execution
-- Initialize on first delegation that requires context file
-- Session ID format: `{timestamp}-{random-4-chars}`
-- Example: `20250118-143022-a4f2`
+- Не создавайте сессии для простых вопросов или прямого выполнения
+- Инициализируйте при первом делегировании, которому нужен файл контекста
+- Формат ID сессии: `{timestamp}-{random-4-chars}`
+- Пример: `20250118-143022-a4f2`
 
-## Session Structure
+## Структура сессии
 
 ```
 .tmp/sessions/{session-id}/
@@ -39,18 +39,18 @@
     └── {task-name}-context.md
 ```
 
-## Session Isolation
+## Изоляция сессий
 
-**Each session has unique ID - prevents concurrent agent conflicts**
+**У каждой сессии уникальный ID — это предотвращает конфликты параллельных агентов**
 
-✅ Multiple agent instances can run simultaneously
-✅ No file conflicts between sessions
-✅ Each session tracks only its own files
-✅ Safe cleanup - only deletes own session folder
+✅ Несколько экземпляров агентов могут работать одновременно
+✅ Нет конфликтов файлов между сессиями
+✅ Каждая сессия отслеживает только свои файлы
+✅ Безопасная очистка — удаляется только собственная папка сессии
 
-## Manifest Structure
+## Структура manifest
 
-**Location**: `.tmp/sessions/{session-id}/.manifest.json`
+**Расположение**: `.tmp/sessions/{session-id}/.manifest.json`
 
 ```json
 {
@@ -78,65 +78,65 @@
 }
 ```
 
-## Activity Tracking
+## Отслеживание активности
 
-**Update timestamp after each context file creation or delegation**
+**Обновляйте временную метку после каждого создания файла контекста или делегирования**
 
-- Update `last_activity` field in manifest
-- Used for stale session detection
-- Helps identify active vs abandoned sessions
+- Обновляйте поле `last_activity` в manifest
+- Используется для обнаружения устаревших сессий
+- Помогает отличать активные сессии от заброшенных
 
-## Cleanup Policy
+## Политика очистки
 
-### Manual Cleanup (Preferred)
-**Ask user confirmation before cleanup**
+### Ручная очистка (предпочтительно)
+**Перед очисткой запрашивайте подтверждение пользователя**
 
-After task completion:
-1. Ask: "Should I clean up temporary session files at `.tmp/sessions/{session-id}/`?"
-2. Wait for user confirmation
-3. Only delete files tracked in current session's manifest
-4. Remove entire session folder: `.tmp/sessions/{session-id}/`
+После завершения задачи:
+1. Спросите: "Очистить временные файлы сессии в `.tmp/sessions/{session-id}/`?"
+2. Дождитесь подтверждения пользователя
+3. Удаляйте только файлы, отслеживаемые в manifest текущей сессии
+4. Удалите всю папку сессии: `.tmp/sessions/{session-id}/`
 
-### Safety Rules
-- **NEVER** delete files outside current session
-- **ONLY** delete files tracked in manifest
-- **ALWAYS** confirm with user before cleanup
+### Правила безопасности
+- **НИКОГДА** не удаляйте файлы вне текущей сессии
+- **ТОЛЬКО** удаляйте файлы, отслеживаемые в manifest
+- **ВСЕГДА** подтверждайте очистку с пользователем
 
-### Stale Session Cleanup
-**Auto-remove sessions >24 hours old**
+### Очистка устаревших сессий
+**Автоматически удаляйте сессии старше 24 часов**
 
-- Check `last_activity` timestamp in manifest
-- Safe to run periodically (see `scripts/cleanup-stale-sessions.sh`)
-- Won't affect active sessions
+- Проверяйте временную метку `last_activity` в manifest
+- Безопасно запускать периодически (см. `scripts/cleanup-stale-sessions.sh`)
+- Не влияет на активные сессии
 
-## Error Handling
+## Обработка ошибок
 
-### Subagent Failure
-- Report error to user
-- Ask if should retry or abort
-- Don't auto-retry without approval
+### Сбой subagent
+- Сообщите пользователю об ошибке
+- Спросите, повторить или прервать
+- Не выполняйте автоповтор без одобрения
 
-### Context File Error
-- Fall back to inline context in delegation prompt
-- Warn user that context file creation failed
-- Continue with task if possible
+### Ошибка файла контекста
+- Используйте inline-контекст в prompt делегирования
+- Предупредите пользователя, что создание файла контекста не удалось
+- Продолжайте задачу, если возможно
 
-### Session Creation Error
-- Continue without session
-- Warn user
-- Use inline context for delegation
-- Don't block task execution
+### Ошибка создания сессии
+- Продолжайте без сессии
+- Предупредите пользователя
+- Используйте inline-контекст для делегирования
+- Не блокируйте выполнение задачи
 
-## Best Practices
+## Лучшие практики
 
-1. **Lazy Init**: Only create session when actually needed
-2. **Track Everything**: Add all context files to manifest
-3. **Update Activity**: Touch `last_activity` on each operation
-4. **Clean Promptly**: Remove files after task completion
-5. **Isolate Sessions**: Never access files from other sessions
-6. **Confirm Cleanup**: Always ask user before deleting
+1. **Ленивая инициализация**: создавайте сессию только когда она действительно нужна
+2. **Отслеживайте все**: добавляйте все файлы контекста в manifest
+3. **Обновляйте активность**: трогайте `last_activity` при каждой операции
+4. **Очищайте быстро**: удаляйте файлы после завершения задачи
+5. **Изолируйте сессии**: никогда не обращайтесь к файлам других сессий
+6. **Подтверждайте очистку**: всегда спрашивайте пользователя перед удалением
 
-## Example Workflow
+## Пример workflow
 
 ```bash
 # User: "Build user authentication system"

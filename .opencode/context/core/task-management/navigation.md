@@ -1,14 +1,14 @@
 <!-- Context: core/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Task Management Navigation
+# Навигация по управлению задачами
 
-**Purpose**: JSON-driven task breakdown and tracking system
+**Назначение**: система декомпозиции и отслеживания задач на основе JSON
 
-**Last Updated**: 2026-02-14
+**Последнее обновление**: 2026-02-14
 
 ---
 
-## Structure
+## Структура
 
 ```
 core/task-management/
@@ -25,42 +25,42 @@ core/task-management/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path | Priority |
+| Задача | Путь | Приоритет |
 |------|------|----------|
-| **Understand base schema** | `standards/task-schema.md` | ⭐⭐⭐⭐⭐ |
-| **Use enhanced features** | `standards/enhanced-task-schema.md` | ⭐⭐⭐⭐ |
-| **Split a feature** | `guides/splitting-tasks.md` | ⭐⭐⭐⭐⭐ |
-| **Manage task lifecycle** | `guides/managing-tasks.md` | ⭐⭐⭐⭐ |
-| **Use CLI commands** | `lookup/task-commands.md` | ⭐⭐⭐⭐ |
+| **Понять базовую схему** | `standards/task-schema.md` | ⭐⭐⭐⭐⭐ |
+| **Использовать расширенные функции** | `standards/enhanced-task-schema.md` | ⭐⭐⭐⭐ |
+| **Разбить фичу** | `guides/splitting-tasks.md` | ⭐⭐⭐⭐⭐ |
+| **Управлять жизненным циклом задачи** | `guides/managing-tasks.md` | ⭐⭐⭐⭐ |
+| **Использовать CLI-команды** | `lookup/task-commands.md` | ⭐⭐⭐⭐ |
 
 ---
 
-## Loading Strategy
+## Стратегия загрузки
 
-### For Creating Basic Tasks:
-1. Load `standards/task-schema.md` (understand base structure)
-2. Load `guides/splitting-tasks.md` (decomposition approach)
-3. Reference `lookup/task-commands.md` (validate after creation)
+### Для создания базовых задач:
+1. Загрузить `standards/task-schema.md` (понять базовую структуру)
+2. Загрузить `guides/splitting-tasks.md` (подход к декомпозиции)
+3. Свериться с `lookup/task-commands.md` (валидация после создания)
 
-### For Multi-Stage Orchestration:
-1. Load `standards/enhanced-task-schema.md` (advanced features)
-2. Load `standards/task-schema.md` (base structure reference)
-3. Load `guides/splitting-tasks.md` (decomposition approach)
-4. Reference planning agents: ArchitectureAnalyzer, StoryMapper, PrioritizationEngine, ContractManager, ADRManager
+### Для multi-stage orchestration:
+1. Загрузить `standards/enhanced-task-schema.md` (расширенные возможности)
+2. Загрузить `standards/task-schema.md` (справка по базовой структуре)
+3. Загрузить `guides/splitting-tasks.md` (подход к декомпозиции)
+4. Свериться с planning agents: ArchitectureAnalyzer, StoryMapper, PrioritizationEngine, ContractManager, ADRManager
 
-### For Managing Tasks:
-1. Load `guides/managing-tasks.md` (workflow)
-2. Reference `lookup/task-commands.md` (CLI usage)
+### Для управления задачами:
+1. Загрузить `guides/managing-tasks.md` (workflow)
+2. Свериться с `lookup/task-commands.md` (использование CLI)
 
 ---
 
-## Related
+## Связанные материалы
 
-- **Active tasks** → `.tmp/tasks/{feature}/` (at project root)
-- **Completed tasks** → `.tmp/tasks/completed/{feature}/`
-- **TaskManager agent** → `.opencode/agent/subagents/core/task-manager.md`
+- **Активные задачи** → `.tmp/tasks/{feature}/` (в корне проекта)
+- **Завершенные задачи** → `.tmp/tasks/completed/{feature}/`
+- **Агент TaskManager** → `.opencode/agent/subagents/core/task-manager.md`
 - **Planning agents** → `.opencode/agent/subagents/planning/` (ArchitectureAnalyzer, StoryMapper, PrioritizationEngine, ContractManager, ADRManager)
 - **Multi-stage workflow** → `../workflows/multi-stage-orchestration.md`
-- **Core navigation** → `../navigation.md`
+- **Базовая навигация** → `../navigation.md`

@@ -1,50 +1,50 @@
 <!-- Context: openagents-repo/lookup | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Subagent Testing Commands - Quick Reference
+# Команды тестирования субагентов — краткий справочник
 
-**Purpose**: Quick command reference for testing subagents
+**Назначение**: краткий справочник команд для тестирования субагентов
 
-**Last Updated**: 2026-01-07
+**Последнее обновление**: 2026-01-07
 
 ---
 
-## Standalone Mode (Unit Testing)
+## Standalone-режим (unit-тестирование)
 
-### Run All Standalone Tests
+### Запустить все standalone-тесты
 ```bash
 cd evals/framework
 npm run eval:sdk -- --subagent=ContextScout --pattern="standalone/*.yaml"
 ```
 
-### Run Single Test
+### Запустить один тест
 ```bash
 npm run eval:sdk -- --subagent=ContextScout --pattern="standalone/01-simple-discovery.yaml"
 ```
 
-### Debug Mode
+### Режим отладки
 ```bash
 npm run eval:sdk -- --subagent=ContextScout --pattern="standalone/*.yaml" --debug
 ```
 
 ---
 
-## Delegation Mode (Integration Testing)
+## Режим делегирования (интеграционное тестирование)
 
-### Run Delegation Tests
+### Запустить тесты делегирования
 ```bash
 npm run eval:sdk -- --agent=core/openagent --pattern="delegation/*.yaml"
 ```
 
-### Test Specific Delegation
+### Проверить конкретное делегирование
 ```bash
 npm run eval:sdk -- --agent=core/openagent --pattern="delegation/01-contextscout-delegation.yaml"
 ```
 
 ---
 
-## Verification Commands
+## Команды проверки
 
-### Check Agent File
+### Проверить файл агента
 ```bash
 # View agent frontmatter
 head -30 .opencode/agent/subagents/core/contextscout.md
@@ -53,12 +53,12 @@ head -30 .opencode/agent/subagents/core/contextscout.md
 grep -A 10 "^tools:" .opencode/agent/subagents/core/contextscout.md
 ```
 
-### Check Test Config
+### Проверить конфиг теста
 ```bash
 cat evals/agents/ContextScout/config/config.yaml
 ```
 
-### View Latest Results
+### Посмотреть последние результаты
 ```bash
 # Summary
 cat evals/results/latest.json | jq '.summary'
@@ -75,58 +75,58 @@ cat evals/results/latest.json | jq '.tests[0].violations'
 
 ---
 
-## Common Test Patterns
+## Частые паттерны тестов
 
-### Smoke Test
+### Smoke-тест
 ```bash
 npm run eval:sdk -- --subagent=ContextScout --pattern="smoke-test.yaml"
 ```
 
-### Specific Test Suite
+### Конкретный test suite
 ```bash
 npm run eval:sdk -- --subagent=ContextScout --pattern="discovery/*.yaml"
 ```
 
-### All Tests for Subagent
+### Все тесты субагента
 ```bash
 npm run eval:sdk -- --subagent=ContextScout
 ```
 
 ---
 
-## Flag Reference
+## Справочник флагов
 
-| Flag | Purpose | Example |
+| Флаг | Назначение | Пример |
 |------|---------|---------|
-| `--subagent` | Test subagent in standalone mode | `--subagent=ContextScout` |
-| `--agent` | Test primary agent (or delegation) | `--agent=core/openagent` |
-| `--pattern` | Filter test files | `--pattern="standalone/*.yaml"` |
-| `--debug` | Show detailed output | `--debug` |
-| `--timeout` | Override timeout | `--timeout=120000` |
+| `--subagent` | Тестировать субагента в standalone-режиме | `--subagent=ContextScout` |
+| `--agent` | Тестировать primary-агента (или делегирование) | `--agent=core/openagent` |
+| `--pattern` | Фильтровать тестовые файлы | `--pattern="standalone/*.yaml"` |
+| `--debug` | Показать подробный вывод | `--debug` |
+| `--timeout` | Переопределить timeout | `--timeout=120000` |
 
 ---
 
-## Troubleshooting Commands
+## Команды диагностики
 
-### Check Which Agent Ran
+### Проверить, какой агент запускался
 ```bash
 # Should show subagent name for standalone mode
 cat evals/results/latest.json | jq '.meta.agent'
 ```
 
-### Check Tool Usage
+### Проверить использование инструментов
 ```bash
 # Should show tool calls > 0
 cat evals/results/latest.json | jq '.tests[0]' | grep "Tool Calls"
 ```
 
-### View Test Timeline
+### Посмотреть timeline теста
 ```bash
 # See full conversation
 cat evals/results/history/2026-01/07-*.json | jq '.tests[0].timeline'
 ```
 
-### Check for Errors
+### Проверить ошибки
 ```bash
 # View violations
 cat evals/results/latest.json | jq '.tests[0].violations.details'
@@ -134,14 +134,14 @@ cat evals/results/latest.json | jq '.tests[0].violations.details'
 
 ---
 
-## File Locations
+## Расположение файлов
 
-### Agent Files
+### Файлы агентов
 ```
 .opencode/agent/subagents/core/{subagent}.md
 ```
 
-### Test Files
+### Файлы тестов
 ```
 evals/agents/subagents/core/{subagent}/
 ├── config/config.yaml
@@ -153,7 +153,7 @@ evals/agents/subagents/core/{subagent}/
         └── 01-delegation-test.yaml
 ```
 
-### Results
+### Результаты
 ```
 evals/results/
 ├── latest.json                    # Latest test run
@@ -163,21 +163,21 @@ evals/results/
 
 ---
 
-## Quick Checks
+## Быстрые проверки
 
-### Is Agent Loaded Correctly?
+### Агент загружен правильно?
 ```bash
 # Should show: "agent": "ContextScout"
 cat evals/results/latest.json | jq '.meta.agent'
 ```
 
-### Did Agent Use Tools?
+### Агент использовал инструменты?
 ```bash
 # Should show: Tool Calls: 1 (or more)
 cat evals/results/latest.json | jq '.tests[0]' | grep "Tool Calls"
 ```
 
-### Did Test Pass?
+### Тест прошел?
 ```bash
 # Should show: "passed": 1, "failed": 0
 cat evals/results/latest.json | jq '.summary'
@@ -185,10 +185,10 @@ cat evals/results/latest.json | jq '.summary'
 
 ---
 
-## Related
+## Связанные материалы
 
-- `concepts/subagent-testing-modes.md` - Understand testing modes
-- `guides/testing-subagents.md` - Step-by-step testing guide
-- `errors/tool-permission-errors.md` - Fix common issues
+- `concepts/subagent-testing-modes.md` - понять режимы тестирования
+- `guides/testing-subagents.md` - пошаговое руководство по тестированию
+- `errors/tool-permission-errors.md` - исправление частых проблем
 
-**Reference**: `evals/framework/src/sdk/run-sdk-tests.ts`
+**Справка**: `evals/framework/src/sdk/run-sdk-tests.ts`

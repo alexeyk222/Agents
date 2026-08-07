@@ -1,12 +1,12 @@
 <!-- Context: development/navigation | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Full-Stack Development Navigation
+# Навигация по full-stack-разработке
 
-**Scope**: End-to-end application development
+**Область**: Сквозная разработка приложений
 
 ---
 
-## Common Stacks
+## Распространённые стеки
 
 ### MERN (MongoDB, Express, React, Node)
 ```
@@ -23,7 +23,7 @@ Backend:  development/backend/nodejs/ + api-patterns/trpc-patterns.md [future]
 Data:     development/data/orm-patterns/prisma.md [future]
 ```
 
-### Python Full-Stack (FastAPI + React)
+### Full-stack на Python (FastAPI + React)
 ```
 Frontend: development/frontend/react/ [future]
 Backend:  development/backend/python/fastapi-patterns.md [future]
@@ -33,43 +33,43 @@ API:      development/backend/api-patterns/rest-design.md [future]
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Layer | Navigate To |
+| Слой | Куда идти |
 |-------|-------------|
 | **Frontend** | `ui-navigation.md` |
 | **Backend** | `backend-navigation.md` |
-| **Data** | `data/navigation.md` [future] |
-| **Integration** | `integration/navigation.md` [future] |
-| **Infrastructure** | `infrastructure/navigation.md` [future] |
+| **Данные** | `data/navigation.md` [future] |
+| **Интеграция** | `integration/navigation.md` [future] |
+| **Инфраструктура** | `infrastructure/navigation.md` [future] |
 
 ---
 
-## Common Workflows
+## Типовые рабочие процессы
 
-**New API endpoint**:
-1. `principles/api-design.md` (principles)
-2. `backend/api-patterns/rest-design.md` (approach) [future]
-3. `backend/nodejs/express-patterns.md` (implementation) [future]
+**Новый endpoint API**:
+1. `principles/api-design.md` (принципы)
+2. `backend/api-patterns/rest-design.md` (подход) [future]
+3. `backend/nodejs/express-patterns.md` (реализация) [future]
 
-**New React feature**:
-1. `frontend/react/component-architecture.md` (structure) [future]
-2. `frontend/react/hooks-patterns.md` (logic) [future]
-3. `ui/web/ui-styling-standards.md` (styling)
+**Новая возможность React**:
+1. `frontend/react/component-architecture.md` (структура) [future]
+2. `frontend/react/hooks-patterns.md` (логика) [future]
+3. `ui/web/ui-styling-standards.md` (стилизация)
 
-**Database integration**:
-1. `data/sql-patterns/` or `data/nosql-patterns/` (approach) [future]
-2. `data/orm-patterns/` (if using ORM) [future]
-3. `backend/nodejs/` or `backend/python/` (implementation) [future]
+**Интеграция базы данных**:
+1. `data/sql-patterns/` или `data/nosql-patterns/` (подход) [future]
+2. `data/orm-patterns/` (если используется ORM) [future]
+3. `backend/nodejs/` или `backend/python/` (реализация) [future]
 
-**Third-party service**:
-1. `integration/third-party-services/` (patterns) [future]
-2. `integration/api-integration/` (consuming APIs) [future]
+**Сторонний сервис**:
+1. `integration/third-party-services/` (паттерны) [future]
+2. `integration/api-integration/` (использование API) [future]
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Clean Code** → `principles/clean-code.md`
-- **API Design** → `principles/api-design.md`
-- **Core Standards** → `../core/standards/navigation.md`
+- **Чистый код** → `principles/clean-code.md`
+- **Проектирование API** → `principles/api-design.md`
+- **Базовые стандарты** → `../core/standards/navigation.md`

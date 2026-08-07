@@ -1,14 +1,14 @@
 <!-- Context: development/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Integration Navigation
+# Навигация по интеграции
 
-**Purpose**: Connecting systems and services
+**Назначение**: Связь систем и сервисов
 
-**Status**: 🚧 Placeholder - Content coming soon
+**Статус**: 🚧 Заготовка — контент скоро появится
 
 ---
 
-## Planned Structure
+## Планируемая структура
 
 ```
 integration/
@@ -32,7 +32,7 @@ integration/
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Backend Navigation** → `../backend-navigation.md`
-- **API Design** → `../principles/api-design.md`
+- **Навигация по backend** → `../backend-navigation.md`
+- **Проектирование API** → `../principles/api-design.md`

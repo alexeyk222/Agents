@@ -1,22 +1,22 @@
 <!-- Context: openagents-repo/examples | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Subagent Prompt Structure (Optimized)
+# Структура промпта субагента (оптимизированная)
 
-**Purpose**: Template for well-structured subagent prompts with tool usage emphasis
+**Назначение**: шаблон хорошо структурированных промптов субагентов с акцентом на использование инструментов
 
-**Last Updated**: 2026-01-07
-
----
-
-## Core Principle
-
-**Position Sensitivity**: Critical instructions in first 15% of prompt improves adherence.
-
-For subagents, the most critical instruction is: **which tools to use**.
+**Последнее обновление**: 2026-01-07
 
 ---
 
-## Optimized Structure
+## Ключевой принцип
+
+**Позиционная чувствительность**: критические инструкции в первых 15% промпта улучшают соблюдение правил.
+
+Для субагентов самая важная инструкция: **какие инструменты использовать**.
+
+---
+
+## Оптимизированная структура
 
 ```xml
 ---
@@ -99,7 +99,7 @@ Brief description (1-2 sentences).
 
 ---
 
-## Workflow
+## Рабочий процесс
 
 ### Stage 1: Discovery
 **Action**: Use tools to discover information
@@ -138,11 +138,11 @@ Brief description (1-2 sentences).
 
 ---
 
-## Key Optimizations Applied
+## Примененные ключевые оптимизации
 
-### 1. Critical Rules Early (Lines 50-80)
+### 1. Critical Rules в начале (строки 50-80)
 
-**Before** (buried at line 596):
+**До** (спрятано на строке 596):
 ```markdown
 ## Important Guidelines
 ...
@@ -151,7 +151,7 @@ Brief description (1-2 sentences).
 - Use glob, read, grep, list
 ```
 
-**After** (at line 50):
+**После** (на строке 50):
 ```xml
 <critical_rules priority="absolute" enforcement="strict">
   <rule id="tool_usage">
@@ -161,11 +161,11 @@ Brief description (1-2 sentences).
 </critical_rules>
 ```
 
-**Impact**: 47.5% reduction in prompt length, tool usage emphasized early.
+**Эффект**: длина промпта уменьшена на 47,5%, использование инструментов выделено в начале.
 
 ---
 
-### 2. Execution Priority (3-Tier System)
+### 2. Приоритеты выполнения (3-уровневая система)
 
 ```xml
 <execution_priority>
@@ -183,13 +183,13 @@ Brief description (1-2 sentences).
 </execution_priority>
 ```
 
-**Why**: Resolves conflicts, makes priorities explicit.
+**Почему**: разрешает конфликты и явно задает приоритеты.
 
 ---
 
-### 3. Flattened Nesting (≤4 Levels)
+### 3. Уплощенная вложенность (≤4 уровня)
 
-**Before** (6-7 levels):
+**До** (6-7 уровней):
 ```xml
 <instructions>
   <workflow>
@@ -206,7 +206,7 @@ Brief description (1-2 sentences).
 </instructions>
 ```
 
-**After** (3-4 levels):
+**После** (3-4 уровня):
 ```xml
 <workflow>
   <stage id="1" name="Discovery">
@@ -216,11 +216,11 @@ Brief description (1-2 sentences).
 </workflow>
 ```
 
-**Why**: Improves clarity, reduces cognitive load.
+**Почему**: повышает ясность и снижает когнитивную нагрузку.
 
 ---
 
-### 4. Explicit "What NOT to Do"
+### 4. Явная секция «Чего НЕ делать»
 
 ```markdown
 ## What NOT to Do
@@ -230,55 +230,55 @@ Brief description (1-2 sentences).
 - ❌ Don't fabricate information
 ```
 
-**Why**: Negative examples prevent common mistakes.
+**Почему**: негативные примеры предотвращают частые ошибки.
 
 ---
 
-## File Size Targets
+## Целевые размеры файла
 
-| Section | Target Lines | Purpose |
+| Секция | Целевые строки | Назначение |
 |---------|--------------|---------|
-| Frontmatter | 30-50 | Agent metadata |
-| Critical Rules | 20-30 | Tool usage, core rules |
-| Context/Role/Task | 20-30 | Agent identity |
-| Execution Priority | 20-30 | Priority system |
-| Workflow | 80-120 | Main instructions |
-| Guidelines | 40-60 | Best practices |
-| **Total** | **<400 lines** | MVI compliant |
+| Frontmatter | 30-50 | Метаданные агента |
+| Critical rules | 20-30 | Использование инструментов, ключевые правила |
+| Context/Role/Task | 20-30 | Идентичность агента |
+| Приоритеты выполнения | 20-30 | Система приоритетов |
+| Процесс | 80-120 | Основные инструкции |
+| Рекомендации | 40-60 | Лучшие практики |
+| **Итого** | **<400 строк** | Соответствие MVI |
 
 ---
 
-## Validation Checklist
+## Чек-лист валидации
 
-Before deploying optimized prompt:
+Перед применением оптимизированного промпта:
 
-- [ ] Critical rules in first 15% (lines 50-80)?
-- [ ] Tool usage explicitly stated?
-- [ ] Nesting ≤4 levels?
-- [ ] Execution priority defined?
-- [ ] "What NOT to Do" section included?
-- [ ] Total lines <400?
-- [ ] Semantic meaning preserved?
-
----
-
-## Real Example
-
-**ContextScout Optimization**:
-- **Before**: 750 lines, critical rules at line 596
-- **After**: 394 lines (47.5% reduction), critical rules at line 50
-- **Result**: Test passed (was failing with 0 tool calls)
-
-**Files**:
-- Optimized: `.opencode/agent/subagents/core/contextscout.md`
-- Backup: (example: `.opencode/agent/ContextScout-original-backup.md`)
+- [ ] Critical rules в первых 15% (строки 50-80)?
+- [ ] Использование инструментов указано явно?
+- [ ] Вложенность ≤4 уровней?
+- [ ] Приоритеты выполнения определены?
+- [ ] Секция «Чего НЕ делать» включена?
+- [ ] Всего строк <400?
+- [ ] Семантический смысл сохранен?
 
 ---
 
-## Related
+## Реальный пример
 
-- `concepts/subagent-testing-modes.md` - How to test optimized prompts
-- `guides/testing-subagents.md` - Verify tool usage works
-- `errors/tool-permission-errors.md` - Fix tool issues
+**Оптимизация ContextScout**:
+- **До**: 750 строк, critical rules на строке 596
+- **После**: 394 строки (сокращение на 47,5%), critical rules на строке 50
+- **Результат**: тест прошел (раньше падал с 0 tool calls)
 
-**Reference**: `.opencode/command/prompt-engineering/prompt-optimizer.md` (optimization principles)
+**Файлы**:
+- Оптимизированный: `.opencode/agent/subagents/core/contextscout.md`
+- Backup: (пример: `.opencode/agent/ContextScout-original-backup.md`)
+
+---
+
+## Связанные материалы
+
+- `concepts/subagent-testing-modes.md` - как тестировать оптимизированные промпты
+- `guides/testing-subagents.md` - как проверить, что инструменты используются
+- `errors/tool-permission-errors.md` - исправление проблем с инструментами
+
+**Справка**: `.opencode/command/prompt-engineering/prompt-optimizer.md` (принципы оптимизации)

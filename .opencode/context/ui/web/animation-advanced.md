@@ -1,13 +1,13 @@
 <!-- Context: ui/web/animation-advanced | Priority: medium | Version: 1.0 | Updated: 2025-12-09 -->
-# Advanced Animation Patterns
+# Продвинутые паттерны анимации
 
-Recipes, best practices, micro-interactions, and accessibility considerations.
+Рецепты, лучшие практики, микроинтеракции и требования доступности.
 
 ---
 
-## Page Transitions
+## Переходы страниц
 
-### Route Changes
+### Смена маршрутов
 
 ```css
 /* Page fade out */
@@ -29,7 +29,7 @@ Recipes, best practices, micro-interactions, and accessibility considerations.
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 pageExit: 200ms ease-in [α1→0]
 pageEnter: 300ms ease-out [α0→1]
@@ -37,9 +37,9 @@ pageEnter: 300ms ease-out [α0→1]
 
 ---
 
-## Micro-Interactions
+## Микроинтеракции
 
-### Hover Effects
+### Hover-эффекты
 
 ```css
 /* Link underline slide */
@@ -61,12 +61,12 @@ pageEnter: 300ms ease-out [α0→1]
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 linkHover: 250ms ease-out [width0→100%]
 ```
 
-### Toggle Switches
+### Toggle switch
 
 ```css
 /* Toggle slide */
@@ -81,16 +81,16 @@ linkHover: 250ms ease-out [width0→100%]
 }
 ```
 
-**Micro-syntax**:
+**Микросинтаксис**:
 ```
 toggle: 200ms ease-out [X0→20, bg→accent]
 ```
 
 ---
 
-## Animation Recipes
+## Рецепты анимации
 
-### Chat UI Complete Animation System
+### Полная система анимации Chat UI
 
 ```
 ## Core Message Flow
@@ -128,33 +128,33 @@ scrollHint: 800ms ∞×3 [Y±5]
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-### Do's ✅
+### Делайте ✅
 
-- Keep animations under 400ms for most interactions
-- Use `transform` and `opacity` for 60fps performance
-- Provide purpose for every animation
-- Use ease-out for entrances, ease-in for exits
-- Test on low-end devices
-- Respect `prefers-reduced-motion`
-- Stagger animations for lists (50-100ms delay)
-- Use consistent timing across similar interactions
+- Держите большинство анимаций короче 400ms
+- Используйте `transform` и `opacity` для 60fps
+- Задавайте цель каждой анимации
+- Используйте ease-out для появления, ease-in для выхода
+- Тестируйте на слабых устройствах
+- Учитывайте `prefers-reduced-motion`
+- Делайте stagger для списков (задержка 50-100ms)
+- Используйте одинаковую длительность для похожих взаимодействий
 
-### Don'ts ❌
+### Не делайте ❌
 
-- Don't animate width/height (use scale instead)
-- Don't use animations longer than 800ms
-- Don't animate too many elements at once
-- Don't use animations without purpose
-- Don't ignore accessibility preferences
-- Don't use jarring/distracting animations
-- Don't animate on every interaction
-- Don't use complex easing for simple interactions
+- Не анимируйте width/height (используйте scale)
+- Не используйте анимации дольше 800ms
+- Не анимируйте слишком много элементов одновременно
+- Не добавляйте анимации без цели
+- Не игнорируйте настройки доступности
+- Не используйте резкие или отвлекающие анимации
+- Не анимируйте каждое взаимодействие
+- Не используйте сложный easing для простых действий
 
 ---
 
-## Accessibility
+## Доступность
 
 ### Reduced Motion
 
@@ -171,7 +171,7 @@ scrollHint: 800ms ∞×3 [Y±5]
 }
 ```
 
-### Focus Indicators
+### Индикаторы фокуса
 
 ```css
 /* Always animate focus states */
@@ -184,7 +184,7 @@ scrollHint: 800ms ∞×3 [Y±5]
 
 ---
 
-## References
+## Ссылки
 
 - [Web Animation API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)
 - [CSS Easing Functions](https://easings.net/)
@@ -193,8 +193,8 @@ scrollHint: 800ms ∞×3 [Y±5]
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Animation Basics](./animation-basics.md) - Fundamentals
-- [Animation Components](./animation-components.md) - Common UI patterns
-- [Loading Animations](./animation-loading.md) - Loading states
+- [Основы анимации](./animation-basics.md) - базовые принципы
+- [Анимации компонентов](./animation-components.md) - распространенные UI-паттерны
+- [Анимации загрузки](./animation-loading.md) - состояния загрузки

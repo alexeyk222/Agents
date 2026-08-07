@@ -1,44 +1,44 @@
 <!-- Context: openagents-repo/events | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenCode Plugin Events
+# События плагинов OpenCode
 
-OpenCode fires over 25 events that you can hook into. These are categorized below:
+OpenCode генерирует более 25 событий, к которым можно подключаться хуками. Категории ниже:
 
-## Command Events
-- `command.executed`: Fired when a user or plugin runs a command.
+## События команд
+- `command.executed`: срабатывает, когда пользователь или плагин запускает команду.
 
-## File Events
-- `file.edited`: Fired when a file is modified via OpenCode tools.
-- `file.watcher.updated`: Fired when the file watcher detects changes.
+## События файлов
+- `file.edited`: срабатывает при изменении файла через инструменты OpenCode.
+- `file.watcher.updated`: срабатывает, когда наблюдатель файлов обнаруживает изменения.
 
-## Message Events (Read-Only)
-- `message.updated`: Fired when a message in the session updates.
-- `message.part.updated`: Fired when individual parts of a message update.
-- `message.part.removed`: Fired when a part is removed.
-- `message.removed`: Fired when entire message is removed.
+## События сообщений (только чтение)
+- `message.updated`: срабатывает при обновлении сообщения в сессии.
+- `message.part.updated`: срабатывает при обновлении отдельных частей сообщения.
+- `message.part.removed`: срабатывает при удалении части сообщения.
+- `message.removed`: срабатывает при удалении всего сообщения.
 
-## Session Events
-- `session.created`: New session started.
-- `session.updated`: Session state changed.
-- `session.idle`: Session completed (no more activity expected).
-- `session.status`: Session status changed.
-- `session.error`: Error occurred in session.
-- `session.compacted`: Session was compacted (context summarized).
+## События сессии
+- `session.created`: запущена новая сессия.
+- `session.updated`: состояние сессии изменилось.
+- `session.idle`: сессия завершена (новой активности не ожидается).
+- `session.status`: статус сессии изменился.
+- `session.error`: в сессии произошла ошибка.
+- `session.compacted`: сессия была сжата (контекст суммирован).
 
-## Tool Events (Interception)
-- `tool.execute.before`: Fired before a tool runs. **Can block execution** by throwing an error.
-- `tool.execute.after`: Fired after a tool completes with result.
+## События инструментов (перехват)
+- `tool.execute.before`: срабатывает до запуска инструмента. **Может заблокировать выполнение**, выбросив ошибку.
+- `tool.execute.after`: срабатывает после завершения инструмента с результатом.
 
-## TUI Events
-- `tui.prompt.append`: Text appended to prompt input.
-- `tui.command.execute`: Command executed from TUI.
-- `tui.toast.show`: Toast notification shown.
+## События TUI
+- `tui.prompt.append`: текст добавлен во ввод prompt.
+- `tui.command.execute`: команда выполнена из TUI.
+- `tui.toast.show`: показано toast-уведомление.
 
-## Mapping from Claude Code Hooks
+## Сопоставление с хуками Claude Code
 
-| Claude Hook | OpenCode Event |
+| Хук Claude | Событие OpenCode |
 |---|---|
 | PreToolUse | tool.execute.before |
 | PostToolUse | tool.execute.after |
-| UserPromptSubmit | message.* events |
+| UserPromptSubmit | события message.* |
 | SessionEnd | session.idle |

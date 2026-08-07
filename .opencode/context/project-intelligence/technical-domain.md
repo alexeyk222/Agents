@@ -1,26 +1,26 @@
 <!-- Context: project-intelligence/technical | Priority: high | Version: 1.0 | Updated: 2025-01-12 -->
 
-# Technical Domain
+# Технический домен
 
-> Document the technical foundation, architecture, and key decisions.
+> Документируйте техническую основу, архитектуру и ключевые решения.
 
-## Quick Reference
+## Краткая справка
 
-- **Purpose**: Understand how the project works technically
-- **Update When**: New features, refactoring, tech stack changes
-- **Audience**: Developers, DevOps, technical stakeholders
+- **Назначение**: понять, как проект работает технически
+- **Обновлять когда**: появляются новые функции, рефакторинг или изменения технологического стека
+- **Аудитория**: разработчики, DevOps, технические стейкхолдеры
 
-## Primary Stack
+## Основной стек
 
-| Layer | Technology | Version | Rationale |
+| Слой | Технология | Версия | Обоснование |
 |-------|-----------|---------|-----------|
-| Language | [e.g., TypeScript] | [Version] | [Why this language] |
-| Framework | [e.g., Node.js] | [Version] | [Why this framework] |
-| Database | [e.g., PostgreSQL] | [Version] | [Why this database] |
-| Infrastructure | [e.g., AWS, Vercel] | [N/A] | [Why this infra] |
-| Key Libraries | [List important ones] | [Versions] | [Why each matters] |
+| Язык | [e.g., TypeScript] | [Version] | [Why this language] |
+| Фреймворк | [e.g., Node.js] | [Version] | [Why this framework] |
+| База данных | [e.g., PostgreSQL] | [Version] | [Why this database] |
+| Инфраструктура | [e.g., AWS, Vercel] | [N/A] | [Why this infra] |
+| Ключевые библиотеки | [List important ones] | [Versions] | [Why each matters] |
 
-## Architecture Pattern
+## Архитектурный паттерн
 
 ```
 Type: [Monolith | Microservices | Serverless | Agent-based | Hybrid]
@@ -28,52 +28,52 @@ Pattern: [Brief description]
 Diagram: [Link to architecture diagram if exists]
 ```
 
-### Why This Architecture?
+### Почему эта архитектура?
 
 [Explain the business and technical reasons for this architecture choice. What problem does this architecture solve? What were alternatives considered?]
 
-## Project Structure
+## Структура проекта
 
 ```
 [Project Root]
-├── src/                    # Source code
-├── tests/                  # Test files
-├── docs/                   # Documentation
-├── scripts/                # Build/deploy scripts
+├── src/                    # Исходный код
+├── tests/                  # Тестовые файлы
+├── docs/                   # Документация
+├── scripts/                # Скрипты сборки/деплоя
 └── [Other key directories]
 ```
 
-**Key Directories**:
-- `src/` - Contains all application logic organized by [module/feature/domain]
+**Ключевые директории**:
+- `src/` - Содержит всю логику приложения, организованную по [module/feature/domain]
 - `tests/` - [How tests are organized]
 - `docs/` - [What documentation lives here]
 
-## Key Technical Decisions
+## Ключевые технические решения
 
-| Decision | Rationale | Impact |
+| Решение | Обоснование | Влияние |
 |----------|-----------|--------|
 | [Decision 1] | [Why this choice] | [What it enables] |
 | [Decision 2] | [Why this choice] | [What it enables] |
 
-See `decisions-log.md` for full decision history with alternatives.
+Полную историю решений с альтернативами см. в `decisions-log.md`.
 
-## Integration Points
+## Точки интеграции
 
-| System | Purpose | Protocol | Direction |
+| Система | Назначение | Протокол | Направление |
 |--------|---------|----------|-----------|
 | [API 1] | [What it does] | [REST/GraphQL/gRPC] | [Inbound/Outbound] |
 | [Database] | [What it stores] | [PostgreSQL/Mongo/etc] | [Internal] |
 | [Service] | [What it provides] | [HTTP/gRPC] | [Outbound] |
 
-## Technical Constraints
+## Технические ограничения
 
-| Constraint | Origin | Impact |
+| Ограничение | Источник | Влияние |
 |------------|--------|--------|
 | [Legacy systems] | [Business/Tech] | [What limitation it creates] |
 | [Compliance] | [Regulation] | [What must be followed] |
 | [Performance] | [SLAs] | [What must be met] |
 
-## Development Environment
+## Среда разработки
 
 ```
 Setup: [Quick setup command or link]
@@ -82,7 +82,7 @@ Local Dev: [How to run locally]
 Testing: [How to run tests]
 ```
 
-## Deployment
+## Деплой
 
 ```
 Environment: [Production/Staging/Development]
@@ -91,18 +91,18 @@ CI/CD: [Pipeline used]
 Monitoring: [Tools for observability]
 ```
 
-## Onboarding Checklist
+## Чеклист онбординга
 
-- [ ] Know the primary tech stack
-- [ ] Understand the architecture pattern and why it was chosen
-- [ ] Know the key project directories and their purpose
-- [ ] Understand major technical decisions and rationale
-- [ ] Know integration points and dependencies
-- [ ] Be able to set up local development environment
-- [ ] Know how to run tests and deploy
+- [ ] Знать основной технологический стек
+- [ ] Понимать архитектурный паттерн и почему он выбран
+- [ ] Знать ключевые директории проекта и их назначение
+- [ ] Понимать основные технические решения и их обоснование
+- [ ] Знать точки интеграции и зависимости
+- [ ] Уметь настроить локальную среду разработки
+- [ ] Знать, как запускать тесты и деплой
 
-## Related Files
+## Связанные файлы
 
-- `business-domain.md` - Why this technical foundation exists
-- `business-tech-bridge.md` - How business needs map to technical solutions
-- `decisions-log.md` - Full decision history with context
+- `business-domain.md` - Почему существует эта техническая основа
+- `business-tech-bridge.md` - Как бизнес-потребности связаны с техническими решениями
+- `decisions-log.md` - Полная история решений с контекстом

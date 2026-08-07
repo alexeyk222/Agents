@@ -1,24 +1,24 @@
 <!-- Context: development/workflow-step-structure | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Workflow Step Structure
+# Руководство: структура шага workflow
 
-**Purpose**: Standardized pattern for defining maintainable and testable workflow steps.
+**Назначение**: Стандартизированный паттерн для определения поддерживаемых и тестируемых шагов workflow.
 
-**Last Updated**: 2026-01-09
+**Обновлено**: 2026-01-09
 
 ---
 
-## Core Idea
-Workflow steps should be self-contained units that encapsulate their input/output schemas and execution logic. For complex workflows, steps should be moved to a dedicated `steps/` directory and grouped by phase.
+## Основная идея
+Шаги workflow должны быть самодостаточными единицами, инкапсулирующими схемы ввода/вывода и логику выполнения. Для сложных workflows шаги следует выносить в отдельный каталог `steps/` и группировать по фазам.
 
-## Key Points
-- **Directory Structure**: Group steps by phase (e.g., `steps/phase1-load.ts`, `steps/phase2-process.ts`).
-- **Schema Centralization**: Define shared schemas (like `workflowStateSchema`) in a `schemas.ts` file within the steps directory.
-- **Explicit State**: Use `stateSchema` in `createStep` to ensure type safety when accessing the global workflow state.
-- **Tool Delegation**: Steps should primarily act as orchestrators, delegating heavy lifting to Tools.
-- **Logging**: Include clear console logs at the start and end of each step for easier debugging.
+## Ключевые пункты
+- **Структура каталогов**: группируйте шаги по фазам (например, `steps/phase1-load.ts`, `steps/phase2-process.ts`).
+- **Централизация схем**: определяйте общие схемы, например `workflowStateSchema`, в файле `schemas.ts` внутри каталога шагов.
+- **Явное состояние**: используйте `stateSchema` в `createStep`, чтобы обеспечить типобезопасность при доступе к глобальному состоянию workflow.
+- **Делегирование Tools**: шаги должны в основном быть оркестраторами и делегировать тяжёлую работу Tools.
+- **Логирование**: добавляйте понятные `console.log`-сообщения в начале и конце каждого шага для упрощения отладки.
 
-## Quick Example
+## Быстрый пример
 ```typescript
 // src/mastra/workflows/v3/steps/phase1.ts
 export const myStep = createStep({
@@ -34,7 +34,7 @@ export const myStep = createStep({
 });
 ```
 
-**Reference**: `src/mastra/workflows/v3/steps/`
-**Related**:
+**Источник**: `src/mastra/workflows/v3/steps/`
+**Связано**:
 - concepts/workflows.md
 - guides/modular-building.md

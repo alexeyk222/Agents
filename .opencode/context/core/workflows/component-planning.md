@@ -1,70 +1,70 @@
 <!-- Context: workflows/component-planning | Priority: high | Version: 1.0 -->
 
-# Component-Based Planning Workflow
+# Рабочий процесс компонентного планирования
 
-## Overview
-This workflow replaces "Monolithic Planning" (planning everything at once) with "Iterative Component Planning". It is designed for complex features that require breaking down into functional units.
+## Обзор
+Этот процесс заменяет монолитное планирование (всего сразу) на итеративное компонентное планирование. Он предназначен для сложных функций, которые нужно разбивать на функциональные единицы.
 
-## Core Philosophy
-**"Plan the System, Build the Component."**
-Don't try to write a detailed plan for the entire system upfront. Create a high-level roadmap, then zoom in to plan one component in detail before executing it.
+## Основная философия
+**"Планируйте систему, собирайте компонент."**
+Не пытайтесь заранее написать подробный план всей системы. Создайте высокоуровневую дорожную карту, затем детально спланируйте один компонент перед выполнением.
 
-## The Two-Level Plan Structure
+## Двухуровневая структура плана
 
-### Level 1: The Master Plan (Roadmap)
-**File:** `.tmp/sessions/{id}/master-plan.md`
-**Purpose:** High-level architecture and dependency graph.
-**Content:**
-- System Architecture Diagram (ASCII)
-- List of Components (e.g., Auth, Database, API, UI)
-- Dependency Order (What must be built first?)
-- Global Standards/Decisions
+### Уровень 1: Master Plan (дорожная карта)
+**Файл:** `.tmp/sessions/{id}/master-plan.md`
+**Назначение:** высокоуровневая архитектура и граф зависимостей.
+**Содержимое:**
+- Диаграмма архитектуры системы (ASCII)
+- Список компонентов (например, Auth, Database, API, UI)
+- Порядок зависимостей (что нужно собрать первым?)
+- Глобальные стандарты/решения
 
-### Level 2: The Component Plan (Active Spec)
-**File:** `.tmp/sessions/{id}/component-{name}.md`
-**Purpose:** Detailed execution steps for the *current* focus.
-**Content:**
-- **Interface Definition**: Types, function signatures, API contracts.
-- **Test Strategy**: What specific cases will be tested?
-- **Task List**: Atomic steps (Create file, Write test, Implement logic).
-- **Verification**: How do we know this component is done?
-
----
-
-## Workflow Steps
-
-### Phase 1: System Design (The Master Plan)
-1.  **Analyze**: Understand the full feature request.
-2.  **Decompose**: Break the system into functional Components (e.g., "User Service", "Email Worker", "Frontend Form").
-3.  **Draft Master Plan**: Create `master-plan.md`.
-4.  **Approve**: Get user buy-in on the architecture and order.
-
-### Phase 2: Component Execution Loop
-*Repeat this for each component in the Master Plan:*
-
-1.  **Select Component**: Pick the next unblocked component.
-2.  **Draft Component Plan**: Create `component-{name}.md`.
-    *   Define the *exact* interface/types first.
-    *   List the atomic implementation steps.
-3.  **Approve**: Show the detailed component plan to the user.
-4.  **Execute**:
-    *   Load `component-{name}.md` into `TodoWrite`.
-    *   Implement -> Validate -> Check off.
-5.  **Integrate**: Update `master-plan.md` to mark component as complete.
+### Уровень 2: Component Plan (активная спецификация)
+**Файл:** `.tmp/sessions/{id}/component-{name}.md`
+**Назначение:** подробные шаги выполнения для *текущего* фокуса.
+**Содержимое:**
+- **Определение интерфейса**: типы, сигнатуры функций, API-контракты.
+- **Стратегия тестирования**: какие конкретные сценарии будут проверены?
+- **Список задач**: атомарные шаги (создать файл, написать тест, реализовать логику).
+- **Проверка**: как понять, что компонент готов?
 
 ---
 
-## When to Use This
-- **Complex Features**: >3 files, multiple layers (DB + API + UI).
-- **Unknowns**: When later parts of the system depend on earlier decisions.
-- **Large Scope**: Anything taking >2 hours.
+## Шаги процесса
 
-## Example Master Plan (`master-plan.md`)
+### Фаза 1: дизайн системы (Master Plan)
+1.  **Проанализировать**: понять полный запрос на функцию.
+2.  **Декомпозировать**: разбить систему на функциональные компоненты (например, "User Service", "Email Worker", "Frontend Form").
+3.  **Подготовить Master Plan**: создать `master-plan.md`.
+4.  **Утвердить**: получить согласие пользователя по архитектуре и порядку.
+
+### Фаза 2: цикл выполнения компонентов
+*Повторяйте для каждого компонента в Master Plan:*
+
+1.  **Выбрать компонент**: взять следующий незаблокированный компонент.
+2.  **Подготовить Component Plan**: создать `component-{name}.md`.
+    *   Сначала определить *точный* интерфейс/типы.
+    *   Перечислить атомарные шаги реализации.
+3.  **Утвердить**: показать пользователю подробный план компонента.
+4.  **Выполнить**:
+    *   Загрузить `component-{name}.md` в `TodoWrite`.
+    *   Реализовать -> проверить -> отметить выполненным.
+5.  **Интегрировать**: обновить `master-plan.md`, отметив компонент завершенным.
+
+---
+
+## Когда использовать
+- **Сложные функции**: >3 файлов, несколько слоев (DB + API + UI).
+- **Неопределенность**: поздние части системы зависят от ранних решений.
+- **Большой объем**: все, что занимает >2 часов.
+
+## Пример Master Plan (`master-plan.md`)
 
 ```markdown
 # Master Plan: E-Commerce Checkout
 
-## Architecture
+## Архитектура
 [Cart] -> [Order Service] -> [Payment Gateway]
                        -> [Inventory Service]
 
@@ -75,7 +75,7 @@ Don't try to write a detailed plan for the entire system upfront. Create a high-
 4. [ ] **Checkout UI** (React components)
 ```
 
-## Example Component Plan (`component-inventory.md`)
+## Пример Component Plan (`component-inventory.md`)
 
 ```markdown
 # Component: Inventory Service

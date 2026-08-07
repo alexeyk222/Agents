@@ -1,26 +1,26 @@
 <!-- Context: openagents-repo/context-bundle-template | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Context Bundle Template
+# Шаблон context bundle
 
-**Purpose**: Template for creating context bundles when delegating tasks to subagents
+**Назначение**: шаблон для создания context bundles при делегировании задач субагентам
 
-**Location**: `.tmp/context/{session-id}/bundle.md`
+**Расположение**: `.tmp/context/{session-id}/bundle.md`
 
-**Used by**: repo-manager agent when delegating to subagents
+**Используется**: агентом repo-manager при делегировании субагентам
 
 ---
 
-## Template
+## Шаблон
 
 ```markdown
-# Context Bundle: {Task Name}
+# Пакет контекста: {Task Name}
 
 Session: {session-id}
 Created: {ISO timestamp}
 For: {subagent-name}
 Status: in_progress
 
-## Task Overview
+## Обзор задачи
 
 {Brief description of what we're building/doing}
 
@@ -180,37 +180,37 @@ Status: in_progress
 
 ---
 
-## Usage Instructions
+## Инструкции по использованию
 
-### When to Create a Context Bundle
+### Когда создавать context bundle
 
-Create a context bundle when:
-- Delegating to any subagent
-- Task requires coordination across multiple components
-- Subagent needs project-specific context
-- Task has complex requirements or constraints
+Создавайте context bundle, когда:
+- Делегируете любому субагенту
+- Задача требует координации нескольких компонентов
+- Субагенту нужен контекст проекта
+- У задачи сложные требования или ограничения
 
-### How to Create a Context Bundle
+### Как создать context bundle
 
-1. **Create session directory**:
+1. **Создайте директорию сессии**:
    ```bash
    mkdir -p .tmp/context/{session-id}
    ```
 
-2. **Copy template**:
+2. **Скопируйте шаблон**:
    ```bash
    cp .opencode/context/openagents-repo/templates/context-bundle-template.md \
       .tmp/context/{session-id}/bundle.md
    ```
 
-3. **Fill in all sections**:
-   - Replace all `{placeholders}` with actual values
-   - List specific context files to load (with full paths)
-   - Extract key requirements from loaded context
-   - Define clear success criteria
-   - Provide specific instructions
+3. **Заполните все секции**:
+   - Замените все `{placeholders}` реальными значениями
+   - Перечислите конкретные контекстные файлы для загрузки (с полными путями)
+   - Извлеките ключевые требования из загруженного контекста
+   - Определите четкие критерии успеха
+   - Дайте конкретные инструкции
 
-4. **Pass to subagent**:
+4. **Передайте субагенту**:
    ```javascript
    task(
      subagent_type="subagents/core/{subagent}",
@@ -223,28 +223,28 @@ Create a context bundle when:
    )
    ```
 
-### Best Practices
+### Лучшие практики
 
-**DO**:
-- ✅ List context files with full paths (don't duplicate content)
-- ✅ Extract key requirements from loaded context
-- ✅ Define binary success criteria (pass/fail)
-- ✅ Provide specific validation requirements
-- ✅ Include clear instructions for subagent
-- ✅ Track progress through the task
+**Делайте**:
+- ✅ Перечисляйте контекстные файлы с полными путями (не дублируйте содержимое)
+- ✅ Извлекайте ключевые требования из загруженного контекста
+- ✅ Задавайте бинарные критерии успеха (pass/fail)
+- ✅ Указывайте конкретные требования к валидации
+- ✅ Добавляйте ясные инструкции для субагента
+- ✅ Отслеживайте прогресс по задаче
 
-**DON'T**:
-- ❌ Duplicate full context file content (just reference paths)
-- ❌ Use vague success criteria ("make it good")
-- ❌ Skip validation requirements
-- ❌ Forget to list technical constraints
-- ❌ Omit file paths for files to create/modify
+**Не делайте**:
+- ❌ Не дублируйте полный текст контекстных файлов (достаточно ссылок на пути)
+- ❌ Не используйте расплывчатые критерии успеха ("make it good")
+- ❌ Не пропускайте требования к валидации
+- ❌ Не забывайте перечислять технические ограничения
+- ❌ Не опускайте пути файлов для создания/изменения
 
-### Example Context Bundle
+### Пример context bundle
 
-See `.opencode/context/openagents-repo/examples/context-bundle-example.md` for a complete example.
+Полный пример см. в `.opencode/context/openagents-repo/examples/context-bundle-example.md`.
 
 ---
 
-**Last Updated**: 2025-01-21  
-**Version**: 1.0.0
+**Последнее обновление**: 2025-01-21  
+**Версия**: 1.0.0

@@ -1,41 +1,41 @@
 <!-- Context: openagents-repo/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Quality
+# Качество OpenAgents
 
-**Purpose**: Quality assurance and standards for OpenAgents Control
+**Назначение**: контроль качества и стандарты для OpenAgents Control
 
 ---
 
-## Structure
+## Структура
 
 ```
 openagents-repo/quality/
-├── navigation.md (this file)
-└── [quality documentation]
+├── navigation.md (этот файл)
+└── [документация по качеству]
 ```
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **View quality docs** | `./` |
-| **Guides** | `../guides/navigation.md` |
-| **Errors** | `../errors/navigation.md` |
+| **Посмотреть документацию по качеству** | `./` |
+| **Руководства** | `../guides/navigation.md` |
+| **Ошибки** | `../errors/navigation.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Quality Standards** → Standards for code quality  
-**Testing** → Testing requirements and patterns  
-**Validation** → Validation procedures
+**Стандарты качества** → стандарты качества кода  
+**Тестирование** → требования и паттерны тестирования  
+**Валидация** → процедуры валидации
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **OpenAgents Navigation** → `../navigation.md`
-- **Guides** → `../guides/navigation.md`
-- **Errors** → `../errors/navigation.md`
+- **Навигация OpenAgents** → `../navigation.md`
+- **Руководства** → `../guides/navigation.md`
+- **Ошибки** → `../errors/navigation.md`

@@ -1,39 +1,39 @@
 <!-- Context: openagents-repo/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Core Concepts
+# Ключевые концепции OpenAgents
 
-**Purpose**: Deep-dive documentation on core OpenAgents Control concepts
+**Назначение**: подробная документация по ключевым концепциям OpenAgents Control
 
 ---
 
-## Structure
+## Структура
 
 ```
 openagents-repo/core-concepts/
-├── navigation.md (this file)
-└── [core concept files]
+├── navigation.md (этот файл)
+└── [файлы ключевых концепций]
 ```
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **View core concepts** | `./` |
-| **Concepts** | `../concepts/navigation.md` |
-| **Guides** | `../guides/navigation.md` |
+| **Посмотреть ключевые концепции** | `./` |
+| **Концепции** | `../concepts/navigation.md` |
+| **Руководства** | `../guides/navigation.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Core Concepts** → In-depth documentation on fundamental OpenAgents ideas
+**Ключевые концепции** → подробная документация по базовым идеям OpenAgents
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **OpenAgents Navigation** → `../navigation.md`
-- **Concepts** → `../concepts/navigation.md`
-- **Guides** → `../guides/navigation.md`
+- **Навигация OpenAgents** → `../navigation.md`
+- **Концепции** → `../concepts/navigation.md`
+- **Руководства** → `../guides/navigation.md`

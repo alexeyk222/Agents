@@ -1,12 +1,12 @@
 <!-- Context: development/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Frameworks Navigation
+# Навигация по фреймворкам
 
-**Purpose**: Full-stack and meta-frameworks that span multiple architectural layers.
+**Назначение**: Полностековые и метафреймворки, охватывающие несколько архитектурных слоёв.
 
 ---
 
-## Structure
+## Структура
 
 ```
 frameworks/
@@ -18,14 +18,14 @@ frameworks/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
 | **Tanstack Start** | `tanstack-start/navigation.md` |
 
 ---
 
-## By Framework
+## По фреймворку
 
-**Tanstack Start** → Full-stack React framework with SSR and server functions.
+**Tanstack Start** → полностековый React-фреймворк с SSR и server functions.

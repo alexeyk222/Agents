@@ -1,14 +1,14 @@
 <!-- Context: development/workflow-example | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Example: Document Ingestion Workflow
+# Пример: workflow для загрузки документов
 
-**Purpose**: Demonstrates a multi-step workflow with parallel processing.
+**Назначение**: Демонстрирует многошаговый workflow с параллельной обработкой.
 
-**Last Updated**: 2026-01-09
+**Обновлено**: 2026-01-09
 
 ---
 
-## Workflow Definition
+## Определение workflow
 ```typescript
 export const documentIngestionWorkflow = createWorkflow({
   id: 'document-ingestion',
@@ -25,7 +25,7 @@ export const documentIngestionWorkflow = createWorkflow({
   .commit();
 ```
 
-## Step Execution
+## Выполнение шага
 ```typescript
 const uploadStep = createStep({
   id: 'upload-document',
@@ -36,7 +36,7 @@ const uploadStep = createStep({
 });
 ```
 
-**Reference**: `src/mastra/workflows/document-ingestion-with-classification-workflow.ts`
-**Related**:
+**Источник**: `src/mastra/workflows/document-ingestion-with-classification-workflow.ts`
+**Связано**:
 - concepts/workflows.md
 - concepts/agents-tools.md

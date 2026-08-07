@@ -1,12 +1,12 @@
 <!-- Context: openagents-repo/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Guides
+# Руководства OpenAgents
 
-**Purpose**: Step-by-step guides for working with OpenAgents Control
+**Цель**: пошаговые руководства по работе с OpenAgents Control
 
 ---
 
-## Structure
+## Структура
 
 ```
 openagents-repo/guides/
@@ -16,29 +16,29 @@ openagents-repo/guides/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **Adding agents (basics)** | `./adding-agent-basics.md` |
-| **Adding agents (tests)** | `./adding-agent-testing.md` |
-| **Adding OpenCode skills** | `./adding-skill-basics.md` |
-| **Creating Claude Code skills** | `./creating-skills.md` |
-| **Creating Claude Code subagents** | `./creating-subagents.md` |
-| **Testing subagents** | `./testing-subagents.md` |
+| **Добавление агентов (основы)** | `./adding-agent-basics.md` |
+| **Добавление агентов (тесты)** | `./adding-agent-testing.md` |
+| **Добавление OpenCode skills** | `./adding-skill-basics.md` |
+| **Создание Claude Code skills** | `./creating-skills.md` |
+| **Создание Claude Code subagents** | `./creating-subagents.md` |
+| **Тестирование subagents** | `./testing-subagents.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Implementation Guides** → How to implement features  
-**Agent Guides** → How to work with agents  
-**Testing Guides** → How to test implementations
+**Руководства по реализации** → как реализовывать функции  
+**Руководства по агентам** → как работать с агентами  
+**Руководства по тестированию** → как тестировать реализации
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **OpenAgents Navigation** → `../navigation.md`
-- **Examples** → `../examples/navigation.md`
-- **Core Concepts** → `../core-concepts/navigation.md`
+- **Навигация OpenAgents** → `../navigation.md`
+- **Примеры** → `../examples/navigation.md`
+- **Ключевые концепции** → `../core-concepts/navigation.md`

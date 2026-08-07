@@ -1,15 +1,15 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: OpenCode Skill Implementation
+# Руководство: реализация OpenCode Skill
 
-**Prerequisites**: Load `adding-skill-basics.md` first  
-**Purpose**: CLI implementation, registry, and testing for OpenCode skills
+**Предварительно**: сначала загрузите `adding-skill-basics.md`  
+**Цель**: CLI-реализация, registry и тестирование OpenCode skills
 
 ---
 
-## CLI Implementation
+## CLI-реализация
 
-### Basic Structure
+### Базовая структура
 
 ```typescript
 #!/usr/bin/env ts-node
@@ -66,9 +66,9 @@ main().catch(console.error)
 
 ---
 
-## Register in Registry (Optional)
+## Регистрация в registry (опционально)
 
-### Add to Components
+### Добавьте в components
 
 ```json
 {
@@ -86,7 +86,7 @@ main().catch(console.error)
 }
 ```
 
-### Add to Profiles
+### Добавьте в profiles
 
 ```json
 {
@@ -102,9 +102,9 @@ main().catch(console.error)
 
 ---
 
-## Testing
+## Тестирование
 
-### Test CLI Commands
+### Проверьте CLI-команды
 
 ```bash
 # Test help
@@ -117,53 +117,53 @@ bash .opencode/skills/{skill-name}/router.sh command1 --option value
 npx ts-node .opencode/skills/{skill-name}/scripts/skill-cli.ts help
 ```
 
-### Test OpenCode Integration
+### Проверьте интеграцию с OpenCode
 
-1. Call skill via OpenCode
-2. Verify event hooks fire correctly
-3. Check conversation history for skill content
-4. Verify output enhancement works
-
----
-
-## Best Practices
-
-### Keep Skills Focused
-- ✅ Task management skill → Tracks tasks
-- ❌ Task management + code generation + testing → Too broad
-
-### Clear Documentation
-- Provide usage examples
-- Document all commands
-- Include expected outputs
-
-### Error Handling
-- Handle missing arguments gracefully
-- Provide helpful error messages
-- Validate inputs before processing
-
-### Performance
-- Use efficient algorithms
-- Cache when appropriate
-- Avoid unnecessary file operations
+1. Вызовите skill через OpenCode
+2. Проверьте, что event hooks срабатывают корректно
+3. Проверьте conversation history на наличие skill content
+4. Убедитесь, что output enhancement работает
 
 ---
 
-## Checklist
+## Лучшие практики
 
-- [ ] `.opencode/skills/{skill-name}/SKILL.md` created
-- [ ] `.opencode/skills/{skill-name}/router.sh` created (if CLI-based)
-- [ ] Router script is executable (`chmod +x`)
-- [ ] Registry updated (if needed)
-- [ ] Profile updated (if needed)
-- [ ] All commands tested
-- [ ] Documentation complete
+### Держите skills сфокусированными
+- ✅ Task management skill → отслеживает задачи
+- ❌ Task management + code generation + testing → слишком широко
+
+### Понятная документация
+- Давайте примеры использования
+- Документируйте все команды
+- Включайте ожидаемый вывод
+
+### Обработка ошибок
+- Корректно обрабатывайте отсутствующие аргументы
+- Давайте полезные сообщения об ошибках
+- Валидируйте ввод перед обработкой
+
+### Производительность
+- Используйте эффективные алгоритмы
+- Кэшируйте, где уместно
+- Избегайте лишних операций с файлами
 
 ---
 
-## Related
+## Чеклист
 
-- `adding-skill-basics.md` - Directory and SKILL.md setup
-- `adding-skill-example.md` - Complete example
-- `creating-skills.md` - Claude Code Skills
-- `plugins/context/capabilities/events_skills.md` - Skills Plugin
+- [ ] `.opencode/skills/{skill-name}/SKILL.md` создан
+- [ ] `.opencode/skills/{skill-name}/router.sh` создан (если skill основан на CLI)
+- [ ] Router-скрипт исполняемый (`chmod +x`)
+- [ ] Registry обновлен (если нужно)
+- [ ] Profile обновлен (если нужно)
+- [ ] Все команды протестированы
+- [ ] Документация завершена
+
+---
+
+## Связанное
+
+- `adding-skill-basics.md` — настройка каталога и SKILL.md
+- `adding-skill-example.md` — полный пример
+- `creating-skills.md` — Claude Code Skills
+- `plugins/context/capabilities/events_skills.md` — Skills Plugin

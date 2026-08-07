@@ -1,26 +1,26 @@
 <!-- Context: core/mvi | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# MVI Principle (Minimal Viable Information)
+# Принцип MVI (минимально жизнеспособная информация)
 
-**Purpose**: Extract only core concepts, not verbose explanations
+**Назначение**: извлекать только ключевые идеи, а не подробные объяснения
 
-**Last Updated**: 2026-01-06
-
----
-
-## Core Idea
-
-Extract the **minimum information** needed for an AI agent to understand and use a concept:
-- Core concept (1-3 sentences)
-- Key points (3-5 bullets)
-- Minimal working example
-- Reference link to full docs
-
-**Goal**: Scannable in <30 seconds. Reference full docs, don't duplicate them.
+**Последнее обновление**: 2026-01-06
 
 ---
 
-## The Formula
+## Ключевая идея
+
+Извлекайте **минимум информации**, достаточный AI-агенту для понимания и применения концепции:
+- Ключевая идея (1-3 предложения)
+- Ключевые моменты (3-5 пунктов)
+- Минимальный рабочий пример
+- Ссылка на полную документацию
+
+**Цель**: сканируется за <30 секунд. Ссылайтесь на полную документацию, не дублируйте ее.
+
+---
+
+## Формула
 
 ```
 Core Concept (1-3 sentences)
@@ -36,31 +36,31 @@ Related Files (cross-refs)
 
 ---
 
-## What to Extract ✅
+## Что извлекать ✅
 
-- **Core definitions** - What it is (1-3 sentences)
-- **Key properties** - Essential characteristics (3-5 bullets)
-- **Minimal example** - Simplest working code (5-10 lines)
-- **Common patterns** - How it's typically used (2-3 bullets)
-- **Critical gotchas** - Must-know issues (1-2 bullets)
-- **Reference links** - Where to learn more
-
----
-
-## What to Skip ❌
-
-- **Verbose explanations** - Link to docs instead
-- **Complete API docs** - Summarize + reference
-- **Implementation details** - Show minimal example + reference
-- **Historical context** - Unless critical to understanding
-- **Marketing content** - Just the facts
-- **Duplicate information** - Say it once, reference elsewhere
+- **Ключевые определения** - что это (1-3 предложения)
+- **Ключевые свойства** - важные характеристики (3-5 пунктов)
+- **Минимальный пример** - самый простой рабочий код (5-10 строк)
+- **Распространенные паттерны** - как обычно используется (2-3 пункта)
+- **Критичные подводные камни** - обязательные к знанию проблемы (1–2 пункта)
+- **Ссылки** - где узнать больше
 
 ---
 
-## Example: JWT Authentication
+## Что пропускать ❌
 
-### ❌ Too Verbose (400+ lines)
+- **Многословные объяснения** - вместо этого дайте ссылку на документацию
+- **Полную API-документацию** - кратко резюмируйте + дайте ссылку
+- **Детали реализации** - покажите минимальный пример + ссылку
+- **Исторический контекст** - только если критичен для понимания
+- **Маркетинговый текст** - только факты
+- **Дублирующую информацию** - скажите один раз, дальше ссылайтесь
+
+---
+
+## Пример: аутентификация JWT
+
+### ❌ Слишком многословно (400+ строк)
 ```markdown
 # JWT Authentication
 
@@ -74,7 +74,7 @@ or ECDSA.
 [... 400 more lines of explanation, examples, edge cases ...]
 ```
 
-### ✅ MVI Compliant (~50 lines)
+### ✅ Соответствует MVI (~50 строк)
 ```markdown
 # Concept: JWT Authentication
 
@@ -113,39 +113,39 @@ console.log(decoded.userId) // 123
 
 ---
 
-## File Size Limits
+## Ограничения размера файлов
 
 <rule id="size_limits" enforcement="strict">
-  - Concept files: max 100 lines
-  - Example files: max 80 lines
-  - Guide files: max 150 lines
-  - Lookup files: max 100 lines
-  - Error files: max 150 lines
-  - README files: max 100 lines
+  - Файлы Concept: максимум 100 строк
+  - Файлы Example: максимум 80 строк
+  - Файлы Guide: максимум 150 строк
+  - Файлы Lookup: максимум 100 строк
+  - Файлы Error: максимум 150 строк
+  - Файлы README: максимум 100 строк
 </rule>
 
-**Why**: Forces brevity. If you need more, split into multiple files or reference external docs.
+**Почему**: заставляет быть краткими. Если нужно больше, разбейте на несколько файлов или дайте ссылку на внешнюю документацию.
 
 ---
 
-## Validation Checklist
+## Чеклист валидации
 
-Before creating a context file, verify:
+Перед созданием файла контекста проверьте:
 
-- [ ] Core concept is 1-3 sentences?
-- [ ] Key points are 3-5 bullets?
-- [ ] Example is <10 lines of code?
-- [ ] Reference link is included?
-- [ ] File is <200 lines total?
-- [ ] Can be scanned in <30 seconds?
+- [ ] Ключевая идея занимает 1-3 предложения?
+- [ ] Ключевые моменты — 3-5 пунктов?
+- [ ] Пример содержит <10 строк кода?
+- [ ] Ссылка на источник добавлена?
+- [ ] Файл <200 строк всего?
+- [ ] Файл можно просмотреть за <30 секунд?
 
-If any answer is "no", apply more compression.
+Если любой ответ — «нет», сожмите сильнее.
 
 ---
 
-## Related
+## Связанные материалы
 
-- structure.md - Where files go
-- compact.md - How to minimize
-- templates.md - Standard formats
-- creation.md - File creation rules
+- structure.md - где размещать файлы
+- compact.md - как минимизировать
+- templates.md - стандартные форматы
+- creation.md - правила создания файлов

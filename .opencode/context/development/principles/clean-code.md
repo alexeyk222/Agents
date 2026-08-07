@@ -1,27 +1,27 @@
 <!-- Context: development/clean-code | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Clean Code Principles
+# Принципы чистого кода
 
-**Category**: development  
-**Purpose**: Core coding standards and best practices for writing clean, maintainable code  
-**Used by**: frontend-specialist, devops-specialist, opencoder
+**Категория**: development  
+**Назначение**: Базовые стандарты кодирования и лучшие практики для чистого, поддерживаемого кода  
+**Используют**: frontend-specialist, devops-specialist, opencoder
 
 ---
 
-## Overview
+## Обзор
 
-Clean code is code that is easy to read, understand, and maintain. It follows consistent patterns, uses meaningful names, and is well-organized. This guide provides principles and patterns for writing clean code across all languages.
+Чистый код легко читать, понимать и поддерживать. Он следует согласованным паттернам, использует осмысленные имена и хорошо организован. Это руководство описывает универсальные принципы чистого кода для разных языков.
 
-## Core Principles
+## Основные принципы
 
-### 1. Meaningful Names
+### 1. Осмысленные имена
 
-**Use intention-revealing names**:
-- Variable names should reveal intent
-- Function names should describe what they do
-- Class names should describe what they represent
+**Используйте имена, раскрывающие намерение**:
+- Имена переменных должны показывать смысл
+- Имена функций должны описывать действие
+- Имена классов должны описывать представляемую сущность
 
-**Examples**:
+**Примеры**:
 ```javascript
 // Bad
 const d = new Date();
@@ -32,14 +32,14 @@ const currentDate = new Date();
 const activeUserProfile = getUserData();
 ```
 
-### 2. Functions Should Do One Thing
+### 2. Функции должны делать одно дело
 
-**Single Responsibility**:
-- Each function should have one clear purpose
-- Functions should be small (ideally < 20 lines)
-- Extract complex logic into separate functions
+**Единственная ответственность**:
+- У каждой функции должна быть одна понятная цель
+- Функции должны быть маленькими (в идеале < 20 строк)
+- Выносите сложную логику в отдельные функции
 
-**Example**:
+**Пример**:
 ```javascript
 // Bad
 function processUser(user) {
@@ -58,14 +58,14 @@ function processUser(user) {
 }
 ```
 
-### 3. Avoid Deep Nesting
+### 3. Избегайте глубокой вложенности
 
-**Keep nesting shallow**:
-- Use early returns
-- Extract nested logic into functions
-- Prefer guard clauses
+**Держите вложенность неглубокой**:
+- Используйте ранние возвраты
+- Выносите вложенную логику в функции
+- Предпочитайте guard clauses (защитные условия)
 
-**Example**:
+**Пример**:
 ```javascript
 // Bad
 function processOrder(order) {
@@ -88,21 +88,21 @@ function processOrder(order) {
 }
 ```
 
-### 4. DRY (Don't Repeat Yourself)
+### 4. DRY (не повторяйтесь)
 
-**Eliminate duplication**:
-- Extract common logic into reusable functions
-- Use composition over inheritance
-- Create utility functions for repeated patterns
+**Устраняйте дублирование**:
+- Выносите общую логику в переиспользуемые функции
+- Предпочитайте композицию наследованию
+- Создавайте utility-функции для повторяющихся паттернов
 
-### 5. Error Handling
+### 5. Обработка ошибок
 
-**Handle errors explicitly**:
-- Use try-catch for expected errors
-- Provide meaningful error messages
-- Don't ignore errors silently
+**Обрабатывайте ошибки явно**:
+- Используйте try-catch для ожидаемых ошибок
+- Возвращайте понятные сообщения об ошибках
+- Не игнорируйте ошибки молча
 
-**Example**:
+**Пример**:
 ```javascript
 // Bad
 function fetchData() {
@@ -124,55 +124,55 @@ async function fetchData() {
 }
 ```
 
-## Best Practices
+## Лучшие практики
 
-1. **Write self-documenting code** - Code should explain itself through clear naming and structure
-2. **Keep functions pure when possible** - Avoid side effects, return new values instead of mutating
-3. **Use consistent formatting** - Follow language-specific style guides (Prettier, ESLint, etc.)
-4. **Write tests first** - TDD helps design better APIs and catch issues early
-5. **Refactor regularly** - Improve code structure as you learn more about the domain
-6. **Comment why, not what** - Code shows what, comments explain why
-7. **Use type systems** - TypeScript, type hints, or static analysis tools
-8. **Favor composition** - Build complex behavior from simple, reusable pieces
+1. **Пишите самодокументируемый код** - код должен объяснять себя через понятные имена и структуру
+2. **По возможности делайте функции чистыми** - избегайте побочных эффектов, возвращайте новые значения вместо мутаций
+3. **Используйте единое форматирование** - следуйте гайдлайнам языка (Prettier, ESLint и т. д.)
+4. **Сначала пишите тесты** - TDD помогает проектировать лучшие API и рано ловить проблемы
+5. **Регулярно рефакторьте** - улучшайте структуру кода по мере понимания домена
+6. **Комментируйте почему, а не что** - код показывает что, комментарии объясняют почему
+7. **Используйте системы типов** - TypeScript, аннотации типов или инструменты статического анализа
+8. **Предпочитайте композицию** - собирайте сложное поведение из простых переиспользуемых частей
 
-## Anti-Patterns
+## Антипаттерны
 
-- ❌ **Magic numbers** - Use named constants instead of hardcoded values
-- ❌ **God objects** - Classes that do too much or know too much
-- ❌ **Premature optimization** - Optimize for readability first, performance second
-- ❌ **Clever code** - Simple and clear beats clever and complex
-- ❌ **Long parameter lists** - Use objects or configuration patterns instead
-- ❌ **Boolean flags** - Often indicate a function doing multiple things
-- ❌ **Mutable global state** - Leads to unpredictable behavior and bugs
+- ❌ **Магические числа** - используйте именованные константы вместо захардкоженных значений
+- ❌ **Божественный объект** - классы, которые делают или знают слишком много
+- ❌ **Преждевременная оптимизация** - сначала оптимизируйте читаемость, затем производительность
+- ❌ **Слишком хитрый код** - простой и понятный код лучше хитрого и сложного
+- ❌ **Длинные списки параметров** - используйте объекты или конфигурационные паттерны
+- ❌ **Булевы флаги** - часто означают, что функция делает несколько вещей
+- ❌ **Изменяемое глобальное состояние** - ведёт к непредсказуемому поведению и багам
 
-## Language-Specific Guidelines
+## Рекомендации по языкам
 
 ### JavaScript/TypeScript
-- Use `const` by default, `let` when needed, never `var`
-- Prefer arrow functions for callbacks
-- Use async/await over raw promises
-- Destructure objects and arrays for clarity
+- Используйте `const` по умолчанию, `let` при необходимости и никогда `var`
+- Предпочитайте стрелочные функции для callback-функций
+- Используйте async/await вместо прямой работы с Promise
+- Деструктурируйте объекты и массивы для ясности
 
 ### Python
-- Follow PEP 8 style guide
-- Use list comprehensions for simple transformations
-- Prefer context managers (`with` statements)
-- Use type hints for function signatures
+- Следуйте руководству по стилю PEP 8
+- Используйте списковые включения для простых преобразований
+- Предпочитайте контекстные менеджеры (`with`)
+- Используйте аннотации типов в сигнатурах функций
 
 ### Go
-- Follow effective Go guidelines
-- Use defer for cleanup
-- Handle errors explicitly
-- Keep interfaces small
+- Следуйте рекомендациям Effective Go
+- Используйте defer для очистки
+- Обрабатывайте ошибки явно
+- Держите интерфейсы маленькими
 
 ### Rust
-- Embrace ownership and borrowing
-- Use pattern matching
-- Prefer iterators over loops
-- Handle errors with Result types
+- Используйте модель владения и заимствования
+- Используйте сопоставление с образцом
+- Предпочитайте итераторы циклам
+- Обрабатывайте ошибки через типы Result
 
-## References
+## Источники
 
-- Clean Code by Robert C. Martin
-- The Pragmatic Programmer by Hunt & Thomas
-- Refactoring by Martin Fowler
+- Clean Code — Robert C. Martin
+- The Pragmatic Programmer — Hunt & Thomas
+- Refactoring — Martin Fowler

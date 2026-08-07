@@ -1,42 +1,42 @@
 <!-- Context: development/ui-styling-standards | Priority: high | Version: 1.0 | Updated: 2025-12-09 -->
-# UI Styling Standards
+# Стандарты UI-стилизации
 
-## Overview
+## Обзор
 
-Standards and conventions for CSS frameworks, responsive design, and styling best practices in frontend development.
+Стандарты и соглашения для CSS-фреймворков, responsive design и лучших практик стилизации во frontend-разработке.
 
-## Quick Reference
+## Краткая справка
 
-**Framework**: Tailwind CSS + Flowbite (default)
-**Approach**: Mobile-first responsive
-**Format**: Utility-first CSS
-**Specificity**: Use `!important` for overrides when needed
+**Фреймворк**: Tailwind CSS + Flowbite (по умолчанию)
+**Подход**: mobile-first responsive
+**Формат**: utility-first CSS
+**Специфичность**: используйте `!important` для override при необходимости
 
 ---
 
-## CSS Framework Conventions
+## Соглашения CSS-фреймворков
 
 ### Tailwind CSS
 
-**Loading Method** (Preferred):
+**Способ загрузки** (предпочтительно):
 
 ```html
 <!-- ✅ Use CDN script tag -->
 <script src="https://cdn.tailwindcss.com"></script>
 ```
 
-**Avoid**:
+**Избегайте**:
 
 ```html
 <!-- ❌ Don't use stylesheet link -->
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 ```
 
-**Why**: Script tag allows for JIT compilation and configuration
+**Почему**: script tag включает JIT-компиляцию и настройку
 
 ### Flowbite
 
-**Loading Method**:
+**Способ загрузки**:
 
 ```html
 <!-- Flowbite CSS -->
@@ -46,24 +46,24 @@ Standards and conventions for CSS frameworks, responsive design, and styling bes
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.0.0/dist/flowbite.min.js"></script>
 ```
 
-**Usage**: Flowbite is the default component library unless user specifies otherwise
+**Использование**: Flowbite — библиотека компонентов по умолчанию, если пользователь не указал другое
 
-**Components Available**:
-- Buttons, forms, modals
-- Navigation, dropdowns, tabs
+**Доступные компоненты**:
+- Кнопки, формы, модальные окна
+- Навигация, dropdown, tabs
 - Cards, alerts, badges
-- Tables, pagination
+- Таблицы, pagination
 - Tooltips, popovers
 
 ---
 
-## Responsive Design Requirements
+## Требования к responsive design
 
-### Mobile-First Approach
+### Подход mobile-first
 
-**Rule**: ALL designs MUST be responsive
+**Правило**: ВСЕ дизайны ДОЛЖНЫ быть responsive
 
-**Breakpoints** (Tailwind defaults):
+**Breakpoints** (значения Tailwind по умолчанию):
 
 ```css
 /* Mobile first - base styles apply to mobile */
@@ -85,7 +85,7 @@ Standards and conventions for CSS frameworks, responsive design, and styling bes
 @media (min-width: 1536px) { } /* 2xl: */
 ```
 
-**Tailwind Syntax**:
+**Синтаксис Tailwind**:
 
 ```html
 <!-- Mobile: stack, Desktop: side-by-side -->
@@ -100,25 +100,25 @@ Standards and conventions for CSS frameworks, responsive design, and styling bes
 </div>
 ```
 
-### Testing Requirements
+### Требования к тестированию
 
-✅ Test at minimum breakpoints: 375px, 768px, 1024px, 1440px
-✅ Verify touch targets (min 44x44px)
-✅ Check text readability at all sizes
-✅ Ensure images scale properly
-✅ Test navigation on mobile
+✅ Тестируйте минимум на breakpoints: 375px, 768px, 1024px, 1440px
+✅ Проверяйте touch targets (минимум 44x44px)
+✅ Проверяйте читаемость текста на всех размерах
+✅ Убедитесь, что изображения корректно масштабируются
+✅ Тестируйте навигацию на mobile
 
 ---
 
-## Color Palette Guidelines
+## Рекомендации по цветовой палитре
 
-### Avoid Bootstrap Blue
+### Избегайте Bootstrap Blue
 
-**Rule**: NEVER use generic Bootstrap blue (#007bff) unless explicitly requested
+**Правило**: НИКОГДА не используйте типовой Bootstrap blue (#007bff), если это явно не запрошено
 
-**Why**: Overused, lacks personality, feels dated
+**Почему**: заезженный, без характера, выглядит устаревшим
 
-**Alternatives**:
+**Альтернативы**:
 
 ```css
 /* Instead of Bootstrap blue */
@@ -131,27 +131,27 @@ Standards and conventions for CSS frameworks, responsive design, and styling bes
 --success: oklch(0.7323 0.2492 142.4953);    /* Fresh green */
 ```
 
-### Color Usage Rules
+### Правила использования цвета
 
-1. **Semantic naming**: Use `--primary`, `--accent`, not `--blue`, `--red`
-2. **Brand alignment**: Choose colors that match project personality
-3. **Contrast testing**: Ensure WCAG AA compliance (4.5:1 minimum)
-4. **Consistency**: Use theme variables throughout
+1. **Семантические имена**: используйте `--primary`, `--accent`, а не `--blue`, `--red`
+2. **Соответствие бренду**: выбирайте цвета под характер проекта
+3. **Проверка контраста**: обеспечьте соответствие WCAG AA (минимум 4.5:1)
+4. **Консистентность**: везде используйте theme variables
 
 ---
 
-## Background/Foreground Contrast
+## Контраст background/foreground
 
-### Contrast Rule
+### Правило контраста
 
-**When designing components or posters**:
+**При дизайне компонентов или постеров**:
 
-- **Light component** → Dark background
-- **Dark component** → Light background
+- **Светлый компонент** → темный фон
+- **Темный компонент** → светлый фон
 
-**Why**: Ensures visibility and creates visual hierarchy
+**Почему**: повышает видимость и создает визуальную иерархию
 
-**Examples**:
+**Примеры**:
 
 ```html
 <!-- Light card on dark background -->
@@ -169,27 +169,27 @@ Standards and conventions for CSS frameworks, responsive design, and styling bes
 </div>
 ```
 
-### Component-Specific Rules
+### Правила для отдельных компонентов
 
-**Posters/Hero Sections**:
-- Use high contrast for readability
-- Consider overlay gradients for text on images
-- Test with actual content
+**Posters/Hero sections**:
+- Используйте высокий контраст для читаемости
+- Добавляйте overlay gradients для текста поверх изображений
+- Тестируйте на реальном контенте
 
 **Cards/Panels**:
-- Subtle elevation with shadows
-- Clear boundary between card and background
-- Consistent padding
+- Мягкая глубина через shadows
+- Четкая граница между card и background
+- Консистентный padding
 
 ---
 
-## CSS Specificity & Overrides
+## CSS specificity и overrides
 
-### Using !important
+### Использование !important
 
-**Rule**: Use `!important` for properties that might be overwritten by Tailwind or Flowbite
+**Правило**: используйте `!important` для свойств, которые могут перезаписать Tailwind или Flowbite
 
-**Common Cases**:
+**Частые случаи**:
 
 ```css
 /* Typography overrides */
@@ -211,7 +211,7 @@ body {
 }
 ```
 
-**When NOT to use**:
+**Когда НЕ использовать**:
 
 ```css
 /* ❌ Don't use for everything */
@@ -225,18 +225,18 @@ body {
 <div class="m-4 p-4 flex">
 ```
 
-### Specificity Best Practices
+### Лучшие практики specificity
 
-1. **Prefer utility classes** over custom CSS
-2. **Use !important sparingly** - only for framework overrides
-3. **Scope custom styles** to avoid conflicts
-4. **Use CSS custom properties** for theming
+1. **Предпочитайте utility classes** вместо custom CSS
+2. **Используйте !important умеренно** — только для override фреймворка
+3. **Скоупьте custom styles**, чтобы избежать конфликтов
+4. **Используйте CSS custom properties** для темизации
 
 ---
 
-## Layout Patterns
+## Layout-паттерны
 
-### Flexbox (Preferred for 1D layouts)
+### Flexbox (предпочтительно для 1D layouts)
 
 ```html
 <!-- Horizontal layout -->
@@ -257,7 +257,7 @@ body {
 </div>
 ```
 
-### Grid (Preferred for 2D layouts)
+### Grid (предпочтительно для 2D layouts)
 
 ```html
 <!-- Responsive grid -->
@@ -274,7 +274,7 @@ body {
 </div>
 ```
 
-### Container Patterns
+### Паттерны контейнеров
 
 ```html
 <!-- Centered container with max width -->
@@ -292,9 +292,9 @@ body {
 
 ---
 
-## Typography Standards
+## Стандарты типографики
 
-### Hierarchy
+### Иерархия
 
 ```html
 <!-- Heading scale -->
@@ -309,9 +309,9 @@ body {
 <p class="text-xs text-gray-500">Caption text</p>
 ```
 
-### Font Loading
+### Загрузка шрифтов
 
-**Always use Google Fonts**:
+**Всегда используйте Google Fonts**:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -319,7 +319,7 @@ body {
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 ```
 
-**Apply in CSS**:
+**Применяйте в CSS**:
 
 ```css
 body {
@@ -327,16 +327,16 @@ body {
 }
 ```
 
-### Readability
+### Читаемость
 
-- **Line length**: 60-80 characters optimal
-- **Line height**: 1.5-1.75 for body text
-- **Font size**: Minimum 16px for body text
-- **Contrast**: 4.5:1 minimum for normal text
+- **Длина строки**: оптимально 60-80 символов
+- **Line height**: 1.5-1.75 для body text
+- **Размер шрифта**: минимум 16px для body text
+- **Контраст**: минимум 4.5:1 для обычного текста
 
 ---
 
-## Component Styling Patterns
+## Паттерны стилизации компонентов
 
 ### Buttons
 
@@ -399,7 +399,7 @@ body {
 
 ---
 
-## Accessibility Standards
+## Стандарты доступности
 
 ### ARIA Labels
 
@@ -432,7 +432,7 @@ body {
 <div class="main">...</div>
 ```
 
-### Focus States
+### Состояния фокуса
 
 ```css
 /* Always provide visible focus states */
@@ -449,9 +449,9 @@ button:focus-visible {
 
 ---
 
-## Performance Optimization
+## Оптимизация производительности
 
-### CSS Loading
+### Загрузка CSS
 
 ```html
 <!-- Preconnect to font sources -->
@@ -462,7 +462,7 @@ button:focus-visible {
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 ```
 
-### Image Optimization
+### Оптимизация изображений
 
 ```html
 <!-- Responsive images -->
@@ -491,39 +491,39 @@ button:focus-visible {
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-### Do's ✅
+### Делайте ✅
 
-- Use Tailwind utility classes for rapid development
-- Load Tailwind via script tag for JIT compilation
-- Use Flowbite as default component library
-- Ensure all designs are mobile-first responsive
-- Test at multiple breakpoints
-- Use semantic HTML elements
-- Provide ARIA labels for interactive elements
-- Use CSS custom properties for theming
-- Apply `!important` for framework overrides
-- Ensure proper color contrast (WCAG AA)
+- Используйте utility classes Tailwind для быстрой разработки
+- Загружайте Tailwind через script tag для JIT-компиляции
+- Используйте Flowbite как библиотеку компонентов по умолчанию
+- Делайте все дизайны mobile-first responsive
+- Тестируйте на нескольких breakpoints
+- Используйте semantic HTML elements
+- Добавляйте ARIA labels для интерактивных элементов
+- Используйте CSS custom properties для темизации
+- Применяйте `!important` для framework overrides
+- Обеспечивайте корректный цветовой контраст (WCAG AA)
 
-### Don'ts ❌
+### Не делайте ❌
 
-- Don't use Bootstrap blue without explicit request
-- Don't load Tailwind as a stylesheet
-- Don't skip responsive design
-- Don't use div soup (use semantic HTML)
-- Don't forget focus states
-- Don't hardcode colors (use theme variables)
-- Don't skip accessibility testing
-- Don't use tiny touch targets (<44px)
-- Don't mix color formats
-- Don't over-use `!important`
+- Не используйте Bootstrap blue без явного запроса
+- Не загружайте Tailwind как stylesheet
+- Не пропускайте responsive design
+- Не используйте div soup (используйте semantic HTML)
+- Не забывайте focus states
+- Не хардкодьте цвета (используйте theme variables)
+- Не пропускайте тестирование доступности
+- Не используйте маленькие touch targets (<44px)
+- Не смешивайте форматы цветов
+- Не злоупотребляйте `!important`
 
 ---
 
-## Framework Alternatives
+## Альтернативы фреймворков
 
-If user requests a different framework:
+Если пользователь просит другой фреймворк:
 
 **Bootstrap**:
 ```html
@@ -544,9 +544,9 @@ If user requests a different framework:
 
 ---
 
-## References
+## Ссылки
 
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Flowbite Components](https://flowbite.com/docs/getting-started/introduction/)
-- [WCAG Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [Документация Tailwind CSS](https://tailwindcss.com/docs)
+- [Компоненты Flowbite](https://flowbite.com/docs/getting-started/introduction/)
+- [Рекомендации WCAG](https://www.w3.org/WAI/WCAG21/quickref/)
 - [MDN Web Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)

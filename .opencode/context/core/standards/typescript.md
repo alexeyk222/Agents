@@ -1,31 +1,33 @@
 <!-- Context: core/standards | Priority: critical | Version: 1.0 | Updated: 2026-02-16 -->
 
-# Universal TypeScript Standards
+# Универсальные стандарты TypeScript
 
-**Purpose**: Universal TypeScript patterns applicable to any TypeScript project  
-**Scope**: Language-level patterns, not framework-specific  
-**Last Updated**: 2026-02-16
+**Назначение**: Универсальные паттерны TypeScript для любого TypeScript-проекта  
+**Область**: Паттерны уровня языка, не специфичные для фреймворков  
+**Последнее обновление**: 2026-02-16
 
 ---
 
-## Table of Contents
+## Содержание
 
-1. [Function Patterns](#1-function-patterns)
+1. [Паттерны функций](#1-function-patterns)
 2. [Type Safety](#2-type-safety)
-3. [Array Operations](#3-array-operations)
-4. [Async Patterns](#4-async-patterns)
+3. [Операции с массивами](#3-array-operations)
+4. [Async-паттерны](#4-async-patterns)
 5. [Control Flow](#5-control-flow)
-6. [Code Organization](#6-code-organization)
-7. [Testing Principles](#7-testing-principles)
-8. [Variable Naming](#8-variable-naming)
+6. [Организация кода](#6-code-organization)
+7. [Принципы тестирования](#7-testing-principles)
+8. [Именование переменных](#8-variable-naming)
 
 ---
 
-## 1. Function Patterns
+<a id="1-function-patterns"></a>
 
-### 1.1 Naming Convention
+## 1. Паттерны функций
 
-**Rule: Prefer single-word function names**
+### 1.1 Соглашение об именовании
+
+**Правило: Предпочитайте имена функций из одного слова**
 
 ```typescript
 // ✅ GOOD - Single-word names
@@ -47,9 +49,9 @@ function getUserData(id: string) {}      // Use: user()
 function processFileContent(path) {}     // Use: process()
 ```
 
-### 1.2 Pure Functions
+### 1.2 Чистые функции
 
-**Rule: Prefer pure functions when possible**
+**Правило: По возможности предпочитайте чистые функции**
 
 ```typescript
 // ✅ GOOD - Pure function
@@ -64,7 +66,7 @@ function addToTotal(item: Item) {
 }
 ```
 
-### 1.3 Function Composition
+### 1.3 Композиция функций
 
 ```typescript
 // ✅ GOOD - Functional composition with pipes
@@ -86,11 +88,13 @@ export function withRetry<T>(fn: () => Promise<T>, maxRetries: number): Promise<
 
 ---
 
+<a id="2-type-safety"></a>
+
 ## 2. Type Safety
 
-### 2.1 TypeScript Types
+### 2.1 TypeScript-типы
 
-**Rule: Use TypeScript's type system, avoid `any`**
+**Правило: Используйте систему типов TypeScript, избегайте `any`**
 
 ```typescript
 // ✅ GOOD - Explicit types
@@ -110,9 +114,9 @@ function getUser(id: any): any {
 }
 ```
 
-### 2.2 Type Inference
+### 2.2 Вывод типов
 
-**Rule: Let TypeScript infer when obvious**
+**Правило: Позволяйте TypeScript выводить тип, когда он очевиден**
 
 ```typescript
 // ✅ GOOD - Inference works
@@ -124,9 +128,9 @@ const count: number = 42
 const users: User[] = await fetchUsers()
 ```
 
-### 2.3 Type Guards
+### 2.3 Type guards
 
-**Rule: Use type guards for runtime type checking**
+**Правило: Используйте type guards для runtime-проверки типов**
 
 ```typescript
 // ✅ GOOD - Type guard
@@ -145,9 +149,9 @@ if (isUser(data)) {
 }
 ```
 
-### 2.4 Avoid Any
+### 2.4 Избегайте Any
 
-**Rule: Use `unknown` instead of `any` when type is truly unknown**
+**Правило: Используйте `unknown` вместо `any`, когда тип действительно неизвестен**
 
 ```typescript
 // ✅ GOOD - unknown requires type checking
@@ -166,11 +170,13 @@ function processData(data: any) {
 
 ---
 
-## 3. Array Operations
+<a id="3-array-operations"></a>
 
-### 3.1 Functional Methods (Preferred)
+## 3. Операции с массивами
 
-**Rule: Prefer map/filter/reduce over for-loops**
+### 3.1 Функциональные методы (предпочтительно)
+
+**Правило: Предпочитайте map/filter/reduce вместо for-loops**
 
 ```typescript
 // ✅ GOOD - Functional chain with type inference
@@ -197,12 +203,12 @@ const uniqueNames = Array.from(new Set(items.map((x) => x.name)))
 const sorted = items.toSorted((a, b) => a.timestamp - b.timestamp)
 ```
 
-### 3.2 For-Loops (When Necessary)
+### 3.2 For-loops (когда нужно)
 
-**Rule: Use for-loops only for:**
-1. Algorithm complexity (DP, graph traversal)
-2. Early exit requirements
-3. Sequential side effects
+**Правило: Используйте for-loops только для:**
+1. Сложных алгоритмов (DP, graph traversal)
+2. Требований early exit
+3. Последовательных side effects
 4. Performance-critical iteration
 
 ```typescript
@@ -225,9 +231,9 @@ for (const key of Object.keys(tools)) {
 }
 ```
 
-### 3.3 Type Guards on Filter
+### 3.3 Type guards в filter
 
-**Rule: Use type guards to maintain type inference downstream**
+**Правило: Используйте type guards, чтобы сохранить дальнейший вывод типов**
 
 ```typescript
 // ✅ GOOD - Type guard preserves type information
@@ -245,11 +251,13 @@ const patches = messages
 
 ---
 
-## 4. Async Patterns
+<a id="4-async-patterns"></a>
 
-### 4.1 Parallel Execution (Default Pattern)
+## 4. Async-паттерны
 
-**Rule: Use `Promise.all` for independent operations**
+### 4.1 Параллельное выполнение (default pattern)
+
+**Правило: Используйте `Promise.all` для независимых операций**
 
 ```typescript
 // ✅ GOOD - Parallel independent operations
@@ -273,9 +281,9 @@ const cfg = await getConfig()  // Could run in parallel!
 const provider = await getProvider(model.providerID)
 ```
 
-### 4.2 Sequential Operations
+### 4.2 Последовательные операции
 
-**Rule: Chain when operations depend on previous results**
+**Правило: Стройте цепочку, когда операции зависят от предыдущих результатов**
 
 ```typescript
 // ✅ GOOD - Sequential dependency chain
@@ -289,9 +297,9 @@ const result = await createSession({ title: "New" })
   .then((message) => processMessage(message.id))
 ```
 
-### 4.3 Error Handling in Async
+### 4.3 Обработка ошибок в async
 
-**Rule: Prefer `.catch()` over try/catch when possible**
+**Правило: По возможности предпочитайте `.catch()` вместо try/catch**
 
 ```typescript
 // ✅ GOOD - Catch at call site
@@ -338,11 +346,13 @@ const result = await operation().catch((error) => {
 
 ---
 
+<a id="5-control-flow"></a>
+
 ## 5. Control Flow
 
-### 5.1 Early Returns
+### 5.1 Early returns
 
-**Rule: Avoid `else` statements, use early returns**
+**Правило: Избегайте `else`, используйте early returns**
 
 ```typescript
 // ✅ GOOD - Early returns
@@ -381,7 +391,7 @@ function getStatus(session: Session) {
 }
 ```
 
-### 5.2 Guard Clauses
+### 5.2 Guard clauses
 
 ```typescript
 // ✅ GOOD - Guard clauses at function start
@@ -397,9 +407,9 @@ async function updateSession(id: string, data: UpdateData) {
 }
 ```
 
-### 5.3 Switch Statements
+### 5.3 Switch statements
 
-**Rule: Use exhaustive switch with default case**
+**Правило: Используйте exhaustive switch с default case**
 
 ```typescript
 // ✅ GOOD - Exhaustive switch
@@ -423,11 +433,13 @@ function handleEvent(event: Event) {
 
 ---
 
-## 6. Code Organization
+<a id="6-code-organization"></a>
 
-### 6.1 Import Order
+## 6. Организация кода
 
-**Rule: Organize imports by source**
+### 6.1 Порядок импортов
+
+**Правило: Организуйте импорты по источнику**
 
 ```typescript
 // ✅ GOOD - Organized imports
@@ -444,7 +456,7 @@ import { User } from "./types"
 import { getConfig } from "./config"
 ```
 
-### 6.2 Naming Conventions
+### 6.2 Соглашения об именовании
 
 ```typescript
 // ✅ GOOD - Clear naming
@@ -463,9 +475,9 @@ const userAgent = req.headers["user-agent"]
 const maxRetries = config.retries
 ```
 
-### 6.3 File Structure
+### 6.3 Структура файла
 
-**Rule: One primary export per file**
+**Правило: Один основной export на файл**
 
 ```typescript
 // user.ts
@@ -485,11 +497,13 @@ export async function createUser(data: CreateUserInput): Promise<User> {
 
 ---
 
-## 7. Testing Principles
+<a id="7-testing-principles"></a>
 
-### 7.1 Test Structure
+## 7. Принципы тестирования
 
-**Rule: Follow Arrange-Act-Assert pattern**
+### 7.1 Структура теста
+
+**Правило: Следуйте паттерну Arrange-Act-Assert**
 
 ```typescript
 // ✅ GOOD - AAA pattern
@@ -506,9 +520,9 @@ test("creates user with valid data", async () => {
 })
 ```
 
-### 7.2 Coverage Goals
+### 7.2 Цели покрытия
 
-**Rule: Test both success and failure cases**
+**Правило: Тестируйте и успешные, и ошибочные сценарии**
 
 ```typescript
 // ✅ GOOD - Both positive and negative tests
@@ -526,9 +540,9 @@ describe("createUser", () => {
 })
 ```
 
-### 7.3 Mock External Dependencies
+### 7.3 Мокайте внешние зависимости
 
-**Rule: Mock all external dependencies**
+**Правило: Мокайте все внешние зависимости**
 
 ```typescript
 // ✅ GOOD - Mocked dependencies
@@ -546,11 +560,13 @@ test("fetches user data", async () => {
 
 ---
 
-## 8. Variable Naming
+<a id="8-variable-naming"></a>
 
-### 8.1 Variable Declaration
+## 8. Именование переменных
 
-**Rule: Prefer `const` over `let`**
+### 8.1 Объявление переменных
+
+**Правило: Предпочитайте `const` вместо `let`**
 
 ```typescript
 // ✅ GOOD - Immutable with ternary
@@ -580,7 +596,7 @@ for (const item of items) {
 
 ### 8.2 Destructuring
 
-**Rule: Avoid unnecessary destructuring, preserve context with dot notation**
+**Правило: Избегайте лишнего destructuring, сохраняйте контекст через dot notation**
 
 ```typescript
 // ✅ GOOD - Preserve context
@@ -611,11 +627,11 @@ const [language, cfg, provider] = await Promise.all([...])
 
 ---
 
-## Related Standards
+## Связанные стандарты
 
-- **OpenCode TypeScript**: `.opencode/context/openagents-repo/standards/opencode-typescript.md` (framework-specific patterns)
-- **Code Quality**: `.opencode/context/core/standards/code-quality.md` (general quality standards)
-- **Test Coverage**: `.opencode/context/core/standards/test-coverage.md` (testing standards)
+- **OpenCode TypeScript**: `.opencode/context/openagents-repo/standards/opencode-typescript.md` (паттерны конкретного фреймворка)
+- **Качество кода**: `.opencode/context/core/standards/code-quality.md` (общие стандарты качества)
+- **Покрытие тестами**: `.opencode/context/core/standards/test-coverage.md` (стандарты тестирования)
 
 ---
 

@@ -1,21 +1,21 @@
 <!-- Context: workflows/delegation-caching | Priority: medium | Version: 1.0 | Updated: 2026-02-05 -->
-# Context Caching for Delegation
+# Кэширование контекста для делегирования
 
-**Purpose**: Cache discovered context to avoid re-discovery overhead in repeated tasks
-
----
-
-## When to Cache
-
-Cache context when:
-- Same task type appears multiple times in session
-- Same context files needed repeatedly
-- Multiple subtasks use identical standards
-- Parallel tasks need same context
+**Назначение**: кэшировать найденный контекст, чтобы избежать повторного поиска в повторяющихся задачах
 
 ---
 
-## Cache Structure
+## Когда кэшировать
+
+Кэшируйте контекст, когда:
+- Один тип задачи встречается в сессии несколько раз
+- Одни и те же файлы контекста нужны повторно
+- Несколько подзадач используют одинаковые стандарты
+- Параллельным задачам нужен один и тот же контекст
+
+---
+
+## Структура кэша
 
 ```
 .tmp/sessions/{session-id}/
@@ -48,23 +48,23 @@ Cache context when:
 
 ---
 
-## Invalidation Rules
+## Правила инвалидации
 
-**Cache is INVALID when:**
-- Source file modified (check timestamp)
-- Session older than 24 hours
-- Context file version changed
-- User explicitly requests refresh
+**Кэш НЕВАЛИДЕН, когда:**
+- Исходный файл изменен (проверьте временную метку)
+- Сессия старше 24 часов
+- Версия файла контекста изменилась
+- Пользователь явно запросил refresh
 
-**Cache is VALID when:**
-- Source timestamp matches
-- Session less than 24 hours old
-- No version changes
-- Multiple tasks in same session
+**Кэш ВАЛИДЕН, когда:**
+- Временная метка исходника совпадает
+- Сессии меньше 24 часов
+- Нет изменений версии
+- В одной сессии несколько задач
 
 ---
 
-## Implementation Pattern
+## Паттерн реализации
 
 ```javascript
 // Before delegating to subagent
@@ -78,7 +78,7 @@ ELSE:
 
 ---
 
-## Example: Parallel Tasks
+## Пример: параллельные задачи
 
 ```javascript
 session_id = "2026-01-28-parallel-tests"
@@ -104,9 +104,9 @@ task(
 
 ---
 
-## Cache Effectiveness
+## Эффективность кэша
 
-Track metrics:
+Отслеживайте метрики:
 ```json
 {
   "cache_stats": {
@@ -120,24 +120,24 @@ Track metrics:
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-✅ **Do:**
-- Cache context for repeated task types
-- Validate cache before using
-- Invalidate when source changes
-- Monitor hit rate
-- Clean up cache with session
+✅ **Делайте:**
+- Кэшируйте контекст для повторяющихся типов задач
+- Валидируйте кэш перед использованием
+- Инвалидируйте при изменении исходника
+- Отслеживайте hit rate
+- Очищайте кэш вместе с сессией
 
-❌ **Don't:**
-- Cache external context (always fetch fresh)
-- Cache for single-task sessions (overhead not worth it)
-- Ignore invalidation rules
-- Mix cached and fresh context in same task
+❌ **Не делайте:**
+- Не кэшируйте внешний контекст (всегда получайте свежий)
+- Не кэшируйте для сессий с одной задачей (overhead не оправдан)
+- Не игнорируйте правила инвалидации
+- Не смешивайте кэшированный и свежий контекст в одной задаче
 
 ---
 
-## Related
+## Связанные материалы
 
-- `task-delegation-basics.md` - Core delegation workflow
-- `task-delegation-specialists.md` - When to delegate
+- `task-delegation-basics.md` - основной workflow делегирования
+- `task-delegation-specialists.md` - когда делегировать

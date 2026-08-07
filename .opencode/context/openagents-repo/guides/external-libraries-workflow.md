@@ -1,46 +1,46 @@
 <!-- Context: openagents-repo/guides/external-libraries-workflow | Priority: high | Version: 1.0 | Updated: 2026-01-29 -->
-# Guide: External Libraries Workflow
+# Руководство: процесс для внешних библиотек
 
-**Purpose**: Fetch current documentation for external packages when adding agents or skills
+**Цель**: получать актуальную документацию по внешним пакетам при добавлении агентов или skills
 
-**When to Use**: Any time you're working with external libraries (Drizzle, Better Auth, Next.js, etc.)
+**Когда использовать**: каждый раз, когда вы работаете с внешними библиотеками (Drizzle, Better Auth, Next.js и т. д.)
 
-**Time to Read**: 5 minutes
-
----
-
-## Quick Start
-
-**Golden Rule**: NEVER rely on training data for external libraries → ALWAYS fetch current docs
-
-**Process**:
-1. Detect external package in your task
-2. Check for install scripts (if first-time setup)
-3. Use **ExternalScout** to fetch current documentation
-4. Implement with fresh, version-specific knowledge
+**Время чтения**: 5 минут
 
 ---
 
-## When to Use ExternalScout (MANDATORY)
+## Быстрый старт
 
-✅ **Use ExternalScout when**:
-- Adding new agents that depend on external packages
-- Adding new skills that integrate with external libraries
-- First-time package setup in your implementation
-- Package/dependency errors occur
-- Version upgrades are needed
-- ANY external library work
+**Золотое правило**: НИКОГДА не полагайтесь на training data для внешних библиотек → ВСЕГДА получайте актуальную документацию
 
-❌ **Don't rely on**:
-- Training data (outdated, often wrong)
-- Old documentation (APIs change)
-- Assumptions about package behavior
+**Процесс**:
+1. Определите внешний пакет в задаче
+2. Проверьте install-скрипты (если это первая настройка)
+3. Используйте **ExternalScout**, чтобы получить актуальную документацию
+4. Реализуйте с учетом свежих, version-specific знаний
 
 ---
 
-## Why This Matters
+## Когда использовать ExternalScout (ОБЯЗАТЕЛЬНО)
 
-**Example**: Next.js Evolution
+✅ **Используйте ExternalScout, когда**:
+- Добавляете новых агентов, зависящих от внешних пакетов
+- Добавляете новые skills, интегрирующиеся с внешними библиотеками
+- Впервые настраиваете пакет в реализации
+- Возникают ошибки пакетов/зависимостей
+- Нужны обновления версий
+- Выполняется ЛЮБАЯ работа с внешней библиотекой
+
+❌ **Не полагайтесь на**:
+- Training data (устаревшие, часто неверные)
+- Старую документацию (API меняются)
+- Предположения о поведении пакета
+
+---
+
+## Почему это важно
+
+**Пример**: эволюция Next.js
 ```
 Training data (2023): Next.js 13 uses pages/ directory
 Current (2025): Next.js 15 uses app/ directory (App Router)
@@ -49,27 +49,27 @@ Training data = broken code ❌
 ExternalScout = working code ✅
 ```
 
-**Real Impact**:
-- APIs change (new methods, deprecated features)
-- Configuration patterns evolve
-- Breaking changes happen frequently
-- Version-specific features differ
+**Реальное влияние**:
+- API меняются (новые методы, deprecated features)
+- Шаблоны конфигурации развиваются
+- Breaking changes происходят часто
+- Version-specific возможности различаются
 
 ---
 
-## Workflow Steps
+## Шаги процесса
 
-### Step 1: Detect External Package
+### Шаг 1: определите внешний пакет
 
-**Triggers**:
-- User mentions a library name
-- You see imports in code
-- package.json has new dependencies
-- Build errors reference external packages
+**Триггеры**:
+- Пользователь упоминает имя библиотеки
+- Вы видите imports в коде
+- В package.json появились новые dependencies
+- Ошибки сборки ссылаются на внешние пакеты
 
-**Action**: Identify which external packages are involved
+**Действие**: определите, какие внешние пакеты задействованы
 
-**Example**:
+**Пример**:
 ```
 User: "Add authentication with Better Auth"
 → External package detected: Better Auth
@@ -78,9 +78,9 @@ User: "Add authentication with Better Auth"
 
 ---
 
-### Step 2: Check Install Scripts (First-Time Only)
+### Шаг 2: проверьте install-скрипты (только при первой настройке)
 
-**For first-time package setup**, check if there are install scripts:
+**Для первой настройки пакета** проверьте наличие install-скриптов:
 
 ```bash
 # Look for install scripts
@@ -90,19 +90,19 @@ ls scripts/install/ scripts/setup/ bin/install* setup.sh install.sh
 grep -r "postinstall\|preinstall" package.json
 ```
 
-**If scripts exist**:
-- Read them to understand setup order
-- Check for environment variables needed
-- Identify prerequisites (database, services)
-- Follow their guidance before implementing
+**Если скрипты есть**:
+- Прочитайте их, чтобы понять порядок настройки
+- Проверьте нужные environment variables
+- Определите prerequisites (database, services)
+- Следуйте их указаниям перед реализацией
 
-**Why**: Scripts may set up databases, generate files, or configure services in a specific order
+**Почему**: скрипты могут настраивать базы данных, генерировать файлы или конфигурировать services в определенном порядке
 
 ---
 
-### Step 3: Fetch Current Documentation (MANDATORY)
+### Шаг 3: получите актуальную документацию (ОБЯЗАТЕЛЬНО)
 
-**Use ExternalScout** to get live, version-specific documentation:
+**Используйте ExternalScout**, чтобы получить live, version-specific документацию:
 
 ```bash
 # Invoke ExternalScout via task tool
@@ -117,14 +117,14 @@ task(
 )
 ```
 
-**What ExternalScout Returns**:
-- Live documentation from official sources
-- Version-specific features
+**Что возвращает ExternalScout**:
+- Live-документация из официальных источников
+- Version-specific возможности
 - Integration patterns
 - Setup requirements
 - Code examples
 
-**Supported Libraries** (18+):
+**Поддерживаемые библиотеки** (18+):
 - Drizzle ORM
 - Better Auth
 - Next.js
@@ -141,50 +141,50 @@ task(
 - React Hook Form
 - Vitest
 - Playwright
-- And more...
+- И другие...
 
 ---
 
-### Step 4: Implement with Fresh Knowledge
+### Шаг 4: реализуйте со свежими знаниями
 
-**Now implement** using the documentation from ExternalScout:
-- Follow current best practices
-- Use version-specific APIs
-- Apply recommended patterns
-- Reference the fetched docs in your code
-
----
-
-## Integration with Agent/Skill Creation
-
-### When Adding an Agent
-
-1. Read: `guides/adding-agent.md`
-2. **If agent uses external packages**:
-   - Use ExternalScout to fetch docs
-   - Document dependencies in agent metadata
-   - Add to registry with correct versions
-3. Test: `guides/testing-agent.md`
-
-### When Adding a Skill
-
-1. Read: `guides/adding-skill.md`
-2. **If skill uses external packages**:
-   - Use ExternalScout to fetch docs
-   - Document dependencies in skill metadata
-   - Add to registry with correct versions
-3. Test: `guides/testing-subagents.md`
+**Теперь реализуйте** с использованием документации от ExternalScout:
+- Следуйте текущим best practices
+- Используйте version-specific APIs
+- Применяйте рекомендуемые patterns
+- Ссылайтесь на полученные docs в коде
 
 ---
 
-## Common Packages in OpenAgents
+## Интеграция с созданием агентов/skills
 
-| Package | Use Case | Priority |
+### При добавлении агента
+
+1. Прочитайте: `guides/adding-agent.md`
+2. **Если агент использует внешние пакеты**:
+   - Используйте ExternalScout, чтобы получить docs
+   - Документируйте dependencies в metadata агента
+   - Добавьте в registry с корректными версиями
+3. Протестируйте: `guides/testing-agent.md`
+
+### При добавлении skill
+
+1. Прочитайте: `guides/adding-skill.md`
+2. **Если skill использует внешние пакеты**:
+   - Используйте ExternalScout, чтобы получить docs
+   - Документируйте dependencies в metadata skill
+   - Добавьте в registry с корректными версиями
+3. Протестируйте: `guides/testing-subagents.md`
+
+---
+
+## Частые пакеты в OpenAgents
+
+| Пакет | Назначение | Приоритет |
 |---------|----------|----------|
-| **Drizzle ORM** | Database schemas & queries | ⭐⭐⭐⭐⭐ |
-| **Better Auth** | Authentication & authorization | ⭐⭐⭐⭐⭐ |
+| **Drizzle ORM** | Database schemas и queries | ⭐⭐⭐⭐⭐ |
+| **Better Auth** | Authentication и authorization | ⭐⭐⭐⭐⭐ |
 | **Next.js** | Full-stack web framework | ⭐⭐⭐⭐⭐ |
-| **TanStack Query** | Server state management | ⭐⭐⭐⭐ |
+| **TanStack Query** | Управление server state | ⭐⭐⭐⭐ |
 | **Zod** | Schema validation | ⭐⭐⭐⭐ |
 | **Tailwind CSS** | Styling | ⭐⭐⭐⭐ |
 | **Shadcn/ui** | UI components | ⭐⭐⭐ |
@@ -192,32 +192,32 @@ task(
 
 ---
 
-## Checklist
+## Чеклист
 
-Before implementing with external libraries:
+Перед реализацией с внешними библиотеками:
 
-- [ ] Identified all external packages involved
-- [ ] Checked for install scripts (if first-time)
-- [ ] Used ExternalScout to fetch current docs
-- [ ] Reviewed version-specific features
-- [ ] Documented dependencies in metadata
-- [ ] Added to registry with correct versions
-- [ ] Tested implementation thoroughly
-- [ ] Referenced ExternalScout docs in code comments
-
----
-
-## Related Guides
-
-- `guides/adding-agent.md` - Creating new agents
-- `guides/adding-skill.md` - Creating new skills
-- `guides/debugging.md` - Troubleshooting (includes dependency issues)
-- `guides/updating-registry.md` - Registry management
+- [ ] Определены все задействованные внешние пакеты
+- [ ] Проверены install-скрипты (если первая настройка)
+- [ ] ExternalScout использован для получения актуальных docs
+- [ ] Version-specific возможности просмотрены
+- [ ] Dependencies задокументированы в metadata
+- [ ] Добавлено в registry с корректными версиями
+- [ ] Реализация тщательно протестирована
+- [ ] Docs от ExternalScout упомянуты в комментариях к коду
 
 ---
 
-## Key Principle
+## Связанные руководства
 
-> **External libraries change constantly. Your training data is outdated. Always fetch current documentation before implementing.**
+- `guides/adding-agent.md` — создание новых агентов
+- `guides/adding-skill.md` — создание новых skills
+- `guides/debugging.md` — диагностика проблем (включая dependency issues)
+- `guides/updating-registry.md` — управление registry
 
-This is not optional - it's the difference between working code and broken code.
+---
+
+## Ключевой принцип
+
+> **Внешние библиотеки постоянно меняются. Ваши training data устарели. Всегда получайте актуальную документацию перед реализацией.**
+
+Это не опционально — это разница между рабочим и сломанным кодом.

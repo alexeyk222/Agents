@@ -1,39 +1,39 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Building CLIs in OpenAgents Control: Compact Guide
+# Создание CLI в OpenAgents Control: краткое руководство
 
-**Category**: guide  
-**Purpose**: Rapidly build, register, and deploy CLI tools for OpenAgents Control skills  
-**Framework**: FAB (Features, Advantages, Benefits)
-
----
-
-## 🚀 Quick Start
-
-**Don't start from scratch.** Use the standard pattern to build robust CLIs in minutes.
-
-1.  **Create**: `mkdir -p .opencode/skills/{name}/scripts`
-2.  **Implement**: Create `skill-cli.ts` (TypeScript) and `router.sh` (Bash)
-3.  **Register**: Add to `registry.json`
-4.  **Run**: `bash .opencode/skills/{name}/router.sh help`
+**Категория**: руководство  
+**Цель**: быстро создавать, регистрировать и разворачивать CLI-инструменты для OpenAgents Control skills  
+**Фреймворк**: FAB (Features, Advantages, Benefits)
 
 ---
 
-## 🏗️ Core Architecture
+## 🚀 Быстрый старт
 
-| Component | File | Purpose |
+**Не начинайте с нуля.** Используйте стандартный шаблон, чтобы собрать надежный CLI за минуты.
+
+1.  **Создайте**: `mkdir -p .opencode/skills/{name}/scripts`
+2.  **Реализуйте**: создайте `skill-cli.ts` (TypeScript) и `router.sh` (Bash)
+3.  **Зарегистрируйте**: добавьте в `registry.json`
+4.  **Запустите**: `bash .opencode/skills/{name}/router.sh help`
+
+---
+
+## 🏗️ Базовая архитектура
+
+| Компонент | Файл | Назначение |
 |-----------|------|---------|
-| **Logic** | `scripts/skill-cli.ts` | Type-safe implementation using `ts-node`. Handles args, logic, and output. |
-| **Router** | `router.sh` | Universal entry point. Routes commands to the TS script. |
-| **Docs** | `SKILL.md` | User guide, examples, and integration details. |
-| **Config** | `registry.json` | Makes the skill discoverable and installable via `install.sh`. |
+| **Логика** | `scripts/skill-cli.ts` | Типобезопасная реализация через `ts-node`. Обрабатывает аргументы, логику и вывод. |
+| **Router** | `router.sh` | Универсальная точка входа. Направляет команды в TS-скрипт. |
+| **Документация** | `SKILL.md` | Руководство пользователя, примеры и детали интеграции. |
+| **Конфиг** | `registry.json` | Делает skill доступным для поиска и установки через `install.sh`. |
 
 ---
 
-## ⚡ Implementation Patterns
+## ⚡ Шаблоны реализации
 
-### 1. The Router (`router.sh`)
-**Why**: Provides a consistent, dependency-free entry point for all environments.
+### 1. Router (`router.sh`)
+**Зачем**: дает единообразную точку входа без зависимостей для любых окружений.
 
 ```bash
 #!/bin/bash
@@ -50,8 +50,8 @@ case "$1" in
 esac
 ```
 
-### 2. The CLI Logic (`skill-cli.ts`)
-**Why**: Type safety, async/await support, and rich ecosystem access.
+### 2. CLI-логика (`skill-cli.ts`)
+**Зачем**: типобезопасность, поддержка async/await и доступ к богатой экосистеме.
 
 ```typescript
 #!/usr/bin/env ts-node
@@ -74,26 +74,26 @@ main().catch(console.error);
 
 ---
 
-## ✅ Quality Checklist
+## ✅ Чеклист качества
 
-Before shipping, verify your CLI delivers value:
+Перед публикацией убедитесь, что CLI приносит пользу:
 
-- [ ] **Help Command**: Does `router.sh help` provide clear, actionable usage info?
-- [ ] **Error Handling**: Do invalid inputs return helpful error messages (not stack traces)?
-- [ ] **Performance**: Does it start in < 1s? (Avoid heavy imports at top level)
-- [ ] **Idempotency**: Can commands be run multiple times safely?
-- [ ] **Registry**: Is it added to `registry.json` with correct paths?
-
----
-
-## 🧠 Copywriting Principles for CLI Output
-
-Apply `content-creation` principles to your CLI output:
-
-1.  **Clarity**: Use **Active Voice**. "Created file" (Good) vs "File has been created" (Bad).
-2.  **Specificity**: "Processed 5 files" (Good) vs "Processing complete" (Bad).
-3.  **Action**: Tell the user what to do next. "Run `npm test` to verify."
+- [ ] **Команда help**: дает ли `router.sh help` понятную и практичную справку?
+- [ ] **Обработка ошибок**: возвращают ли неверные входные данные полезные ошибки, а не stack traces?
+- [ ] **Производительность**: стартует ли CLI быстрее чем за 1 с? (избегайте тяжелых импортов на верхнем уровне)
+- [ ] **Идемпотентность**: можно ли безопасно запускать команды несколько раз?
+- [ ] **Registry**: добавлен ли CLI в `registry.json` с корректными путями?
 
 ---
 
-**Reference**: See `.opencode/context/openagents-repo/guides/adding-skill-basics.md` for the full, detailed walkthrough.
+## 🧠 Принципы copywriting для вывода CLI
+
+Применяйте принципы `content-creation` к выводу CLI:
+
+1.  **Ясность**: используйте **active voice**. "Created file" (хорошо) vs "File has been created" (плохо).
+2.  **Конкретика**: "Processed 5 files" (хорошо) vs "Processing complete" (плохо).
+3.  **Действие**: скажите пользователю, что делать дальше. "Run `npm test` to verify."
+
+---
+
+**Ссылка**: полное подробное руководство см. в `.opencode/context/openagents-repo/guides/adding-skill-basics.md`.

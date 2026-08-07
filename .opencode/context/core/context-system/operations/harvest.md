@@ -1,57 +1,57 @@
 <!-- Context: core/harvest | Priority: medium | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Context Harvest Operation
+# Операция Context Harvest
 
-**Purpose**: Extract knowledge from AI summaries → permanent context, then clean workspace
+**Назначение**: извлечь знания из AI-сводок → постоянный контекст, затем очистить рабочую область
 
-**Last Updated**: 2026-01-06
-
----
-
-## Core Problem
-
-AI agents create summary files (OVERVIEW.md, SESSION-*.md, SUMMARY.md) that contain valuable knowledge but clutter the workspace. These files "plague" the codebase.
-
-**Solution**: Harvest the knowledge → permanent context, then delete the summaries.
+**Последнее обновление**: 2026-01-06
 
 ---
 
-## Auto-Detection Patterns
+## Основная проблема
+
+AI-агенты создают файлы сводок (OVERVIEW.md, SESSION-*.md, SUMMARY.md), которые содержат ценные знания, но засоряют рабочую область. Эти файлы «захламляют» кодовую базу.
+
+**Решение**: собрать знания → постоянный контекст, затем удалить сводки.
+
+---
+
+## Паттерны автообнаружения
 
 <rule id="summary_patterns" enforcement="strict">
-  Harvest automatically detects these patterns:
+  Harvest автоматически обнаруживает эти паттерны:
   
-  Filename patterns:
+  Паттерны имен файлов:
   - *OVERVIEW.md
   - *SUMMARY.md
   - SESSION-*.md
   - CONTEXT-*.md
   - *NOTES.md
   
-  Location patterns:
-  - Files in .tmp/ directory
-  - Files with "Summary", "Overview", "Session" in title
-  - Files >2KB in root directory (likely summaries)
+  Паттерны расположения:
+  - Файлы в каталоге .tmp/
+  - Файлы с "Summary", "Overview", "Session" в заголовке
+  - Файлы >2KB в корневом каталоге (вероятные сводки)
 </rule>
 
 ---
 
-## 6-Stage Workflow
+## 6-этапный workflow
 
 <workflow id="harvest" enforce="@critical_rules">
   
-### Stage 1: Scan
-**Action**: Find all summary files in workspace
+### Этап 1: сканирование
+**Действие**: найти все файлы сводок в рабочей области
 
-**Process**:
-1. Search for auto-detection patterns
-2. Check .tmp/ directory
-3. List files with sizes
-4. Sort by modification date (newest first)
+**Процесс**:
+1. Искать по паттернам автообнаружения
+2. Проверить каталог `.tmp/`
+3. Вывести файлы с размерами
+4. Отсортировать по дате изменения (сначала новые)
 
-**Output**: List of candidate files
+**Выход**: список файлов-кандидатов
 
-**Example**:
+**Пример**:
 ```
 Found 3 summary documents:
 1. CONTEXT-SYSTEM-OVERVIEW.md (4.2 KB, modified 1 hour ago)
@@ -61,38 +61,38 @@ Found 3 summary documents:
 
 ---
 
-### Stage 2: Analyze
-**Action**: Categorize content by function
+### Этап 2: анализ
+**Действие**: категоризировать контент по функции
 
-**Mapping Rules**:
-| Content Type | Target Folder | How to Identify |
+**Правила сопоставления**:
+| Тип контента | Целевая папка | Как определить |
 |--------------|---------------|-----------------|
-| Design decisions | `concepts/` | "We decided to...", "Architecture", "Pattern" |
-| Solutions/patterns | `examples/` | Code snippets, "Here's how we..." |
-| Workflows | `guides/` | Numbered steps, "How to...", "Setup" |
-| Errors encountered | `errors/` | Error messages, "Fixed issue", "Gotcha" |
-| Reference data | `lookup/` | Tables, lists, paths, commands |
+| Дизайн-решения | `concepts/` | "We decided to...", "Architecture", "Pattern" |
+| Решения/паттерны | `examples/` | Сниппеты кода, "Here's how we..." |
+| Workflows | `guides/` | Нумерованные шаги, "How to...", "Setup" |
+| Встреченные ошибки | `errors/` | Сообщения об ошибках, "Fixed issue", "Gotcha" |
+| Справочные данные | `lookup/` | Таблицы, списки, пути, команды |
 
-**Process**:
-1. Read each file
-2. Identify valuable sections (skip planning/conversation)
-3. Categorize by function
-4. Determine target file path
-5. Generate preview (first 60 chars)
+**Процесс**:
+1. Прочитать каждый файл
+2. Определить ценные разделы (пропустить планирование/диалог)
+3. Категоризировать по функции
+4. Определить целевой путь файла
+5. Сгенерировать предварительный просмотр (первые 60 символов)
 
-**Output**: Categorized items with letter IDs
+**Выход**: категоризированные элементы с буквенными ID
 
 ---
 
-### Stage 3: Approve (CRITICAL)
-**Action**: Present approval UI with letter-based selection
+### Этап 3: одобрение (КРИТИЧНО)
+**Действие**: показать UI одобрения с выбором по буквам
 
 <rule id="approval_gate" enforcement="strict">
-  ALWAYS show approval UI before extracting/deleting.
-  NEVER auto-harvest without user confirmation.
+  ВСЕГДА показывайте UI одобрения перед извлечением/удалением.
+  НИКОГДА не выполняйте auto-harvest без подтверждения пользователя.
 </rule>
 
-**Format**:
+**Формат**:
 ```
 ### CONTEXT-SYSTEM-OVERVIEW.md (4.2 KB)
 
@@ -137,33 +137,33 @@ Found 3 summary documents:
 - Type 'cancel' - Keep files, don't harvest
 ```
 
-**Validation**:
-- MUST wait for user input
-- MUST not proceed without approval
-- If user types 'cancel', stop immediately
+**Валидация**:
+- ОБЯЗАТЕЛЬНО дождаться ввода пользователя
+- НЕЛЬЗЯ продолжать без одобрения
+- Если пользователь вводит `cancel`, остановиться немедленно
 
-**Output**: List of approved items
+**Выход**: список одобренных элементов
 
 ---
 
-### Stage 4: Extract
-**Action**: Extract and minimize approved items
+### Этап 4: извлечение
+**Действие**: извлечь и минимизировать одобренные элементы
 
 <rule id="extraction" enforce="@mvi_principle">
-  Apply MVI to all extracted content:
-  - Core concept: 1-3 sentences
-  - Key points: 3-5 bullets
-  - Minimal example: <10 lines
-  - Reference link: to original source
-  - Files: <200 lines each
+  Применяйте MVI ко всему извлеченному контенту:
+  - Ключевая концепция: 1–3 предложения
+  - Ключевые пункты: 3–5 маркеров
+  - Минимальный пример: <10 строк
+  - Ссылка: на исходный источник
+  - Файлы: каждый <200 строк
 </rule>
 
-**Process**:
-1. For each approved item:
-   - Extract core content
-   - Apply MVI minimization (see compact.md)
-   - Generate preview of final content
-2. Show extraction preview (APPROVAL REQUIRED):
+**Процесс**:
+1. Для каждого одобренного элемента:
+   - Извлечь ключевое содержимое
+   - Применить MVI-минимизацию (см. compact.md)
+   - Сгенерировать предварительный просмотр итогового контента
+2. Показать предварительный просмотр извлечения (ТРЕБУЕТСЯ ОДОБРЕНИЕ):
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -195,17 +195,17 @@ Extraction Preview
 Show all? [y/n] | Approve extraction? [y/n/edit]: _
 ```
 
-3. On approval:
-   - Write files to disk
-   - Add cross-references
-   - Update navigation.md maps
+3. После одобрения:
+   - Записать файлы на диск
+   - Добавить перекрестные ссылки
+   - Обновить карты `navigation.md`
 
-**Output**: List of created/updated files
+**Выход**: список созданных/обновленных файлов
 
 ---
 
-### Stage 5: Cleanup (APPROVAL REQUIRED)
-**Action**: Archive or delete source summary files
+### Этап 5: очистка (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
+**Действие**: архивировать или удалить исходные файлы сводок
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -234,18 +234,18 @@ Choose [1/2/3] (default: 1): _
 ```
 
 <rule id="cleanup_safety" enforcement="strict">
-  ONLY cleanup files that had content successfully harvested.
-  If extraction failed, keep the original file.
+  Очищайте ТОЛЬКО файлы, из которых контент был успешно собран.
+  Если извлечение не удалось, сохраните исходный файл.
 </rule>
 
-**Output**: Cleanup report
+**Выход**: отчет об очистке
 
 ---
 
-### Stage 6: Report
-**Action**: Show comprehensive results summary
+### Этап 6: отчет
+**Действие**: показать полное резюме результатов
 
-**Format**:
+**Формат**:
 ```
 ✅ Harvested 5 items into permanent context:
    - Added to core/concepts/context-organization.md
@@ -270,20 +270,20 @@ Choose [1/2/3] (default: 1): _
 
 ---
 
-## Usage Examples
+## Примеры использования
 
-### Scan entire workspace
+### Сканировать всю рабочую область
 ```bash
 /context harvest
 ```
 
-### Scan specific directory
+### Сканировать конкретный каталог
 ```bash
 /context harvest .tmp/
 /context harvest docs/sessions/
 ```
 
-### Harvest specific file
+### Собрать конкретный файл
 ```bash
 /context harvest OVERVIEW.md
 /context harvest SESSION-2026-01-06.md
@@ -291,52 +291,52 @@ Choose [1/2/3] (default: 1): _
 
 ---
 
-## Smart Content Detection
+## Умное обнаружение контента
 
-### ✅ Extract (Valuable Knowledge)
-- Design decisions ("We chose X because...")
-- Patterns that worked ("This pattern solved...")
-- Errors encountered + solutions
-- API changes ("Updated from v1 to v2...")
-- Performance findings ("Optimization reduced...")
-- Core concepts explained
+### ✅ Извлекать (ценные знания)
+- Дизайн-решения ("We chose X because...")
+- Паттерны, которые сработали ("This pattern solved...")
+- Встреченные ошибки + решения
+- Изменения API ("Updated from v1 to v2...")
+- Наблюдения по производительности ("Optimization reduced...")
+- Объясненные ключевые концепции
 
-### ❌ Skip (Temporary/Noise)
-- Planning discussion ("Should we...?", "Maybe try...")
-- Conversational notes ("I think...", "We talked about...")
-- Duplicate info (already in context)
-- TODO lists (move to task system instead)
-- Timestamps and session metadata
-
----
-
-## Safety Features
-
-1. **Approval gate** - Never auto-delete without confirmation
-2. **Archive by default** - Move to .tmp/archive/, not permanent delete
-3. **Validation** - Check file sizes, structure before committing
-4. **Rollback** - Can restore from archive if needed
-5. **Dry run** - Show what would happen before doing it
+### ❌ Пропускать (временное/шум)
+- Обсуждения планирования ("Should we...?", "Maybe try...")
+- Диалоговые заметки ("I think...", "We talked about...")
+- Дублирующая информация (уже в контексте)
+- TODO-списки (вместо этого перенести в систему задач)
+- Временные метки и метаданные сессии
 
 ---
 
-## Success Criteria
+## Функции безопасности
 
-After harvest operation:
-
-- [ ] Valuable knowledge extracted to permanent context?
-- [ ] All extracted files <200 lines?
-- [ ] Files in correct function folders?
-- [ ] navigation.md navigation updated?
-- [ ] Summary files archived/deleted?
-- [ ] Workspace cleaner than before?
-- [ ] No knowledge lost?
+1. **Точка одобрения** - никогда не удалять автоматически без подтверждения
+2. **Архивировать по умолчанию** - перемещать в `.tmp/archive/`, а не удалять навсегда
+3. **Валидация** - проверять размеры файлов и структуру перед коммитом
+4. **Откат** - при необходимости можно восстановить из архива
+5. **Пробный запуск** - показать, что произойдет, до выполнения
 
 ---
 
-## Related
+## Критерии успеха
 
-- compact.md - How to minimize extracted content
-- mvi-principle.md - What to extract
-- structure.md - Where files go
-- creation.md - File creation rules
+После операции harvest:
+
+- [ ] Ценные знания извлечены в постоянный контекст?
+- [ ] Все извлеченные файлы <200 строк?
+- [ ] Файлы в правильных функциональных папках?
+- [ ] Навигация `navigation.md` обновлена?
+- [ ] Файлы сводок архивированы/удалены?
+- [ ] Рабочая область чище, чем раньше?
+- [ ] Знания не потеряны?
+
+---
+
+## Связанные материалы
+
+- compact.md - как минимизировать извлеченный контент
+- mvi-principle.md - что извлекать
+- structure.md - куда помещать файлы
+- creation.md - правила создания файлов

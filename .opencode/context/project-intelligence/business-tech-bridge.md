@@ -1,94 +1,94 @@
 <!-- Context: project-intelligence/bridge | Priority: high | Version: 1.0 | Updated: 2025-01-12 -->
 
-# Business ↔ Tech Bridge
+# Связь бизнеса ↔ технологий
 
-> Document how business needs translate to technical solutions. This is the critical connection point.
+> Документируйте, как бизнес-потребности превращаются в технические решения. Это ключевая точка связи.
 
-## Quick Reference
+## Краткая справка
 
-- **Purpose**: Show stakeholders technical choices serve business goals
-- **Purpose**: Show developers business constraints drive architecture
-- **Update When**: New features, refactoring, business pivot
+- **Назначение**: показать стейкхолдерам, что технические решения служат бизнес-целям
+- **Назначение**: показать разработчикам, что бизнес-ограничения влияют на архитектуру
+- **Обновлять когда**: появляются новые функции, рефакторинг или смена бизнес-направления
 
-## Core Mapping
+## Основное соответствие
 
-| Business Need | Technical Solution | Why This Mapping | Business Value |
+| Бизнес-потребность | Техническое решение | Почему это соответствует | Бизнес-ценность |
 |---------------|-------------------|------------------|----------------|
 | [Users need X] | [Technical implementation] | [Why this maps] | [Value delivered] |
 | [Business wants Y] | [Technical implementation] | [Why this maps] | [Value delivered] |
 | [Compliance requires Z] | [Technical implementation] | [Why this maps] | [Value delivered] |
 
-## Feature Mapping Examples
+## Примеры соответствия функций
 
-### Feature: [Feature Name]
+### Функция: [Feature Name]
 
-**Business Context**:
-- User need: [What users need]
-- Business goal: [Why this matters to business]
-- Priority: [Why this was prioritized]
+**Бизнес-контекст**:
+- Потребность пользователя: [What users need]
+- Бизнес-цель: [Why this matters to business]
+- Приоритет: [Why this was prioritized]
 
-**Technical Implementation**:
-- Solution: [What was built]
-- Architecture: [How it fits the system]
-- Trade-offs: [What was considered and why it won]
+**Техническая реализация**:
+- Решение: [What was built]
+- Архитектура: [How it fits the system]
+- Компромиссы: [What was considered and why it won]
 
-**Connection**:
+**Связь**:
 [Explain clearly how the technical solution serves the business need. What would happen without this feature? What does this feature enable for the business?]
 
-### Feature: [Feature Name]
+### Функция: [Feature Name]
 
-**Business Context**:
-- User need: [What users need]
-- Business goal: [Why this matters to business]
-- Priority: [Why this was prioritized]
+**Бизнес-контекст**:
+- Потребность пользователя: [What users need]
+- Бизнес-цель: [Why this matters to business]
+- Приоритет: [Why this was prioritized]
 
-**Technical Implementation**:
-- Solution: [What was built]
-- Architecture: [How it fits the system]
-- Trade-offs: [What was considered and why it won]
+**Техническая реализация**:
+- Решение: [What was built]
+- Архитектура: [How it fits the system]
+- Компромиссы: [What was considered and why it won]
 
-**Connection**:
+**Связь**:
 [Explain clearly how the technical solution serves the business need.]
 
-## Trade-off Decisions
+## Решения по компромиссам
 
-When business and technical needs conflict, document the trade-off:
+Когда бизнес- и технические потребности конфликтуют, документируйте компромисс:
 
-| Situation | Business Priority | Technical Priority | Decision Made | Rationale |
+| Ситуация | Бизнес-приоритет | Технический приоритет | Принятое решение | Обоснование |
 |-----------|-------------------|-------------------|---------------|-----------|
 | [Conflict] | [What business wants] | [What tech wants] | [What was chosen] | [Why this was right] |
 
-## Common Misalignments
+## Частые рассинхронизации
 
-| Misalignment | Warning Signs | Resolution Approach |
+| Рассинхронизация | Предупреждающие признаки | Подход к решению |
 |--------------|---------------|---------------------|
 | [Type of mismatch] | [Symptoms to watch for] | [How to address] |
 
-## Stakeholder Communication
+## Коммуникация со стейкхолдерами
 
-This file helps translate between worlds:
+Этот файл помогает переводить между двумя областями:
 
-**For Business Stakeholders**:
-- Shows that technical investments serve business goals
-- Provides context for why certain choices were made
-- Demonstrates ROI of technical decisions
+**Для бизнес-стейкхолдеров**:
+- Показывает, что технические инвестиции работают на бизнес-цели
+- Даёт контекст, почему были выбраны конкретные решения
+- Демонстрирует ROI технических решений
 
-**For Technical Stakeholders**:
-- Provides business context for architectural decisions
-- Shows the "why" behind constraints and requirements
-- Helps prioritize technical debt with business impact
+**Для технических стейкхолдеров**:
+- Даёт бизнес-контекст архитектурных решений
+- Показывает «почему» за ограничениями и требованиями
+- Помогает приоритизировать технический долг по бизнес-влиянию
 
-## Onboarding Checklist
+## Чеклист онбординга
 
-- [ ] Understand the core business needs this project addresses
-- [ ] See how each major feature maps to business value
-- [ ] Know the key trade-offs and why decisions were made
-- [ ] Be able to explain to stakeholders why technical choices matter
-- [ ] Be able to explain to developers why business constraints exist
+- [ ] Понимать ключевые бизнес-потребности, которые решает проект
+- [ ] Видеть, как каждая крупная функция связана с бизнес-ценностью
+- [ ] Знать ключевые компромиссы и причины решений
+- [ ] Уметь объяснить стейкхолдерам, почему технические решения важны
+- [ ] Уметь объяснить разработчикам, почему существуют бизнес-ограничения
 
-## Related Files
+## Связанные файлы
 
-- `business-domain.md` - Business needs in detail
-- `technical-domain.md` - Technical implementation in detail
-- `decisions-log.md` - Decisions made with full context
-- `living-notes.md` - Current open questions and issues
+- `business-domain.md` - Подробные бизнес-потребности
+- `technical-domain.md` - Подробная техническая реализация
+- `decisions-log.md` - Принятые решения с полным контекстом
+- `living-notes.md` - Текущие открытые вопросы и проблемы

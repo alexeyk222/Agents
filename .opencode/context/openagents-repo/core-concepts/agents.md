@@ -1,23 +1,23 @@
-# Core Concept: Agents
+# Ключевая концепция: агенты
 
-**Purpose**: Understanding how agents work in OpenAgents Control  
-**Priority**: CRITICAL - Load this before working with agents
-
----
-
-## What Are Agents?
-
-Agents are AI prompt files that define specialized behaviors for different tasks. They are:
-- **Markdown files** with frontmatter metadata
-- **Category-organized** by domain (core, development, content, etc.)
-- **Context-aware** - load relevant context files
-- **Testable** - validated through eval framework
+**Назначение**: понять, как работают агенты в OpenAgents Control  
+**Приоритет**: CRITICAL - загрузите перед работой с агентами
 
 ---
 
-## Agent Structure
+## Что такое агенты?
 
-### File Format
+Агенты — это файлы AI-промптов, которые задают специализированное поведение для разных задач. Это:
+- **Markdown-файлы** с метаданными frontmatter
+- **Организация по категориям** домена (core, development, content и т. д.)
+- **Контекстная осведомленность** — загрузка релевантных контекстных файлов
+- **Тестируемость** — валидация через eval-фреймворк
+
+---
+
+## Структура агента
+
+### Формат файла
 
 ```markdown
 ---
@@ -33,146 +33,146 @@ dependencies: ["subagent:tester"]
 [Agent prompt content - instructions, workflows, constraints]
 ```
 
-### Key Components
+### Ключевые компоненты
 
-1. **Frontmatter** (YAML metadata)
-   - `description`: Brief description
-   - `category`: Category name (core, development, content, etc.)
-   - `type`: Always "agent"
-   - `tags`: Optional tags for discovery
-   - `dependencies`: Optional dependencies (e.g., subagents)
+1. **Frontmatter** (YAML-метаданные)
+   - `description`: краткое описание
+   - `category`: имя категории (core, development, content и т. д.)
+   - `type`: всегда "agent"
+   - `tags`: необязательные теги для обнаружения
+   - `dependencies`: необязательные зависимости (например, subagents)
 
-2. **Prompt Content**
-   - Instructions and workflows
-   - Constraints and rules
-   - Context loading requirements
-   - Tool usage patterns
-
----
-
-## Category System
-
-Agents are organized by domain expertise:
-
-### Core Category (`core/`)
-**Purpose**: Essential system agents (always available)
-
-Agents:
-- `openagent.md` - General-purpose orchestrator
-- `opencoder.md` - Development specialist
-- `system-builder.md` - System generation
-
-**When to use**: System-level tasks, orchestration
+2. **Содержимое промпта**
+   - Инструкции и workflows
+   - Ограничения и правила
+   - Требования к загрузке контекста
+   - Паттерны использования инструментов
 
 ---
 
-### Development Category (`development/`)
-**Purpose**: Software development specialists
+## Система категорий
 
-Agents:
+Агенты организованы по доменной экспертизе:
+
+### Категория Core (`core/`)
+**Назначение**: базовые системные агенты (всегда доступны)
+
+Агенты:
+- `openagent.md` - универсальный orchestrator
+- `opencoder.md` - специалист по разработке
+- `system-builder.md` - генерация систем
+
+**Когда использовать**: системные задачи, orchestration
+
+---
+
+### Категория Development (`development/`)
+**Назначение**: специалисты по разработке ПО
+
+Агенты:
 - `frontend-specialist.md` - React, Vue, modern CSS
 - `devops-specialist.md` - CI/CD, deployment, infrastructure
 
-**When to use**: Building applications, dev tasks
+**Когда использовать**: создание приложений, dev-задачи
 
 ---
 
-### Content Category (`content/`)
-**Purpose**: Content creation specialists
+### Категория Content (`content/`)
+**Назначение**: специалисты по созданию контента
 
-Agents:
+Агенты:
 - `copywriter.md` - Marketing copy, persuasive writing
 - `technical-writer.md` - Documentation, technical content
 
-**When to use**: Writing, documentation, marketing
+**Когда использовать**: тексты, документация, маркетинг
 
 ---
 
-### Data Category (`data/`)
-**Purpose**: Data analysis specialists
+### Категория Data (`data/`)
+**Назначение**: специалисты по анализу данных
 
-Agents:
+Агенты:
 - `data-analyst.md` - Data analysis, visualization
 
-**When to use**: Data tasks, analysis, reporting
+**Когда использовать**: data-задачи, анализ, отчеты
 
 ---
 
-### Product Category (`product/`)
-**Purpose**: Product management specialists
+### Категория Product (`product/`)
+**Назначение**: специалисты по product management
 
-**Status**: Ready for agents (no agents yet)
+**Статус**: готово для агентов (агентов пока нет)
 
-**When to use**: Product strategy, roadmaps, requirements
-
----
-
-### Learning Category (`learning/`)
-**Purpose**: Education and coaching specialists
-
-**Status**: Ready for agents (no agents yet)
-
-**When to use**: Teaching, training, curriculum
+**Когда использовать**: продуктовая стратегия, roadmaps, requirements
 
 ---
 
-## Subagents
+### Категория Learning (`learning/`)
+**Назначение**: специалисты по обучению и coaching
 
-**Location**: `.opencode/agent/subagents/`
+**Статус**: готово для агентов (агентов пока нет)
 
-**Purpose**: Delegated specialists for specific subtasks
+**Когда использовать**: преподавание, тренинги, curriculum
 
-### Subagent Categories
+---
 
-1. **code/** - Code-related specialists
-   - `tester.md` - Test authoring and TDD
-   - `reviewer.md` - Code review and security
-   - `coder-agent.md` - Focused implementations
-   - `build-agent.md` - Type checking and builds
+## Субагенты
 
-2. **core/** - Core workflow specialists
-   - `task-manager.md` - Task breakdown and management
-   - `documentation.md` - Documentation generation
+**Расположение**: `.opencode/agent/subagents/`
 
-3. **system-builder/** - System generation specialists
-   - `agent-generator.md` - Generate agent files
-   - `command-creator.md` - Create slash commands
-   - `domain-analyzer.md` - Analyze domains
-   - `context-organizer.md` - Organize context
-   - `workflow-designer.md` - Design workflows
+**Назначение**: делегируемые специалисты для конкретных подзадач
 
-4. **utils/** - Utility specialists
-   - `image-specialist.md` - Image editing and analysis
+### Категории субагентов
 
-### Subagents vs Category Agents
+1. **code/** - специалисты по коду
+   - `tester.md` - написание тестов и TDD
+   - `reviewer.md` - code review и безопасность
+   - `coder-agent.md` - сфокусированные реализации
+   - `build-agent.md` - type checking и builds
 
-| Aspect | Category Agents | Subagents |
+2. **core/** - специалисты по core workflow
+   - `task-manager.md` - декомпозиция и управление задачами
+   - `documentation.md` - генерация документации
+
+3. **system-builder/** - специалисты по генерации систем
+   - `agent-generator.md` - генерация файлов агентов
+   - `command-creator.md` - создание slash commands
+   - `domain-analyzer.md` - анализ доменов
+   - `context-organizer.md` - организация контекста
+   - `workflow-designer.md` - проектирование workflows
+
+4. **utils/** - utility-специалисты
+   - `image-specialist.md` - редактирование и анализ изображений
+
+### Субагенты vs агенты категорий
+
+| Аспект | Агенты категорий | Субагенты |
 |--------|----------------|-----------|
-| **Purpose** | User-facing specialists | Delegated subtasks |
-| **Invocation** | Direct by user | Via task tool |
-| **Scope** | Broad domain | Narrow focus |
-| **Example** | `frontend-specialist` | `tester` |
+| **Назначение** | Специалисты для пользователя | Делегируемые подзадачи |
+| **Вызов** | Напрямую пользователем | Через инструмент task |
+| **Область** | Широкий домен | Узкий фокус |
+| **Пример** | `frontend-specialist` | `tester` |
 
 ---
 
-## Claude Code Interop (Optional)
+## Совместимость с Claude Code (опционально)
 
-OpenAgents Control can pair with Claude Code for local workflows and distribution:
+OpenAgents Control может работать вместе с Claude Code для локальных workflows и распространения:
 
-- **Subagents**: Project helpers in `.claude/agents/`
-- **Skills**: Auto-invoked guidance in `.claude/skills/`
-- **Hooks**: Shell commands on lifecycle events (use sparingly)
-- **Plugins**: Share agents/skills/hooks across projects
+- **Субагенты**: проектные helpers в `.claude/agents/`
+- **Skills**: автоматически вызываемые инструкции в `.claude/skills/`
+- **Hooks**: shell-команды на события жизненного цикла (используйте умеренно)
+- **Плагины**: общий доступ к agents/skills/hooks между проектами
 
-Use this when you want Claude Code to follow OpenAgents Control standards or to ship reusable helpers.
+Используйте это, когда нужно, чтобы Claude Code следовал стандартам OpenAgents Control, или чтобы поставлять переиспользуемые helpers.
 
 ---
 
-## Path Resolution
+## Разрешение путей
 
-The system supports multiple path formats for backward compatibility:
+Система поддерживает несколько форматов путей для обратной совместимости:
 
-### Supported Formats
+### Поддерживаемые форматы
 
 ```bash
 # Short ID (backward compatible)
@@ -188,61 +188,61 @@ The system supports multiple path formats for backward compatibility:
 "TestEngineer" → resolves to → ".opencode/agent/subagents/code/test-engineer.md"
 ```
 
-### Resolution Rules
+### Правила разрешения
 
-1. Check if path includes `/` → use as category path
-2. If no `/` → check core/ first (backward compat)
-3. If not in core/ → search all categories
-4. If not found → error
-
----
-
-## Prompt Variants
-
-**Location**: `.opencode/prompts/{category}/{agent}/`
-
-**Purpose**: Model-specific prompt optimizations
-
-### Supported Models
-
-- `gemini.md` - Google Gemini optimizations
-- `grok.md` - xAI Grok optimizations
-- `llama.md` - Meta Llama optimizations
-- `openrouter.md` - OpenRouter optimizations
-
-### When to Create Variants
-
-- Model has specific formatting requirements
-- Model performs better with different structure
-- Model has unique capabilities to leverage
-
-### Fallback Behavior
-
-If no variant exists for a model, the base agent file is used.
+1. Если путь содержит `/` → использовать как путь категории
+2. Если `/` нет → сначала проверить core/ (backward compat)
+3. Если не найдено в core/ → искать во всех категориях
+4. Если не найдено → ошибка
 
 ---
 
-## Context Loading
+## Варианты промптов
 
-Agents should load relevant context files based on task type:
+**Расположение**: `.opencode/prompts/{category}/{agent}/`
 
-### Core Context (Always Consider)
+**Назначение**: оптимизации промптов под конкретные модели
+
+### Поддерживаемые модели
+
+- `gemini.md` - оптимизации Google Gemini
+- `grok.md` - оптимизации xAI Grok
+- `llama.md` - оптимизации Meta Llama
+- `openrouter.md` - оптимизации OpenRouter
+
+### Когда создавать варианты
+
+- У модели есть особые требования к форматированию
+- Модель лучше работает с другой структурой
+- У модели есть уникальные capabilities, которые нужно использовать
+
+### Резервное поведение
+
+Если варианта для модели нет, используется базовый файл агента.
+
+---
+
+## Загрузка контекста
+
+Агенты должны загружать релевантные контекстные файлы по типу задачи:
+
+### Core-контекст (всегда учитывайте)
 
 ```markdown
 <!-- Context: standards/code | Priority: critical -->
 ```
 
-Loads: `.opencode/context/core/standards/code-quality.md`
+Загружает: `.opencode/context/core/standards/code-quality.md`
 
-### Category Context
+### Контекст категории
 
 ```markdown
 <!-- Context: development/react-patterns | Priority: high -->
 ```
 
-Loads: `.opencode/context/ui/web/react-patterns.md`
+Загружает: `.opencode/context/ui/web/react-patterns.md`
 
-### Multiple Contexts
+### Несколько контекстов
 
 ```markdown
 <!-- Context: standards/code, standards/tests | Priority: critical -->
@@ -250,9 +250,9 @@ Loads: `.opencode/context/ui/web/react-patterns.md`
 
 ---
 
-## Agent Lifecycle
+## Жизненный цикл агента
 
-### 1. Creation
+### 1. Создание
 ```bash
 # Create agent file
 touch .opencode/agent/{category}/{agent-name}.md
@@ -261,7 +261,7 @@ touch .opencode/agent/{category}/{agent-name}.md
 # (See guides/adding-agent.md for details)
 ```
 
-### 2. Testing
+### 2. Тестирование
 ```bash
 # Create test structure
 mkdir -p evals/agents/{category}/{agent-name}/{config,tests}
@@ -270,7 +270,7 @@ mkdir -p evals/agents/{category}/{agent-name}/{config,tests}
 cd evals/framework && npm run eval:sdk -- --agent={category}/{agent-name}
 ```
 
-### 3. Registration
+### 3. Регистрация
 ```bash
 # Auto-detect and add to registry
 ./scripts/registry/auto-detect-components.sh --auto-add
@@ -279,7 +279,7 @@ cd evals/framework && npm run eval:sdk -- --agent={category}/{agent-name}
 ./scripts/registry/validate-registry.sh
 ```
 
-### 4. Distribution
+### 4. Распространение
 ```bash
 # Users install via install.sh
 ./install.sh {profile}
@@ -287,23 +287,23 @@ cd evals/framework && npm run eval:sdk -- --agent={category}/{agent-name}
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-### Agent Design
+### Проектирование агента
 
-✅ **Single responsibility** - One domain, one agent  
-✅ **Clear instructions** - Explicit workflows and constraints  
-✅ **Context-aware** - Load relevant context files  
-✅ **Testable** - Include eval tests  
-✅ **Well-documented** - Clear description and usage  
+✅ **Единая ответственность** - один домен, один агент  
+✅ **Ясные инструкции** - явные workflows и ограничения  
+✅ **Контекстная осведомленность** - загрузка релевантных контекстных файлов  
+✅ **Тестируемость** - включайте eval-тесты  
+✅ **Хорошая документация** - понятное описание и использование  
 
-### Naming Conventions
+### Соглашения об именовании
 
-- **Category agents**: `{domain}-specialist.md` (e.g., `frontend-specialist.md`)
-- **Core agents**: `{name}.md` (e.g., `openagent.md`)
-- **Subagents**: `{purpose}.md` (e.g., `tester.md`)
+- **Агенты категорий**: `{domain}-specialist.md` (например, `frontend-specialist.md`)
+- **Core-агенты**: `{name}.md` (например, `openagent.md`)
+- **Субагенты**: `{purpose}.md` (например, `tester.md`)
 
-### Frontmatter Requirements
+### Требования к frontmatter
 
 ```yaml
 ---
@@ -317,9 +317,9 @@ dependencies: ["Optional - e.g., 'subagent:tester'"]
 
 ---
 
-## Common Patterns
+## Частые паттерны
 
-### Delegation to Subagents
+### Делегирование субагентам
 
 ```markdown
 When task requires testing:
@@ -327,7 +327,7 @@ When task requires testing:
 2. Delegate to TestEngineer for test creation
 ```
 
-### Context Loading
+### Загрузка контекста
 
 ```markdown
 Before implementing:
@@ -336,7 +336,7 @@ Before implementing:
 3. Apply standards to implementation
 ```
 
-### Approval Gates
+### Approval gates
 
 ```markdown
 Before execution:
@@ -347,18 +347,18 @@ Before execution:
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- **Adding agents**: `guides/adding-agent.md`
-- **Testing agents**: `guides/testing-agent.md`
-- **Category system**: `core-concepts/categories.md`
-- **File locations**: `lookup/file-locations.md`
-- **Claude Code subagents**: `../to-be-consumed/claude-code-docs/create-subagents.md`
-- **Claude Code skills**: `../to-be-consumed/claude-code-docs/agent-skills.md`
-- **Claude Code hooks**: `../to-be-consumed/claude-code-docs/hooks.md`
-- **Claude Code plugins**: `../to-be-consumed/claude-code-docs/plugins.md`
+- **Добавление агентов**: `guides/adding-agent.md`
+- **Тестирование агентов**: `guides/testing-agent.md`
+- **Система категорий**: `core-concepts/categories.md`
+- **Расположение файлов**: `lookup/file-locations.md`
+- **Субагенты Claude Code**: `../to-be-consumed/claude-code-docs/create-subagents.md`
+- **Skills Claude Code**: `../to-be-consumed/claude-code-docs/agent-skills.md`
+- **Hooks Claude Code**: `../to-be-consumed/claude-code-docs/hooks.md`
+- **Plugins Claude Code**: `../to-be-consumed/claude-code-docs/plugins.md`
 
 ---
 
-**Last Updated**: 2026-01-13  
-**Version**: 0.5.1
+**Последнее обновление**: 2026-01-13  
+**Версия**: 0.5.1

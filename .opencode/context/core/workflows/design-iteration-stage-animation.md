@@ -1,26 +1,26 @@
 <!-- Context: workflows/design-iteration-stage-animation | Priority: high | Version: 1.0 | Updated: 2025-12-09 -->
-# Stage 3: Animation Design
+# Этап 3: дизайн анимаций
 
-**Purpose**: Define micro-interactions and transitions
+**Назначение**: определить micro-interactions и transitions
 
-## Process
+## Процесс
 
-1. Read design plan file from `.tmp/design-plans/{name}.md`
-2. Review approved theme from Stage 2
-3. Identify key interactions (hover, click, scroll)
-4. Define animation timing and easing
-5. Plan loading states and transitions
-6. Document animations using micro-syntax
-7. **Update plan file** with animation specifications
-8. Present animation plan to user for approval
-9. **Update plan file** with user feedback and approval status
+1. Прочитать файл плана дизайна из `.tmp/design-plans/{name}.md`
+2. Просмотреть утвержденную тему этапа 2
+3. Определить ключевые взаимодействия (hover, click, scroll)
+4. Задать timing и easing анимаций
+5. Спланировать состояния загрузки и transitions
+6. Документировать анимации через micro-syntax
+7. **Обновить файл плана** спецификациями анимаций
+8. Показать план анимаций пользователю для одобрения
+9. **Обновить файл плана** обратной связью пользователя и статусом одобрения
 
-## Deliverable
+## Результат
 
-- Animation specification in micro-syntax format
-- Updated plan file with Stage 3 complete
+- Спецификация анимаций в формате micro-syntax
+- Обновленный файл плана с завершенным этапом 3
 
-## Example Output
+## Пример результата
 
 ```
 ## Animation Design: Smooth & Professional
@@ -51,30 +51,30 @@ linkHover: 250ms ease-out [underline 0→100%]
 **Accessibility**: Respects prefers-reduced-motion
 ```
 
-## Best Practices
+## Лучшие практики
 
-✅ **Do**:
-- Use micro-syntax for documentation
-- Keep animations under 400ms
-- Use transform/opacity for performance
-- Respect prefers-reduced-motion
-- Make animations purposeful
+✅ **Делайте**:
+- Используйте micro-syntax для документации
+- Держите анимации короче 400ms
+- Используйте transform/opacity для производительности
+- Учитывайте prefers-reduced-motion
+- Делайте анимации осмысленными
 
-❌ **Don't**:
-- Animate width/height (use scale)
-- Create distracting animations
-- Ignore performance implications
-- Skip accessibility considerations
+❌ **Не делайте**:
+- Не анимируйте width/height (используйте scale)
+- Не создавайте отвлекающие анимации
+- Не игнорируйте влияние на производительность
+- Не пропускайте вопросы доступности
 
-## Approval Gate
+## Точка одобрения
 
-"Are these animations appropriate for your design, or should we adjust?"
+"Эти анимации подходят вашему дизайну или нужно скорректировать?"
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Overview](./design-iteration-overview.md)
-- [Stage 2: Theme](./design-iteration-stage-theme.md)
-- [Stage 4: Implementation](./design-iteration-stage-implementation.md)
-- [Animation Basics](../../ui/web/animation-basics.md)
+- [Обзор](./design-iteration-overview.md)
+- [Этап 2: Тема](./design-iteration-stage-theme.md)
+- [Этап 4: Реализация](./design-iteration-stage-implementation.md)
+- [Основы анимации](../../ui/web/animation-basics.md)

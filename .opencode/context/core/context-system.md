@@ -1,25 +1,25 @@
 <!-- Context: core/context-system | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Context System
+# Система контекста
 
-**Purpose**: Minimal, concern-based knowledge organization for AI agents
+**Назначение**: Минимальная организация знаний по задачам для AI-агентов
 
-**Last Updated**: 2026-01-08
+**Последнее обновление**: 2026-01-08
 
 ---
 
-## Core Principles
+## Базовые принципы
 
 ### 1. Minimal Viable Information (MVI)
-Extract only core concepts (1-3 sentences), key points (3-5 bullets), minimal example, and reference link. 
-**Goal**: Scannable in <30 seconds. Reference full docs, don't duplicate them.
+Извлекайте только базовые концепции (1–3 предложения), ключевые пункты (3–5 bullets), минимальный пример и ссылку на источник. 
+**Цель**: Сканируется за <30 секунд. Ссылайтесь на полные docs, не дублируйте их.
 
-### 2. Concern-Based Structure
-Organize by **what you're doing** (concern), then by **how you're doing it** (approach/tech):
+### 2. Структура по задачам
+Организуйте по **тому, что вы делаете** (concern), затем по **тому, как вы это делаете** (подход/технология):
 
-**Two organizational patterns**:
+**Два паттерна организации**:
 
-#### Pattern A: Function-Based (for repository-specific context)
+#### Паттерн A: по функции (для контекста конкретного репозитория)
 ```
 category/
 ├── navigation.md
@@ -30,9 +30,9 @@ category/
 └── errors/                # Common issues
 ```
 
-**Use when**: Content is repository-specific (e.g., `openagents-repo/`)
+**Используйте, когда**: Контент специфичен для репозитория (например, `openagents-repo/`)
 
-#### Pattern B: Concern-Based (for development context)
+#### Паттерн B: по задаче (для контекста разработки)
 ```
 category/
 ├── navigation.md
@@ -43,63 +43,63 @@ category/
 │   │   └── {files}.md
 ```
 
-**Use when**: Content spans multiple technologies (e.g., `development/`)
+**Используйте, когда**: Контент охватывает несколько технологий (например, `development/`)
 
-**Examples**:
-- `development/backend/api-patterns/` - Concern: backend, Approach: API patterns
-- `development/backend/nodejs/` - Concern: backend, Tech: Node.js
-- `development/frontend/react/` - Concern: frontend, Tech: React
+**Примеры**:
+- `development/backend/api-patterns/` - Задача: backend, подход: API patterns
+- `development/backend/nodejs/` - Задача: backend, технология: Node.js
+- `development/frontend/react/` - Задача: frontend, технология: React
 
-### 3. Token-Efficient Navigation
-Every category/subcategory has `navigation.md` with:
-- **ASCII tree** for quick structure scan (~50 tokens)
-- **Quick routes table** for common tasks (~100 tokens)
-- **By concern/type** sections (~50 tokens)
-- **Total**: ~200-300 tokens per navigation file
+### 3. Токен-эффективная навигация
+У каждой категории/подкатегории есть `navigation.md` с:
+- **ASCII-деревом** для быстрого обзора структуры (~50 токенов)
+- **Таблицей быстрых маршрутов** для типовых задач (~100 токенов)
+- **Секциями по задаче/типу** (~50 токенов)
+- **Итого**: ~200–300 токенов на файл навигации
 
-**Why**: Faster loading, less cost, quicker AI decisions
+**Зачем**: Быстрее загрузка, ниже стоимость, быстрее решения AI
 
-### 4. Specialized Navigation Files
-For cross-cutting concerns, create specialized navigation:
-- `development/ui-navigation.md` - Spans frontend/ + ui/
-- `development/backend-navigation.md` - Covers APIs, auth, middleware
-- `development/fullstack-navigation.md` - Common tech stacks
+### 4. Специализированные файлы навигации
+Для сквозных задач создавайте специализированную навигацию:
+- `development/ui-navigation.md` - Охватывает frontend/ + ui/
+- `development/backend-navigation.md` - Покрывает API, auth, middleware
+- `development/fullstack-navigation.md` - Типовые технологические стеки
 
-**Why**: Real workflows don't fit neat categories
+**Зачем**: Реальные процессы не всегда укладываются в аккуратные категории
 
-### 5. Self-Describing Filenames
-Filenames should tell you what's inside:
+### 5. Самоописывающие имена файлов
+Имя файла должно объяснять содержимое:
 - ❌ `code.md` → ✅ `code-quality.md`
 - ❌ `tests.md` → ✅ `test-coverage.md`
 - ❌ `review.md` → ✅ `code-review.md`
 
-**Why**: No need to open files to understand content
+**Зачем**: Не нужно открывать файл, чтобы понять содержание
 
-### 6. Knowledge Harvesting
-Extract valuable context from AI summaries/overviews, then delete them. Workspace stays clean, knowledge persists.
+### 6. Сбор знаний
+Извлекайте полезный контекст из AI-сводок/обзоров, затем удаляйте их. Рабочая область остается чистой, знания сохраняются.
 
-### 5. Technology Context Organization
+### 5. Организация контекста технологий
 
-**Purpose**: Ensure consistent placement of new technologies (frameworks, libraries, tools) to maintain discoverability.
+**Назначение**: Обеспечить единое размещение новых технологий (фреймворков, библиотек, инструментов), чтобы их легко находить.
 
-**Frameworks vs Architectural Layers**:
+**Фреймворки vs архитектурные слои**:
 
-- **Full-Stack Frameworks** (e.g., Tanstack Start, Next.js): Add under `development/frameworks/{tech}/`. These are "meta-frameworks" that span multiple layers.
-- **Specialized Concerns** (e.g., AI, Data): Add under `development/{concern}/{tech}/`.
-- **Layer-Specific Tech** (e.g., React, Node.js): Add under `development/{frontend|backend}/{tech}/`.
+- **Full-Stack Frameworks** (например, Tanstack Start, Next.js): Добавляйте в `development/frameworks/{tech}/`. Это «метафреймворки», охватывающие несколько слоев.
+- **Специализированные задачи** (например, AI, Data): Добавляйте в `development/{concern}/{tech}/`.
+- **Технологии конкретного слоя** (например, React, Node.js): Добавляйте в `development/{frontend|backend}/{tech}/`.
 
-**Decision Process**:
-1. Is it a full-stack framework? → `development/frameworks/`
-2. Is it a specialized domain (AI, Data)? → `development/{domain}/`
-3. Is it layer-specific? → `development/{frontend|backend}/`
+**Процесс выбора**:
+1. Это full-stack framework? → `development/frameworks/`
+2. Это специализированный домен (AI, Data)? → `development/{domain}/`
+3. Это технология конкретного слоя? → `development/{frontend|backend}/`
 
 ---
 
-## Directory Patterns
+## Паттерны каталогов
 
-### Pattern A: Function-Based (Repository-Specific)
+### Паттерн A: по функции (специфичен для репозитория)
 
-**Use for**: Repository-specific context (e.g., `openagents-repo/`)
+**Используйте для**: Контекста конкретного репозитория (например, `openagents-repo/`)
 
 ```
 .opencode/context/{category}/
@@ -133,9 +133,9 @@ Extract valuable context from AI summaries/overviews, then delete them. Workspac
 
 ---
 
-### Pattern B: Concern-Based (Development Context)
+### Паттерн B: по задаче (контекст разработки)
 
-**Use for**: Multi-technology development context (e.g., `development/`)
+**Используйте для**: Контекста разработки с несколькими технологиями (например, `development/`)
 
 ```
 .opencode/context/{category}/
@@ -158,7 +158,7 @@ Extract valuable context from AI summaries/overviews, then delete them. Workspac
 │       └── {pattern}.md
 ```
 
-**Example**:
+**Пример**:
 ```
 development/
 ├── navigation.md
@@ -192,9 +192,9 @@ development/
 
 ---
 
-## Navigation File Format
+## Формат файла навигации
 
-### Token-Efficient Template
+### Токен-эффективный шаблон
 
 ```markdown
 # {Category} Navigation
@@ -215,7 +215,7 @@ development/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -230,52 +230,52 @@ development/
 **{Section 2}** → {description}
 ```
 
-**Target**: 200-300 tokens
+**Цель**: 200–300 токенов
 
 ---
 
-## Organizing Principles
+## Принципы организации
 
-### 1. Core Standards (Universal)
+### 1. Базовые стандарты (универсальные)
 
-Location: `.opencode/context/core/standards/`
+Расположение: `.opencode/context/core/standards/`
 
-**Purpose**: Universal standards that apply to ALL development
+**Назначение**: Универсальные стандарты, применимые ко ВСЕЙ разработке
 
-**Content**:
-- Code quality principles (all languages)
-- Test coverage standards
-- Documentation standards
-- Security patterns
-- Code analysis approaches
+**Содержимое**:
+- Принципы качества кода (все языки)
+- Стандарты покрытия тестами
+- Стандарты документации
+- Паттерны безопасности
+- Подходы к анализу кода
 
-**Used by**: All agents, all projects
+**Используется**: Всеми агентами, всеми проектами
 
-**Effect on other categories**: 
-- Other categories can reference these standards
-- Users can edit core standards to affect context flow globally
-- Development-specific standards go in `development/principles/`
+**Влияние на другие категории**: 
+- Другие категории могут ссылаться на эти стандарты
+- Пользователи могут редактировать базовые стандарты, чтобы глобально менять поток контекста
+- Стандарты, специфичные для разработки, размещаются в `development/principles/`
 
 ---
 
-### 2. Development Principles vs Core Standards
+### 2. Принципы разработки vs базовые стандарты
 
-| Location | Scope | Examples |
+| Расположение | Область | Примеры |
 |----------|-------|----------|
-| `core/standards/` | **Universal** (all projects, all languages) | Code quality, testing, docs, security |
-| `development/principles/` | **Development-specific** (software engineering) | Clean code, API design, error handling |
+| `core/standards/` | **Универсальная** (все проекты, все языки) | Качество кода, тестирование, docs, безопасность |
+| `development/principles/` | **Специфичная для разработки** (software engineering) | Clean code, дизайн API, обработка ошибок |
 
-**Both exist**: Core standards are universal, development principles are domain-specific
+**Нужны оба уровня**: Базовые стандарты универсальны, принципы разработки зависят от домена
 
 ---
 
-### 3. Data Context Location
+### 3. Расположение контекста данных
 
-**Decision**: Data patterns live in `development/data/` (not top-level)
+**Решение**: Паттерны данных находятся в `development/data/` (не на верхнем уровне)
 
-**Rationale**: Data layer is part of development workflow
+**Обоснование**: Слой данных — часть процесса разработки
 
-**Structure**:
+**Структура**:
 ```
 development/data/
 ├── navigation.md
@@ -284,19 +284,19 @@ development/data/
 └── orm-patterns/
 ```
 
-**Top-level `data/` category**: Reserved for data engineering/analytics (different concern)
+**Категория верхнего уровня `data/`**: Зарезервирована для data engineering/analytics (другая задача)
 
 ---
 
-### 4. Specialized Navigation Strategy
+### 4. Стратегия специализированной навигации
 
-**Full-stack navigation includes**:
-- Quick routes (table format)
-- Common stack patterns (MERN, T3, etc.)
+**Full-stack навигация включает**:
+- Быстрые маршруты (в формате таблицы)
+- Типовые паттерны стеков (MERN, T3 и т. д.)
 
-**Example**:
+**Пример**:
 ```markdown
-## Quick Routes
+## Быстрые маршруты
 | Task | Path |
 |------|------|
 | **Frontend** | `ui-navigation.md` |
@@ -311,127 +311,127 @@ Data:     development/data/nosql-patterns/mongodb.md
 
 ---
 
-## Operations
+## Операции
 
 ### Harvest (`/context harvest`)
 
-**Purpose**: Extract knowledge from summary files → permanent context, then clean up.
+**Назначение**: Извлечь знания из summary-файлов → постоянный контекст, затем очистить.
 
-**Process**:
-1. Scan for patterns: `*OVERVIEW.md`, `*SUMMARY.md`, `SESSION-*.md`, `CONTEXT-*.md`
-2. Analyze content:
-   - Design decisions → `concepts/`
-   - Solutions/patterns → `examples/`
-   - Workflows → `guides/`
-   - Errors encountered → `errors/`
-   - Reference data → `lookup/`
-3. Present approval UI (letter-based: `A B C` or `all`)
-4. Extract + minimize (apply MVI)
-5. Archive/delete summaries
-6. Report results
+**Процесс**:
+1. Просканировать паттерны: `*OVERVIEW.md`, `*SUMMARY.md`, `SESSION-*.md`, `CONTEXT-*.md`
+2. Проанализировать содержимое:
+   - Дизайн-решения → `concepts/`
+   - Решения/паттерны → `examples/`
+   - Процессы → `guides/`
+   - Встреченные ошибки → `errors/`
+   - Справочные данные → `lookup/`
+3. Показать UI подтверждения (по буквам: `A B C` или `all`)
+4. Извлечь + минимизировать (применить MVI)
+5. Архивировать/удалить сводки
+6. Сообщить результаты
 
 ---
 
 ### Extract (`/context extract`)
 
-**Purpose**: Extract context from docs/code/URLs.
+**Назначение**: Извлечь контекст из docs/кода/URL.
 
-**Process**:
-1. Read source
-2. Extract core concepts (1-3 sentences each)
-3. Find minimal examples
-4. Identify workflows (numbered steps)
-5. Build lookup tables
-6. Capture errors/gotchas
-7. Create references
+**Процесс**:
+1. Прочитать источник
+2. Извлечь базовые концепции (по 1–3 предложения)
+3. Найти минимальные примеры
+4. Определить процессы (нумерованные шаги)
+5. Собрать lookup-таблицы
+6. Зафиксировать ошибки/gotchas
+7. Создать ссылки
 
-**Output**: Follow MVI template
+**Вывод**: Следовать шаблону MVI
 
 ---
 
 ### Organize (`/context organize`)
 
-**Purpose**: Restructure existing files into appropriate pattern.
+**Назначение**: Переструктурировать существующие файлы в подходящий паттерн.
 
-**Process**:
-1. Scan category
-2. Determine pattern (function-based or concern-based)
-3. Create missing directories
-4. Move/refactor files
-5. Update navigation.md
-6. Fix references
+**Процесс**:
+1. Просканировать категорию
+2. Определить паттерн (по функции или по задаче)
+3. Создать недостающие каталоги
+4. Переместить/отрефакторить файлы
+5. Обновить navigation.md
+6. Исправить ссылки
 
 ---
 
 ### Update (`/context update`)
 
-**Purpose**: Update context when APIs/frameworks change.
+**Назначение**: Обновить контекст при изменении API/фреймворков.
 
-**Process**:
-1. Identify what changed
-2. Find affected files
-3. Update concepts, examples, guides, lookups
-4. Add migration notes to errors/
-5. Validate references
-
----
-
-## File Naming Conventions
-
-### Navigation Files
-- `navigation.md` - Main navigation for category/subcategory
-- `{domain}-navigation.md` - Specialized cross-cutting navigation
-
-### Content Files
-- Use descriptive names: `code-quality.md` not `code.md`
-- Include type when helpful: `rest-design.md`, `jwt-patterns.md`
-- Use kebab-case: `scroll-linked-animations.md`
+**Процесс**:
+1. Определить, что изменилось
+2. Найти затронутые файлы
+3. Обновить concepts, examples, guides, lookups
+4. Добавить заметки миграции в errors/
+5. Проверить ссылки
 
 ---
 
-## Extraction Rules
+## Соглашения об именовании файлов
 
-### ✅ Extract:
-- Core concepts (minimal)
-- Essential patterns
-- Step-by-step workflows
-- Critical errors
-- Quick reference data
-- Links to detailed docs
+### Файлы навигации
+- `navigation.md` - Основная навигация для категории/подкатегории
+- `{domain}-navigation.md` - Специализированная сквозная навигация
 
-### ❌ Don't Extract:
-- Verbose explanations
-- Complete API docs
-- Implementation details
-- Historical context
-- Marketing content
-- Duplicate info
+### Файлы контента
+- Используйте описательные имена: `code-quality.md`, а не `code.md`
+- Добавляйте тип, когда это полезно: `rest-design.md`, `jwt-patterns.md`
+- Используйте kebab-case: `scroll-linked-animations.md`
 
 ---
 
-## Success Criteria
+## Правила извлечения
 
-✅ **Minimal** - Core info only, <200 lines per file
-✅ **Navigable** - navigation.md at every level
-✅ **Organized** - Appropriate pattern (function-based or concern-based)
-✅ **Token-efficient** - Navigation files ~200-300 tokens
-✅ **Self-describing** - Filenames tell you what's inside
-✅ **Referenceable** - Links to full docs
-✅ **Searchable** - Easy to find via navigation
-✅ **Maintainable** - Easy to update
+### ✅ Извлекайте:
+- Базовые концепции (минимально)
+- Ключевые паттерны
+- Пошаговые процессы
+- Критические ошибки
+- Быстрые справочные данные
+- Ссылки на подробные docs
 
----
-
-## Related Documentation
-
-- `context-system/guides/navigation-design.md` - How to create navigation files
-- `context-system/guides/organizing-context.md` - How to choose organizational pattern
-- `context-system/examples/navigation-examples.md` - Good navigation examples
-- `context-system/standards/templates.md` - File templates
+### ❌ Не извлекайте:
+- Многословные объяснения
+- Полную API-документацию
+- Детали реализации
+- Исторический контекст
+- Маркетинговый контент
+- Дублирующую информацию
 
 ---
 
-## Quick Commands
+## Критерии успеха
+
+✅ **Минимально** - Только базовая информация, <200 строк на файл
+✅ **Навигируемо** - navigation.md на каждом уровне
+✅ **Организовано** - Подходящий паттерн (по функции или по задаче)
+✅ **Токен-эффективно** - Файлы навигации ~200–300 токенов
+✅ **Самоописывающе** - Имена файлов говорят, что внутри
+✅ **Ссылаемо** - Есть ссылки на полные docs
+✅ **Ищется** - Легко найти через навигацию
+✅ **Поддерживаемо** - Легко обновлять
+
+---
+
+## Связанная документация
+
+- `context-system/guides/navigation-design.md` - Как создавать файлы навигации
+- `context-system/guides/organizing-context.md` - Как выбрать паттерн организации
+- `context-system/examples/navigation-examples.md` - Хорошие примеры навигации
+- `context-system/standards/templates.md` - Шаблоны файлов
+
+---
+
+## Быстрые команды
 
 ```bash
 /context                      # Quick scan, suggest actions
@@ -447,4 +447,4 @@ Data:     development/data/nosql-patterns/mongodb.md
 /context validate             # Check integrity, references, sizes
 ```
 
-**All operations show a preview of what will be created/moved/deleted before asking for approval.**
+**Все операции показывают preview того, что будет создано/перемещено/удалено, перед запросом подтверждения.**

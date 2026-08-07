@@ -1,102 +1,102 @@
 <!-- Context: core/essential-patterns | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Essential Patterns - Core Development Guidelines
+# Ключевые паттерны — базовые правила разработки
 
-## Quick Reference
+## Краткая справка
 
-**Core Philosophy**: Modular, Functional, Maintainable
+**Базовая философия**: Модульность, функциональность, поддерживаемость
 
-**Critical Patterns**: Error Handling, Validation, Security, Logging, Pure Functions
+**Критические паттерны**: Обработка ошибок, валидация, безопасность, логирование, чистые функции
 
-**ALWAYS**: Handle errors gracefully, validate input, use env vars for secrets, write pure functions
+**ВСЕГДА**: Обрабатывайте ошибки аккуратно, валидируйте ввод, используйте переменные окружения для секретов, пишите чистые функции
 
-**NEVER**: Expose sensitive info, hardcode credentials, skip input validation, mutate state
+**НИКОГДА**: Не раскрывайте чувствительные данные, не хардкодьте учетные данные, не пропускайте валидацию ввода, не мутируйте состояние
 
-**Language-agnostic**: Apply to all programming languages
-
----
-
-## Overview
-
-This file provides essential development patterns that apply across all programming languages. For detailed standards, see:
-- `standards/code-quality.md` - Modular, functional code patterns
-- `standards/security-patterns.md` - Language-agnostic patterns
-- `standards/test-coverage.md` - Testing standards
-- `standards/documentation.md` - Documentation standards
-- `standards/code-analysis.md` - Analysis framework
+**Независимо от языка**: Применимо ко всем языкам программирования
 
 ---
 
-## Core Philosophy
+## Обзор
 
-**Modular**: Everything is a component - small, focused, reusable
-**Functional**: Pure functions, immutability, composition over inheritance
-**Maintainable**: Self-documenting, testable, predictable
-
----
-
-## Critical Patterns
-
-### 1. Pure Functions
-
-**ALWAYS** write pure functions:
-- Same input = same output
-- No side effects
-- No mutation of external state
-- Predictable and testable
-
-### 2. Error Handling
-
-**ALWAYS** handle errors gracefully:
-- Catch specific errors, not generic ones
-- Log errors with context
-- Return meaningful error messages
-- Don't expose internal implementation details
-- Use language-specific error handling mechanisms (try/catch, Result, error returns)
-
-### 3. Input Validation
-
-**ALWAYS** validate input data:
-- Check for null/nil/None values
-- Validate data types
-- Validate data ranges and constraints
-- Sanitize user input
-- Return clear validation error messages
-
-### 4. Security
-
-**NEVER** expose sensitive information:
-- Don't log passwords, tokens, or API keys
-- Use environment variables for secrets
-- Sanitize all user input
-- Use parameterized queries (prevent SQL injection)
-- Validate and escape output (prevent XSS)
-
-### 5. Logging
-
-**USE** consistent logging levels:
-- **Debug**: Detailed information for debugging (development only)
-- **Info**: Important events and milestones
-- **Warning**: Potential issues that don't stop execution
-- **Error**: Failures and exceptions
+Этот файл описывает ключевые паттерны разработки для всех языков программирования. Подробные стандарты см. здесь:
+- `standards/code-quality.md` - Модульные и функциональные паттерны кода
+- `standards/security-patterns.md` - Языконезависимые паттерны
+- `standards/test-coverage.md` - Стандарты тестирования
+- `standards/documentation.md` - Стандарты документации
+- `standards/code-analysis.md` - Фреймворк анализа
 
 ---
 
-## Code Structure Patterns
+## Базовая философия
 
-### Modular Design
-- Single responsibility per module
-- Clear interfaces (explicit inputs/outputs)
-- Independent and composable
-- < 100 lines per component (ideally < 50)
+**Модульность**: Все является компонентом — маленьким, сфокусированным, переиспользуемым
+**Функциональность**: Чистые функции, иммутабельность, композиция вместо наследования
+**Поддерживаемость**: Самодокументируемость, тестируемость, предсказуемость
 
-### Functional Approach
-- **Pure functions**: Same input = same output, no side effects
-- **Immutability**: Create new data, don't modify existing
-- **Composition**: Build complex from simple functions
-- **Declarative**: Describe what, not how
+---
 
-### Component Structure
+## Критические паттерны
+
+### 1. Чистые функции
+
+**ВСЕГДА** пишите чистые функции:
+- Одинаковый ввод = одинаковый вывод
+- Без побочных эффектов
+- Без мутации внешнего состояния
+- Предсказуемые и тестируемые
+
+### 2. Обработка ошибок
+
+**ВСЕГДА** обрабатывайте ошибки аккуратно:
+- Ловите конкретные ошибки, а не общие
+- Логируйте ошибки с контекстом
+- Возвращайте понятные сообщения об ошибках
+- Не раскрывайте внутренние детали реализации
+- Используйте механизмы обработки ошибок конкретного языка (try/catch, Result, возврат ошибок)
+
+### 3. Валидация ввода
+
+**ВСЕГДА** валидируйте входные данные:
+- Проверяйте значения null/nil/None
+- Валидируйте типы данных
+- Валидируйте диапазоны и ограничения
+- Очищайте пользовательский ввод
+- Возвращайте понятные ошибки валидации
+
+### 4. Безопасность
+
+**НИКОГДА** не раскрывайте чувствительную информацию:
+- Не логируйте пароли, токены или API-ключи
+- Используйте переменные окружения для секретов
+- Очищайте весь пользовательский ввод
+- Используйте параметризованные запросы (защита от SQL injection)
+- Валидируйте и экранируйте вывод (защита от XSS)
+
+### 5. Логирование
+
+**ИСПОЛЬЗУЙТЕ** согласованные уровни логирования:
+- **Debug**: Подробная информация для отладки (только development)
+- **Info**: Важные события и этапы
+- **Warning**: Потенциальные проблемы, не останавливающие выполнение
+- **Error**: Сбои и исключения
+
+---
+
+## Паттерны структуры кода
+
+### Модульный дизайн
+- Одна ответственность на модуль
+- Ясные интерфейсы (явные входы/выходы)
+- Независимость и компонуемость
+- < 100 строк на компонент (идеально < 50)
+
+### Функциональный подход
+- **Чистые функции**: Одинаковый ввод = одинаковый вывод, без побочных эффектов
+- **Иммутабельность**: Создавайте новые данные, не меняйте существующие
+- **Композиция**: Собирайте сложное из простых функций
+- **Декларативность**: Описывайте что, а не как
+
+### Структура компонента
 ```
 component/
 ├── index.js      # Public interface
@@ -107,36 +107,36 @@ component/
 
 ---
 
-## Anti-Patterns to Avoid
+## Антипаттерны, которых нужно избегать
 
-**Code Smells**:
-- ❌ Mutation and side effects
-- ❌ Deep nesting (> 3 levels)
-- ❌ God modules (> 200 lines)
-- ❌ Global state
-- ❌ Large functions (> 50 lines)
-- ❌ Hardcoded values
-- ❌ Tight coupling
+**Code smells**:
+- ❌ Мутации и побочные эффекты
+- ❌ Глубокая вложенность (> 3 уровней)
+- ❌ God modules (> 200 строк)
+- ❌ Глобальное состояние
+- ❌ Большие функции (> 50 строк)
+- ❌ Захардкоженные значения
+- ❌ Жесткая связанность
 
-**Security Issues**:
-- ❌ Hardcoded credentials
-- ❌ Exposed sensitive data in logs
-- ❌ Unvalidated user input
-- ❌ SQL injection vulnerabilities
-- ❌ XSS vulnerabilities
+**Проблемы безопасности**:
+- ❌ Захардкоженные учетные данные
+- ❌ Чувствительные данные в логах
+- ❌ Невалидированный пользовательский ввод
+- ❌ Уязвимости SQL injection
+- ❌ Уязвимости XSS
 
 ---
 
-## Testing Patterns
+## Паттерны тестирования
 
-**ALWAYS** write tests:
-- Unit tests for pure functions
-- Integration tests for components
-- Test edge cases and error conditions
-- Aim for > 80% coverage
-- Use descriptive test names
+**ВСЕГДА** пишите тесты:
+- Unit-тесты для чистых функций
+- Интеграционные тесты для компонентов
+- Проверяйте крайние случаи и ошибки
+- Цель — покрытие > 80%
+- Используйте описательные имена тестов
 
-**Test Structure**:
+**Структура теста**:
 ```
 describe('Component', () => {
   it('should handle valid input', () => {
@@ -158,53 +158,53 @@ describe('Component', () => {
 
 ---
 
-## Documentation Patterns
+## Паттерны документации
 
-**ALWAYS** document:
-- Public APIs and interfaces
-- Complex logic and algorithms
-- Non-obvious decisions
-- Usage examples
+**ВСЕГДА** документируйте:
+- Публичные API и интерфейсы
+- Сложную логику и алгоритмы
+- Неочевидные решения
+- Примеры использования
 
-**Use clear, concise language**:
-- Explain WHY, not just WHAT
-- Include examples
-- Keep it up to date
-- Use consistent formatting
-
----
-
-## Language-Specific Implementations
-
-These patterns are language-agnostic. For language-specific implementations:
-
-**TypeScript/JavaScript**: See project context for Next.js, React, Node.js patterns
-**Python**: See project context for FastAPI, Django patterns
-**Go**: See project context for Go-specific patterns
-**Rust**: See project context for Rust-specific patterns
+**Используйте ясный и краткий язык**:
+- Объясняйте ПОЧЕМУ, а не только ЧТО
+- Добавляйте примеры
+- Поддерживайте актуальность
+- Используйте согласованное форматирование
 
 ---
 
-## Quick Checklist
+## Реализации для конкретных языков
 
-Before committing code, verify:
-- ✅ Pure functions (no side effects)
-- ✅ Input validation
-- ✅ Error handling
-- ✅ No hardcoded secrets
-- ✅ Tests written and passing
-- ✅ Documentation updated
-- ✅ No security vulnerabilities
-- ✅ Code is modular and maintainable
+Эти паттерны не зависят от языка. Реализации для конкретных языков:
+
+**TypeScript/JavaScript**: См. контекст проекта для паттернов Next.js, React, Node.js
+**Python**: См. контекст проекта для паттернов FastAPI, Django
+**Go**: См. контекст проекта для паттернов Go
+**Rust**: См. контекст проекта для паттернов Rust
 
 ---
 
-## Additional Resources
+## Быстрый чеклист
 
-For more detailed guidelines, see:
-- `standards/code-quality.md` - Comprehensive code standards
-- `standards/security-patterns.md` - Detailed pattern catalog
-- `standards/test-coverage.md` - Testing best practices
-- `standards/documentation.md` - Documentation guidelines
-- `standards/code-analysis.md` - Code analysis framework
-- `workflows/code-review.md` - Code review process
+Перед коммитом проверьте:
+- ✅ Чистые функции (без побочных эффектов)
+- ✅ Валидация ввода
+- ✅ Обработка ошибок
+- ✅ Нет захардкоженных секретов
+- ✅ Тесты написаны и проходят
+- ✅ Документация обновлена
+- ✅ Нет уязвимостей безопасности
+- ✅ Код модульный и поддерживаемый
+
+---
+
+## Дополнительные ресурсы
+
+Подробные правила см. здесь:
+- `standards/code-quality.md` - Полные стандарты кода
+- `standards/security-patterns.md` - Подробный каталог паттернов
+- `standards/test-coverage.md` - Лучшие практики тестирования
+- `standards/documentation.md` - Правила документации
+- `standards/code-analysis.md` - Фреймворк анализа кода
+- `workflows/code-review.md` - Процесс ревью кода

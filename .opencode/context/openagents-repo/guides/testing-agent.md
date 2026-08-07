@@ -1,13 +1,13 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Testing an Agent
+# Руководство: тестирование агента
 
-**Prerequisites**: Load `core-concepts/evals.md` first  
-**Purpose**: Step-by-step workflow for testing agents
+**Предварительно**: сначала загрузите `core-concepts/evals.md`  
+**Цель**: пошаговый процесс тестирования агентов
 
 ---
 
-## Quick Start
+## Быстрый старт
 
 ```bash
 # Run smoke test
@@ -23,10 +23,10 @@ npm run eval:sdk -- --agent={category}/{agent} --debug
 
 ---
 
-## Test Types
+## Типы тестов
 
-### 1. Smoke Test
-**Purpose**: Basic functionality check
+### 1. Smoke-тест
+**Цель**: базовая проверка функциональности
 
 ```yaml
 name: Smoke Test
@@ -40,15 +40,15 @@ expectations:
   - type: no_violations
 ```
 
-**Run**:
+**Запуск**:
 ```bash
 npm run eval:sdk -- --agent={agent} --pattern="smoke-test.yaml"
 ```
 
 ---
 
-### 2. Approval Gate Test
-**Purpose**: Verify agent requests approval
+### 2. Тест approval gate
+**Цель**: проверить, что агент запрашивает approval
 
 ```yaml
 name: Approval Gate Test
@@ -66,8 +66,8 @@ expectations:
 
 ---
 
-### 3. Context Loading Test
-**Purpose**: Verify agent loads required context
+### 3. Тест загрузки контекста
+**Цель**: проверить, что агент загружает нужный контекст
 
 ```yaml
 name: Context Loading Test
@@ -84,8 +84,8 @@ expectations:
 
 ---
 
-### 4. Tool Usage Test
-**Purpose**: Verify agent uses correct tools
+### 4. Тест использования инструментов
+**Цель**: проверить, что агент использует правильные инструменты
 
 ```yaml
 name: Tool Usage Test
@@ -103,30 +103,30 @@ expectations:
 
 ---
 
-## Running Tests
+## Запуск тестов
 
-### Single Test
+### Один тест
 
 ```bash
 cd evals/framework
 npm run eval:sdk -- --agent={category}/{agent} --pattern="{test-name}.yaml"
 ```
 
-### All Tests for Agent
+### Все тесты агента
 
 ```bash
 cd evals/framework
 npm run eval:sdk -- --agent={category}/{agent}
 ```
 
-### All Tests (All Agents)
+### Все тесты (все агенты)
 
 ```bash
 cd evals/framework
 npm run eval:sdk
 ```
 
-### With Debug Output
+### С отладочным выводом
 
 ```bash
 cd evals/framework
@@ -135,9 +135,9 @@ npm run eval:sdk -- --agent={agent} --pattern="{test}" --debug
 
 ---
 
-## Interpreting Results
+## Интерпретация результатов
 
-### Pass Example
+### Пример pass
 
 ```
 ✓ Test: smoke-test.yaml
@@ -152,7 +152,7 @@ npm run eval:sdk -- --agent={agent} --pattern="{test}" --debug
     ✓ Execution Balance: PASS
 ```
 
-### Fail Example
+### Пример fail
 
 ```
 ✗ Test: approval-gate.yaml
@@ -169,15 +169,15 @@ npm run eval:sdk -- --agent={agent} --pattern="{test}" --debug
 
 ---
 
-## Debugging Failures
+## Диагностика падений
 
-### Step 1: Run with Debug
+### Шаг 1: запустите с debug
 
 ```bash
 npm run eval:sdk -- --agent={agent} --pattern="{test}" --debug
 ```
 
-### Step 2: Check Session
+### Шаг 2: проверьте session
 
 ```bash
 # Find recent session
@@ -187,30 +187,30 @@ ls -lt .tmp/sessions/ | head -5
 cat .tmp/sessions/{session-id}/session.json | jq
 ```
 
-### Step 3: Analyze Events
+### Шаг 3: проанализируйте events
 
 ```bash
 # View event timeline
 cat .tmp/sessions/{session-id}/events.json | jq
 ```
 
-### Step 4: Identify Issue
+### Шаг 4: определите проблему
 
-Common issues:
-- **Approval Gate Violation**: Agent executed without approval
-- **Context Loading Violation**: Agent didn't load required context
-- **Tool Usage Violation**: Agent used wrong tool (bash instead of read)
-- **Stop on Failure Violation**: Agent auto-fixed instead of stopping
+Частые проблемы:
+- **Нарушение approval gate**: агент выполнил действие без approval
+- **Нарушение загрузки контекста**: агент не загрузил нужный контекст
+- **Нарушение использования инструментов**: агент использовал неправильный инструмент (bash вместо read)
+- **Нарушение остановки при ошибке**: агент auto-fixed вместо остановки
 
-### Step 5: Fix Agent
+### Шаг 5: исправьте агента
 
-Update agent prompt to address the issue, then re-test.
+Обновите промпт агента, чтобы закрыть проблему, затем перетестируйте.
 
 ---
 
-## Writing New Tests
+## Написание новых тестов
 
-### Test Template
+### Шаблон теста
 
 ```yaml
 name: Test Name
@@ -226,19 +226,19 @@ expectations:
   - type: no_violations
 ```
 
-### Best Practices
+### Лучшие практики
 
-✅ **Clear name** - Descriptive test name  
-✅ **Good description** - Explain what's being tested  
-✅ **Realistic scenario** - Test real-world usage  
-✅ **Specific expectations** - Clear pass/fail criteria  
-✅ **Fast execution** - Keep under 10 seconds  
+✅ **Понятное имя** — описательное имя теста  
+✅ **Хорошее описание** — объясните, что тестируется  
+✅ **Реалистичный сценарий** — тестируйте реальное использование  
+✅ **Конкретные expectations** — ясные критерии pass/fail  
+✅ **Быстрое выполнение** — держите до 10 секунд  
 
 ---
 
-## Common Test Patterns
+## Частые шаблоны тестов
 
-### Test Approval Workflow
+### Тест approval workflow
 
 ```yaml
 conversation:
@@ -250,7 +250,7 @@ expectations:
     should_pass: true
 ```
 
-### Test Context Loading
+### Тест загрузки контекста
 
 ```yaml
 conversation:
@@ -261,7 +261,7 @@ expectations:
     contexts: ["core/standards/code-quality.md"]
 ```
 
-### Test Tool Selection
+### Тест выбора инструмента
 
 ```yaml
 conversation:
@@ -275,31 +275,31 @@ expectations:
 
 ---
 
-## Continuous Testing
+## Непрерывное тестирование
 
-### Pre-Commit Hook
+### Pre-commit hook
 
 ```bash
 # Setup pre-commit hook
 ./scripts/validation/setup-pre-commit-hook.sh
 ```
 
-### CI/CD Integration
+### Интеграция CI/CD
 
-Tests run automatically on:
+Тесты запускаются автоматически при:
 - Pull requests
 - Merges to main
 - Release tags
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- **Eval concepts**: `core-concepts/evals.md`
-- **Debugging guide**: `guides/debugging.md`
-- **Adding agents**: `guides/adding-agent.md`
+- **Концепции eval**: `core-concepts/evals.md`
+- **Руководство по диагностике**: `guides/debugging.md`
+- **Добавление агентов**: `guides/adding-agent.md`
 
 ---
 
-**Last Updated**: 2025-12-10  
-**Version**: 0.5.0
+**Последнее обновление**: 2025-12-10  
+**Версия**: 0.5.0

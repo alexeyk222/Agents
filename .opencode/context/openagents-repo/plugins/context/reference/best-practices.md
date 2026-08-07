@@ -1,28 +1,28 @@
 <!-- Context: openagents-repo/best-practices | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Best Practices & Limitations
+# Лучшие практики и ограничения
 
-## Message Injection Workarounds
+## Обходные пути для внедрения сообщений
 
-**The Reality**: The message system is largely read-only. You cannot mutate messages mid-stream or inject text directly into an existing message part.
+**Реальность**: система сообщений в основном доступна только для чтения. Нельзя изменять сообщения в потоке или напрямую внедрять текст в существующую часть сообщения.
 
-### What Doesn't Work
-- Modifying `event.data.content` in `message.updated`.
-- Retroactively changing AI responses.
+### Что не работает
+- Изменение `event.data.content` в `message.updated`.
+- Изменение ответов AI задним числом.
 
-### What Works
-1. **Initial Context**: Use `session.created` to inject a starting message using `client.session.prompt()`.
-2. **Prompt Decoration**: Use `client.tui.appendPrompt()` to add text to the user's input box before they hit enter.
-3. **Tool Interception**: Use `tool.execute.before` to modify arguments *before* the tool runs.
-4. **On-Demand Context**: Provide custom tools that the AI can call when it needs more information.
+### Что работает
+1. **Начальный контекст**: используйте `session.created`, чтобы внедрить стартовое сообщение через `client.session.prompt()`.
+2. **Украшение prompt**: используйте `client.tui.appendPrompt()`, чтобы добавить текст в поле ввода пользователя до отправки.
+3. **Перехват инструмента**: используйте `tool.execute.before`, чтобы изменить аргументы *до* запуска инструмента.
+4. **Контекст по запросу**: предоставьте пользовательские инструменты, которые AI может вызвать, когда нужны дополнительные данные.
 
-## Security
+## Безопасность
 
-- Always validate tool inputs in `tool.execute.before`.
-- Use environment variables for sensitive data; do not hardcode API keys.
-- Be careful with the `$` shell API to prevent command injection.
+- Всегда валидируйте входные данные инструмента в `tool.execute.before`.
+- Используйте переменные окружения для чувствительных данных; не хардкодьте API-ключи.
+- Будьте осторожны с shell API `$`, чтобы избежать инъекции команд.
 
-## Performance
+## Производительность
 
-- Avoid heavy synchronous operations in event handlers as they can block the TUI.
-- Use the `session.idle` event for cleanup or background sync tasks.
+- Избегайте тяжелых синхронных операций в обработчиках событий: они могут блокировать TUI.
+- Используйте событие `session.idle` для очистки или фоновой синхронизации.

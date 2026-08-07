@@ -1,28 +1,28 @@
 <!-- Context: openagents-repo/registry | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Core Concept: Registry System
+# Ключевая концепция: система registry
 
-**Purpose**: Understanding how component tracking and distribution works  
-**Priority**: CRITICAL - Load this before working with registry
-
----
-
-## What Is the Registry?
-
-The registry is a centralized catalog (`registry.json`) that tracks all components in OpenAgents Control:
-- **Agents** - AI agent prompts
-- **Subagents** - Delegated specialists
-- **Commands** - Slash commands
-- **Tools** - Custom tools
-- **Contexts** - Context files
-
-**Location**: `registry.json` (root directory)
+**Назначение**: понять, как работают отслеживание и распространение компонентов  
+**Приоритет**: CRITICAL - загрузите перед работой с registry
 
 ---
 
-## Registry Schema
+## Что такое registry?
 
-### Top-Level Structure
+Registry — это централизованный каталог (`registry.json`), который отслеживает все компоненты OpenAgents Control:
+- **Agents** - промпты AI-агентов
+- **Subagents** - делегируемые специалисты
+- **Commands** - slash commands
+- **Tools** - кастомные инструменты
+- **Contexts** - контекстные файлы
+
+**Расположение**: `registry.json` (корневая директория)
+
+---
+
+## Схема registry
+
+### Верхнеуровневая структура
 
 ```json
 {
@@ -43,7 +43,7 @@ The registry is a centralized catalog (`registry.json`) that tracks all componen
 }
 ```
 
-### Component Entry
+### Запись компонента
 
 ```json
 {
@@ -59,24 +59,24 @@ The registry is a centralized catalog (`registry.json`) that tracks all componen
 }
 ```
 
-**Fields**:
-- `id`: Unique identifier (kebab-case)
-- `name`: Display name
-- `type`: Component type (agent, subagent, command, tool, context)
-- `path`: File path relative to repo root
-- `description`: Brief description
-- `category`: Category name (for agents)
-- `tags`: Optional tags for discovery
-- `dependencies`: Optional dependencies
-- `version`: Version when added/updated
+**Поля**:
+- `id`: уникальный идентификатор (kebab-case)
+- `name`: отображаемое имя
+- `type`: тип компонента (agent, subagent, command, tool, context)
+- `path`: путь файла относительно корня репозитория
+- `description`: краткое описание
+- `category`: имя категории (для agents)
+- `tags`: необязательные tags для обнаружения
+- `dependencies`: необязательные зависимости
+- `version`: версия при добавлении/обновлении
 
 ---
 
-## Auto-Detect System
+## Система auto-detect
 
-The auto-detect system scans `.opencode/` and automatically updates the registry.
+Система auto-detect сканирует `.opencode/` и автоматически обновляет registry.
 
-### How It Works
+### Как это работает
 
 ```
 1. Scan .opencode/ directory
@@ -87,7 +87,7 @@ The auto-detect system scans `.opencode/` and automatically updates the registry
 6. Update registry.json
 ```
 
-### Running Auto-Detect
+### Запуск auto-detect
 
 ```bash
 # Dry run (see what would be added)
@@ -100,7 +100,7 @@ The auto-detect system scans `.opencode/` and automatically updates the registry
 ./scripts/registry/auto-detect-components.sh --auto-add --force
 ```
 
-### What Gets Detected
+### Что обнаруживается
 
 ✅ **Agents** - `.opencode/agent/{category}/*.md`  
 ✅ **Subagents** - `.opencode/agent/subagents/**/*.md`  
@@ -108,9 +108,9 @@ The auto-detect system scans `.opencode/` and automatically updates the registry
 ✅ **Tools** - `.opencode/tool/**/index.ts`  
 ✅ **Contexts** - `.opencode/context/**/*.md`  
 
-### Frontmatter Requirements
+### Требования к frontmatter
 
-For auto-detect to work, files must have frontmatter:
+Чтобы auto-detect работал, в файлах должен быть frontmatter:
 
 ```yaml
 ---
@@ -123,9 +123,9 @@ tags: ["tag1", "tag2"]     # Optional
 
 ---
 
-## Validation
+## Валидация
 
-### Registry Validation
+### Валидация registry
 
 ```bash
 # Validate registry
@@ -135,16 +135,16 @@ tags: ["tag1", "tag2"]     # Optional
 ./scripts/registry/validate-registry.sh -v
 ```
 
-### What Gets Validated
+### Что валидируется
 
-✅ **Schema** - Correct JSON structure  
-✅ **Paths** - All paths exist  
-✅ **IDs** - Unique IDs  
-✅ **Categories** - Valid categories  
-✅ **Dependencies** - Dependencies exist  
-✅ **Versions** - Version consistency  
+✅ **Schema** - корректная структура JSON  
+✅ **Paths** - все пути существуют  
+✅ **IDs** - уникальные IDs  
+✅ **Categories** - валидные категории  
+✅ **Dependencies** - зависимости существуют  
+✅ **Versions** - консистентность версий  
 
-### Validation Errors
+### Ошибки валидации
 
 ```bash
 # Example errors
@@ -156,42 +156,42 @@ ERROR: Missing dependency: subagent:nonexistent
 
 ---
 
-## Agents vs Subagents
+## Агенты и субагенты
 
-**Main Agents** (2 in Developer profile):
-- openagent: Universal coordination agent
-- opencoder: Complex coding and architecture
+**Основные агенты** (2 в Developer profile):
+- openagent: универсальный агент координации
+- opencoder: сложный coding и архитектура
 
-**Specialist Subagents** (8 in Developer profile):
+**Субагенты-специалисты** (8 в Developer profile):
 - frontend-specialist: React, Vue, CSS architecture
 - devops-specialist: CI/CD, infrastructure, deployment
 
-- task-manager: Feature breakdown and planning
-- documentation: Create and update docs
-- coder-agent: Execute coding subtasks
-- reviewer: Code review and security
-- tester: Write unit and integration tests
-- build-agent: Type checking and validation
-- image-specialist: Generate and edit images
+- task-manager: декомпозиция и планирование фич
+- documentation: создание и обновление docs
+- coder-agent: выполнение coding-подзадач
+- reviewer: code review и безопасность
+- tester: написание unit и integration tests
+- build-agent: type checking и validation
+- image-specialist: генерация и редактирование изображений
 
-**Commands** (7 in Developer profile):
-- analyze-patterns: Analyze codebase for patterns
+**Команды** (7 в Developer profile):
+- analyze-patterns: анализ codebase на паттерны
 - commit, test, context, clean, optimize, validate-repo
 
 ---
 
-## Component Profiles
+## Профили компонентов
 
-Profiles are pre-configured component bundles for quick installation.
+Профили — это заранее настроенные bundles компонентов для быстрой установки.
 
-### Available Profiles
+### Доступные профили
 
-#### Essential Profile
-**Purpose**: Minimal setup for basic usage
+#### Профиль Essential
+**Назначение**: минимальный setup для базового использования
 
-**Includes**:
+**Включает**:
 - Core agents (openagent, opencoder)
-- Essential commands (commit, test)
+- Основные commands (commit, test)
 - Core context files
 
 ```json
@@ -208,13 +208,13 @@ Profiles are pre-configured component bundles for quick installation.
 
 ---
 
-#### Developer Profile
-**Purpose**: Full development setup
+#### Профиль Developer
+**Назначение**: полный setup для разработки
 
-**Includes**:
-- All core agents
+**Включает**:
+- Все core agents
 - Development specialists
-- All subagents
+- Все subagents
 - Dev commands
 - Dev context files
 
@@ -233,10 +233,10 @@ Profiles are pre-configured component bundles for quick installation.
 
 ---
 
-#### Business Profile
-**Purpose**: Content and product focus
+#### Профиль Business
+**Назначение**: фокус на content и product
 
-**Includes**:
+**Включает**:
 - Core agents
 - Content specialists
 - Product specialists
@@ -257,11 +257,11 @@ Profiles are pre-configured component bundles for quick installation.
 
 ---
 
-## Install System
+## Система установки
 
-The install system uses the registry to distribute components.
+Система установки использует registry для распространения компонентов.
 
-### Installation Flow
+### Поток установки
 
 ```
 1. User runs install.sh
@@ -275,7 +275,7 @@ The install system uses the registry to distribute components.
 9. Handle collisions (skip/overwrite/backup)
 ```
 
-### Local Registry (Development)
+### Локальный registry (development)
 
 ```bash
 # Test with local registry
@@ -285,7 +285,7 @@ REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list
 REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh developer
 ```
 
-### Remote Registry (Production)
+### Удаленный registry (production)
 
 ```bash
 # Install from GitHub
@@ -297,9 +297,9 @@ REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh developer
 
 ---
 
-## Dependency Resolution
+## Разрешение зависимостей
 
-### Dependency Format
+### Формат зависимости
 
 ```json
 "dependencies": [
@@ -308,16 +308,16 @@ REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh developer
 ]
 ```
 
-### Resolution Rules
+### Правила разрешения
 
-1. Parse dependency string (`type:id`)
-2. Find component in registry
-3. Check if already installed
-4. Add to install queue
-5. Recursively resolve dependencies
-6. Install in dependency order
+1. Разобрать строку зависимости (`type:id`)
+2. Найти компонент в registry
+3. Проверить, установлен ли уже компонент
+4. Добавить в очередь установки
+5. Рекурсивно разрешить зависимости
+6. Установить в порядке зависимостей
 
-### Example
+### Пример
 
 ```
 User installs: frontend-specialist
@@ -334,24 +334,24 @@ Install order:
 
 ---
 
-## Collision Handling
+## Обработка конфликтов
 
-When installing components that already exist:
+При установке компонентов, которые уже существуют:
 
-### Collision Strategies
+### Стратегии конфликтов
 
-1. **Skip** - Keep existing file
-2. **Overwrite** - Replace with new file
-3. **Backup** - Backup existing, install new
+1. **Skip** - оставить существующий файл
+2. **Overwrite** - заменить новым файлом
+3. **Backup** - сделать backup существующего и установить новый
 
-### Interactive Mode
+### Интерактивный режим
 
 ```bash
 File exists: .opencode/agent/core/openagent.md
 [S]kip, [O]verwrite, [B]ackup, [A]ll skip, [F]orce all? 
 ```
 
-### Non-Interactive Mode
+### Неинтерактивный режим
 
 ```bash
 # Skip all collisions
@@ -366,15 +366,15 @@ File exists: .opencode/agent/core/openagent.md
 
 ---
 
-## Version Management
+## Управление версиями
 
-### Version Fields
+### Поля версии
 
-- **Registry version**: Overall registry version (e.g., "0.5.0")
-- **Schema version**: Registry schema version (e.g., "2.0.0")
-- **Component version**: When component was added/updated
+- **Версия registry**: общая версия registry (например, "0.5.0")
+- **Версия схемы**: версия схемы registry (например, "2.0.0")
+- **Версия компонента**: версия при добавлении/обновлении компонента
 
-### Version Consistency
+### Консистентность версий
 
 ```bash
 # Check version consistency
@@ -385,7 +385,7 @@ cat registry.json | jq '.version'
 # All should match
 ```
 
-### Updating Versions
+### Обновление версий
 
 ```bash
 # Bump version
@@ -396,11 +396,11 @@ jq '.version = "0.X.Y"' registry.json > tmp && mv tmp registry.json
 
 ---
 
-## CI/CD Integration
+## Интеграция CI/CD
 
-### GitHub Workflows
+### GitHub workflows
 
-#### Validate Registry (PR Checks)
+#### Валидация registry (проверки PR)
 
 ```yaml
 # .github/workflows/validate-registry.yml
@@ -408,7 +408,7 @@ jq '.version = "0.X.Y"' registry.json > tmp && mv tmp registry.json
   run: ./scripts/registry/validate-registry.sh
 ```
 
-#### Auto-Update Registry (Post-Merge)
+#### Автообновление registry (после merge)
 
 ```yaml
 # .github/workflows/update-registry.yml
@@ -416,7 +416,7 @@ jq '.version = "0.X.Y"' registry.json > tmp && mv tmp registry.json
   run: ./scripts/registry/auto-detect-components.sh --auto-add
 ```
 
-#### Version Bump (On Release)
+#### Увеличение версии (при релизе)
 
 ```yaml
 # .github/workflows/version-bump.yml
@@ -426,66 +426,66 @@ jq '.version = "0.X.Y"' registry.json > tmp && mv tmp registry.json
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-### Adding Components
+### Добавление компонентов
 
-✅ **Add frontmatter** - Required for auto-detect  
-✅ **Run auto-detect** - Don't manually edit registry  
-✅ **Validate** - Always validate after changes  
-✅ **Test locally** - Use local registry for testing  
+✅ **Добавляйте frontmatter** - требуется для auto-detect  
+✅ **Запускайте auto-detect** - не редактируйте registry вручную  
+✅ **Валидируйте** - всегда валидируйте после изменений  
+✅ **Тестируйте локально** - используйте локальный registry для тестирования  
 
-### Maintaining Registry
+### Поддержка registry
 
-✅ **Auto-detect first** - Let scripts handle updates  
-✅ **Validate often** - Catch issues early  
-✅ **Version consistency** - Keep versions in sync  
-✅ **CI validation** - Automate validation in CI  
+✅ **Сначала auto-detect** - пусть scripts обрабатывают обновления  
+✅ **Валидируйте часто** - ловите проблемы рано  
+✅ **Консистентность версий** - держите версии синхронизированными  
+✅ **CI validation** - автоматизируйте валидацию в CI  
 
-### Dependencies
+### Зависимости
 
-✅ **Explicit dependencies** - List all dependencies  
-✅ **Test resolution** - Verify dependencies resolve  
-✅ **Avoid cycles** - No circular dependencies  
-
----
-
-## Common Issues
-
-### Path Not Found
-
-**Problem**: Registry references non-existent path  
-**Solution**: Run auto-detect or fix path manually
-
-### Duplicate ID
-
-**Problem**: Two components with same ID  
-**Solution**: Rename one component
-
-### Invalid Category
-
-**Problem**: Agent has invalid category  
-**Solution**: Use valid category (core, development, content, data, product, learning)
-
-### Missing Dependency
-
-**Problem**: Dependency doesn't exist in registry  
-**Solution**: Add dependency or remove reference
-
-### Version Mismatch
-
-**Problem**: VERSION, package.json, registry.json don't match  
-**Solution**: Update all version files to match
+✅ **Явные зависимости** - перечисляйте все зависимости  
+✅ **Проверяйте resolution** - убедитесь, что зависимости разрешаются  
+✅ **Избегайте циклов** - никаких циклических зависимостей  
 
 ---
 
-## Related Files
+## Частые проблемы
 
-- **Updating registry**: `guides/updating-registry.md`
-- **Adding agents**: `guides/adding-agent.md`
-- **Categories**: `core-concepts/categories.md`
+### Путь не найден
+
+**Проблема**: registry ссылается на несуществующий путь  
+**Решение**: запустите auto-detect или исправьте путь вручную
+
+### Дублирующийся ID
+
+**Проблема**: два компонента с одинаковым ID  
+**Решение**: переименуйте один компонент
+
+### Неверная категория
+
+**Проблема**: у агента неверная категория  
+**Решение**: используйте валидную категорию (core, development, content, data, product, learning)
+
+### Отсутствующая зависимость
+
+**Проблема**: зависимость не существует в registry  
+**Решение**: добавьте зависимость или удалите ссылку
+
+### Несовпадение версий
+
+**Проблема**: VERSION, package.json и registry.json не совпадают  
+**Решение**: обновите все version-файлы до совпадения
 
 ---
 
-**Last Updated**: 2025-01-28  
-**Version**: 0.5.2
+## Связанные файлы
+
+- **Обновление registry**: `guides/updating-registry.md`
+- **Добавление агентов**: `guides/adding-agent.md`
+- **Категории**: `core-concepts/categories.md`
+
+---
+
+**Последнее обновление**: 2025-01-28  
+**Версия**: 0.5.2

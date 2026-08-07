@@ -1,22 +1,22 @@
 <!-- Context: workflows/design-iteration-plan-file | Priority: high | Version: 1.0 | Updated: 2025-12-09 -->
-# Design Plan File (MANDATORY)
+# Файл плана дизайна (ОБЯЗАТЕЛЬНО)
 
-**CRITICAL**: Before starting any design work, create a persistent design plan file.
+**КРИТИЧНО**: перед любой работой над дизайном создайте постоянный файл плана.
 
-**Location**: `.tmp/design-plans/{project-name}-{feature-name}.md`
+**Расположение**: `.tmp/design-plans/{project-name}-{feature-name}.md`
 
-**Purpose**: 
-- Preserve design decisions across stages
-- Allow user to review and edit the plan
-- Maintain context for subagent calls
-- Track design evolution and iterations
+**Назначение**: 
+- Сохранять дизайн-решения между этапами
+- Дать пользователю возможность просматривать и редактировать план
+- Сохранять контекст для вызовов subagent
+- Отслеживать развитие дизайна и итерации
 
-**When to Create**: 
-- BEFORE Stage 1 (Layout Design)
-- After understanding user requirements
-- Before any design work begins
+**Когда создавать**: 
+- ДО этапа 1 (дизайн макета)
+- После понимания требований пользователя
+- До начала любой работы над дизайном
 
-## Template
+## Шаблон
 
 ```markdown
 ---
@@ -129,40 +129,40 @@ current_stage: layout
 - Reason: {why it changed}
 ```
 
-## Workflow Integration
+## Интеграция с рабочим процессом
 
-1. **Create plan file** → Write to `.tmp/design-plans/{name}.md`
-2. **Each stage** → Update plan file with decisions and user feedback
-3. **User approval** → Edit plan file with approved decisions
-4. **User requests changes** → Edit plan file with feedback, iterate
-5. **Subagent calls** → Pass plan file path for context preservation
-6. **Completion** → Plan file contains full design history
+1. **Создать файл плана** → записать в `.tmp/design-plans/{name}.md`
+2. **Каждый этап** → обновлять план решениями и обратной связью пользователя
+3. **Одобрение пользователя** → записать в план утвержденные решения
+4. **Пользователь просит изменения** → записать обратную связь и выполнить итерацию
+5. **Вызовы subagent** → передавать путь к плану для сохранения контекста
+6. **Завершение** → план содержит полную историю дизайна
 
-## Benefits
+## Преимущества
 
-- ✅ Context preserved across subagent calls
-- ✅ User can review and edit plan directly
-- ✅ Design decisions documented
-- ✅ Easy to iterate and refine
-- ✅ Full design history tracked
+- ✅ Контекст сохраняется между вызовами subagent
+- ✅ Пользователь может просматривать и редактировать план напрямую
+- ✅ Дизайн-решения задокументированы
+- ✅ Легко выполнять итерации и уточнения
+- ✅ Полная история дизайна отслеживается
 
 ---
 
-## Stage 0: Create Design Plan (MANDATORY FIRST STEP)
+## Этап 0: создать план дизайна (ОБЯЗАТЕЛЬНЫЙ ПЕРВЫЙ ШАГ)
 
-**Purpose**: Create persistent plan file before any design work
+**Назначение**: создать постоянный файл плана до любой работы над дизайном
 
-**Process**:
-1. Understand user requirements
-2. Identify design goals and constraints
-3. Create plan file at `.tmp/design-plans/{project-name}-{feature-name}.md`
-4. Populate with user requirements and goals
-5. Present plan file location to user
-6. Proceed to Stage 1
+**Процесс**:
+1. Понять требования пользователя
+2. Определить цели дизайна и ограничения
+3. Создать файл плана в `.tmp/design-plans/{project-name}-{feature-name}.md`
+4. Заполнить требованиями пользователя и целями
+5. Показать пользователю расположение файла плана
+6. Перейти к этапу 1
 
-**Deliverable**: Design plan file created and initialized
+**Результат**: файл плана дизайна создан и инициализирован
 
-**Example**:
+**Пример**:
 ```
 ✅ Design plan created: .tmp/design-plans/saas-landing-page.md
 
@@ -171,12 +171,12 @@ You can review and edit this file at any time. All design decisions will be trac
 Ready to proceed to Stage 1 (Layout Design)?
 ```
 
-**Approval Gate**: "Plan file created. Ready to start layout design?"
+**Точка одобрения**: "Файл плана создан. Готовы начать дизайн макета?"
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Overview](./design-iteration-overview.md)
-- [Stage 1: Layout](./design-iteration-stage-layout.md)
-- [Plan Iterations](./design-iteration-plan-iterations.md)
+- [Обзор](./design-iteration-overview.md)
+- [Этап 1: Макет](./design-iteration-stage-layout.md)
+- [Итерации плана](./design-iteration-plan-iterations.md)

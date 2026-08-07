@@ -1,12 +1,12 @@
 <!-- Context: openagents-repo/lookup | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Lookup: File Locations
+# Справочник: расположение файлов
 
-**Purpose**: Quick reference for finding files
+**Назначение**: краткий справочник для поиска файлов
 
 ---
 
-## Directory Tree
+## Дерево директорий
 
 ```
 opencode-agents/
@@ -64,48 +64,48 @@ opencode-agents/
 
 ---
 
-## Where Is...?
+## Где находится...?
 
-| Component | Location |
+| Компонент | Расположение |
 |-----------|----------|
-| **Core agents** | `.opencode/agent/core/` |
-| **Category agents** | `.opencode/agent/{category}/` |
-| **Subagents** | `.opencode/agent/subagents/` |
-| **Commands** | `.opencode/command/` |
-| **Context files** | `.opencode/context/` |
-| **Prompt variants** | `.opencode/prompts/{category}/{agent}/` |
-| **Tools** | `.opencode/tool/` |
-| **Plugins** | `.opencode/plugin/` |
-| **Agent tests** | `evals/agents/{category}/{agent}/` |
-| **Eval framework** | `evals/framework/src/` |
-| **Registry scripts** | `scripts/registry/` |
-| **Validation scripts** | `scripts/validation/` |
-| **Documentation** | `docs/` |
+| **Core-агенты** | `.opencode/agent/core/` |
+| **Агенты категорий** | `.opencode/agent/{category}/` |
+| **Субагенты** | `.opencode/agent/subagents/` |
+| **Команды** | `.opencode/command/` |
+| **Контекстные файлы** | `.opencode/context/` |
+| **Варианты промптов** | `.opencode/prompts/{category}/{agent}/` |
+| **Инструменты** | `.opencode/tool/` |
+| **Плагины** | `.opencode/plugin/` |
+| **Тесты агентов** | `evals/agents/{category}/{agent}/` |
+| **Eval-фреймворк** | `evals/framework/src/` |
+| **Скрипты registry** | `scripts/registry/` |
+| **Скрипты валидации** | `scripts/validation/` |
+| **Документация** | `docs/` |
 | **Registry** | `registry.json` |
 | **Installer** | `install.sh` |
-| **Version** | `VERSION` |
+| **Версия** | `VERSION` |
 
 ---
 
-## Where Do I Add...?
+## Куда добавить...?
 
-| What | Where |
+| Что | Куда |
 |------|-------|
-| **New core agent** | `.opencode/agent/core/{name}.md` |
-| **New category agent** | `.opencode/agent/{category}/{name}.md` |
-| **New subagent** | `.opencode/agent/subagents/{category}/{name}.md` |
-| **New command** | `.opencode/command/{name}.md` |
-| **New context** | `.opencode/context/{category}/{name}.md` |
-| **Agent tests** | `evals/agents/{category}/{agent}/tests/` |
-| **Test config** | `evals/agents/{category}/{agent}/config/config.yaml` |
-| **Documentation** | `docs/{section}/{topic}.md` |
-| **Script** | `scripts/{purpose}/{name}.sh` |
+| **Новый core-агент** | `.opencode/agent/core/{name}.md` |
+| **Новый агент категории** | `.opencode/agent/{category}/{name}.md` |
+| **Новый субагент** | `.opencode/agent/subagents/{category}/{name}.md` |
+| **Новая команда** | `.opencode/command/{name}.md` |
+| **Новый контекст** | `.opencode/context/{category}/{name}.md` |
+| **Тесты агента** | `evals/agents/{category}/{agent}/tests/` |
+| **Конфиг теста** | `evals/agents/{category}/{agent}/config/config.yaml` |
+| **Документация** | `docs/{section}/{topic}.md` |
+| **Скрипт** | `scripts/{purpose}/{name}.sh` |
 
 ---
 
-## Specific File Paths
+## Конкретные пути файлов
 
-### Core Files
+### Core-файлы
 
 ```
 registry.json                        # Component catalog
@@ -117,7 +117,7 @@ CHANGELOG.md                         # Release notes
 README.md                            # Main documentation
 ```
 
-### Core Agents
+### Core-агенты
 
 ```
 .opencode/agent/core/openagent.md
@@ -125,21 +125,21 @@ README.md                            # Main documentation
 .opencode/agent/meta/system-builder.md
 ```
 
-### Development Agents
+### Development-агенты
 
 ```
 .opencode/agent/subagents/development/frontend-specialist.md
 .opencode/agent/subagents/development/devops-specialist.md
 ```
 
-### Content Agents
+### Content-агенты
 
 ```
 .opencode/agent/content/copywriter.md
 .opencode/agent/content/technical-writer.md
 ```
 
-### Key Subagents
+### Ключевые subagents
 
 ```
 .opencode/agent/subagents/code/test-engineer.md
@@ -149,7 +149,7 @@ README.md                            # Main documentation
 .opencode/agent/subagents/core/documentation.md
 ```
 
-### Core Context
+### Core-контекст
 
 ```
 .opencode/context/core/standards/code-quality.md
@@ -160,7 +160,7 @@ README.md                            # Main documentation
 .opencode/context/core/workflows/code-review.md
 ```
 
-### Registry Scripts
+### Скрипты registry
 
 ```
 scripts/registry/validate-registry.sh
@@ -169,7 +169,7 @@ scripts/registry/register-component.sh
 scripts/registry/validate-component.sh
 ```
 
-### Validation Scripts
+### Скрипты валидации
 
 ```
 scripts/validation/validate-context-refs.sh
@@ -177,7 +177,7 @@ scripts/validation/validate-test-suites.sh
 scripts/validation/setup-pre-commit-hook.sh
 ```
 
-### Eval Framework
+### Eval-фреймворк
 
 ```
 evals/framework/src/sdk/              # Test runner
@@ -188,30 +188,30 @@ evals/framework/src/types/            # TypeScript types
 
 ---
 
-## Path Patterns
+## Паттерны путей
 
-### Agents
+### Агенты
 
 ```
 .opencode/agent/{category}/{agent-name}.md
 ```
 
-**Examples**:
+**Примеры**:
 - `.opencode/agent/subagents/development/frontend-specialist.md`
 - `.opencode/agent/subagents/code/test-engineer.md`
 
-### Context
+### Контекст
 
 ```
 .opencode/context/{category}/{topic}.md
 ```
 
-**Examples**:
+**Примеры**:
 - `.opencode/context/core/standards/code-quality.md`
 - `.opencode/context/ui/web/react-patterns.md`
 - `.opencode/context/content-creation/principles/copywriting-frameworks.md`
 
-### Tests
+### Тесты
 
 ```
 evals/agents/{category}/{agent-name}/
@@ -219,43 +219,43 @@ evals/agents/{category}/{agent-name}/
 └── tests/{test-name}.yaml
 ```
 
-**Examples**:
+**Примеры**:
 - `evals/agents/core/openagent/tests/smoke-test.yaml`
 - `evals/agents/development/frontend-specialist/tests/approval-gate.yaml`
 
-### Scripts
+### Скрипты
 
 ```
 scripts/{purpose}/{action}-{target}.sh
 ```
 
-**Examples**:
+**Примеры**:
 - `scripts/registry/validate-registry.sh`
 - `scripts/validation/validate-test-suites.sh`
 - `scripts/versioning/bump-version.sh`
 
 ---
 
-## Naming Conventions
+## Соглашения об именовании
 
-### Files
+### Файлы
 
-- **Agents**: `{name}.md` or `{domain}-specialist.md`
-- **Context**: `{topic}.md`
-- **Tests**: `{test-name}.yaml`
-- **Scripts**: `{action}-{target}.sh`
-- **Docs**: `{topic}.md`
+- **Агенты**: `{name}.md` или `{domain}-specialist.md`
+- **Контекст**: `{topic}.md`
+- **Тесты**: `{test-name}.yaml`
+- **Скрипты**: `{action}-{target}.sh`
+- **Документация**: `{topic}.md`
 
-### Directories
+### Директории
 
-- **Categories**: lowercase, singular (e.g., `development`, `content`)
-- **Purposes**: lowercase, descriptive (e.g., `registry`, `validation`)
+- **Категории**: lowercase, singular (например, `development`, `content`)
+- **Назначения**: lowercase, descriptive (например, `registry`, `validation`)
 
 ---
 
-## Quick Lookups
+## Быстрый поиск
 
-### Find Agent File
+### Найти файл агента
 
 ```bash
 # By name
@@ -268,7 +268,7 @@ ls .opencode/agent/{category}/
 find .opencode/agent -name "*.md" -not -path "*/subagents/*"
 ```
 
-### Find Test File
+### Найти файл теста
 
 ```bash
 # By agent
@@ -278,7 +278,7 @@ ls evals/agents/{category}/{agent}/tests/
 find evals/agents -name "*.yaml"
 ```
 
-### Find Context File
+### Найти контекстный файл
 
 ```bash
 # By category
@@ -288,7 +288,7 @@ ls .opencode/context/{category}/
 find .opencode/context -name "*.md"
 ```
 
-### Find Script
+### Найти скрипт
 
 ```bash
 # By purpose
@@ -300,13 +300,13 @@ find scripts -name "*.sh"
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- **Quick start**: `quick-start.md`
-- **Categories**: `core-concepts/categories.md`
-- **Commands**: `lookup/commands.md`
+- **Быстрый старт**: `quick-start.md`
+- **Категории**: `core-concepts/categories.md`
+- **Команды**: `lookup/commands.md`
 
 ---
 
-**Last Updated**: 2025-12-10  
-**Version**: 0.5.0
+**Последнее обновление**: 2025-12-10  
+**Версия**: 0.5.0

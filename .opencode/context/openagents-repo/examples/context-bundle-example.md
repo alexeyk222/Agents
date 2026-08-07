@@ -1,216 +1,216 @@
 <!-- Context: openagents-repo/examples | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Context Bundle Example: Create Data Analyst Agent
+# Пример context bundle: создание агента Data Analyst
 
-Session: 20250121-143022-a4f2
-Created: 2025-01-21T14:30:22Z
-For: TaskManager
-Status: in_progress
+Сессия: 20250121-143022-a4f2
+Создано: 2025-01-21T14:30:22Z
+Для: TaskManager
+Статус: in_progress
 
-## Task Overview
+## Обзор задачи
 
-Create a new data analyst agent for the OpenAgents Control repository. This agent will specialize in data analysis tasks including data visualization, statistical analysis, and data transformation.
+Создать нового агента-аналитика данных для репозитория OpenAgents Control. Агент специализируется на задачах анализа данных: визуализации, статистическом анализе и преобразовании данных.
 
-## User Request
+## Запрос пользователя
 
-"Create a new data analyst agent that can help with data analysis, visualization, and statistical tasks"
+"Создай нового агента-аналитика данных, который помогает с анализом данных, визуализацией и статистическими задачами"
 
-## Relevant Standards (Load These Before Starting)
+## Релевантные стандарты (загрузите перед началом)
 
-**Core Standards**:
-- `.opencode/context/core/standards/code-quality.md` → Modular, functional code patterns
-- `.opencode/context/core/standards/test-coverage.md` → Testing requirements and TDD
-- `.opencode/context/core/standards/documentation.md` → Documentation standards
+**Базовые стандарты**:
+- `.opencode/context/core/standards/code-quality.md` → модульные функциональные паттерны кода
+- `.opencode/context/core/standards/test-coverage.md` → требования к тестированию и TDD
+- `.opencode/context/core/standards/documentation.md` → стандарты документации
 
-**Core Workflows**:
-- `.opencode/context/core/workflows/feature-breakdown.md` → Task breakdown methodology
+**Базовые процессы**:
+- `.opencode/context/core/workflows/feature-breakdown.md` → методика декомпозиции задач
 
-## Repository-Specific Context (Load These Before Starting)
+## Контекст репозитория (загрузите перед началом)
 
-**Quick Start** (ALWAYS load first):
-- `.opencode/context/openagents-repo/quick-start.md` → Repo orientation and common commands
+**Быстрый старт** (ВСЕГДА загружайте первым):
+- `.opencode/context/openagents-repo/quick-start.md` → ориентация по репозиторию и частые команды
 
-**Core Concepts** (Load based on task type):
-- `.opencode/context/openagents-repo/core-concepts/agents.md` → How agents work
-- `.opencode/context/openagents-repo/core-concepts/evals.md` → How testing works
-- `.opencode/context/openagents-repo/core-concepts/registry.md` → How registry works
-- `.opencode/context/openagents-repo/core-concepts/categories.md` → How organization works
+**Ключевые концепции** (загружайте по типу задачи):
+- `.opencode/context/openagents-repo/core-concepts/agents.md` → как работают агенты
+- `.opencode/context/openagents-repo/core-concepts/evals.md` → как работает тестирование
+- `.opencode/context/openagents-repo/core-concepts/registry.md` → как работает registry
+- `.opencode/context/openagents-repo/core-concepts/categories.md` → как устроена организация
 
-**Guides** (Load for specific workflows):
-- `.opencode/context/openagents-repo/guides/adding-agent-basics.md` → Step-by-step agent creation
-- `.opencode/context/openagents-repo/guides/testing-agent.md` → Testing workflow
-- `.opencode/context/openagents-repo/guides/updating-registry.md` → Registry workflow
+**Руководства** (загружайте для конкретных workflows):
+- `.opencode/context/openagents-repo/guides/adding-agent-basics.md` → пошаговое создание агента
+- `.opencode/context/openagents-repo/guides/testing-agent.md` → workflow тестирования
+- `.opencode/context/openagents-repo/guides/updating-registry.md` → workflow registry
 
-## Key Requirements
+## Ключевые требования
 
-**From Standards**:
-- Agent must follow modular, functional programming patterns
-- All code must be testable and maintainable
-- Documentation must be concise and high-signal
-- Include examples where helpful
+**Из стандартов**:
+- Агент должен следовать модульным функциональным паттернам программирования
+- Весь код должен быть тестируемым и поддерживаемым
+- Документация должна быть краткой и содержательной
+- Добавляйте примеры там, где они полезны
 
-**From Repository Context**:
-- Agent file must be in `.opencode/agent/data/` directory (category-based organization)
-- Must include proper frontmatter metadata (id, name, description, category, type, version, etc.)
-- Must follow naming convention: `data-analyst.md` (kebab-case)
-- Must include tags for discoverability
-- Must specify tools and permissions
-- Must be registered in `registry.json`
+**Из контекста репозитория**:
+- Файл агента должен находиться в `.opencode/agent/data/` (организация по категориям)
+- Нужны корректные метаданные frontmatter (id, name, description, category, type, version и т. д.)
+- Нужно следовать соглашению об именовании: `data-analyst.md` (kebab-case)
+- Нужны tags для обнаружения
+- Нужно указать tools и permissions
+- Нужно зарегистрировать в `registry.json`
 
-**Naming Conventions**:
-- File name: `data-analyst.md` (kebab-case)
-- Agent ID: `data-analyst`
-- Category: `data`
-- Type: `agent`
+**Соглашения об именовании**:
+- Имя файла: `data-analyst.md` (kebab-case)
+- ID агента: `data-analyst`
+- Категория: `data`
+- Тип: `agent`
 
-**File Structure**:
-- Agent file: `.opencode/agent/data/data-analyst.md`
-- Eval directory: `evals/agents/data/data-analyst/`
+**Структура файлов**:
+- Файл агента: `.opencode/agent/data/data-analyst.md`
+- Eval-директория: `evals/agents/data/data-analyst/`
 - Eval config: `evals/agents/data/data-analyst/config/eval-config.yaml`
 - Eval tests: `evals/agents/data/data-analyst/tests/`
 - README: `evals/agents/data/data-analyst/README.md`
 
-## Technical Constraints
+## Технические ограничения
 
-- Must use category-based organization (data category)
-- Must include proper frontmatter metadata
-- Must specify tools needed (read, write, bash, etc.)
-- Must define permissions for sensitive operations
-- Must include temperature setting (0.1-0.3 for analytical tasks)
-- Must follow agent prompt structure (context, role, task, instructions)
-- Eval tests must use YAML format
-- Registry entry must follow schema
+- Использовать организацию по категориям (категория data)
+- Добавить корректные метаданные frontmatter
+- Указать нужные tools (read, write, bash и т. д.)
+- Определить permissions для чувствительных операций
+- Добавить temperature (0.1-0.3 для аналитических задач)
+- Следовать структуре промпта агента (context, role, task, instructions)
+- Eval-тесты должны быть в формате YAML
+- Запись registry должна соответствовать схеме
 
-## Files to Create/Modify
+## Файлы для создания/изменения
 
-**Create**:
-- `.opencode/agent/data/data-analyst.md` - Main agent definition with frontmatter and prompt
-- `evals/agents/data/data-analyst/config/eval-config.yaml` - Eval configuration
-- `evals/agents/data/data-analyst/tests/smoke-test.yaml` - Basic smoke test
-- `evals/agents/data/data-analyst/tests/data-analysis-test.yaml` - Data analysis capability test
-- `evals/agents/data/data-analyst/README.md` - Agent documentation
+**Создать**:
+- `.opencode/agent/data/data-analyst.md` - основное определение агента с frontmatter и промптом
+- `evals/agents/data/data-analyst/config/eval-config.yaml` - конфигурация eval
+- `evals/agents/data/data-analyst/tests/smoke-test.yaml` - базовый smoke test
+- `evals/agents/data/data-analyst/tests/data-analysis-test.yaml` - тест возможностей анализа данных
+- `evals/agents/data/data-analyst/README.md` - документация агента
 
-**Modify**:
-- `registry.json` - Add data-analyst agent entry
-- `.opencode/context/navigation.md` - Add data category context if needed
+**Изменить**:
+- `registry.json` - добавить запись агента data-analyst
+- `.opencode/context/navigation.md` - добавить контекст категории data, если нужно
 
-## Success Criteria
+## Критерии успеха
 
-- [x] Agent file created with proper frontmatter metadata
-- [x] Agent prompt follows established patterns (context, role, task, instructions)
-- [x] Eval test structure created with config and tests
-- [x] Smoke test passes
-- [x] Data analysis test passes
-- [x] Registry entry added and validates
-- [x] README documentation created
-- [x] All validation scripts pass
+- [x] Файл агента создан с корректными метаданными frontmatter
+- [x] Промпт агента следует установленным паттернам (context, role, task, instructions)
+- [x] Структура eval-тестов создана с config и tests
+- [x] Smoke test проходит
+- [x] Тест анализа данных проходит
+- [x] Запись registry добавлена и проходит валидацию
+- [x] README-документация создана
+- [x] Все скрипты валидации проходят
 
-## Validation Requirements
+## Требования к валидации
 
-**Scripts to Run**:
-- `./scripts/registry/validate-registry.sh` - Validates registry.json schema and entries
-- `./scripts/validation/validate-test-suites.sh` - Validates eval test structure
+**Скрипты для запуска**:
+- `./scripts/registry/validate-registry.sh` - проверяет схему и записи registry.json
+- `./scripts/validation/validate-test-suites.sh` - проверяет структуру eval-тестов
 
-**Tests to Run**:
-- `cd evals/framework && npm run eval:sdk -- --agent=data/data-analyst --pattern="smoke-test.yaml"` - Run smoke test
-- `cd evals/framework && npm run eval:sdk -- --agent=data/data-analyst` - Run all tests
+**Тесты для запуска**:
+- `cd evals/framework && npm run eval:sdk -- --agent=data/data-analyst --pattern="smoke-test.yaml"` - запустить smoke test
+- `cd evals/framework && npm run eval:sdk -- --agent=data/data-analyst` - запустить все тесты
 
-**Manual Checks**:
-- Verify frontmatter includes all required fields
-- Check that tools and permissions are appropriate
-- Ensure prompt is clear and follows standards
-- Verify eval tests are meaningful
+**Ручные проверки**:
+- Убедиться, что frontmatter содержит все обязательные поля
+- Проверить, что tools и permissions подходят задаче
+- Убедиться, что промпт понятный и следует стандартам
+- Проверить, что eval-тесты содержательны
 
-## Expected Output
+## Ожидаемый результат
 
-**Deliverables**:
-- Functional data analyst agent
-- Complete eval test suite
-- Registry entry
-- Documentation
+**Результаты**:
+- Рабочий агент-аналитик данных
+- Полный eval test suite
+- Запись registry
+- Документация
 
-**Format**:
-- Agent file: Markdown with YAML frontmatter
-- Eval config: YAML format
-- Eval tests: YAML format with test cases
-- README: Markdown documentation
+**Формат**:
+- Файл агента: Markdown с YAML frontmatter
+- Eval config: формат YAML
+- Eval tests: формат YAML с test cases
+- README: Markdown-документация
 
-## Progress Tracking
+## Отслеживание прогресса
 
-- [ ] Context loaded and understood
-- [ ] Agent file created with frontmatter
-- [ ] Agent prompt written
-- [ ] Eval directory structure created
-- [ ] Eval config created
-- [ ] Smoke test created
-- [ ] Data analysis test created
-- [ ] README documentation created
-- [ ] Registry entry added
-- [ ] Validation scripts run
-- [ ] All tests pass
-- [ ] Documentation updated
+- [ ] Контекст загружен и понят
+- [ ] Файл агента создан с frontmatter
+- [ ] Промпт агента написан
+- [ ] Структура eval-директорий создана
+- [ ] Eval config создан
+- [ ] Smoke test создан
+- [ ] Тест анализа данных создан
+- [ ] README-документация создана
+- [ ] Запись registry добавлена
+- [ ] Скрипты валидации запущены
+- [ ] Все тесты проходят
+- [ ] Документация обновлена
 
 ---
 
-## Instructions for Subagent
+## Инструкции для субагента
 
-**IMPORTANT**: 
-1. Load ALL context files listed in "Relevant Standards" and "Repository-Specific Context" sections BEFORE starting work
-2. Follow ALL requirements from the loaded context
-3. Apply naming conventions and file structure requirements
-4. Validate your work using the validation requirements
-5. Update progress tracking as you complete steps
+**ВАЖНО**: 
+1. Загрузите ВСЕ контекстные файлы из секций "Релевантные стандарты" и "Контекст репозитория" ДО начала работы
+2. Следуйте ВСЕМ требованиям из загруженного контекста
+3. Применяйте соглашения об именовании и требования к структуре файлов
+4. Валидируйте работу по требованиям к валидации
+5. Обновляйте отслеживание прогресса по мере выполнения шагов
 
-**Your Task**:
-Create a complete data analyst agent for the OpenAgents Control repository following all established conventions and standards.
+**Ваша задача**:
+Создать полноценного агента-аналитика данных для репозитория OpenAgents Control, следуя всем установленным соглашениям и стандартам.
 
-**Approach**:
-1. **Load Context**: Read all context files listed above to understand:
-   - How agents are structured (core-concepts/agents.md)
-   - How to add an agent (guides/adding-agent-basics.md)
-   - Code standards (standards/code-quality.md)
-   - Testing requirements (core-concepts/evals.md)
+**Подход**:
+1. **Загрузить контекст**: прочитать все указанные выше контекстные файлы, чтобы понять:
+   - Как устроены агенты (core-concepts/agents.md)
+   - Как добавить агента (guides/adding-agent-basics.md)
+   - Стандарты кода (standards/code-quality.md)
+   - Требования к тестированию (core-concepts/evals.md)
 
-2. **Create Agent File**:
-   - Create `.opencode/agent/data/data-analyst.md`
-   - Add frontmatter with all required metadata
-   - Write agent prompt with:
-     - Context section (system, domain, task, execution context)
-     - Role definition
-     - Task description
-     - Instructions and workflow
-     - Tools and capabilities
-     - Examples if helpful
+2. **Создать файл агента**:
+   - Создать `.opencode/agent/data/data-analyst.md`
+   - Добавить frontmatter со всеми обязательными метаданными
+   - Написать промпт агента с:
+      - секцией Context (system, domain, task, execution context)
+      - определением роли
+      - описанием задачи
+      - инструкциями и workflow
+      - tools и capabilities
+      - примерами, если полезно
 
-3. **Create Eval Structure**:
-   - Create directory: `evals/agents/data/data-analyst/`
-   - Create config: `config/eval-config.yaml`
-   - Create tests directory: `tests/`
-   - Create smoke test: `tests/smoke-test.yaml`
-   - Create capability test: `tests/data-analysis-test.yaml`
-   - Create README: `README.md`
+3. **Создать eval-структуру**:
+   - Создать директорию: `evals/agents/data/data-analyst/`
+   - Создать config: `config/eval-config.yaml`
+   - Создать директорию tests: `tests/`
+   - Создать smoke test: `tests/smoke-test.yaml`
+   - Создать capability test: `tests/data-analysis-test.yaml`
+   - Создать README: `README.md`
 
-4. **Update Registry**:
-   - Add entry to `registry.json` following schema
-   - Include: id, name, description, category, type, path, version, tags
+4. **Обновить registry**:
+   - Добавить запись в `registry.json` по схеме
+   - Включить: id, name, description, category, type, path, version, tags
 
-5. **Validate**:
-   - Run validation scripts
-   - Run eval tests
-   - Fix any issues
+5. **Валидировать**:
+   - Запустить скрипты валидации
+   - Запустить eval-тесты
+   - Исправить найденные проблемы
 
-**Constraints**:
-- Agent must be in `data` category
-- Must follow functional programming patterns
-- Must include proper error handling
-- Must specify appropriate tools (read, write, bash for data tasks)
-- Temperature should be 0.1-0.3 for analytical precision
-- Eval tests must be meaningful and test actual capabilities
+**Ограничения**:
+- Агент должен быть в категории `data`
+- Нужно следовать паттернам функционального программирования
+- Нужно добавить корректную обработку ошибок
+- Нужно указать подходящие tools (read, write, bash для data tasks)
+- Temperature должна быть 0.1-0.3 для аналитической точности
+- Eval-тесты должны быть содержательными и проверять реальные capabilities
 
-**Questions/Clarifications**:
-- What specific data analysis capabilities should be emphasized? (visualization, statistics, transformation)
-- Should the agent support specific data formats? (CSV, JSON, Parquet)
-- Should the agent integrate with specific tools? (pandas, matplotlib, etc.)
-- What level of statistical analysis? (descriptive, inferential, predictive)
+**Вопросы/уточнения**:
+- Какие возможности анализа данных подчеркнуть? (визуализация, статистика, преобразование)
+- Должен ли агент поддерживать конкретные форматы данных? (CSV, JSON, Parquet)
+- Нужна ли интеграция с конкретными инструментами? (pandas, matplotlib и т. д.)
+- Какой уровень статистического анализа нужен? (описательный, inferential, predictive)
 
-**Note**: This is an example context bundle. In practice, the subagent would receive this file and follow the instructions to complete the task.
+**Примечание**: это пример context bundle. На практике субагент получит этот файл и выполнит задачу по инструкциям.

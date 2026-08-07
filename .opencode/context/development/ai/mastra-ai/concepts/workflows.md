@@ -1,23 +1,23 @@
 <!-- Context: development/workflows | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Concept: Mastra Workflows
+# Концепция: Mastra Workflows
 
-**Purpose**: Linear and parallel execution chains for complex AI tasks.
+**Назначение**: Линейные и параллельные цепочки выполнения для сложных AI-задач.
 
-**Last Updated**: 2026-01-09
+**Обновлено**: 2026-01-09
 
 ---
 
-## Core Idea
-Workflows in Mastra are directed graphs of steps that process data sequentially or in parallel. They provide a structured way to handle multi-stage LLM operations with built-in state management and human-in-the-loop (HITL) support.
+## Основная идея
+Workflows в Mastra — это ориентированные графы шагов, которые обрабатывают данные последовательно или параллельно. Они дают структурированный способ выполнять многоэтапные LLM-операции со встроенным управлением состоянием и поддержкой human-in-the-loop (HITL).
 
-## Key Points
-- **Step Definition**: Created with `createStep`, requiring `inputSchema`, `outputSchema`, and an `execute` function.
-- **Chaining**: Steps are linked using `.then()` for sequential and `.parallel()` for concurrent execution.
-- **HITL Support**: Steps can `suspend` execution to wait for human input and `resume` when data is provided.
-- **State Access**: Each step has access to the global workflow `state` and the `inputData` from the previous step.
+## Ключевые пункты
+- **Определение шага**: создаётся через `createStep`; требует `inputSchema`, `outputSchema` и функцию `execute`.
+- **Цепочки**: шаги связываются через `.then()` для последовательного выполнения и `.parallel()` для параллельного.
+- **Поддержка HITL**: шаги могут `suspend` выполнение, чтобы дождаться ввода человека, и `resume`, когда данные предоставлены.
+- **Доступ к состоянию**: каждый шаг имеет доступ к глобальному `state` workflow и `inputData` из предыдущего шага.
 
-## Quick Example
+## Быстрый пример
 ```typescript
 const workflow = createWorkflow({ id: 'my-workflow', inputSchema, outputSchema })
   .then(step1)
@@ -29,7 +29,7 @@ const { runId, start } = workflow.createRun();
 const result = await start({ inputData: { ... } });
 ```
 
-**Reference**: `src/mastra/workflows/`
-**Related**:
+**Источник**: `src/mastra/workflows/`
+**Связано**:
 - concepts/core.md
 - examples/workflow-example.md

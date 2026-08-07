@@ -1,24 +1,24 @@
 <!-- Context: development/storage | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Concept: Mastra Data Storage
+# Концепция: хранилище данных Mastra
 
-**Purpose**: Persistence layer for cases, documents, assessments, and observability.
+**Назначение**: Слой хранения для cases, documents, assessments и наблюдаемости.
 
-**Last Updated**: 2026-01-09
+**Обновлено**: 2026-01-09
 
 ---
 
-## Core Idea
-Mastra uses a dual-storage approach: a local SQLite database (via Drizzle ORM) for business entities and a built-in `LibSQLStore` for Mastra-specific execution data (traces, spans).
+## Основная идея
+Mastra использует подход с двумя хранилищами: локальную базу SQLite (через Drizzle ORM) для бизнес-сущностей и встроенный `LibSQLStore` для данных выполнения Mastra (traces, spans).
 
-## Key Points
-- **Business Entities**: Managed in `src/db/schema.ts`. Includes `cases`, `documents`, `assessments`, and `outputs`.
-- **Mastra Store**: `LibSQLStore` handles `mastra_traces`, `mastra_ai_spans`, and `mastra_scorers`.
-- **V3 Extensions**: Specific tables for `timeline_events`, `evidence_gaps`, `sub_claims`, and `vulnerability_flags`.
-- **Observability**: `prompt_execution_traces` provides detailed cost and token tracking per AI call.
-- **File Storage**: Large blobs (PDFs, JSON outputs) are stored in `./tmp/` with paths referenced in the DB.
+## Ключевые пункты
+- **Бизнес-сущности**: управляются в `src/db/schema.ts`. Включают `cases`, `documents`, `assessments` и `outputs`.
+- **Хранилище Mastra**: `LibSQLStore` обслуживает `mastra_traces`, `mastra_ai_spans` и `mastra_scorers`.
+- **Расширения V3**: отдельные таблицы для `timeline_events`, `evidence_gaps`, `sub_claims` и `vulnerability_flags`.
+- **Наблюдаемость**: `prompt_execution_traces` даёт детальное отслеживание стоимости и токенов для каждого AI-вызова.
+- **Файловое хранение**: крупные blob-объекты (PDF, JSON-выводы) хранятся в `./tmp/`, а пути на них указаны в БД.
 
-## Quick Example
+## Быстрый пример
 ```typescript
 // Business Schema (Drizzle)
 export const cases = sqliteTable('cases', {
@@ -32,7 +32,7 @@ storage: new LibSQLStore({
 }),
 ```
 
-**Reference**: `src/db/schema.ts`, `src/mastra/index.ts`
-**Related**:
+**Источник**: `src/db/schema.ts`, `src/mastra/index.ts`
+**Связано**:
 - concepts/core.md
 - lookup/mastra-config.md

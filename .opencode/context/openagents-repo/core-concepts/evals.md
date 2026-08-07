@@ -1,25 +1,25 @@
 <!-- Context: openagents-repo/evals | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Core Concept: Eval Framework
+# Ключевая концепция: eval-фреймворк
 
-**Purpose**: Understanding how agent testing works  
-**Priority**: CRITICAL - Load this before testing agents
-
----
-
-## What Is the Eval Framework?
-
-The eval framework is a TypeScript-based testing system that validates agent behavior through:
-- **Test definitions** (YAML files)
-- **Session collection** (capturing agent interactions)
-- **Evaluators** (rules that validate behavior)
-- **Reports** (pass/fail with detailed violations)
-
-**Location**: `evals/framework/`
+**Назначение**: понять, как работает тестирование агентов  
+**Приоритет**: CRITICAL - загрузите перед тестированием агентов
 
 ---
 
-## Architecture
+## Что такое eval-фреймворк?
+
+Eval-фреймворк — это система тестирования на TypeScript, которая валидирует поведение агентов через:
+- **Определения тестов** (YAML-файлы)
+- **Сбор сессий** (захват взаимодействий агента)
+- **Evaluators** (правила проверки поведения)
+- **Отчеты** (pass/fail с подробными нарушениями)
+
+**Расположение**: `evals/framework/`
+
+---
+
+## Архитектура
 
 ```
 Test Definition (YAML)
@@ -39,9 +39,9 @@ Validation Report
 
 ---
 
-## Test Structure
+## Структура тестов
 
-### Directory Layout
+### Структура директорий
 
 ```
 evals/agents/{category}/{agent-name}/
@@ -54,7 +54,7 @@ evals/agents/{category}/{agent-name}/
     └── ...                  # Additional tests
 ```
 
-### Config File (`config.yaml`)
+### Файл конфигурации (`config.yaml`)
 
 ```yaml
 agent: {category}/{agent-name}
@@ -66,15 +66,15 @@ suites:
   - context
 ```
 
-**Fields**:
-- `agent`: Agent path (category/name format)
-- `model`: Model to use for testing
-- `timeout`: Test timeout in milliseconds
-- `suites`: Test suites to run
+**Поля**:
+- `agent`: путь агента (формат category/name)
+- `model`: модель для тестирования
+- `timeout`: timeout теста в миллисекундах
+- `suites`: test suites для запуска
 
 ---
 
-### Test File Format
+### Формат файла теста
 
 ```yaml
 name: Smoke Test
@@ -90,123 +90,123 @@ expectations:
   - type: no_violations
 ```
 
-**Fields**:
-- `name`: Test name
-- `description`: What this test validates
-- `agent`: Agent to test
-- `model`: Model to use
-- `conversation`: User/assistant exchanges
-- `expectations`: What should happen
+**Поля**:
+- `name`: имя теста
+- `description`: что валидирует тест
+- `agent`: агент для тестирования
+- `model`: модель для использования
+- `conversation`: обмены user/assistant
+- `expectations`: ожидаемое поведение
 
 ---
 
-## Evaluators
+## Оценщики (evaluators)
 
-Evaluators are rules that validate agent behavior. Each evaluator checks for specific patterns.
+Evaluators — это правила, которые валидируют поведение агента. Каждый evaluator проверяет конкретные паттерны.
 
-### Available Evaluators
+### Доступные оценщики
 
-#### 1. Approval Gate Evaluator
-**Purpose**: Ensures agent requests approval before execution
+#### 1. Оценщик approval gate
+**Назначение**: гарантирует, что агент запрашивает approval перед выполнением
 
-**Validates**:
-- Agent proposes plan before executing
-- User approves before write/edit/bash operations
-- No auto-execution without approval
+**Валидирует**:
+- Агент предлагает план перед выполнением
+- Пользователь подтверждает перед операциями write/edit/bash
+- Нет авто-выполнения без approval
 
-**Violation Example**:
+**Пример нарушения**:
 ```
 Agent executed write tool without requesting approval first
 ```
 
 ---
 
-#### 2. Context Loading Evaluator
-**Purpose**: Ensures agent loads required context files
+#### 2. Оценщик загрузки контекста
+**Назначение**: гарантирует, что агент загружает нужные контекстные файлы
 
-**Validates**:
-- Code tasks → loads `core/standards/code-quality.md`
-- Doc tasks → loads `core/standards/documentation.md`
-- Test tasks → loads `core/standards/test-coverage.md`
-- Context loaded BEFORE implementation
+**Валидирует**:
+- Code tasks → загружает `core/standards/code-quality.md`
+- Doc tasks → загружает `core/standards/documentation.md`
+- Test tasks → загружает `core/standards/test-coverage.md`
+- Контекст загружен ДО реализации
 
-**Violation Example**:
+**Пример нарушения**:
 ```
 Agent executed write tool without loading required context: core/standards/code-quality.md
 ```
 
 ---
 
-#### 3. Tool Usage Evaluator
-**Purpose**: Ensures agent uses appropriate tools
+#### 3. Оценщик использования инструментов
+**Назначение**: гарантирует, что агент использует подходящие инструменты
 
-**Validates**:
-- Uses `read` instead of `bash cat`
-- Uses `list` instead of `bash ls`
-- Uses `grep` instead of `bash grep`
-- Proper tool selection for tasks
+**Валидирует**:
+- Используется `read` вместо `bash cat`
+- Используется `list` вместо `bash ls`
+- Используется `grep` вместо `bash grep`
+- Инструменты корректно выбираются под задачи
 
-**Violation Example**:
+**Пример нарушения**:
 ```
 Agent used bash tool for reading file instead of read tool
 ```
 
 ---
 
-#### 4. Stop on Failure Evaluator
-**Purpose**: Ensures agent stops on errors instead of auto-fixing
+#### 4. Оценщик остановки при ошибке
+**Назначение**: гарантирует, что агент останавливается при ошибках, а не исправляет их автоматически
 
-**Validates**:
-- Agent reports errors to user
-- Agent proposes fix and requests approval
-- No auto-fixing without approval
+**Валидирует**:
+- Агент сообщает пользователю об ошибках
+- Агент предлагает исправление и запрашивает approval
+- Нет автоисправлений без approval
 
-**Violation Example**:
+**Пример нарушения**:
 ```
 Agent auto-fixed error without reporting and requesting approval
 ```
 
 ---
 
-#### 5. Execution Balance Evaluator
-**Purpose**: Ensures agent doesn't over-execute
+#### 5. Оценщик баланса выполнения
+**Назначение**: гарантирует, что агент не выполняет лишних действий
 
-**Validates**:
-- Reasonable ratio of read vs execute operations
-- Not executing excessively
-- Balanced tool usage
+**Валидирует**:
+- Разумное соотношение read и execute operations
+- Нет чрезмерного выполнения
+- Сбалансированное использование инструментов
 
-**Violation Example**:
+**Пример нарушения**:
 ```
 Agent execution ratio too high: 80% execute vs 20% read
 ```
 
 ---
 
-## Running Tests
+## Запуск тестов
 
-### Basic Test Run
+### Базовый запуск теста
 
 ```bash
 cd evals/framework
 npm run eval:sdk -- --agent={category}/{agent}
 ```
 
-### Run Specific Test
+### Запустить конкретный тест
 
 ```bash
 cd evals/framework
 npm run eval:sdk -- --agent={category}/{agent} --pattern="smoke-test.yaml"
 ```
 
-### Run with Debug
+### Запустить с отладкой
 
 ```bash
 cd evals/framework
 npm run eval:sdk -- --agent={category}/{agent} --debug
 ```
 
-### Run All Tests
+### Запустить все тесты
 
 ```bash
 cd evals/framework
@@ -215,13 +215,13 @@ npm run eval:sdk
 
 ---
 
-## Session Collection
+## Сбор сессий
 
-### What Are Sessions?
+### Что такое сессии?
 
-Sessions are recordings of agent interactions stored in `.tmp/sessions/`.
+Сессии — это записи взаимодействий агента, хранящиеся в `.tmp/sessions/`.
 
-### Session Structure
+### Структура сессии
 
 ```
 .tmp/sessions/{session-id}/
@@ -230,7 +230,7 @@ Sessions are recordings of agent interactions stored in `.tmp/sessions/`.
 └── context.md           # Session context (if any)
 ```
 
-### Session Data
+### Данные сессии
 
 ```json
 {
@@ -244,17 +244,17 @@ Sessions are recordings of agent interactions stored in `.tmp/sessions/`.
 }
 ```
 
-### Event Timeline
+### Хронология событий
 
-Events capture agent actions:
-- `tool_call` - Agent invoked a tool
-- `context_load` - Agent loaded context file
-- `approval_request` - Agent requested approval
-- `error` - Error occurred
+События фиксируют действия агента:
+- `tool_call` - агент вызвал инструмент
+- `context_load` - агент загрузил контекстный файл
+- `approval_request` - агент запросил approval
+- `error` - произошла ошибка
 
 ---
 
-## Test Expectations
+## Ожидания тестов
 
 ### no_violations
 
@@ -263,7 +263,7 @@ expectations:
   - type: no_violations
 ```
 
-**Validates**: No evaluator violations occurred
+**Валидирует**: нарушения evaluators отсутствуют
 
 ---
 
@@ -276,7 +276,7 @@ expectations:
     should_pass: true
 ```
 
-**Validates**: Specific evaluator passed/failed as expected
+**Валидирует**: конкретный evaluator прошел/упал ожидаемым образом
 
 ---
 
@@ -289,7 +289,7 @@ expectations:
     min_count: 1
 ```
 
-**Validates**: Specific tools were used
+**Валидирует**: конкретные инструменты были использованы
 
 ---
 
@@ -301,13 +301,13 @@ expectations:
     contexts: ["core/standards/code-quality.md"]
 ```
 
-**Validates**: Specific context files were loaded
+**Валидирует**: конкретные контекстные файлы были загружены
 
 ---
 
-## Test Reports
+## Отчеты тестов
 
-### Report Format
+### Формат отчета
 
 ```
 Test: smoke-test.yaml
@@ -323,7 +323,7 @@ Evaluators:
 Duration: 5.2s
 ```
 
-### Failure Report
+### Отчет о падении
 
 ```
 Test: approval-gate.yaml
@@ -341,9 +341,9 @@ Duration: 4.8s
 
 ---
 
-## Writing Tests
+## Написание тестов
 
-### Smoke Test (Basic Functionality)
+### Smoke-тест (базовая функциональность)
 
 ```yaml
 name: Smoke Test
@@ -357,7 +357,7 @@ expectations:
   - type: no_violations
 ```
 
-### Approval Gate Test
+### Тест approval gate
 
 ```yaml
 name: Approval Gate Test
@@ -373,7 +373,7 @@ expectations:
     should_pass: true
 ```
 
-### Context Loading Test
+### Тест загрузки контекста
 
 ```yaml
 name: Context Loading Test
@@ -390,16 +390,16 @@ expectations:
 
 ---
 
-## Debugging Test Failures
+## Отладка падений тестов
 
-### Step 1: Run with Debug
+### Шаг 1: запустить с debug
 
 ```bash
 cd evals/framework
 npm run eval:sdk -- --agent={agent} --pattern="{test}" --debug
 ```
 
-### Step 2: Check Session
+### Шаг 2: проверить сессию
 
 ```bash
 # Find session
@@ -409,88 +409,88 @@ ls -lt .tmp/sessions/ | head -5
 cat .tmp/sessions/{session-id}/session.json | jq
 ```
 
-### Step 3: Analyze Events
+### Шаг 3: проанализировать events
 
 ```bash
 # View events
 cat .tmp/sessions/{session-id}/events.json | jq
 ```
 
-### Step 4: Identify Violation
+### Шаг 4: определить нарушение
 
-Look for:
-- Missing approval requests
-- Missing context loads
-- Wrong tool usage
-- Auto-fixing behavior
+Ищите:
+- Отсутствующие approval requests
+- Отсутствующие context loads
+- Неверное использование инструментов
+- Поведение auto-fixing
 
-### Step 5: Fix Agent
+### Шаг 5: исправить агента
 
-Update agent prompt to:
-- Add approval gate
-- Add context loading
-- Use correct tools
-- Stop on failure
-
----
-
-## Best Practices
-
-### Test Coverage
-
-✅ **Smoke test** - Basic functionality  
-✅ **Approval gate test** - Verify approval workflow  
-✅ **Context loading test** - Verify context usage  
-✅ **Tool usage test** - Verify correct tools  
-✅ **Error handling test** - Verify stop on failure  
-
-### Test Design
-
-✅ **Clear expectations** - Explicit what should happen  
-✅ **Realistic scenarios** - Test real-world usage  
-✅ **Isolated tests** - One concern per test  
-✅ **Fast execution** - Keep tests under 10 seconds  
-
-### Debugging
-
-✅ **Use debug mode** - See detailed output  
-✅ **Check sessions** - Analyze agent behavior  
-✅ **Review events** - Understand timeline  
-✅ **Iterate quickly** - Fix and re-test  
+Обновите промпт агента, чтобы:
+- Добавить approval gate
+- Добавить загрузку контекста
+- Использовать правильные инструменты
+- Останавливаться при ошибке
 
 ---
 
-## Common Issues
+## Лучшие практики
 
-### Test Timeout
+### Покрытие тестами
 
-**Problem**: Test exceeds timeout  
-**Solution**: Increase timeout in config.yaml or optimize agent
+✅ **Smoke-тест** - базовая функциональность  
+✅ **Тест approval gate** - проверить approval-процесс  
+✅ **Тест загрузки контекста** - проверить использование контекста  
+✅ **Тест использования инструментов** - проверить корректные инструменты  
+✅ **Тест обработки ошибок** - проверить остановку при ошибке  
 
-### Approval Gate Violation
+### Дизайн тестов
 
-**Problem**: Agent executes without approval  
-**Solution**: Add approval request in agent prompt
+✅ **Ясные expectations** - явно указано ожидаемое поведение  
+✅ **Реалистичные сценарии** - тестируйте реальное использование  
+✅ **Изолированные тесты** - один аспект на тест  
+✅ **Быстрое выполнение** - держите тесты до 10 секунд  
 
-### Context Loading Violation
+### Отладка
 
-**Problem**: Agent doesn't load required context  
-**Solution**: Add context loading logic in agent prompt
-
-### Tool Usage Violation
-
-**Problem**: Agent uses wrong tools  
-**Solution**: Update agent to use correct tools (read, list, grep)
-
----
-
-## Related Files
-
-- **Testing guide**: `guides/testing-agent.md`
-- **Debugging guide**: `guides/debugging.md`
-- **Agent concepts**: `core-concepts/agents.md`
+✅ **Используйте debug mode** - смотрите подробный вывод  
+✅ **Проверяйте sessions** - анализируйте поведение агента  
+✅ **Просматривайте events** - понимайте timeline  
+✅ **Итерируйте быстро** - исправляйте и тестируйте снова  
 
 ---
 
-**Last Updated**: 2025-12-10  
-**Version**: 0.5.0
+## Частые проблемы
+
+### Timeout теста
+
+**Проблема**: тест превышает timeout  
+**Решение**: увеличьте timeout в config.yaml или оптимизируйте агента
+
+### Нарушение approval gate
+
+**Проблема**: агент выполняет действия без approval  
+**Решение**: добавьте approval request в промпт агента
+
+### Нарушение загрузки контекста
+
+**Проблема**: агент не загружает нужный контекст  
+**Решение**: добавьте логику загрузки контекста в промпт агента
+
+### Нарушение использования инструментов
+
+**Проблема**: агент использует неверные инструменты  
+**Решение**: обновите агента, чтобы он использовал правильные инструменты (read, list, grep)
+
+---
+
+## Связанные файлы
+
+- **Руководство по тестированию**: `guides/testing-agent.md`
+- **Руководство по отладке**: `guides/debugging.md`
+- **Концепции агентов**: `core-concepts/agents.md`
+
+---
+
+**Последнее обновление**: 2025-12-10  
+**Версия**: 0.5.0

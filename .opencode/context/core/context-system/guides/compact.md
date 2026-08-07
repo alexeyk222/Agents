@@ -1,71 +1,71 @@
 <!-- Context: core/compact | Priority: high | Version: 1.1 | Updated: 2026-02-15 -->
 
-# Context Compaction (Minimization)
+# Сжатие контекста (минимизация)
 
-**Purpose**: Compress verbose content into minimal viable information
+**Назначение**: сжимать многословный контент до минимально жизнеспособной информации
 
-**Last Updated**: 2026-02-15
-
----
-
-## Core Idea
-
-Transform verbose explanations → core concepts following MVI principle.
-
-**Formula**: Verbose Content → Core Concept (1-3 sentences) → Key Points (3-5 bullets) → Minimal Example (<10 lines) → Reference Link → Compact File
+**Последнее обновление**: 2026-02-15
 
 ---
 
-## 5 Compression Techniques
+## Основная идея
 
-### 1. Extract Core Concept
-**From**: Paragraphs → **To**: 1-3 sentences  
-**Rule**: If you can't explain it in 3 sentences, simplify further.
+Преобразовывать многословные объяснения → ключевые концепции по принципу MVI.
 
-### 2. Bulletize Key Points
-**From**: Long paragraphs → **To**: 3-5 bullet points  
-**Rule**: Each bullet = one key fact. No sub-bullets.
-
-### 3. Minimize Examples
-**From**: Full implementations → **To**: Smallest working example (<10 lines)  
-**Rule**: Show the simplest case. Link to full examples.
-
-### 4. Replace Repetition with References
-**From**: Same info repeated → **To**: Define once, reference with links  
-**Rule**: Say it once in concepts/, reference everywhere else.
-
-### 5. Convert Prose to Tables
-**From**: Paragraphs listing things → **To**: Scannable tables  
-**Rule**: If listing >3 items, use a table or bullets.
+**Формула**: многословный контент → ключевая концепция (1–3 предложения) → ключевые пункты (3–5 маркеров) → минимальный пример (<10 строк) → ссылка → сжатый файл
 
 ---
 
-## Compaction Checklist
+## 5 техник сжатия
 
-- [ ] Core concept is 1-3 sentences?
-- [ ] Key points are 3-5 bullets (no sub-bullets)?
-- [ ] Example is <10 lines of code?
-- [ ] No repeated explanations?
-- [ ] Reference link added for deep dive?
-- [ ] File is under line limit?
-- [ ] Can be scanned in <30 seconds?
+### 1. Извлечь ключевую концепцию
+**Из**: абзацев → **в**: 1-3 предложения  
+**Правило**: если нельзя объяснить за 3 предложения, упрощайте дальше.
+
+### 2. Превратить ключевые пункты в маркеры
+**Из**: длинных абзацев → **в**: 3–5 маркеров  
+**Правило**: каждый маркер = один ключевой факт. Без вложенных маркеров.
+
+### 3. Минимизировать примеры
+**Из**: полных реализаций → **в**: самый маленький рабочий пример (<10 строк)  
+**Правило**: показывайте самый простой случай. Ссылайтесь на полные примеры.
+
+### 4. Заменить повторение ссылками
+**Из**: повторяющейся информации → **в**: определить один раз и ссылаться  
+**Правило**: скажите один раз в `concepts/`, в остальных местах ссылайтесь.
+
+### 5. Преобразовать прозу в таблицы
+**Из**: абзацев со списками → **в**: сканируемые таблицы  
+**Правило**: если перечислено >3 пунктов, используйте таблицу или маркеры.
 
 ---
 
-## Common Bloat Patterns to Remove
+## Чеклист сжатия
 
-| Bloat Type | ❌ Avoid | ✅ Use Instead |
+- [ ] Ключевая концепция — 1–3 предложения?
+- [ ] Ключевые пункты — 3–5 маркеров (без вложенных маркеров)?
+- [ ] Пример — <10 строк кода?
+- [ ] Нет повторяющихся объяснений?
+- [ ] Ссылка для глубокого изучения добавлена?
+- [ ] Файл в пределах лимита строк?
+- [ ] Можно просканировать за <30 секунд?
+
+---
+
+## Распространенные паттерны раздувания для удаления
+
+| Тип раздувания | ❌ Избегать | ✅ Использовать вместо |
 |------------|---------|---------------|
-| Over-Explaining | "This is important because it allows you to manage state in a more efficient way..." | "Manages state efficiently" |
-| Historical Context | "Before React 16.8, we used class components..." | Skip history unless critical |
-| Multiple Examples | Example 1, 2, 3, 4... | ONE simple example + link |
-| Implementation Details | "The internal implementation uses a fiber architecture..." | Skip internals, show usage |
+| Излишние объяснения | "This is important because it allows you to manage state in a more efficient way..." | "Manages state efficiently" |
+| Исторический контекст | "Before React 16.8, we used class components..." | Пропустить историю, если она не критична |
+| Много примеров | Пример 1, 2, 3, 4... | ОДИН простой пример + ссылка |
+| Детали реализации | "The internal implementation uses a fiber architecture..." | Пропустить внутренности, показать использование |
 
 ---
 
-## Target Line Counts
+## Целевые количества строк
 
-| File Type | Target | Max |
+| Тип файла | Цель | Макс. |
 |-----------|--------|-----|
 | Concept | 40-60 | 100 |
 | Example | 30-50 | 80 |
@@ -73,25 +73,25 @@ Transform verbose explanations → core concepts following MVI principle.
 | Lookup | 20-40 | 100 |
 | Error | 50-80 | 150 |
 
-**Philosophy**: If you hit max lines, split into multiple files or reference external docs.
+**Философия**: если достигли максимума строк, разделите на несколько файлов или ссылайтесь на внешнюю документацию.
 
 ---
 
-## The 30-Second Rule
+## Правило 30 секунд
 
 <rule id="thirty_second_rule" enforcement="strict">
-  Every context file must be scannable in <30 seconds.
+  Каждый context file должен сканироваться за <30 секунд.
 </rule>
 
-**Test**: Can someone unfamiliar explain it back in 30 seconds?
+**Тест**: сможет ли незнакомый с темой человек объяснить это за 30 секунд?
 
 ---
 
-## Quick Example
+## Быстрый пример
 
-**Before (150 lines)**: Long authentication system explanation with edge cases, examples, etc.
+**До (150 строк)**: длинное объяснение системы аутентификации с крайними случаями, примерами и т. д.
 
-**After (45 lines)**:
+**После (45 строк)**:
 ```markdown
 # Concept: Authentication
 
@@ -115,8 +115,8 @@ res.cookie('auth', token, { httpOnly: true })
 
 ---
 
-## Related
+## Связанные материалы
 
-- mvi.md - MVI principle
-- harvest.md - When to compact
-- templates.md - Standard formats
+- mvi.md - принцип MVI
+- harvest.md - когда сжимать
+- templates.md - стандартные форматы

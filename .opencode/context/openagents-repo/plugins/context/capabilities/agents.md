@@ -1,12 +1,12 @@
 <!-- Context: openagents-repo/agents | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Custom Agents in OpenCode
+# Пользовательские агенты в OpenCode
 
-Plugins can register custom AI agents that have specific roles, instructions, and toolsets.
+Плагины могут регистрировать пользовательских AI-агентов с заданными ролями, инструкциями и наборами инструментов.
 
-## Agent Definition
+## Определение агента
 
-Custom agents are configured in the plugin's `config` function.
+Пользовательские агенты настраиваются в функции `config` плагина.
 
 ```typescript
 export const registerCustomAgents = (config) => {
@@ -25,9 +25,9 @@ export const registerCustomAgents = (config) => {
 };
 ```
 
-## Integrating into Plugin
+## Интеграция в плагин
 
-The `config` method in the plugin return object is used to register agents.
+Метод `config` в возвращаемом объекте плагина используется для регистрации агентов.
 
 ```typescript
 export const MyPlugin: Plugin = async (context) => {
@@ -40,7 +40,7 @@ export const MyPlugin: Plugin = async (context) => {
 };
 ```
 
-## Agent Capabilities
-- **Model Choice**: You can select specific models for different agents.
-- **Scoped Tools**: Limit what tools an agent can use to ensure safety or focus.
-- **System Instructions**: Define the "personality" and rules for the agent.
+## Возможности агента
+- **Выбор модели**: можно выбирать разные модели для разных агентов.
+- **Ограниченные инструменты**: ограничивайте инструменты агента для безопасности или фокуса.
+- **Системные инструкции**: задавайте «личность» и правила агента.

@@ -1,68 +1,68 @@
 <!-- Context: workflows/task-breakdown | Priority: high | Version: 2.0 | Updated: 2025-01-21 -->
 
-# Task Breakdown Guidelines
+# Руководство по декомпозиции задач
 
-## Quick Reference
+## Краткая справка
 
-**When to Use**: 4+ files, >60 min effort, complex dependencies, multi-step coordination
+**Когда использовать**: 4+ файла, >60 мин работы, сложные зависимости, многошаговая координация
 
-**Process**: Scope → Phases → Small Tasks (1-2h) → Dependencies → Estimates
+**Процесс**: область → фазы → малые задачи (1-2 ч) → зависимости → оценки
 
-**Template Sections**: Overview, Prerequisites, Tasks (by Phase), Testing Strategy, Total Estimate, Notes
+**Разделы шаблона**: обзор, предварительные условия, задачи (по фазам), стратегия тестирования, общая оценка, заметки
 
-**Best Practices**: Keep tasks small (1-2h), make dependencies clear, include verification, be realistic with estimates
+**Лучшие практики**: держите задачи маленькими (1-2 ч), явно указывайте зависимости, добавляйте проверку, реалистично оценивайте сроки
 
 ---
 
-## Purpose
-Framework for breaking down complex tasks into manageable, sequential subtasks.
+## Назначение
+Фреймворк для разбиения сложных задач на управляемые последовательные подзадачи.
 
-## When to Use
-Reference this when:
-- Task involves 4+ files
-- Estimated effort >60 minutes
-- Complex dependencies exist
-- Multi-step coordination needed
-- User requests task breakdown
+## Когда использовать
+Обращайтесь к этому, когда:
+- Задача затрагивает 4+ файла
+- Оценка трудозатрат >60 минут
+- Есть сложные зависимости
+- Нужна многошаговая координация
+- Пользователь просит декомпозицию задач
 
-## Breakdown Process
+## Процесс декомпозиции
 
-### 1. Understand the Full Scope
-- What's the complete requirement?
-- What are all the components needed?
-- What's the end goal?
-- What are the constraints?
+### 1. Понять полный объем
+- Какое полное требование?
+- Какие компоненты нужны?
+- Какая конечная цель?
+- Какие ограничения?
 
-### 2. Identify Major Phases
-- What are the logical groupings?
-- What must happen first?
-- What can happen in parallel?
-- What depends on what?
+### 2. Определить основные фазы
+- Какие логические группы?
+- Что должно произойти первым?
+- Что можно делать параллельно?
+- Что от чего зависит?
 
-### 3. Break Into Small Tasks
-- Each task should be 1-2 hours max
-- Clear, actionable items
-- Independently completable
-- Easy to verify completion
+### 3. Разбить на малые задачи
+- Каждая задача — максимум 1-2 часа
+- Ясные, выполнимые пункты
+- Можно завершить независимо
+- Легко проверить завершение
 
-### 4. Define Dependencies
-- What must be done first?
-- What can be done in parallel?
-- What blocks what?
-- What's the critical path?
+### 4. Определить зависимости
+- Что нужно сделать первым?
+- Что можно выполнять параллельно?
+- Что что блокирует?
+- Какой критический путь?
 
-### 5. Estimate Effort
-- Realistic time estimates
-- Include testing time
-- Account for unknowns
-- Add buffer for complexity
+### 5. Оценить трудозатраты
+- Реалистичные оценки времени
+- Учитывать время на тестирование
+- Учитывать неизвестные факторы
+- Добавить буфер на сложность
 
-## Breakdown Template
+## Шаблон декомпозиции
 
 ```markdown
 # Task Breakdown: {Task Name}
 
-## Overview
+## Обзор
 {1-2 sentence description of what we're building}
 
 ## Prerequisites
@@ -95,7 +95,7 @@ Reference this when:
   - **Dependencies:** {phase 1 complete}
   - **Verification:** {how to verify it's done}
 
-## Testing Strategy
+## Стратегия тестирования
 - [ ] Unit tests for {component}
 - [ ] Integration tests for {flow}
 - [ ] Manual testing: {scenarios}
@@ -108,12 +108,12 @@ Reference this when:
 {Any important context, decisions, or considerations}
 ```
 
-## Example Breakdown
+## Пример декомпозиции
 
 ```markdown
 # Task Breakdown: User Authentication System
 
-## Overview
+## Обзор
 Build authentication system with login, registration, and password reset.
 
 ## Prerequisites
@@ -179,7 +179,7 @@ Build authentication system with login, registration, and password reset.
   - **Dependencies:** Task 3.2
   - **Verification:** Reset emails sent successfully
 
-## Testing Strategy
+## Стратегия тестирования
 - [ ] Unit tests for password hashing
 - [ ] Unit tests for token generation
 - [ ] Integration tests for login flow
@@ -198,73 +198,73 @@ Build authentication system with login, registration, and password reset.
 - Email service must be configured before Phase 3
 ```
 
-## Best Practices
+## Лучшие практики
 
-### Keep Tasks Small
-- 1-2 hours maximum per task
-- If larger, break it down further
-- Each task should be completable in one sitting
+### Делайте задачи маленькими
+- Максимум 1-2 часа на задачу
+- Если больше — разбейте дальше
+- Каждая задача должна завершаться за один подход
 
-### Make Dependencies Clear
-- Explicitly state what must be done first
-- Identify parallel work opportunities
-- Note blocking dependencies
+### Делайте зависимости явными
+- Явно указывайте, что нужно сделать первым
+- Находите возможности параллельной работы
+- Отмечайте блокирующие зависимости
 
-### Include Verification
-- How do you know the task is done?
-- What should work when complete?
-- How can it be tested?
+### Добавляйте проверку
+- Как понять, что задача завершена?
+- Что должно работать после завершения?
+- Как это можно протестировать?
 
-### Be Realistic with Estimates
-- Include time for testing
-- Account for unknowns
-- Add buffer for complexity
-- Better to overestimate than underestimate
+### Реалистично оценивайте сроки
+- Учитывайте время на тестирование
+- Учитывайте неизвестные факторы
+- Добавляйте буфер на сложность
+- Лучше переоценить, чем недооценить
 
-### Group Related Work
-- Organize by feature or component
-- Keep related tasks together
-- Make phases logical and cohesive
+### Группируйте связанную работу
+- Организуйте по функции или компоненту
+- Держите связанные задачи вместе
+- Делайте фазы логичными и цельными
 
-## Common Patterns
+## Распространенные паттерны
 
-### Database-First Pattern
-1. Design schema
-2. Create migrations
-3. Build models
-4. Implement business logic
-5. Add API endpoints
-6. Write tests
+### Паттерн Database-First
+1. Спроектировать схему
+2. Создать миграции
+3. Собрать модели
+4. Реализовать бизнес-логику
+5. Добавить API-endpoints
+6. Написать тесты
 
-### Feature-First Pattern
-1. Define requirements
-2. Design interface
-3. Implement core logic
-4. Add error handling
-5. Write tests
-6. Document usage
+### Паттерн Feature-First
+1. Определить требования
+2. Спроектировать интерфейс
+3. Реализовать основную логику
+4. Добавить обработку ошибок
+5. Написать тесты
+6. Документировать использование
 
-### Refactoring Pattern
-1. Add tests for existing behavior
-2. Refactor small section
-3. Verify tests still pass
-4. Repeat for next section
-5. Clean up and optimize
-6. Update documentation
+### Паттерн рефакторинга
+1. Добавить тесты для текущего поведения
+2. Отрефакторить небольшой участок
+3. Проверить, что тесты все еще проходят
+4. Повторить для следующего участка
+5. Очистить и оптимизировать
+6. Обновить документацию
 
-## Quick Reference
+## Краткая справка
 
-**Good breakdown:**
-- Small, focused tasks (1-2 hours)
-- Clear dependencies
-- Realistic estimates
-- Verification criteria
-- Logical phases
+**Хорошая декомпозиция:**
+- Малые сфокусированные задачи (1-2 часа)
+- Явные зависимости
+- Реалистичные оценки
+- Критерии проверки
+- Логичные фазы
 
-**Breakdown checklist:**
-- [ ] All requirements captured
-- [ ] Tasks are small and focused
-- [ ] Dependencies identified
-- [ ] Estimates are realistic
-- [ ] Testing included
-- [ ] Verification criteria clear
+**Чеклист декомпозиции:**
+- [ ] Все требования учтены
+- [ ] Задачи маленькие и сфокусированные
+- [ ] Зависимости определены
+- [ ] Оценки реалистичны
+- [ ] Тестирование включено
+- [ ] Критерии проверки ясны

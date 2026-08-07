@@ -1,15 +1,15 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Adding Agent Tests
+# Руководство: добавление тестов агента
 
-**Prerequisites**: Load `adding-agent-basics.md` first  
-**Purpose**: Additional test patterns for agents
+**Предварительно**: сначала загрузите `adding-agent-basics.md`  
+**Цель**: дополнительные шаблоны тестов для агентов
 
 ---
 
-## Additional Test Types
+## Дополнительные типы тестов
 
-### Approval Gate Test
+### Тест approval gate
 
 ```yaml
 # evals/agents/{category}/{agent-name}/tests/approval-gate.yaml
@@ -26,7 +26,7 @@ expectations:
     should_pass: true
 ```
 
-### Context Loading Test
+### Тест загрузки контекста
 
 ```yaml
 # evals/agents/{category}/{agent-name}/tests/context-loading.yaml
@@ -44,7 +44,7 @@ expectations:
 
 ---
 
-## Complete Example: API Specialist
+## Полный пример: API Specialist
 
 ```bash
 # 1. Create agent file
@@ -67,7 +67,7 @@ dependencies: ["subagent:tester"]
 - API documentation
 - Authentication/authorization
 
-## Workflow
+## Рабочий процесс
 1. Analyze requirements
 2. Design API structure
 3. Implement endpoints
@@ -114,32 +114,32 @@ cd evals/framework && npm run eval:sdk -- --agent=development/api-specialist --p
 
 ---
 
-## Common Issues
+## Частые проблемы
 
-| Problem | Solution |
+| Проблема | Решение |
 |---------|----------|
-| Auto-detect doesn't find agent | Check frontmatter is valid YAML |
-| Registry validation fails | Verify file path is correct |
-| Test fails unexpectedly | Load `debugging.md` for troubleshooting |
+| Auto-detect не находит агента | Проверьте, что frontmatter — валидный YAML |
+| Registry validation падает | Проверьте корректность пути к файлу |
+| Тест неожиданно падает | Загрузите `debugging.md` для диагностики |
 
 ---
 
-## Claude Code Subagent (Optional)
+## Claude Code Subagent (опционально)
 
-For Claude Code-only helpers, create a project subagent:
+Для помощников только для Claude Code создайте project subagent:
 
-- **Path**: `.claude/agents/{subagent-name}.md`
-- **Required**: `name`, `description` frontmatter
-- **Optional**: `tools`, `disallowedTools`, `permissionMode`, `skills`, `hooks`
-- **Reload**: restart Claude Code or run `/agents`
+- **Путь**: `.claude/agents/{subagent-name}.md`
+- **Обязательно**: frontmatter `name`, `description`
+- **Опционально**: `tools`, `disallowedTools`, `permissionMode`, `skills`, `hooks`
+- **Перезагрузка**: перезапустите Claude Code или выполните `/agents`
 
-See `creating-subagents.md` for Claude Code subagent details.
+Подробности о Claude Code subagent см. в `creating-subagents.md`.
 
 ---
 
-## Related
+## Связанное
 
-- `adding-agent-basics.md` - Basic agent creation
-- `testing-agent.md` - Testing guide
-- `debugging.md` - Troubleshooting
-- `creating-subagents.md` - Claude Code subagents
+- `adding-agent-basics.md` — базовое создание агента
+- `testing-agent.md` — руководство по тестированию
+- `debugging.md` — диагностика проблем
+- `creating-subagents.md` — Claude Code subagents

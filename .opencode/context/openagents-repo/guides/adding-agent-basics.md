@@ -1,27 +1,27 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Adding a New Agent (Basics)
+# Руководство: добавление нового агента (основы)
 
-**Prerequisites**: Load `core-concepts/agents.md` first  
-**Purpose**: Create and register a new agent in 4 steps
-
----
-
-## Overview
-
-Adding a new agent involves:
-1. Creating the agent file
-2. Creating test structure
-3. Updating the registry
-4. Validating everything works
-
-**Time**: ~15-20 minutes
+**Предварительно**: сначала загрузите `core-concepts/agents.md`  
+**Цель**: создать и зарегистрировать нового агента за 4 шага
 
 ---
 
-## Step 1: Create Agent File
+## Обзор
 
-### Choose Category
+Добавление нового агента включает:
+1. Создание файла агента
+2. Создание структуры тестов
+3. Обновление registry
+4. Проверку, что всё работает
+
+**Время**: ~15–20 минут
+
+---
+
+## Шаг 1: создайте файл агента
+
+### Выберите категорию
 
 ```bash
 # Available categories:
@@ -33,7 +33,7 @@ Adding a new agent involves:
 # - learning/      (educators)
 ```
 
-### Create File with Frontmatter
+### Создайте файл с frontmatter
 
 ```bash
 touch .opencode/agent/{category}/{agent-name}.md
@@ -56,7 +56,7 @@ dependencies: []
 - Key responsibility 1
 - Key responsibility 2
 
-## Workflow
+## Рабочий процесс
 1. Step 1
 2. Step 2
 
@@ -67,7 +67,7 @@ dependencies: []
 
 ---
 
-## Step 2: Create Test Structure
+## Шаг 2: создайте структуру тестов
 
 ```bash
 # Create directories
@@ -98,7 +98,7 @@ EOF
 
 ---
 
-## Step 3: Update Registry
+## Шаг 3: обновите registry
 
 ```bash
 # Dry run first
@@ -113,7 +113,7 @@ cat registry.json | jq '.components.agents[] | select(.id == "{agent-name}")'
 
 ---
 
-## Step 4: Validate
+## Шаг 4: проверьте
 
 ```bash
 # Validate registry
@@ -129,28 +129,28 @@ REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list
 
 ---
 
-## Checklist
+## Чеклист
 
-- [ ] Agent file created with proper frontmatter
-- [ ] Test structure created (config + smoke test)
-- [ ] Registry updated via auto-detect
-- [ ] Registry validation passes
-- [ ] Smoke test passes
-- [ ] Agent appears in `./install.sh --list`
-
----
-
-## Next Steps
-
-- **Add more tests** → `adding-agent-testing.md`
-- **Test thoroughly** → `testing-agent.md`
-- **Debug issues** → `debugging.md`
+- [ ] Файл агента создан с корректным frontmatter
+- [ ] Структура тестов создана (config + smoke test)
+- [ ] Registry обновлен через auto-detect
+- [ ] Валидация registry проходит
+- [ ] Smoke-тест проходит
+- [ ] Агент отображается в `./install.sh --list`
 
 ---
 
-## Related
+## Следующие шаги
 
-- `core-concepts/agents.md` - Agent concepts
-- `adding-agent-testing.md` - Additional test patterns
-- `testing-agent.md` - Testing guide
-- `creating-subagents.md` - Claude Code subagents (different system)
+- **Добавить больше тестов** → `adding-agent-testing.md`
+- **Тщательно протестировать** → `testing-agent.md`
+- **Разобрать ошибки** → `debugging.md`
+
+---
+
+## Связанное
+
+- `core-concepts/agents.md` — концепции агентов
+- `adding-agent-testing.md` — дополнительные шаблоны тестов
+- `testing-agent.md` — руководство по тестированию
+- `creating-subagents.md` — Claude Code subagents (другая система)

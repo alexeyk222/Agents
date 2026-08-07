@@ -1,267 +1,287 @@
 # Validate Repository
 
-Comprehensive validation command that checks the entire OpenAgents Control repository for consistency between CLI, documentation, registry, and components.
+Комплексная команда валидации, которая проверяет весь repository OpenAgents Control на согласованность между CLI, документацией, registry и components.
 
-## Usage
+## Использование
 
 ```bash
 /validate-repo
 ```
 
-## What It Checks
+## Что проверяет команда
 
-This command performs a comprehensive validation of:
+Эта команда выполняет комплексную проверку следующих областей:
 
-1. **Registry Integrity**
-   - JSON syntax validation
-   - Component definitions completeness
-   - File path references
-   - Dependency declarations
+1. **Целостность Registry**
 
-2. **Component Existence**
-   - All agents exist at specified paths
-   - All subagents exist at specified paths
-   - All commands exist at specified paths
-   - All tools exist at specified paths
-   - All plugins exist at specified paths
-   - All context files exist at specified paths
-   - All config files exist at specified paths
+   * Проверка синтаксиса JSON
+   * Полнота определений components
+   * Корректность ссылок на пути файлов
+   * Корректность объявлений dependencies
 
-3. **Profile Consistency**
-   - Component counts match documentation
-   - Profile descriptions are accurate
-   - Dependencies are satisfied
-   - No duplicate components
+2. **Существование Components**
 
-4. **Documentation Accuracy**
-   - README component counts match registry
-   - OpenAgent documentation references are valid
-   - Context file references are correct
-   - Installation guide is up to date
+   * Все agents существуют по указанным путям
+   * Все subagents существуют по указанным путям
+   * Все commands существуют по указанным путям
+   * Все tools существуют по указанным путям
+   * Все plugins существуют по указанным путям
+   * Все context-файлы существуют по указанным путям
+   * Все config-файлы существуют по указанным путям
 
-5. **Context File Structure**
-   - All referenced context files exist
-   - Context file organization is correct
-   - No orphaned context files
+3. **Согласованность Profiles**
+
+   * Количество components соответствует документации
+   * Описания profiles корректны
+   * Все dependencies удовлетворены
+   * Отсутствуют дублирующиеся components
+
+4. **Точность документации**
+
+   * Количество components в README соответствует registry
+   * Ссылки в документации OpenAgent корректны
+   * Ссылки на context-файлы корректны
+   * Installation guide актуален
+
+5. **Структура Context Files**
+
+   * Все упомянутые context-файлы существуют
+   * Организация context-файлов корректна
+   * Отсутствуют orphaned context-файлы
 
 6. **Cross-References**
-   - Agent dependencies exist
-   - Subagent references are valid
-   - Command references are valid
-   - Tool dependencies are satisfied
 
-## Output
+   * Dependencies агентов существуют
+   * Ссылки на subagents корректны
+   * Ссылки на commands корректны
+   * Dependencies tools удовлетворены
 
-The command generates a detailed report showing:
-- ✅ What's correct and validated
-- ⚠️ Warnings for potential issues
-- ❌ Errors that need fixing
-- 📊 Summary statistics
+## Результат
 
-## Instructions
+Команда создаёт подробный отчёт, показывающий:
 
-You are a validation specialist. Your task is to comprehensively validate the OpenAgents Control repository for consistency and correctness.
+* ✅ Что корректно и успешно прошло validation
+* ⚠️ Предупреждения о потенциальных проблемах
+* ❌ Ошибки, которые необходимо исправить
+* 📊 Сводную статистику
 
-### Step 1: Validate Registry JSON
+## Инструкции
 
-1. Read and parse `registry.json`
-2. Validate JSON syntax
-3. Check schema structure:
-   - `version` field exists
-   - `repository` field exists
-   - `categories` object exists
-   - `components` object exists with all types
-   - `profiles` object exists
-   - `metadata` object exists
+Ты — специалист по validation. Твоя задача — комплексно проверить repository OpenAgents Control на согласованность и корректность.
 
-### Step 2: Validate Component Definitions
+### Шаг 1: Проверить Registry JSON
 
-For each component type (agents, subagents, commands, tools, plugins, contexts, config):
+1. Прочитать и распарсить `registry.json`
+2. Проверить синтаксис JSON
+3. Проверить структуру schema:
 
-1. Check required fields:
-   - `id` (unique)
-   - `name`
-   - `type`
-   - `path`
-   - `description`
-   - `tags` (array)
-   - `dependencies` (array)
-   - `category`
+   * Поле `version` существует
+   * Поле `repository` существует
+   * Объект `categories` существует
+   * Объект `components` существует и содержит все типы
+   * Объект `profiles` существует
+   * Объект `metadata` существует
 
-2. Verify file exists at `path`
-3. Check for duplicate IDs
-4. Validate category is in defined categories
+### Шаг 2: Проверить определения Components
 
-### Step 3: Validate Profiles
+Для каждого типа component (`agents`, `subagents`, `commands`, `tools`, `plugins`, `contexts`, `config`):
 
-For each profile (essential, developer, business, full, advanced):
+1. Проверить обязательные поля:
 
-1. Count components in profile
-2. Verify all component references exist in components section
-3. Check dependencies are satisfied
-4. Validate no duplicate components
+   * `id` — уникальный
+   * `name`
+   * `type`
+   * `path`
+   * `description`
+   * `tags` — массив
+   * `dependencies` — массив
+   * `category`
 
-### Step 4: Cross-Reference with Documentation
+2. Проверить, что файл существует по указанному `path`
+
+3. Проверить наличие duplicate IDs
+
+4. Убедиться, что `category` присутствует среди определённых categories
+
+### Шаг 3: Проверить Profiles
+
+Для каждого profile (`essential`, `developer`, `business`, `full`, `advanced`):
+
+1. Подсчитать количество components в profile
+2. Проверить, что все ссылки на components существуют в секции `components`
+3. Убедиться, что все dependencies удовлетворены
+4. Проверить отсутствие дублирующихся components
+
+### Шаг 4: Сверить с документацией
 
 1. **navigation.md**:
-   - Extract component counts from profile descriptions
-   - Compare with actual registry counts
-   - Check profile descriptions match registry descriptions
+
+   * Извлечь количество components из описаний profiles
+   * Сравнить с фактическими значениями в registry
+   * Проверить, что описания profiles соответствуют описаниям в registry
 
 2. **docs/agents/openagent.md**:
-   - Verify delegation criteria mentioned
-   - Check context file references
-   - Validate workflow descriptions
+
+   * Проверить упомянутые delegation criteria
+   * Проверить ссылки на context-файлы
+   * Проверить описания workflows
 
 3. **docs/getting-started/installation.md**:
-   - Check profile descriptions
-   - Verify installation commands
 
-### Step 5: Validate Context File Structure
+   * Проверить описания profiles
+   * Проверить installation commands
 
-1. List all files in `.opencode/context/`
-2. Check against registry context entries
-3. Identify orphaned files (exist but not in registry)
-4. Identify missing files (in registry but don't exist)
-5. Validate structure:
-   - `core/standards/` files
-   - `core/workflows/` files
-   - `core/system/` files
-   - `project/` files
+### Шаг 5: Проверить структуру Context Files
 
-### Step 6: Validate Dependencies
+1. Получить список всех файлов в `.opencode/context/`
+2. Сверить их с context entries в registry
+3. Найти orphaned files — существуют, но отсутствуют в registry
+4. Найти missing files — указаны в registry, но не существуют
+5. Проверить структуру:
 
-For each component with dependencies:
+   * Файлы `core/standards/`
+   * Файлы `core/workflows/`
+   * Файлы `core/system/`
+   * Файлы `project/`
 
-1. Parse dependency string (format: `type:id`)
-2. Verify referenced component exists
-3. Check for circular dependencies
-4. Validate dependency chain completeness
+### Шаг 6: Проверить Dependencies
 
-### Step 7: Generate Report
+Для каждого component с dependencies:
 
-Create a comprehensive report with sections:
+1. Распарсить строку dependency в формате `type:id`
+2. Убедиться, что указанный component существует
+3. Проверить наличие circular dependencies
+4. Проверить полноту dependency chain
 
-#### ✅ Validated Successfully
-- Registry JSON syntax
-- Component file existence
-- Profile integrity
-- Documentation accuracy
-- Context file structure
-- Dependency chains
+### Шаг 7: Сформировать отчёт
 
-#### ⚠️ Warnings
-- Orphaned files (exist but not referenced)
-- Unused components (defined but not in any profile)
-- Missing descriptions or tags
-- Outdated metadata dates
+Создай комплексный отчёт со следующими разделами:
 
-#### ❌ Errors
-- Missing files
-- Broken dependencies
-- Invalid JSON
-- Component count mismatches
-- Broken documentation references
-- Duplicate component IDs
+#### ✅ Успешно проверено
 
-#### 📊 Statistics
-- Total components: X
-- Total profiles: X
-- Total context files: X
-- Components per profile breakdown
-- File coverage percentage
+* Синтаксис Registry JSON
+* Существование файлов components
+* Целостность profiles
+* Точность документации
+* Структура context-файлов
+* Dependency chains
 
-### Step 8: Provide Recommendations
+#### ⚠️ Предупреждения
 
-Based on findings, suggest:
-- Files to create
-- Registry entries to add/remove
-- Documentation to update
-- Dependencies to fix
+* Orphaned files — существуют, но нигде не упоминаются
+* Unused components — определены, но не входят ни в один profile
+* Отсутствующие descriptions или tags
+* Устаревшие даты metadata
 
-## Example Report Format
+#### ❌ Ошибки
+
+* Отсутствующие файлы
+* Сломанные dependencies
+* Некорректный JSON
+* Несовпадение количества components
+* Сломанные ссылки в документации
+* Duplicate component IDs
+
+#### 📊 Статистика
+
+* Всего components: X
+* Всего profiles: X
+* Всего context-файлов: X
+* Разбивка количества components по profiles
+* Процент file coverage
+
+### Шаг 8: Дать рекомендации
+
+На основе найденных проблем предложи:
+
+* Какие файлы нужно создать
+* Какие registry entries добавить или удалить
+* Какую документацию обновить
+* Какие dependencies исправить
+
+## Пример формата отчёта
 
 ```markdown
-# OpenAgents Control Repository Validation Report
+# Отчёт по валидации Repository OpenAgents Control
 
-Generated: 2025-11-19 14:30:00
+Сформировано: 2025-11-19 14:30:00
 
-## Summary
+## Сводка
 
-✅ 95% validation passed
-⚠️ 3 warnings found
-❌ 2 errors found
-
----
-
-## ✅ Validated Successfully
-
-### Registry Integrity
-✅ JSON syntax valid
-✅ All required fields present
-✅ Schema structure correct
-
-### Component Existence (45/47 files found)
-✅ Agents: 3/3 files exist
-✅ Subagents: 15/15 files exist
-✅ Commands: 8/8 files exist
-✅ Tools: 2/2 files exist
-✅ Plugins: 2/2 files exist
-✅ Contexts: 13/15 files exist
-✅ Config: 2/2 files exist
-
-### Profile Consistency
-✅ Essential: 9 components (matches README)
-✅ Developer: 29 components (matches README)
-✅ Business: 15 components (matches README)
-✅ Full: 35 components (matches README)
-✅ Advanced: 42 components (matches README)
-
-### Documentation Accuracy
-✅ README component counts match registry
-✅ OpenAgent documentation up to date
-✅ Installation guide accurate
+✅ 95% проверок пройдено
+⚠️ Найдено 3 предупреждения
+❌ Найдено 2 ошибки
 
 ---
 
-## ⚠️ Warnings (3)
+## ✅ Успешно проверено
+
+### Целостность Registry
+✅ Синтаксис JSON корректен
+✅ Все обязательные поля присутствуют
+✅ Структура schema корректна
+
+### Существование Components (найдено 45/47 файлов)
+✅ Agents: 3/3 файлов существуют
+✅ Subagents: 15/15 файлов существуют
+✅ Commands: 8/8 файлов существуют
+✅ Tools: 2/2 файлов существуют
+✅ Plugins: 2/2 файлов существуют
+✅ Contexts: 13/15 файлов существуют
+✅ Config: 2/2 файлов существуют
+
+### Согласованность Profiles
+✅ Essential: 9 components (соответствует README)
+✅ Developer: 29 components (соответствует README)
+✅ Business: 15 components (соответствует README)
+✅ Full: 35 components (соответствует README)
+✅ Advanced: 42 components (соответствует README)
+
+### Точность документации
+✅ Количество components в README соответствует registry
+✅ Документация OpenAgent актуальна
+✅ Installation guide корректен
+
+---
+
+## ⚠️ Предупреждения (3)
 
 1. **Orphaned Context File**
    - File: `.opencode/context/legacy/old-patterns.md`
-   - Issue: Exists but not referenced in registry
-   - Recommendation: Add to registry or remove file
+   - Проблема: Файл существует, но не указан в registry
+   - Рекомендация: Добавить в registry или удалить файл
 
 2. **Unused Component**
    - Component: `workflow-orchestrator` (agent)
-   - Issue: Defined in registry but not in any profile
-   - Recommendation: Add to a profile or mark as deprecated
+   - Проблема: Определён в registry, но не входит ни в один profile
+   - Рекомендация: Добавить в profile или пометить как deprecated
 
-3. **Outdated Metadata**
-   - Field: `metadata.lastUpdated`
-   - Current: 2025-11-15
-   - Recommendation: Update to current date
+3. **Устаревшая Metadata**
+   - Поле: `metadata.lastUpdated`
+   - Текущее значение: 2025-11-15
+   - Рекомендация: Обновить до текущей даты
 
 ---
 
-## ❌ Errors (2)
+## ❌ Ошибки (2)
 
-1. **Missing Context File**
+1. **Отсутствующий Context File**
    - Component: `context:advanced-patterns`
-   - Expected path: `.opencode/context/core/advanced-patterns.md`
-   - Referenced in: developer, full, advanced profiles
-   - Action: Create file or remove from registry
+   - Ожидаемый путь: `.opencode/context/core/advanced-patterns.md`
+   - Используется в: developer, full, advanced profiles
+   - Действие: Создать файл или удалить ссылку из registry
 
-2. **Broken Dependency**
+2. **Сломанная Dependency**
    - Component: `agent:opencoder`
    - Dependency: `subagent:pattern-matcher`
-   - Issue: Dependency not found in registry
-   - Action: Add missing subagent or fix dependency reference
+   - Проблема: Dependency отсутствует в registry
+   - Действие: Добавить отсутствующий subagent или исправить dependency reference
 
 ---
 
-## 📊 Statistics
+## 📊 Статистика
 
-### Component Distribution
+### Распределение Components
 - Agents: 3
 - Subagents: 15
 - Commands: 8
@@ -269,9 +289,9 @@ Generated: 2025-11-19 14:30:00
 - Plugins: 2
 - Contexts: 15
 - Config: 2
-- **Total: 47 components**
+- **Всего: 47 components**
 
-### Profile Breakdown
+### Разбивка Profiles
 - Essential: 9 components (19%)
 - Developer: 29 components (62%)
 - Business: 15 components (32%)
@@ -279,69 +299,70 @@ Generated: 2025-11-19 14:30:00
 - Advanced: 42 components (89%)
 
 ### File Coverage
-- Total files defined: 47
-- Files found: 45 (96%)
-- Files missing: 2 (4%)
+- Всего файлов определено: 47
+- Найдено файлов: 45 (96%)
+- Отсутствует файлов: 2 (4%)
 - Orphaned files: 1
 
-### Dependency Health
-- Total dependencies: 23
-- Valid dependencies: 22 (96%)
-- Broken dependencies: 1 (4%)
+### Состояние Dependencies
+- Всего dependencies: 23
+- Валидных dependencies: 22 (96%)
+- Сломанных dependencies: 1 (4%)
 - Circular dependencies: 0
 
 ---
 
-## 🔧 Recommended Actions
+## 🔧 Рекомендуемые действия
 
-### High Priority (Errors)
-1. Create missing file: `.opencode/context/core/advanced-patterns.md`
-2. Fix broken dependency in `opencoder`
+### Высокий приоритет (Errors)
+1. Создать отсутствующий файл: `.opencode/context/core/advanced-patterns.md`
+2. Исправить сломанную dependency в `opencoder`
 
-### Medium Priority (Warnings)
-1. Remove orphaned file or add to registry
-2. Add `workflow-orchestrator` to a profile or deprecate
-3. Update metadata.lastUpdated to 2025-11-19
+### Средний приоритет (Warnings)
+1. Удалить orphaned file или добавить его в registry
+2. Добавить `workflow-orchestrator` в profile или пометить как deprecated
+3. Обновить `metadata.lastUpdated` до 2025-11-19
 
-### Low Priority (Improvements)
-1. Add more tags to components for better searchability
-2. Consider adding descriptions to all context files
-3. Document component categories in README
-
----
-
-## Next Steps
-
-1. Review and fix all ❌ errors
-2. Address ⚠️ warnings as needed
-3. Re-run validation to confirm fixes
-4. Update documentation if needed
+### Низкий приоритет (Improvements)
+1. Добавить больше tags к components для улучшения поиска
+2. Рассмотреть добавление descriptions ко всем context-файлам
+3. Задокументировать component categories в README
 
 ---
 
-**Validation Complete** ✓
+## Следующие шаги
+
+1. Проверить и исправить все ❌ ошибки
+2. При необходимости обработать ⚠️ предупреждения
+3. Повторно запустить validation, чтобы подтвердить исправления
+4. При необходимости обновить документацию
+
+---
+
+**Валидация завершена** ✓
 ```
 
-## Implementation Notes
+## Примечания по реализации
 
-The command should:
-- Use bash/python for file system operations
-- Parse JSON with proper error handling
-- Generate markdown report
-- Be non-destructive (read-only validation)
-- Provide actionable recommendations
-- Support verbose mode for detailed output
+Команда должна:
 
-## Error Handling
+* Использовать bash/python для операций с файловой системой
+* Парсить JSON с корректным error handling
+* Генерировать отчёт в Markdown
+* Быть non-destructive — только read-only validation
+* Давать actionable recommendations
+* Поддерживать verbose mode для подробного вывода
 
-- Gracefully handle missing files
-- Continue validation even if errors found
-- Collect all issues before reporting
-- Provide clear error messages with context
+## Обработка ошибок
 
-## Performance
+* Корректно обрабатывать отсутствующие файлы
+* Продолжать validation даже при обнаружении ошибок
+* Собрать все проблемы перед формированием отчёта
+* Показывать понятные error messages с контекстом
 
-- Should complete in < 30 seconds
-- Cache file reads where possible
-- Parallel validation where safe
-- Progress indicators for long operations
+## Производительность
+
+* Выполняться менее чем за 30 секунд
+* По возможности кэшировать чтение файлов
+* Выполнять validation параллельно там, где это безопасно
+* Показывать progress indicators для длительных операций

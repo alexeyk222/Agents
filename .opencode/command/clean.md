@@ -2,75 +2,88 @@
 description: Clean the codebase or current working task in focus via Prettier, Import Sorter, ESLint, and TypeScript Compiler
 ---
 
-# Code Quality Cleanup
+# Очистка качества кода
 
-You are a code quality specialist. When provided with $ARGUMENTS (file paths or directories), systematically clean and optimize the code for production readiness. If no arguments provided, focus on currently open or recently modified files.
+Ты — специалист по качеству кода. Когда переданы `$ARGUMENTS` (пути к файлам или директориям), систематически очищай и оптимизируй код для production readiness. Если аргументы не переданы, сосредоточься на текущих открытых или недавно изменённых файлах.
 
-## Your Cleanup Process:
+## Процесс очистки
 
-**Step 1: Analyze Target Scope**
-- If $ARGUMENTS provided: Focus on specified files/directories
-- If no arguments: Check git status for modified files and currently open files
-- Identify file types and applicable cleanup tools
+**Шаг 1: Проанализировать область работы**
 
-**Step 2: Execute Cleanup Pipeline**
-Perform these actions in order:
+* Если переданы `$ARGUMENTS`: работай только с указанными файлами/директориями
+* Если аргументы не переданы: проверь `git status`, изменённые файлы и текущие открытые файлы
+* Определи типы файлов и подходящие инструменты очистки
 
-1. **Remove Debug Code**
-   - Strip console.log, debugger statements, and temporary debugging code
-   - Remove commented-out code blocks
-   - Clean up development-only imports
+**Шаг 2: Выполнить Cleanup Pipeline**
 
-2. **Format Code Structure**
-   - Run Prettier (if available) or apply consistent formatting
-   - Ensure proper indentation and spacing
-   - Standardize quote usage and trailing commas
+Выполняй действия в указанном порядке:
 
-3. **Optimize Imports**
-   - Sort imports alphabetically
-   - Remove unused imports
-   - Group imports by type (libraries, local files)
-   - Use absolute imports where configured
+1. **Удалить Debug Code**
 
-4. **Fix Linting Issues**
-   - Resolve ESLint/TSLint errors and warnings
-   - Apply auto-fixable rules
-   - Report manual fixes needed
+   * Удалить `console.log`, `debugger` и временный отладочный код
+   * Удалить закомментированные блоки кода
+   * Удалить imports, используемые только во время разработки
 
-5. **Type Safety Validation**
-   - Run TypeScript compiler checks
-   - Fix obvious type issues
-   - Add missing type annotations where beneficial
+2. **Отформатировать структуру кода**
 
-6. **Comment Optimization**
-   - Remove redundant or obvious comments
-   - Improve unclear comments
-   - Ensure JSDoc/docstring completeness for public APIs
+   * Запустить Prettier, если он доступен, либо применить единообразное форматирование
+   * Обеспечить корректные indentation и spacing
+   * Унифицировать использование кавычек и trailing commas
 
-**Step 3: Present Cleanup Report**
+3. **Оптимизировать Imports**
 
-## 📋 Cleanup Results
+   * Отсортировать imports по алфавиту
+   * Удалить неиспользуемые imports
+   * Сгруппировать imports по типу: библиотеки, локальные файлы
+   * Использовать absolute imports, если они настроены в проекте
 
-### 🎯 Files Processed
-- [List of files that were cleaned]
+4. **Исправить Linting Issues**
 
-### 🔧 Actions Taken
-- **Debug Code Removed**: [Number of console.logs, debuggers removed]
-- **Formatting Applied**: [Files formatted]
-- **Imports Optimized**: [Unused imports removed, sorting applied]
-- **Linting Issues Fixed**: [Auto-fixed issues count]
-- **Type Issues Resolved**: [TypeScript errors fixed]
-- **Comments Improved**: [Redundant comments removed, unclear ones improved]
+   * Исправить ошибки и предупреждения ESLint/TSLint
+   * Применить auto-fixable rules
+   * Сообщить о проблемах, требующих ручного исправления
 
-### 🚨 Manual Actions Needed
-- [List any issues that require manual intervention]
+5. **Проверить Type Safety**
 
-### ✅ Quality Improvements
-- [Summary of overall code quality improvements made]
+   * Запустить проверки TypeScript compiler
+   * Исправить очевидные проблемы типов
+   * Добавить отсутствующие type annotations там, где это улучшает качество кода
 
-## Quality Standards Applied:
-- **Production Ready**: Remove all debugging and development artifacts
-- **Consistent Style**: Apply project formatting standards
-- **Type Safety**: Ensure strong typing where applicable
-- **Clean Imports**: Optimize dependency management
-- **Clear Documentation**: Improve code readability through better comments
+6. **Оптимизировать Comments**
+
+   * Удалить избыточные или очевидные комментарии
+   * Улучшить непонятные комментарии
+   * Убедиться, что публичные API имеют полноценные JSDoc/docstrings
+
+**Шаг 3: Представить отчёт об очистке**
+
+## 📋 Результаты Cleanup
+
+### 🎯 Обработанные файлы
+
+* [Список очищенных файлов]
+
+### 🔧 Выполненные действия
+
+* **Удалён Debug Code**: [Количество удалённых console.log, debugger и других debug-артефактов]
+* **Применено форматирование**: [Отформатированные файлы]
+* **Оптимизированы Imports**: [Удалённые unused imports, применённая сортировка]
+* **Исправлены Linting Issues**: [Количество автоматически исправленных проблем]
+* **Исправлены Type Issues**: [Исправленные ошибки TypeScript]
+* **Улучшены Comments**: [Удалённые избыточные комментарии, улучшенные непонятные комментарии]
+
+### 🚨 Требуются ручные действия
+
+* [Список проблем, требующих ручного вмешательства]
+
+### ✅ Улучшения качества
+
+* [Краткое описание общих улучшений качества кода]
+
+## Применяемые стандарты качества
+
+* **Production Ready**: удалить все debug- и development-артефакты
+* **Consistent Style**: применять стандарты форматирования проекта
+* **Type Safety**: обеспечивать строгую типизацию там, где это применимо
+* **Clean Imports**: оптимизировать управление зависимостями
+* **Clear Documentation**: повышать читаемость кода за счёт качественных комментариев

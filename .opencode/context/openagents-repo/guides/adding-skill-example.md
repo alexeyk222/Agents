@@ -1,12 +1,12 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Example: Task-Management Skill
+# Пример: skill для управления задачами
 
-**Purpose**: Complete example of creating an OpenCode skill
+**Цель**: полный пример создания OpenCode skill
 
 ---
 
-## Directory Structure
+## Структура каталогов
 
 ```bash
 mkdir -p .opencode/skills/task-management/scripts
@@ -42,7 +42,7 @@ description: Task management CLI for tracking feature subtasks
 - Mark completion
 - Validate task integrity
 
-## Usage
+## Использование
 
 ```bash
 # Show all task statuses
@@ -85,7 +85,7 @@ esac
 
 ---
 
-## task-cli.ts (Excerpt)
+## task-cli.ts (фрагмент)
 
 ```typescript
 #!/usr/bin/env ts-node
@@ -148,22 +148,22 @@ main().catch(console.error)
 
 ---
 
-## Integration with Agents
+## Интеграция с агентами
 
-Skills integrate with agents via:
+Skills интегрируются с агентами через:
 - Event hooks (`tool.execute.before`, `tool.execute.after`)
-- Skill content injection into conversation
+- Внедрение skill content в conversation
 - Output enhancement
 
-Example agent prompt invoking skill:
+Пример agent prompt, вызывающего skill:
 ```
 Use the task-management skill to show current task status
 ```
 
 ---
 
-## Related
+## Связанное
 
-- `adding-skill-basics.md` - Directory and SKILL.md setup
-- `adding-skill-implementation.md` - CLI and registry
-- `plugins/context/capabilities/events_skills.md` - Skills Plugin
+- `adding-skill-basics.md` — настройка каталога и SKILL.md
+- `adding-skill-implementation.md` — CLI и registry
+- `plugins/context/capabilities/events_skills.md` — Skills Plugin

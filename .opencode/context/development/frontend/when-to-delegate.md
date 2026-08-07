@@ -1,72 +1,72 @@
 <!-- Context: development/frontend/when-to-delegate | Priority: high | Version: 1.0 | Updated: 2026-01-30 -->
-# When to Delegate to Frontend Specialist
+# Когда делегировать frontend-specialist
 
-## Overview
+## Обзор
 
-Clear decision criteria for when to delegate frontend/UI work to the **frontend-specialist** subagent vs. handling it directly.
+Чёткие критерии: когда делегировать frontend/UI-задачи подагенту **frontend-specialist**, а когда выполнять напрямую.
 
-## Quick Reference
+## Краткая памятка
 
-**Delegate to frontend-specialist when**:
-- UI/UX design work (wireframes, themes, animations)
-- Design system implementation
-- Complex responsive layouts
-- Animation and micro-interactions
-- Visual design iterations
+**Делегируйте frontend-specialist, когда нужны**:
+- UI/UX-дизайн (вайрфреймы, темы, анимации)
+- Реализация дизайн-системы
+- Сложные адаптивные макеты
+- Анимации и микровзаимодействия
+- Итерации визуального дизайна
 
-**Handle directly when**:
-- Simple HTML/CSS edits
-- Single component updates
-- Bug fixes in existing UI
-- Minor styling tweaks
+**Выполняйте напрямую, когда это**:
+- Простые правки HTML/CSS
+- Обновление одного компонента
+- Исправления багов в существующем UI
+- Небольшие правки стилей
 
 ---
 
-## Decision Matrix
+## Матрица решений
 
-### ✅ DELEGATE to Frontend-Specialist
+### ✅ ДЕЛЕГИРОВАТЬ frontend-specialist
 
-| Scenario | Why Delegate | Example |
+| Сценарий | Почему делегировать | Пример |
 |----------|--------------|---------|
-| **New UI design from scratch** | Needs staged workflow (layout → theme → animation → implement) | "Create a landing page for our product" |
-| **Design system work** | Requires ContextScout for standards, ExternalScout for UI libs | "Implement our design system with Tailwind + Shadcn" |
-| **Complex responsive layouts** | Needs mobile-first approach across breakpoints | "Build a dashboard with sidebar, cards, and responsive grid" |
-| **Animation implementation** | Requires animation patterns, performance optimization | "Add smooth transitions and micro-interactions to the UI" |
-| **Multi-stage design iterations** | Needs versioning (design_iterations/ folder) | "Design a checkout flow with 3 steps" |
-| **Theme creation** | Requires OKLCH colors, CSS custom properties | "Create a dark mode theme for the app" |
-| **Component library integration** | Needs ExternalScout for current docs (Flowbite, Radix, etc.) | "Integrate Flowbite components into our app" |
-| **Accessibility-focused UI** | Requires WCAG compliance, ARIA attributes | "Build an accessible form with proper labels and validation" |
+| **Новый UI с нуля** | Нужен поэтапный workflow (макет → тема → анимация → реализация) | "Создайте лендинг для нашего продукта" |
+| **Работа с дизайн-системой** | Нужны ContextScout для стандартов и ExternalScout для UI-библиотек | "Реализуйте нашу дизайн-систему с Tailwind + Shadcn" |
+| **Сложные адаптивные макеты** | Нужен mobile-first-подход для разных брейкпоинтов | "Соберите дашборд с боковой панелью, карточками и адаптивной сеткой" |
+| **Реализация анимаций** | Нужны паттерны анимации и оптимизация производительности | "Добавьте плавные переходы и микровзаимодействия в UI" |
+| **Многоэтапные итерации дизайна** | Нужно версионирование (каталог `design_iterations/`) | "Спроектируйте оформление заказа из 3 шагов" |
+| **Создание темы** | Нужны цвета OKLCH и кастомные CSS-свойства | "Создайте тёмную тему для приложения" |
+| **Интеграция библиотеки компонентов** | Нужен ExternalScout для актуальной документации (Flowbite, Radix и т. д.) | "Интегрируйте компоненты Flowbite в наше приложение" |
+| **UI с фокусом на доступность** | Нужны соответствие WCAG и ARIA-атрибуты | "Создайте доступную форму с корректными подписями и валидацией" |
 
-### ⚠️ HANDLE DIRECTLY (Don't Delegate)
+### ⚠️ ВЫПОЛНЯТЬ НАПРЯМУЮ (не делегировать)
 
-| Scenario | Why Direct | Example |
+| Сценарий | Почему напрямую | Пример |
 |----------|------------|---------|
-| **Simple HTML edits** | Single file, straightforward change | "Change the button text from 'Submit' to 'Send'" |
-| **Minor CSS tweaks** | Small styling adjustment | "Make the header padding 20px instead of 16px" |
-| **Bug fixes** | Fixing existing code, not creating new design | "Fix the broken link in the footer" |
-| **Content updates** | Changing text, images, or data | "Update the hero section copy" |
-| **Single component updates** | Modifying one existing component | "Add a new prop to the Button component" |
-| **Quick prototypes** | Throwaway code for testing | "Create a quick HTML mockup to test an idea" |
+| **Простые правки HTML** | Один файл, прямое изменение | "Измените текст кнопки с 'Submit' на 'Send'" |
+| **Небольшие правки CSS** | Малое изменение стилей | "Сделайте отступ заголовка 20px вместо 16px" |
+| **Исправления багов** | Исправление существующего кода, не новый дизайн | "Исправьте сломанную ссылку в подвале" |
+| **Обновления контента** | Изменение текста, изображений или данных | "Обновите текст hero-секции" |
+| **Обновление одного компонента** | Изменение одного существующего компонента | "Добавьте новый prop в компонент Button" |
+| **Быстрые прототипы** | Одноразовый код для проверки идеи | "Создайте быстрый HTML-макет для проверки идеи" |
 
 ---
 
-## Delegation Checklist
+## Чеклист делегирования
 
-Before delegating to frontend-specialist, ensure:
+Перед делегированием frontend-specialist убедитесь:
 
-- [ ] **Task is UI/design focused** (not backend, logic, or data)
-- [ ] **Task requires design expertise** (layout, theme, animations)
-- [ ] **Task benefits from staged workflow** (layout → theme → animation → implement)
-- [ ] **Task needs context discovery** (design systems, UI libraries, standards)
-- [ ] **User has approved the approach** (never delegate before approval)
+- [ ] **Задача сфокусирована на UI/дизайне** (не backend, логика или данные)
+- [ ] **Нужна дизайн-экспертиза** (макет, тема, анимации)
+- [ ] **Полезен поэтапный workflow** (макет → тема → анимация → реализация)
+- [ ] **Нужно найти контекст** (дизайн-системы, UI-библиотеки, стандарты)
+- [ ] **Пользователь подтвердил подход** (никогда не делегируйте до подтверждения)
 
 ---
 
-## How to Delegate
+## Как делегировать
 
-### Step 1: Discover Context (Optional but Recommended)
+### Шаг 1: найти контекст (опционально, но рекомендуется)
 
-If you're unsure what context the frontend-specialist will need:
+Если не уверены, какой контекст нужен frontend-specialist:
 
 ```javascript
 task(
@@ -76,12 +76,12 @@ task(
 )
 ```
 
-### Step 2: Propose Approach
+### Шаг 2: предложить подход
 
-Present a plan to the user:
+Покажите пользователю план:
 
 ```markdown
-## Implementation Plan
+## План реализации
 
 **Task**: Create landing page with hero section, features grid, and CTA
 
@@ -101,13 +101,13 @@ Present a plan to the user:
 **Approval needed before proceeding.**
 ```
 
-### Step 3: Get Approval
+### Шаг 3: получить подтверждение
 
-Wait for explicit user approval before delegating.
+Дождитесь явного подтверждения пользователя перед делегированием.
 
-### Step 4: Delegate with Context
+### Шаг 4: делегировать с контекстом
 
-**For simple delegation** (no session needed):
+**Для простого делегирования** (сессия не нужна):
 
 ```javascript
 task(
@@ -139,93 +139,93 @@ task(
 )
 ```
 
-**For complex delegation** (with session):
+**Для сложного делегирования** (с сессией):
 
-Create session context file first, then delegate with session path.
+Сначала создайте файл контекста сессии, затем делегируйте с путём к сессии.
 
 ---
 
-## Common Patterns
+## Типовые паттерны
 
-### Pattern 1: New Landing Page
+### Паттерн 1: новый лендинг
 
-**Trigger**: User asks for a new landing page, marketing page, or product page
+**Триггер**: пользователь просит новый лендинг, маркетинговую страницу или страницу продукта
 
-**Decision**: ✅ Delegate to frontend-specialist
+**Решение**: ✅ делегировать frontend-specialist
 
-**Why**: Requires full design workflow (layout, theme, animations, implementation)
+**Почему**: нужен полный workflow дизайна (макет, тема, анимации, реализация)
 
-**Example**:
+**Пример**:
 ```
 User: "Create a landing page for our SaaS product"
 You: [Propose approach] → [Get approval] → [Delegate to frontend-specialist]
 ```
 
-### Pattern 2: Design System Implementation
+### Паттерн 2: реализация дизайн-системы
 
-**Trigger**: User wants to implement or update a design system
+**Триггер**: пользователь хочет реализовать или обновить дизайн-систему
 
-**Decision**: ✅ Delegate to frontend-specialist
+**Решение**: ✅ делегировать frontend-specialist
 
-**Why**: Needs ContextScout for standards, ExternalScout for UI library docs
+**Почему**: нужны ContextScout для стандартов и ExternalScout для документации UI-библиотеки
 
-**Example**:
+**Пример**:
 ```
 User: "Implement our design system using Tailwind and Shadcn"
 You: [Propose approach] → [Get approval] → [Delegate to frontend-specialist]
 ```
 
-### Pattern 3: Component Library Integration
+### Паттерн 3: интеграция библиотеки компонентов
 
-**Trigger**: User wants to integrate a UI component library (Flowbite, Radix, etc.)
+**Триггер**: пользователь хочет интегрировать библиотеку UI-компонентов (Flowbite, Radix и т. д.)
 
-**Decision**: ✅ Delegate to frontend-specialist
+**Решение**: ✅ делегировать frontend-specialist
 
-**Why**: Requires ExternalScout for current docs, proper integration patterns
+**Почему**: нужны ExternalScout для актуальной документации и корректные паттерны интеграции
 
-**Example**:
+**Пример**:
 ```
 User: "Add Flowbite components to our app"
 You: [Propose approach] → [Get approval] → [Delegate to frontend-specialist]
 ```
 
-### Pattern 4: Animation Work
+### Паттерн 4: работа с анимациями
 
-**Trigger**: User wants animations, transitions, or micro-interactions
+**Триггер**: пользователь хочет анимации, переходы или микровзаимодействия
 
-**Decision**: ✅ Delegate to frontend-specialist
+**Решение**: ✅ делегировать frontend-specialist
 
-**Why**: Requires animation patterns, performance optimization (<400ms)
+**Почему**: нужны паттерны анимации и оптимизация производительности (<400ms)
 
-**Example**:
+**Пример**:
 ```
 User: "Add smooth animations to the dashboard"
 You: [Propose approach] → [Get approval] → [Delegate to frontend-specialist]
 ```
 
-### Pattern 5: Simple HTML Edit
+### Паттерн 5: простая правка HTML
 
-**Trigger**: User wants to change text, fix a link, or update content
+**Триггер**: пользователь хочет изменить текст, исправить ссылку или обновить контент
 
-**Decision**: ⚠️ Handle directly (don't delegate)
+**Решение**: ⚠️ выполнить напрямую (не делегировать)
 
-**Why**: Simple edit, no design work needed
+**Почему**: простая правка, дизайн-работа не нужна
 
-**Example**:
+**Пример**:
 ```
 User: "Change the button text to 'Get Started'"
 You: [Edit the HTML file directly]
 ```
 
-### Pattern 6: CSS Bug Fix
+### Паттерн 6: исправление CSS-бага
 
-**Trigger**: User reports a styling bug or broken layout
+**Триггер**: пользователь сообщает о баге стилей или сломанной вёрстке
 
-**Decision**: ⚠️ Handle directly (don't delegate)
+**Решение**: ⚠️ выполнить напрямую (не делегировать)
 
-**Why**: Bug fix, not new design work
+**Почему**: это исправление бага, а не новая дизайн-работа
 
-**Example**:
+**Пример**:
 ```
 User: "The header is overlapping the content on mobile"
 You: [Read the CSS, fix the issue directly]
@@ -233,100 +233,100 @@ You: [Read the CSS, fix the issue directly]
 
 ---
 
-## Red Flags (Don't Delegate)
+## Красные флаги (не делегировать)
 
-❌ **User just wants a quick fix** → Handle directly  
-❌ **Task is backend/logic focused** → Wrong subagent (use coder-agent or handle directly)  
-❌ **Task is a single line change** → Handle directly  
-❌ **Task is content update** → Handle directly  
-❌ **Task is testing/validation** → Wrong subagent (use tester)  
-❌ **Task is code review** → Wrong subagent (use reviewer)  
-
----
-
-## Green Flags (Delegate)
-
-✅ **User wants a new UI design** → Delegate  
-✅ **Task involves design systems** → Delegate  
-✅ **Task requires responsive layouts** → Delegate  
-✅ **Task includes animations** → Delegate  
-✅ **Task needs UI library integration** → Delegate  
-✅ **Task benefits from staged workflow** → Delegate  
-✅ **Task requires design expertise** → Delegate  
+❌ **Пользователю нужно быстрое исправление** → выполнить напрямую  
+❌ **Задача про backend/логику** → неправильный подагент (используйте coder-agent или выполните напрямую)  
+❌ **Задача — изменение одной строки** → выполнить напрямую  
+❌ **Задача — обновление контента** → выполнить напрямую  
+❌ **Задача — тестирование/валидация** → неправильный подагент (используйте tester)  
+❌ **Задача — code review** → неправильный подагент (используйте reviewer)  
 
 ---
 
-## Frontend-Specialist Capabilities
+## Зелёные флаги (делегировать)
 
-**What it does well**:
-- Create complete UI designs from scratch
-- Implement design systems (Tailwind, Shadcn, Flowbite)
-- Build responsive layouts (mobile-first)
-- Add animations and micro-interactions
-- Integrate UI component libraries
-- Create themes with OKLCH colors
-- Follow staged workflow (layout → theme → animation → implement)
-- Version designs (design_iterations/ folder)
-
-**What it doesn't do**:
-- Backend logic or API integration
-- Database queries or data processing
-- Testing or validation
-- Code review or refactoring
-- Simple HTML/CSS edits (overkill)
-- Content updates (just text changes)
+✅ **Пользователь хочет новый UI-дизайн** → делегировать  
+✅ **Задача включает дизайн-системы** → делегировать  
+✅ **Нужны адаптивные макеты** → делегировать  
+✅ **Есть анимации** → делегировать  
+✅ **Нужна интеграция UI-библиотеки** → делегировать  
+✅ **Полезен поэтапный workflow** → делегировать  
+✅ **Нужна дизайн-экспертиза** → делегировать  
 
 ---
 
-## Context Files Frontend-Specialist Uses
+## Возможности frontend-specialist
 
-The frontend-specialist will automatically load these via ContextScout:
+**Что хорошо делает**:
+- Создаёт полноценные UI-дизайны с нуля
+- Реализует дизайн-системы (Tailwind, Shadcn, Flowbite)
+- Строит адаптивные макеты (mobile-first)
+- Добавляет анимации и микровзаимодействия
+- Интегрирует библиотеки UI-компонентов
+- Создаёт темы с цветами OKLCH
+- Следует поэтапному workflow (макет → тема → анимация → реализация)
+- Версионирует дизайны (каталог `design_iterations/`)
 
-**Design System**:
-- `ui/web/design-systems.md` - Theme templates, color systems
-- `ui/web/ui-styling-standards.md` - Tailwind, Flowbite, responsive design
-- `ui/web/design-assets.md` - Images, icons, fonts
-
-**Patterns**:
-- `ui/web/animation-patterns.md` - Animation syntax, micro-interactions
-- `development/frontend/react/react-patterns.md` - React patterns (if React project)
-
-**Workflows**:
-- `core/workflows/design-iteration-overview.md` - Design iteration workflow
-
----
-
-## Best Practices
-
-### Do's ✅
-
-- ✅ **Propose before delegating** - Show user the plan first
-- ✅ **Get approval** - Never delegate without user approval
-- ✅ **Provide context** - List context files the subagent should load
-- ✅ **Set clear requirements** - Specify design system, breakpoints, animations
-- ✅ **Use staged workflow** - Let frontend-specialist follow its process
-- ✅ **Trust the specialist** - It knows design patterns and best practices
-
-### Don'ts ❌
-
-- ❌ **Don't delegate simple edits** - Handle directly for efficiency
-- ❌ **Don't skip approval** - Always get user sign-off first
-- ❌ **Don't delegate backend work** - Wrong subagent
-- ❌ **Don't micromanage** - Let the specialist follow its workflow
-- ❌ **Don't delegate without context** - Provide context files to load
-- ❌ **Don't delegate bug fixes** - Handle directly unless it's a design issue
+**Чего не делает**:
+- Backend-логика или интеграция API
+- Запросы к базе данных или обработка данных
+- Тестирование или валидация
+- Ревью кода или рефакторинг
+- Простые правки HTML/CSS (избыточно)
+- Обновления контента (только изменения текста)
 
 ---
 
-## Examples
+## Файлы контекста, которые использует frontend-specialist
 
-### Example 1: Landing Page (Delegate)
+frontend-specialist автоматически загрузит их через ContextScout:
 
-**User Request**: "Create a landing page for our SaaS product with a hero section, features, and pricing"
+**Дизайн-система**:
+- `ui/web/design-systems.md` - шаблоны тем, цветовые системы
+- `ui/web/ui-styling-standards.md` - Tailwind, Flowbite, адаптивный дизайн
+- `ui/web/design-assets.md` - изображения, иконки, шрифты
 
-**Your Response**:
+**Паттерны**:
+- `ui/web/animation-patterns.md` - синтаксис анимаций, микровзаимодействия
+- `development/frontend/react/react-patterns.md` - паттерны React (если проект на React)
+
+**Рабочие процессы**:
+- `core/workflows/design-iteration-overview.md` - workflow итераций дизайна
+
+---
+
+## Лучшие практики
+
+### Что делать ✅
+
+- ✅ **Предложите подход до делегирования** - сначала покажите пользователю план
+- ✅ **Получите подтверждение** - не делегируйте без подтверждения пользователя
+- ✅ **Дайте контекст** - перечислите файлы контекста, которые должен загрузить подагент
+- ✅ **Задайте чёткие требования** - укажите дизайн-систему, брейкпоинты, анимации
+- ✅ **Используйте поэтапный workflow** - дайте frontend-specialist следовать процессу
+- ✅ **Доверяйте специалисту** - он знает паттерны дизайна и лучшие практики
+
+### Чего не делать ❌
+
+- ❌ **Не делегируйте простые правки** - эффективнее выполнить напрямую
+- ❌ **Не пропускайте подтверждение** - всегда сначала получайте подтверждение пользователя
+- ❌ **Не делегируйте backend-работы** - это неправильный подагент
+- ❌ **Не микроменеджерите** - дайте специалисту следовать своему workflow
+- ❌ **Не делегируйте без контекста** - предоставьте файлы контекста для загрузки
+- ❌ **Не делегируйте исправления багов** - выполняйте напрямую, если это не дизайн-проблема
+
+---
+
+## Примеры
+
+### Пример 1: лендинг (делегировать)
+
+**Запрос пользователя**: "Создайте лендинг для нашего SaaS-продукта с hero-секцией, блоком преимуществ и ценами"
+
+**Ваш ответ**:
 ```markdown
-## Implementation Plan
+## План реализации
 
 **Task**: Create SaaS landing page
 
@@ -345,7 +345,7 @@ The frontend-specialist will automatically load these via ContextScout:
 **Approval needed before proceeding.**
 ```
 
-**After Approval**:
+**После подтверждения**:
 ```javascript
 task(
   subagent_type="frontend-specialist",
@@ -371,26 +371,26 @@ task(
 )
 ```
 
-### Example 2: Button Text Change (Direct)
+### Пример 2: изменение текста кнопки (напрямую)
 
-**User Request**: "Change the 'Submit' button to say 'Send Message'"
+**Запрос пользователя**: "Измените текст кнопки 'Submit' на 'Send Message'"
 
-**Your Response**:
+**Ваш ответ**:
 ```markdown
 I'll update the button text directly.
 ```
 
-**Action**: Read the HTML file, edit the button text, done. No delegation needed.
+**Действие**: прочитайте HTML-файл, измените текст кнопки, готово. Делегирование не нужно.
 
 ---
 
-### Example 3: Design System Implementation (Delegate)
+### Пример 3: реализация дизайн-системы (делегировать)
 
-**User Request**: "Implement our design system using Tailwind and Shadcn components"
+**Запрос пользователя**: "Реализуйте нашу дизайн-систему с компонентами Tailwind и Shadcn"
 
-**Your Response**:
+**Ваш ответ**:
 ```markdown
-## Implementation Plan
+## План реализации
 
 **Task**: Implement design system with Tailwind + Shadcn
 
@@ -409,7 +409,7 @@ I'll update the button text directly.
 **Approval needed before proceeding.**
 ```
 
-**After Approval**:
+**После подтверждения**:
 ```javascript
 task(
   subagent_type="frontend-specialist",
@@ -433,36 +433,36 @@ task(
 
 ---
 
-## Summary
+## Итог
 
-**Delegate to frontend-specialist when**:
-- New UI designs from scratch
-- Design system implementation
-- Complex responsive layouts
-- Animation work
-- UI library integration
-- Multi-stage design iterations
+**Делегируйте frontend-specialist, когда нужны**:
+- Новый UI-дизайн с нуля
+- Реализация дизайн-системы
+- Сложные адаптивные макеты
+- Работа с анимациями
+- Интеграция UI-библиотеки
+- Многоэтапные итерации дизайна
 
-**Handle directly when**:
-- Simple HTML/CSS edits
-- Bug fixes
-- Content updates
-- Single component updates
-- Quick prototypes
+**Выполняйте напрямую, когда это**:
+- Простые правки HTML/CSS
+- Исправления багов
+- Обновления контента
+- Обновление одного компонента
+- Быстрые прототипы
 
-**Always**:
-- Propose approach first
-- Get user approval
-- Provide context files
-- Trust the specialist's workflow
+**Всегда**:
+- Сначала предлагайте подход
+- Получайте подтверждение пользователя
+- Предоставляйте файлы контекста
+- Доверяйте workflow специалиста
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Frontend Specialist Agent** → `../../../agent/subagents/development/frontend-specialist.md`
-- **Design Systems** → `../../ui/web/design-systems.md`
-- **UI Styling Standards** → `../../ui/web/ui-styling-standards.md`
-- **Animation Patterns** → `../../ui/web/animation-patterns.md`
-- **Delegation Workflow** → `../../core/workflows/task-delegation-basics.md`
-- **React Patterns** → `react/react-patterns.md`
+- **Агент frontend-specialist** → `../../../agent/subagents/development/frontend-specialist.md`
+- **Дизайн-системы** → `../../ui/web/design-systems.md`
+- **Стандарты UI-стилизации** → `../../ui/web/ui-styling-standards.md`
+- **Паттерны анимации** → `../../ui/web/animation-patterns.md`
+- **Рабочий процесс делегирования** → `../../core/workflows/task-delegation-basics.md`
+- **Паттерны React** → `react/react-patterns.md`

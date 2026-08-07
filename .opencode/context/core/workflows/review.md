@@ -1,19 +1,19 @@
 <!-- Context: workflows/review | Priority: high | Version: 2.0 | Updated: 2025-01-21 -->
 
-# Code Review Guidelines
+# Руководство по ревью кода
 
-> **Note**: This is a reference file. The full content is in [`code-review.md`](./code-review.md).
+> **Примечание**: это справочный файл. Полное содержимое находится в [`code-review.md`](./code-review.md).
 
-## Quick Reference
+## Краткая справка
 
-**Golden Rule**: Review code as you'd want yours reviewed - thoroughly but kindly
+**Золотое правило**: проверяйте код так, как хотели бы, чтобы проверяли ваш — тщательно, но доброжелательно
 
-**Checklist**: Functionality, Code Quality, Security, Testing, Performance, Maintainability
+**Чеклист**: функциональность, качество кода, безопасность, тестирование, производительность, сопровождаемость
 
-**Report Format**: Summary, Assessment, Issues (🔴🟡🔵), Positive Observations, Recommendations
+**Формат отчета**: резюме, оценка, проблемы (🔴🟡🔵), положительные наблюдения, рекомендации
 
-**Principles**: Constructive, Thorough, Timely
+**Принципы**: конструктивно, тщательно, своевременно
 
 ---
 
-For the complete code review guidelines, see [code-review.md](./code-review.md).
+Полное руководство по ревью кода см. в [code-review.md](./code-review.md).

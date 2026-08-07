@@ -1,129 +1,129 @@
 <!-- Context: core/context-guide | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Context System Guide
+# Руководство по системе контекста
 
-## Quick Reference
+## Краткая справка
 
-**Golden Rule**: Fetch context when needed, not before (lazy loading)
+**Золотое правило**: Загружайте контекст, когда он нужен, а не заранее (ленивая загрузка)
 
-**Key Principle**: Use context index for discovery, load specific files as needed
+**Ключевой принцип**: Используйте индекс контекста для обнаружения, загружайте конкретные файлы по необходимости
 
-**Index Location**: `.opencode/context/navigation.md` - Quick map of all contexts
+**Расположение индекса**: `.opencode/context/navigation.md` - Быстрая карта всех контекстов
 
-**Structure**: standards/ (quality + analysis), workflows/ (process + review), system/ (internals)
+**Структура**: standards/ (качество + анализ), workflows/ (процесс + ревью), system/ (внутреннее)
 
-**Session Location**: `.tmp/sessions/{timestamp}-{task-slug}/context.md`
+**Расположение сессии**: `.tmp/sessions/{timestamp}-{task-slug}/context.md`
 
 ---
 
-## Overview
+## Обзор
 
-Context files provide guidelines and templates for specific tasks. Use the index system for efficient discovery and lazy loading to keep prompts lean.
+Контекстные файлы дают правила и шаблоны для конкретных задач. Используйте индекс для эффективного обнаружения и ленивой загрузки, чтобы prompts оставались компактными.
 
-## Context Index System
+## Система индекса контекста
 
-**Central Index**: `.opencode/context/navigation.md` - Ultra-compact map of all contexts
+**Центральный индекс**: `.opencode/context/navigation.md` - Сверхкомпактная карта всех контекстов
 
-The index provides:
-- Quick map for common tasks (code, docs, tests, review, delegation)
-- Triggers/keywords for each context
-- Dependencies between contexts
-- Priority levels (critical, high, medium)
+Индекс содержит:
+- Быструю карту типовых задач (код, docs, тесты, ревью, делегирование)
+- Триггеры/ключевые слова для каждого контекста
+- Зависимости между контекстами
+- Уровни приоритета (critical, high, medium)
 
-### Available Context Files
+### Доступные контекстные файлы
 
-All files are in `.opencode/context/core/` with organized subfolders:
+Все файлы находятся в `.opencode/context/core/` с организованными подпапками:
 
-### Standards (Quality Guidelines + Analysis)
-- `standards/code-quality.md` - Modular, functional code principles [critical]
-- `standards/documentation.md` - Documentation standards [critical]
-- `standards/test-coverage.md` - Testing standards [critical]
-- `standards/security-patterns.md` - Core patterns (error handling, security) [high]
-- `standards/code-analysis.md` - Analysis framework [high]
+### Стандарты (правила качества + анализ)
+- `standards/code-quality.md` - Принципы модульного, функционального кода [critical]
+- `standards/documentation.md` - Стандарты документации [critical]
+- `standards/test-coverage.md` - Стандарты тестирования [critical]
+- `standards/security-patterns.md` - Базовые паттерны (обработка ошибок, безопасность) [high]
+- `standards/code-analysis.md` - Фреймворк анализа [high]
 
-### Workflows (Process Templates + Review)
-- `workflows/task-delegation-basics.md` - Delegation template [high]
-- `workflows/feature-breakdown.md` - Complex task breakdown [high]
-- `workflows/session-management.md` - Session lifecycle [medium]
-- `workflows/code-review.md` - Code review guidelines [high]
+### Рабочие процессы (шаблоны процессов + ревью)
+- `workflows/task-delegation-basics.md` - Шаблон делегирования [high]
+- `workflows/feature-breakdown.md` - Декомпозиция сложной задачи [high]
+- `workflows/session-management.md` - Жизненный цикл сессии [medium]
+- `workflows/code-review.md` - Правила ревью кода [high]
 
-## How to Use the Index
+## Как использовать индекс
 
-**Step 1: Check Quick Map** (for common tasks)
-- Code task? → Load `standards/code-quality.md`
-- Docs task? → Load `standards/documentation.md`
-- Review task? → Load `workflows/code-review.md`
+**Шаг 1: Проверьте быструю карту** (для типовых задач)
+- Задача по коду? → Загрузить `standards/code-quality.md`
+- Задача по docs? → Загрузить `standards/documentation.md`
+- Задача по ревью? → Загрузить `workflows/code-review.md`
 
-**Step 2: Load Index** (for keyword matching)
-- Load `.opencode/context/navigation.md`
-- Scan triggers to find relevant contexts
-- Load specific context files as needed
+**Шаг 2: Загрузите индекс** (для сопоставления ключевых слов)
+- Загрузить `.opencode/context/navigation.md`
+- Просканировать триггеры, чтобы найти релевантные контексты
+- Загружать конкретные контекстные файлы по необходимости
 
-**Step 3: Load Dependencies**
-- Check `deps:` in index
-- Load dependent contexts for complete guidelines
+**Шаг 3: Загрузите зависимости**
+- Проверить `deps:` в индексе
+- Загрузить зависимые контексты для полных правил
 
-**Benefits:**
-- No prompt bloat (index is only ~120 tokens)
-- Fetch only what's relevant
-- Faster for simple tasks
-- Clear dependency tracking
+**Преимущества:**
+- Нет раздувания prompt (индекс всего ~120 токенов)
+- Загружается только релевантное
+- Быстрее для простых задач
+- Понятное отслеживание зависимостей
 
-## When to Use Each File
+## Когда использовать каждый файл
 
 ### .opencode/context/core/standards/code-quality.md
-- Writing new code
-- Modifying existing code
-- Following modular/functional patterns
-- Making architectural decisions
+- Написание нового кода
+- Изменение существующего кода
+- Следование модульным/функциональным паттернам
+- Принятие архитектурных решений
 
 ### .opencode/context/core/standards/documentation.md
-- Writing README files
-- Creating API documentation
-- Adding code comments
+- Написание README-файлов
+- Создание API-документации
+- Добавление комментариев к коду
 
 ### .opencode/context/core/standards/test-coverage.md
-- Writing new tests
-- Running test suites
-- Debugging test failures
+- Написание новых тестов
+- Запуск наборов тестов
+- Отладка падающих тестов
 
 ### .opencode/context/core/standards/security-patterns.md
-- Error handling
-- Security patterns
-- Common code patterns
+- Обработка ошибок
+- Паттерны безопасности
+- Типовые паттерны кода
 
 ### .opencode/context/core/standards/code-analysis.md
-- Analyzing codebase patterns
-- Investigating bugs
-- Evaluating architecture
+- Анализ паттернов кодовой базы
+- Расследование багов
+- Оценка архитектуры
 
 ### .opencode/context/core/workflows/task-delegation-basics.md
-- Delegating to general agent
-- Creating task context
-- Multi-file coordination
+- Делегирование general agent
+- Создание контекста задачи
+- Координация нескольких файлов
 
 ### .opencode/context/core/workflows/feature-breakdown.md
-- Tasks with 4+ files
-- Estimated effort >60 minutes
-- Complex dependencies
+- Задачи с 4+ файлами
+- Оценка трудозатрат >60 минут
+- Сложные зависимости
 
 ### .opencode/context/core/workflows/session-management.md
-- Session lifecycle
-- Cleanup procedures
-- Session isolation
+- Жизненный цикл сессии
+- Процедуры очистки
+- Изоляция сессий
 
 ### .opencode/context/core/workflows/code-review.md
-- Reviewing code
-- Conducting code audits
-- Providing PR feedback
+- Ревью кода
+- Аудит кода
+- Обратная связь по PR
 
-## Temporary Context (Session-Specific)
+## Временный контекст (для сессии)
 
-When delegating, create focused task context:
+При делегировании создавайте сфокусированный контекст задачи:
 
-**Location**: `.tmp/sessions/{timestamp}-{task-slug}/context.md`
+**Расположение**: `.tmp/sessions/{timestamp}-{task-slug}/context.md`
 
-**Structure**:
+**Структура**:
 ```markdown
 # Task Context: {Task Name}
 
@@ -160,9 +160,9 @@ Status: in_progress
 {Specific instructions}
 ```
 
-## Session Management
+## Управление сессиями
 
-### Session Structure
+### Структура сессии
 ```
 .tmp/sessions/{session-id}/
 ├── context.md          # Task context
@@ -170,23 +170,23 @@ Status: in_progress
 └── artifacts/          # Generated files
 ```
 
-### Session ID Format
+### Формат ID сессии
 `{timestamp}-{random-4-chars}`
-Example: `20250119-143022-a4f2`
+Пример: `20250119-143022-a4f2`
 
-### Cleanup
-- Ask user before deleting session files
-- Remove after task completion
-- Keep if user wants to review
+### Очистка
+- Спрашивайте пользователя перед удалением файлов сессии
+- Удаляйте после завершения задачи
+- Сохраняйте, если пользователь хочет проверить
 
-## Best Practices
+## Лучшие практики
 
-✅ Use index for context discovery
-✅ Load only relevant context files
-✅ Check dependencies in index
-✅ Create temp context when delegating
-✅ Clean up sessions after completion
-✅ Reference specific sections when possible
-✅ Keep temp context focused and concise
+✅ Используйте индекс для обнаружения контекста
+✅ Загружайте только релевантные контекстные файлы
+✅ Проверяйте зависимости в индексе
+✅ Создавайте временный контекст при делегировании
+✅ Очищайте сессии после завершения
+✅ По возможности ссылайтесь на конкретные секции
+✅ Держите временный контекст сфокусированным и кратким
 
-**Golden Rule**: Fetch context when needed, not before.
+**Золотое правило**: Загружайте контекст, когда он нужен, а не заранее.

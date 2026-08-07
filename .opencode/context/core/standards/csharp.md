@@ -10,47 +10,49 @@ author: community
 
 <!-- Context: core/standards | Priority: critical | Version: 1.1 | Updated: 2026-03-15 -->
 
-# Universal C# Standards
+# Универсальные стандарты C#
 
-**Purpose**: Universal C# best practices for AI agents working on .NET projects  
-**Scope**: Language-level patterns, not framework-specific  
-**Last Updated**: 2026-03-15
+**Назначение**: Универсальные лучшие практики C# для AI-агентов, работающих с .NET-проектами  
+**Область**: Паттерны уровня языка, не специфичные для фреймворков  
+**Последнее обновление**: 2026-03-15
 
 ---
 
-## Table of Contents
+## Содержание
 
-1. [Naming Conventions](#1-naming-conventions)
-2. [Type Safety & Nullability](#2-type-safety--nullability)
-3. [Async/Await Patterns](#3-asyncawait-patterns)
+1. [Соглашения об именовании](#1-naming-conventions)
+2. [Типобезопасность и nullability](#2-type-safety--nullability)
+3. [Паттерны Async/Await](#3-asyncawait-patterns)
 4. [LINQ](#4-linq)
-5. [Error Handling](#5-error-handling)
-6. [Pattern Matching](#6-pattern-matching)
-7. [Code Organization](#7-code-organization)
-8. [Records & Immutability](#8-records--immutability)
+5. [Обработка ошибок](#5-error-handling)
+6. [Pattern matching](#6-pattern-matching)
+7. [Организация кода](#7-code-organization)
+8. [Records и иммутабельность](#8-records--immutability)
 9. [Dependency Injection](#9-dependency-injection)
-10. [Testing](#10-testing)
+10. [Тестирование](#10-testing)
 
 ---
 
-## 1. Naming Conventions
+<a id="1-naming-conventions"></a>
 
-### 1.1 General Rules
+## 1. Соглашения об именовании
 
-| Element | Convention | Example |
+### 1.1 Общие правила
+
+| Элемент | Соглашение | Пример |
 |---------|-----------|---------|
-| Classes, structs, records | PascalCase | `UserService`, `OrderItem` |
-| Interfaces | `I` + PascalCase | `IUserRepository`, `IOrderService` |
-| Methods | PascalCase | `GetUserById`, `ProcessOrder` |
-| Properties | PascalCase | `FirstName`, `CreatedAt` |
-| Fields (private) | `_` + camelCase | `_logger`, `_repository` |
-| Local variables | camelCase | `userId`, `orderTotal` |
-| Parameters | camelCase | `userId`, `cancellationToken` |
-| Constants | PascalCase | `MaxRetryCount`, `DefaultTimeout` |
-| Enums | PascalCase (type and members) | `OrderStatus.Pending` |
-| Async methods | `Async` suffix | `GetUserAsync`, `SaveOrderAsync` |
+| Классы, structs, records | PascalCase | `UserService`, `OrderItem` |
+| Интерфейсы | `I` + PascalCase | `IUserRepository`, `IOrderService` |
+| Методы | PascalCase | `GetUserById`, `ProcessOrder` |
+| Свойства | PascalCase | `FirstName`, `CreatedAt` |
+| Поля (private) | `_` + camelCase | `_logger`, `_repository` |
+| Локальные переменные | camelCase | `userId`, `orderTotal` |
+| Параметры | camelCase | `userId`, `cancellationToken` |
+| Константы | PascalCase | `MaxRetryCount`, `DefaultTimeout` |
+| Enums | PascalCase (type и members) | `OrderStatus.Pending` |
+| Async-методы | суффикс `Async` | `GetUserAsync`, `SaveOrderAsync` |
 
-### 1.2 Method Naming
+### 1.2 Именование методов
 
 ```csharp
 // ✅ GOOD - Verb + noun, PascalCase
@@ -65,7 +67,7 @@ public async Task<User> fetchuser(Guid id) { }
 public async Task<User> DoUserGet(Guid id) { }
 ```
 
-### 1.3 Interface Naming
+### 1.3 Именование интерфейсов
 
 ```csharp
 // ✅ GOOD - Always prefix with I
@@ -78,7 +80,7 @@ public interface UserRepository { }
 public interface TUserRepository { }
 ```
 
-### 1.4 Private Fields
+### 1.4 Приватные поля
 
 ```csharp
 // ✅ GOOD - Underscore prefix, camelCase
@@ -96,11 +98,13 @@ private IOrderRepository m_orderRepository;
 
 ---
 
-## 2. Type Safety & Nullability
+<a id="2-type-safety--nullability"></a>
 
-### 2.1 Enable Nullable Reference Types
+## 2. Type Safety и Nullability
 
-**Rule: Always enable nullable reference types in all projects**
+### 2.1 Включайте nullable reference types
+
+**Правило: Всегда включайте nullable reference types во всех проектах**
 
 ```xml
 <!-- .csproj -->
@@ -119,7 +123,7 @@ public User? FindUser(Guid id) { }        // Returns null if not found
 public User GetUser(Guid id) { }          // Never returns null (throws if not found)
 ```
 
-### 2.2 Null Handling
+### 2.2 Обработка null
 
 ```csharp
 // ✅ GOOD - Null-coalescing and conditional operators
@@ -142,7 +146,7 @@ if (user != null && user.Address != null)
     city = user.Address.City;
 ```
 
-### 2.3 Avoid Primitive Obsession
+### 2.3 Избегайте primitive obsession
 
 ```csharp
 // ✅ GOOD - Strongly typed IDs prevent mixing up parameters
@@ -157,11 +161,13 @@ public Task<Order> GetOrderAsync(Guid orderId, Guid userId) { }
 
 ---
 
-## 3. Async/Await Patterns
+<a id="3-asyncawait-patterns"></a>
 
-### 3.1 Always Use CancellationToken
+## 3. Паттерны Async/Await
 
-**Rule: Every public async method must accept a CancellationToken**
+### 3.1 Всегда используйте CancellationToken
+
+**Правило: Каждый публичный async-метод должен принимать CancellationToken**
 
 ```csharp
 // ✅ GOOD - CancellationToken flows through all async calls
@@ -178,9 +184,9 @@ public async Task<User> GetUserAsync(Guid userId)
 }
 ```
 
-### 10.6 When to Use Moq Instead of NSubstitute
+### 10.6 Когда использовать Moq вместо NSubstitute
 
-While **NSubstitute is the default**, use **Moq** for:
+Хотя **NSubstitute — default**, используйте **Moq** для:
 
 ```csharp
 // Use Moq when you need MockBehavior.Strict (fail on unexpected calls)
@@ -200,13 +206,15 @@ mock.VerifyNoOtherCalls();
 mock.Protected().Setup<string>("GetName").Returns("test");
 ```
 
-**Note**: NSubstitute covers ~95% of real-world test scenarios. Only reach for Moq's advanced features if NSubstitute doesn't provide what you need.
+**Примечание**: NSubstitute покрывает ~95% реальных тестовых сценариев. Используйте advanced features Moq только если NSubstitute не дает нужного.
 
 ---
 
+<a id="4-linq"></a>
+
 ## 4. LINQ
 
-### 4.1 Prefer Method Syntax for Simple Chains
+### 4.1 Предпочитайте method syntax для простых цепочек
 
 ```csharp
 // ✅ GOOD - Method syntax for filter/project/sort
@@ -224,7 +232,7 @@ var result =
     select new { order.Id, user.Name };
 ```
 
-### 4.2 Materialize at the Right Time
+### 4.2 Материализуйте вовремя
 
 ```csharp
 // ✅ GOOD - Materialize once, use the list
@@ -238,7 +246,7 @@ var count = activeUsers.Count();   // evaluates query
 var first = activeUsers.First();   // evaluates query again
 ```
 
-### 4.3 Use Appropriate Termination Methods
+### 4.3 Используйте подходящие terminal methods
 
 ```csharp
 // ✅ GOOD - Choose the right method for the intent
@@ -252,7 +260,7 @@ var count = items.Count(x => x.IsActive);     // full enumeration
 if (items.Count() > 0) { }   // Use Any() instead
 ```
 
-### 4.4 Avoid LINQ in Performance-Critical Paths
+### 4.4 Избегайте LINQ в performance-critical paths
 
 ```csharp
 // ✅ GOOD - Direct loop when allocation matters
@@ -266,9 +274,11 @@ var total = orderItems.Sum(item => item.Price * item.Quantity);
 
 ---
 
-## 5. Error Handling
+<a id="5-error-handling"></a>
 
-### 5.1 Use Specific Exception Types
+## 5. Обработка ошибок
+
+### 5.1 Используйте конкретные типы исключений
 
 ```csharp
 // ✅ GOOD - Specific, meaningful exceptions
@@ -306,7 +316,7 @@ throw new Exception("Not found");
 throw new ApplicationException("Something went wrong");
 ```
 
-### 5.2 Validate at Entry Points
+### 5.2 Валидируйте на точках входа
 
 ```csharp
 // ✅ GOOD - Fail fast with guard clauses
@@ -325,7 +335,7 @@ public void PlaceOrder(Order order, Guid userId)
 }
 ```
 
-### 5.3 Result Pattern (for Expected Failures)
+### 5.3 Result Pattern (для ожидаемых failures)
 
 ```csharp
 // ✅ GOOD - Use Result<T> when failure is a normal outcome (not exceptional)
@@ -366,7 +376,7 @@ else
 // Use Result<T> for expected business failures (validation, not found in context of search, etc.)
 ```
 
-### 5.4 Catch Specific Exceptions
+### 5.4 Ловите конкретные исключения
 
 ```csharp
 // ✅ GOOD - Catch what you can handle
@@ -399,9 +409,11 @@ catch (Exception ex)
 
 ---
 
-## 6. Pattern Matching
+<a id="6-pattern-matching"></a>
 
-### 6.1 Switch Expressions (Prefer over switch statements)
+## 6. Pattern matching
+
+### 6.1 Switch Expressions (предпочитайте вместо switch statements)
 
 ```csharp
 // ✅ GOOD - Switch expression: concise, exhaustive
@@ -468,9 +480,11 @@ var (id, _, createdAt) = GetOrderSummary(orderId);
 
 ---
 
-## 7. Code Organization
+<a id="7-code-organization"></a>
 
-### 7.1 Namespace Per Feature (not per type)
+## 7. Организация кода
+
+### 7.1 Namespace на feature (не на type)
 
 ```csharp
 // ✅ GOOD - Feature-based namespaces
@@ -484,7 +498,7 @@ namespace MyApp.Services;
 namespace MyApp.Controllers;
 ```
 
-### 7.2 File-Scoped Namespaces
+### 7.2 File-scoped namespaces
 
 ```csharp
 // ✅ GOOD - File-scoped namespace (C# 10+): less indentation
@@ -499,7 +513,7 @@ namespace MyApp.Orders
 }
 ```
 
-### 7.3 One Type Per File
+### 7.3 Один type на файл
 
 ```csharp
 // ✅ GOOD - OrderService.cs contains only OrderService
@@ -509,7 +523,7 @@ namespace MyApp.Orders
 // OrderService.cs containing OrderService + UserService + ProductRepository
 ```
 
-### 7.4 Using Directives
+### 7.4 Using directives
 
 ```csharp
 // ✅ GOOD - Global usings for commonly used namespaces (in a GlobalUsings.cs file)
@@ -526,9 +540,9 @@ using MyApp.Common;
 namespace MyApp.Orders;
 ```
 
-### 7.5 Class Structure Order
+### 7.5 Порядок структуры класса
 
-Follow this order within a class:
+Соблюдайте такой порядок внутри класса:
 
 ```csharp
 public class OrderService : IOrderService
@@ -560,9 +574,11 @@ public class OrderService : IOrderService
 
 ---
 
-## 8. Records & Immutability
+<a id="8-records--immutability"></a>
 
-### 8.1 Use Records for Value Objects and DTOs
+## 8. Records и иммутабельность
+
+### 8.1 Используйте records для value objects и DTOs
 
 ```csharp
 // ✅ GOOD - Record for immutable data (value semantics, built-in equality)
@@ -578,7 +594,7 @@ public readonly record struct Coordinates(double Latitude, double Longitude);
 var updated = originalUser with { Email = "new@example.com" };
 ```
 
-### 8.2 Immutable Collections
+### 8.2 Immutable collections
 
 ```csharp
 // ✅ GOOD - Expose immutable views
@@ -608,7 +624,7 @@ public record ShoppingCart(ImmutableList<CartItem> Items)
 }
 ```
 
-### 8.3 init-only Properties
+### 8.3 init-only properties
 
 ```csharp
 // ✅ GOOD - init allows construction but prevents later mutation
@@ -626,9 +642,11 @@ var config = new OrderConfiguration { OrderId = Guid.NewGuid(), Currency = "USD"
 
 ---
 
+<a id="9-dependency-injection"></a>
+
 ## 9. Dependency Injection
 
-### 9.1 Constructor Injection (Preferred)
+### 9.1 Constructor injection (предпочтительно)
 
 ```csharp
 // ✅ GOOD - All dependencies injected through constructor, stored readonly
@@ -659,7 +677,7 @@ public class OrderService
 }
 ```
 
-### 9.2 Lifetime Registration
+### 9.2 Регистрация lifetime
 
 ```csharp
 // Registration in Program.cs or an extension method
@@ -682,7 +700,7 @@ public static class OrdersServiceCollectionExtensions
 builder.Services.AddOrders();
 ```
 
-### 9.3 Options Pattern for Configuration
+### 9.3 Options Pattern для конфигурации
 
 ```csharp
 // ✅ GOOD - Strongly-typed configuration
@@ -713,11 +731,13 @@ public class PaymentGateway
 
 ---
 
-## 10. Testing
+<a id="10-testing"></a>
 
-### 10.1 Framework & Structure
+## 10. Тестирование
 
-**Use xUnit** as the default test framework. Use **Shouldly** for readable assertions. Use **NSubstitute** for mocking (pragmatic, readable syntax). Use **Moq** only for scenarios requiring strict mock behavior or complex verification.
+### 10.1 Framework и структура
+
+**Используйте xUnit** как default test framework. Используйте **Shouldly** для читаемых assertions. Используйте **NSubstitute** для mocking (прагматичный, читаемый синтаксис). Используйте **Moq** только для сценариев, где нужен strict mock behavior или complex verification.
 
 ```csharp
 // ✅ GOOD - xUnit test class structure with NSubstitute
@@ -781,14 +801,14 @@ public class OrderServiceTests
 }
 ```
 
-**Why NSubstitute?**
-- ✅ Fluent, readable syntax — substitutes ARE the interfaces, no `.Object` indirection
-- ✅ Lower ceremony, less noise in tests
-- ✅ `Arg.Any<T>()` is cleaner than `It.IsAny<T>()`
-- ✅ `Received()` reads naturally as "verify it received this call"
-- ✅ Faster to write and understand, even for complex scenarios
+**Почему NSubstitute?**
+- ✅ Fluent, читаемый синтаксис — substitutes являются интерфейсами, без `.Object` indirection
+- ✅ Меньше ceremony, меньше шума в тестах
+- ✅ `Arg.Any<T>()` чище, чем `It.IsAny<T>()`
+- ✅ `Received()` читается естественно как «проверь, что вызов получен»
+- ✅ Быстрее писать и понимать даже в сложных сценариях
 
-### 10.2 Parameterized Tests
+### 10.2 Параметризованные тесты
 
 ```csharp
 // ✅ GOOD - Theory with InlineData for multiple cases
@@ -820,7 +840,7 @@ public void PlaceOrder_WithInvalidOrder_ThrowsValidationException(Order order, s
 }
 ```
 
-### 10.3 Test Naming
+### 10.3 Именование тестов
 
 ```csharp
 // ✅ GOOD - MethodName_StateUnderTest_ExpectedBehavior
@@ -830,7 +850,7 @@ public void PlaceOrder_WithEmptyCart_ThrowsValidationException() { }
 public void CalculateDiscount_ForPlatinumCustomer_Returns20Percent() { }
 ```
 
-### 10.4 Avoid Logic in Tests
+### 10.4 Избегайте логики в тестах
 
 ```csharp
 // ✅ GOOD - Direct, no conditionals or loops
@@ -855,7 +875,7 @@ public void FormatNames_ReturnsFullNames()
 }
 ```
 
-### 10.5 Integration Tests
+### 10.5 Интеграционные тесты
 
 ```csharp
 // ✅ GOOD - Use WebApplicationFactory for ASP.NET Core integration tests
@@ -887,17 +907,17 @@ public class OrdersApiTests : IClassFixture<WebApplicationFactory<Program>>
 
 ---
 
-## Quick Reference
+## Краткая справка
 
-| Topic | Key Rule |
+| Тема | Ключевое правило |
 |-------|---------|
-| Naming | PascalCase methods/properties, `_camelCase` fields, `I`-prefix interfaces, `Async` suffix |
-| Nullability | Enable `<Nullable>enable</Nullable>`, use `?` explicitly, guard with `ArgumentNullException.ThrowIfNull` |
-| Async | Always pass `CancellationToken`, avoid `async void`, prefer `Task.WhenAll` for parallel ops |
-| LINQ | Materialize with `ToList()` once, use `Any()` not `Count() > 0` |
-| Errors | Specific exception types, validate at entry, `Result<T>` for expected failures |
-| Pattern matching | Switch expressions over switch statements, property patterns for readable conditionals |
-| Organization | File-scoped namespaces, feature-based folders, one type per file |
-| Immutability | Records for value objects/DTOs, `IReadOnlyList` for exposed collections |
-| DI | Constructor injection, `readonly` fields, Options pattern for config |
-| Testing | xUnit + Shouldly, `[Fact]`/`[Theory]`, Arrange-Act-Assert, no logic in tests |
+| Именование | PascalCase для методов/свойств, `_camelCase` для полей, префикс `I` для интерфейсов, суффикс `Async` |
+| Nullability | Включить `<Nullable>enable</Nullable>`, явно использовать `?`, guard через `ArgumentNullException.ThrowIfNull` |
+| Async | Всегда передавать `CancellationToken`, избегать `async void`, предпочитать `Task.WhenAll` для параллельных операций |
+| LINQ | Материализовать через `ToList()` один раз, использовать `Any()`, а не `Count() > 0` |
+| Ошибки | Конкретные типы исключений, валидация на входе, `Result<T>` для ожидаемых ошибок |
+| Pattern matching | Switch expressions вместо switch statements, property patterns для читаемых условий |
+| Организация | File-scoped namespaces, папки по фичам, один type на файл |
+| Иммутабельность | Records для value objects/DTOs, `IReadOnlyList` для открытых коллекций |
+| DI | Constructor injection, поля `readonly`, Options pattern для конфигурации |
+| Тестирование | xUnit + Shouldly, `[Fact]`/`[Theory]`, Arrange-Act-Assert, без логики в тестах |

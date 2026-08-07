@@ -1,23 +1,23 @@
 <!-- Context: development/agents-tools | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Concept: Mastra Agents & Tools
+# Концепция: Mastra Agents & Tools
 
-**Purpose**: Reusable units of logic and LLM-powered entities.
+**Назначение**: Переиспользуемые единицы логики и сущности на базе LLM.
 
-**Last Updated**: 2026-01-09
+**Обновлено**: 2026-01-09
 
 ---
 
-## Core Idea
-Agents are specialized LLM configurations that use Tools to interact with external systems or perform specific logic. Tools are the building blocks that provide functionality to both agents and workflows.
+## Основная идея
+Agents — специализированные конфигурации LLM, которые используют Tools для взаимодействия с внешними системами или выполнения конкретной логики. Tools — строительные блоки, предоставляющие функциональность agents и workflows.
 
-## Key Points
-- **Agents**: Defined with a `name`, `instructions`, and `model`. They can be assigned a set of `tools`.
-- **Tools**: Defined with `id`, `inputSchema`, `outputSchema`, and an `execute` function.
-- **Type Safety**: Both agents and tools use Zod for schema validation.
-- **Standalone Use**: Tools can be executed independently of agents, making them highly reusable.
+## Ключевые пункты
+- **Agents**: определяются через `name`, `instructions` и `model`. Им можно назначить набор `tools`.
+- **Tools**: определяются через `id`, `inputSchema`, `outputSchema` и функцию `execute`.
+- **Типобезопасность**: agents и tools используют Zod для валидации схем.
+- **Автономное использование**: Tools можно выполнять независимо от agents, поэтому они хорошо переиспользуются.
 
-## Quick Example
+## Быстрый пример
 ```typescript
 // Tool
 const myTool = createTool({
@@ -35,7 +35,7 @@ const myAgent = new Agent({
 });
 ```
 
-**Reference**: `src/mastra/agents/`, `src/mastra/tools/`
-**Related**:
+**Источник**: `src/mastra/agents/`, `src/mastra/tools/`
+**Связано**:
 - concepts/core.md
 - concepts/workflows.md

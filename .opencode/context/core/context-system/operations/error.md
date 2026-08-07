@@ -1,33 +1,33 @@
 <!-- Context: core/error | Priority: medium | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Error Operation
+# Операция Error
 
-**Purpose**: Add recurring errors to knowledge base with deduplication
+**Назначение**: добавлять повторяющиеся ошибки в базу знаний с дедупликацией
 
-**Last Updated**: 2026-01-06
-
----
-
-## When to Use
-
-- Encountered same error multiple times
-- Want to document solution for team
-- Building error knowledge base
-- Preventing repeated debugging
+**Последнее обновление**: 2026-01-06
 
 ---
 
-## 6-Stage Workflow
+## Когда использовать
 
-### Stage 1: Search Existing
-**Action**: Search for similar/related errors
+- Одна и та же ошибка встречалась несколько раз
+- Нужно документировать решение для команды
+- Формируется база знаний по ошибкам
+- Нужно предотвратить повторную отладку
 
-**Process**:
-1. Search error message across all errors/ files
-2. Find similar errors (fuzzy matching)
-3. Find related errors (same category)
+---
 
-**Format**:
+## 6-этапный workflow
+
+### Этап 1: найти существующие
+**Действие**: найти похожие/связанные ошибки
+
+**Процесс**:
+1. Искать сообщение ошибки во всех файлах `errors/`
+2. Найти похожие ошибки (нечеткое совпадение)
+3. Найти связанные ошибки (та же категория)
+
+**Формат**:
 ```
 Searching for: "Cannot read property 'map' of undefined"
 
@@ -45,10 +45,10 @@ Found 2 related errors:
 
 ---
 
-### Stage 2: Check Duplication (APPROVAL REQUIRED)
-**Action**: Present deduplication options
+### Этап 2: проверить дублирование (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
+**Действие**: показать варианты дедупликации
 
-**Format**:
+**Формат**:
 ```
 Options:
   [A] Add as new error to react-errors.md
@@ -68,14 +68,14 @@ Which framework/category?
 Select option + category (e.g., 'B 1'):
 ```
 
-**Validation**: MUST wait for user input
+**Валидация**: ОБЯЗАТЕЛЬНО дождаться ввода пользователя
 
 ---
 
-### Stage 3: Preview (APPROVAL REQUIRED)
-**Action**: Show full error entry before adding
+### Этап 3: предварительный просмотр (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
+**Действие**: показать полную запись ошибки перед добавлением
 
-**Format**:
+**Формат**:
 ```
 Would update development/errors/react-errors.md:
 
@@ -149,22 +149,22 @@ File size: 98 lines → 105 lines (under 150 limit ✓)
 Approve? (yes/no/edit):
 ```
 
-**Edit mode**: Allow modification before adding
+**Режим edit**: разрешить изменение перед добавлением
 
-**Validation**: MUST get approval before proceeding
+**Валидация**: ОБЯЗАТЕЛЬНО получить одобрение перед продолжением
 
 ---
 
-### Stage 4: Add/Update
-**Action**: Add or update error entry
+### Этап 4: добавить/обновить
+**Действие**: добавить или обновить запись ошибки
 
-**Process**:
-1. Add/update error in target file
-2. Follow error template format
-3. Maintain file size <150 lines
-4. Update "Last Updated" date
+**Процесс**:
+1. Добавить/обновить ошибку в целевом файле
+2. Следовать формату шаблона ошибок
+3. Поддерживать размер файла <150 строк
+4. Обновить дату "Last Updated"
 
-**Template Format**:
+**Формат шаблона**:
 ```markdown
 ## Error: {Name}
 
@@ -179,20 +179,20 @@ Approve? (yes/no/edit):
 
 ---
 
-### Stage 5: Update Navigation
-**Action**: Update README.md and add cross-references
+### Этап 5: обновить навигацию
+**Действие**: обновить `README.md` и добавить перекрестные ссылки
 
-**Process**:
-1. Update README.md if new file created
-2. Add cross-references to related errors
-3. Link from related concepts/examples
+**Процесс**:
+1. Обновить `README.md`, если создан новый файл
+2. Добавить перекрестные ссылки к связанным ошибкам
+3. Добавить ссылки из связанных concepts/examples
 
 ---
 
-### Stage 6: Report
-**Action**: Show results
+### Этап 6: отчет
+**Действие**: показать результаты
 
-**Format**:
+**Формат**:
 ```
 ✅ Added error to {category}/errors/{file}.md
 🔗 Cross-referenced with X related errors
@@ -206,70 +206,70 @@ Changes:
 
 ---
 
-## Deduplication Strategy
+## Стратегия дедупликации
 
-### Similar Errors
-Same root cause, different manifestations
-→ **Update existing** to include new examples
+### Похожие ошибки
+Одна корневая причина, разные проявления
+→ **Обновить существующую**, добавив новые примеры
 
-### Related Errors
-Different causes, same category
-→ **Cross-reference** between errors
+### Связанные ошибки
+Разные причины, одна категория
+→ Добавить **перекрестную ссылку** между ошибками
 
-### Duplicate Errors
-Exact same error already documented
-→ **Skip** (already covered)
+### Дублирующиеся ошибки
+Та же самая ошибка уже документирована
+→ **Пропустить** (уже покрыто)
 
-### New Errors
-Unique error not yet documented
-→ **Add as new** error entry
-
----
-
-## Error Grouping
-
-Group errors by framework/topic in single file:
-- `react-errors.md` - All React errors
-- `nextjs-errors.md` - All Next.js errors
-- `auth-errors.md` - All authentication errors
-
-**Don't create**: One file per error (too granular)
+### Новые ошибки
+Уникальная ошибка еще не документирована
+→ **Добавить как новую** запись ошибки
 
 ---
 
-## Examples
+## Группировка ошибок
 
-### Add New Error
+Группируйте ошибки по фреймворку/теме в одном файле:
+- `react-errors.md` - все ошибки React
+- `nextjs-errors.md` - все ошибки Next.js
+- `auth-errors.md` - все ошибки аутентификации
+
+**Не создавайте**: один файл на ошибку (слишком гранулярно)
+
+---
+
+## Примеры
+
+### Добавить новую ошибку
 ```bash
 /context error for "hooks can only be called inside components"
 ```
 
-### Add Common Error
+### Добавить распространенную ошибку
 ```bash
 /context error for "Cannot read property 'map' of undefined"
 ```
 
-### Add Framework Error
+### Добавить ошибку фреймворка
 ```bash
 /context error for "Hydration failed in Next.js"
 ```
 
 ---
 
-## Success Criteria
+## Критерии успеха
 
-- [ ] Searched for similar errors?
-- [ ] Deduplication options presented?
-- [ ] Preview shown?
-- [ ] User approved?
-- [ ] Error follows template format?
-- [ ] File size <150 lines?
-- [ ] Cross-references added?
-- [ ] README.md updated (if new file)?
+- [ ] Поиск похожих ошибок выполнен?
+- [ ] Варианты дедупликации показаны?
+- [ ] Предварительный просмотр показан?
+- [ ] Пользователь одобрил?
+- [ ] Ошибка следует формату шаблона?
+- [ ] Размер файла <150 строк?
+- [ ] Перекрестные ссылки добавлены?
+- [ ] `README.md` обновлен (если новый файл)?
 
 ---
 
-## Related
+## Связанные материалы
 
-- standards/templates.md - Error template format
-- guides/workflows.md - Interactive examples
+- standards/templates.md - формат шаблона ошибок
+- guides/workflows.md - интерактивные примеры

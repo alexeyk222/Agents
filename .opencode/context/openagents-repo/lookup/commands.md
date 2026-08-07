@@ -1,14 +1,14 @@
 <!-- Context: openagents-repo/lookup | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Lookup: Command Reference
+# Справочник: команды
 
-**Purpose**: Quick reference for common commands
+**Назначение**: краткий справочник частых команд
 
 ---
 
-## Registry Commands
+## Команды registry
 
-### Validate Registry
+### Валидировать registry
 
 ```bash
 # Basic validation
@@ -18,7 +18,7 @@
 ./scripts/registry/validate-registry.sh -v
 ```
 
-### Auto-Detect Components
+### Auto-detect компонентов
 
 ```bash
 # Dry run (see what would change)
@@ -31,7 +31,7 @@
 ./scripts/registry/auto-detect-components.sh --auto-add --force
 ```
 
-### Validate Component Structure
+### Валидировать структуру компонента
 
 ```bash
 ./scripts/registry/validate-component.sh
@@ -39,9 +39,9 @@
 
 ---
 
-## Testing Commands
+## Команды тестирования
 
-### Run Tests
+### Запуск тестов
 
 ```bash
 # Single test
@@ -58,7 +58,7 @@ npm run eval:sdk
 npm run eval:sdk -- --agent={agent} --debug
 ```
 
-### Validate Test Suites
+### Валидировать test suites
 
 ```bash
 ./scripts/validation/validate-test-suites.sh
@@ -66,9 +66,9 @@ npm run eval:sdk -- --agent={agent} --debug
 
 ---
 
-## Installation Commands
+## Команды установки
 
-### Install Components
+### Установить компоненты
 
 ```bash
 # List available components
@@ -85,7 +85,7 @@ npm run eval:sdk -- --agent={agent} --debug
 REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list
 ```
 
-### Collision Handling
+### Обработка конфликтов
 
 ```bash
 # Skip existing files
@@ -100,9 +100,9 @@ REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list
 
 ---
 
-## Version Commands
+## Команды версий
 
-### Check Version
+### Проверить версию
 
 ```bash
 # Check all version files
@@ -111,7 +111,7 @@ cat package.json | jq '.version'
 cat registry.json | jq '.version'
 ```
 
-### Update Version
+### Обновить версию
 
 ```bash
 # Update VERSION
@@ -124,7 +124,7 @@ jq '.version = "0.X.Y"' package.json > tmp && mv tmp package.json
 jq '.version = "0.X.Y"' registry.json > tmp && mv tmp registry.json
 ```
 
-### Bump Version Script
+### Скрипт повышения версии
 
 ```bash
 ./scripts/versioning/bump-version.sh 0.X.Y
@@ -132,9 +132,9 @@ jq '.version = "0.X.Y"' registry.json > tmp && mv tmp registry.json
 
 ---
 
-## Git Commands
+## Git-команды
 
-### Create Release
+### Создать релиз
 
 ```bash
 # Commit version changes
@@ -149,7 +149,7 @@ git push origin main
 git push origin v0.X.Y
 ```
 
-### Create GitHub Release
+### Создать GitHub release
 
 ```bash
 # Via GitHub CLI
@@ -160,9 +160,9 @@ gh release create v0.X.Y \
 
 ---
 
-## Validation Commands
+## Команды валидации
 
-### Full Validation
+### Полная валидация
 
 ```bash
 # Validate everything
@@ -171,7 +171,7 @@ gh release create v0.X.Y \
 cd evals/framework && npm run eval:sdk
 ```
 
-### Check Context Dependencies
+### Проверить context-зависимости
 
 ```bash
 # Analyze all agents
@@ -184,13 +184,13 @@ cd evals/framework && npm run eval:sdk
 /check-context-deps --fix
 ```
 
-### Validate Context References
+### Валидировать context references
 
 ```bash
 ./scripts/validation/validate-context-refs.sh
 ```
 
-### Setup Pre-Commit Hook
+### Настроить pre-commit hook
 
 ```bash
 ./scripts/validation/setup-pre-commit-hook.sh
@@ -198,15 +198,15 @@ cd evals/framework && npm run eval:sdk
 
 ---
 
-## Development Commands
+## Команды разработки
 
-### Run Demo
+### Запустить demo
 
 ```bash
 ./scripts/development/demo.sh
 ```
 
-### Run Dashboard
+### Запустить dashboard
 
 ```bash
 ./scripts/development/dashboard.sh
@@ -214,15 +214,15 @@ cd evals/framework && npm run eval:sdk
 
 ---
 
-## Maintenance Commands
+## Команды обслуживания
 
-### Cleanup Stale Sessions
+### Очистить устаревшие sessions
 
 ```bash
 ./scripts/maintenance/cleanup-stale-sessions.sh
 ```
 
-### Uninstall
+### Удалить
 
 ```bash
 ./scripts/maintenance/uninstall.sh
@@ -230,9 +230,9 @@ cd evals/framework && npm run eval:sdk
 
 ---
 
-## Debugging Commands
+## Команды отладки
 
-### Check Sessions
+### Проверить sessions
 
 ```bash
 # List recent sessions
@@ -245,7 +245,7 @@ cat .tmp/sessions/{session-id}/session.json | jq
 cat .tmp/sessions/{session-id}/events.json | jq
 ```
 
-### Check Context Logs
+### Проверить context-логи
 
 ```bash
 # Check session cache
@@ -263,9 +263,9 @@ cat .tmp/sessions/{session-id}/events.json | jq
 
 ---
 
-## Quick Workflows
+## Быстрые процессы
 
-### Adding a New Agent
+### Добавление нового агента
 
 ```bash
 # 1. Create agent file
@@ -284,7 +284,7 @@ mkdir -p evals/agents/{category}/{agent-name}/{config,tests}
 cd evals/framework && npm run eval:sdk -- --agent={category}/{agent-name}
 ```
 
-### Testing an Agent
+### Тестирование агента
 
 ```bash
 # 1. Run smoke test
@@ -299,7 +299,7 @@ ls -lt .tmp/sessions/ | head -1
 cat .tmp/sessions/{session-id}/session.json | jq
 ```
 
-### Creating a Release
+### Создание релиза
 
 ```bash
 # 1. Update version
@@ -324,9 +324,9 @@ gh release create v0.X.Y --title "v0.X.Y" --notes "See CHANGELOG.md"
 
 ---
 
-## Common Patterns
+## Частые паттерны
 
-### Find Files
+### Найти файлы
 
 ```bash
 # Find agent
@@ -342,7 +342,7 @@ find .opencode/context -name "*.md"
 find scripts -name "*.sh"
 ```
 
-### Check Registry
+### Проверить registry
 
 ```bash
 # List all agents
@@ -355,7 +355,7 @@ cat registry.json | jq '.components.agents[] | select(.id == "{agent-name}")'
 cat registry.json | jq '.components.agents | length'
 ```
 
-### Test Locally
+### Тестировать локально
 
 ```bash
 # Test with local registry
@@ -367,7 +367,7 @@ REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh developer
 
 ---
 
-## NPM Commands (Eval Framework)
+## NPM-команды (eval-фреймворк)
 
 ```bash
 cd evals/framework
@@ -390,13 +390,13 @@ npm run lint
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- **Quick start**: `quick-start.md`
-- **File locations**: `lookup/file-locations.md`
-- **Guides**: `guides/`
+- **Быстрый старт**: `quick-start.md`
+- **Расположение файлов**: `lookup/file-locations.md`
+- **Руководства**: `guides/`
 
 ---
 
-**Last Updated**: 2025-12-10  
-**Version**: 0.5.0
+**Последнее обновление**: 2025-12-10  
+**Версия**: 0.5.0

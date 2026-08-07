@@ -1,22 +1,22 @@
 <!-- Context: development/api-design | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# API Design Patterns
+# Паттерны проектирования API
 
-**Category**: development  
-**Purpose**: REST API design principles, GraphQL patterns, and API versioning strategies  
-**Used by**: opencoder
+**Категория**: development  
+**Назначение**: Принципы проектирования REST API, паттерны GraphQL и стратегии версионирования API  
+**Используют**: opencoder
 
 ---
 
-## Overview
+## Обзор
 
-This guide covers best practices for designing robust, scalable, and maintainable APIs, including REST, GraphQL, and versioning strategies.
+Это руководство описывает лучшие практики проектирования надёжных, масштабируемых и поддерживаемых API, включая REST, GraphQL и стратегии версионирования.
 
-## REST API Design
+## Проектирование REST API
 
-### 1. Resource-Based URLs
+### 1. URL на основе ресурсов
 
-**Use nouns, not verbs**:
+**Используйте существительные, а не глаголы**:
 ```
 # Bad
 GET  /getUsers
@@ -31,18 +31,18 @@ PATCH  /users/123
 DELETE /users/123
 ```
 
-### 2. HTTP Methods
+### 2. HTTP-методы
 
-**Use appropriate HTTP methods**:
-- `GET` - Retrieve resources (idempotent, safe)
-- `POST` - Create new resources
-- `PUT` - Replace entire resource (idempotent)
-- `PATCH` - Partial update (idempotent)
-- `DELETE` - Remove resource (idempotent)
+**Используйте подходящие HTTP-методы**:
+- `GET` - получение ресурсов (идемпотентный, безопасный)
+- `POST` - создание новых ресурсов
+- `PUT` - полная замена ресурса (идемпотентный)
+- `PATCH` - частичное обновление (идемпотентный)
+- `DELETE` - удаление ресурса (идемпотентный)
 
-### 3. Status Codes
+### 3. Коды статуса
 
-**Use standard HTTP status codes**:
+**Используйте стандартные коды статуса HTTP**:
 ```
 2xx Success
   200 OK - Successful GET, PUT, PATCH
@@ -62,9 +62,9 @@ DELETE /users/123
   503 Service Unavailable - Temporary unavailability
 ```
 
-### 4. Consistent Response Format
+### 4. Единый формат ответа
 
-**Standardize response structure**:
+**Стандартизируйте структуру ответа**:
 ```json
 // Success response
 {
@@ -115,9 +115,9 @@ DELETE /users/123
 }
 ```
 
-### 5. Filtering, Sorting, Pagination
+### 5. Фильтрация, сортировка, пагинация
 
-**Support common query operations**:
+**Поддерживайте типовые query-операции**:
 ```
 # Filtering
 GET /users?status=active&role=admin
@@ -135,9 +135,9 @@ GET /users?fields=id,name,email
 GET /users?q=john
 ```
 
-### 6. Nested Resources
+### 6. Вложенные ресурсы
 
-**Handle relationships appropriately**:
+**Обрабатывайте связи корректно**:
 ```
 # Good - Shallow nesting
 GET /users/123/posts
@@ -149,11 +149,11 @@ GET /users/123/posts/456/comments/789
 GET /comments/789
 ```
 
-## GraphQL Patterns
+## Паттерны GraphQL
 
-### 1. Schema Design
+### 1. Проектирование схемы
 
-**Design clear, intuitive schemas**:
+**Проектируйте понятные, интуитивные схемы**:
 ```graphql
 type User {
   id: ID!
@@ -196,9 +196,9 @@ input UserFilter {
 }
 ```
 
-### 2. Resolver Patterns
+### 2. Паттерны resolver-ов
 
-**Implement efficient resolvers**:
+**Реализуйте эффективные resolvers**:
 ```javascript
 const resolvers = {
   Query: {
@@ -232,9 +232,9 @@ const resolvers = {
 };
 ```
 
-### 3. DataLoader for N+1 Prevention
+### 3. DataLoader для предотвращения N+1
 
-**Batch and cache database queries**:
+**Батчите и кэшируйте запросы к базе данных**:
 ```javascript
 import DataLoader from 'dataloader';
 
@@ -251,11 +251,11 @@ const userLoader = new DataLoader(async (userIds) => {
 const user = await userLoader.load(userId);
 ```
 
-## Frontend API Client Patterns (TanStack Query)
+## Паттерны frontend-клиента API (TanStack Query)
 
-**Use TanStack Query for optimal client-side API consumption**:
+**Используйте TanStack Query для оптимальной работы с API на клиенте**:
 
-### REST Integration
+### Интеграция REST
 ```javascript
 // Optimal REST client with TanStack Query v5
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
@@ -282,33 +282,33 @@ function UsersList() {
 }
 
 
-## API Versioning
+## Версионирование API
 
-### 1. URL Versioning
+### 1. Версионирование в URL
 
-**Version in the URL path**:
+**Указывайте версию в URL path**:
 ```
 GET /v1/users
 GET /v2/users
 ```
 
-**Pros**: Clear, easy to route  
-**Cons**: URL changes, harder to maintain multiple versions
+**Плюсы**: понятно, легко маршрутизировать  
+**Минусы**: меняется URL, сложнее поддерживать несколько версий
 
-### 2. Header Versioning
+### 2. Версионирование в заголовке (header)
 
-**Version in Accept header**:
+**Указывайте версию в Accept header**:
 ```
 GET /users
 Accept: application/vnd.myapi.v2+json
 ```
 
-**Pros**: Clean URLs, flexible  
-**Cons**: Less visible, harder to test
+**Плюсы**: чистые URL, гибко  
+**Минусы**: менее заметно, сложнее тестировать
 
-### 3. Deprecation Strategy
+### 3. Стратегия вывода из эксплуатации (deprecation)
 
-**Communicate deprecation clearly**:
+**Сообщайте о выводе из эксплуатации явно**:
 ```javascript
 // Response headers
 Deprecation: true
@@ -326,11 +326,11 @@ Link: <https://api.example.com/v2/users>; rel="successor-version"
 }
 ```
 
-## Authentication & Authorization
+## Аутентификация и авторизация
 
-### 1. JWT Tokens
+### 1. JWT-токены
 
-**Use JWT for stateless auth**:
+**Используйте JWT для stateless auth**:
 ```javascript
 // Token structure
 {
@@ -359,9 +359,9 @@ function authenticateToken(req, res, next) {
 }
 ```
 
-### 2. Role-Based Access Control
+### 2. Управление доступом на основе ролей (RBAC)
 
-**Implement RBAC**:
+**Реализуйте RBAC**:
 ```javascript
 function authorize(...roles) {
   return (req, res, next) => {
@@ -385,33 +385,33 @@ app.delete('/users/:id',
 );
 ```
 
-## Best Practices
+## Лучшие практики
 
-1. **Use HTTPS everywhere** - Encrypt all API traffic
-2. **Implement rate limiting** - Prevent abuse and ensure fair usage
-3. **Validate all inputs** - Never trust client data
-4. **Use proper error handling** - Return meaningful error messages
-5. **Document your API** - Use OpenAPI/Swagger or GraphQL introspection
-6. **Version your API** - Plan for breaking changes
-7. **Implement CORS properly** - Configure allowed origins carefully
-8. **Log requests and errors** - Enable debugging and monitoring
-9. **Use caching** - Implement ETags, Cache-Control headers
-10. **Test thoroughly** - Unit, integration, and contract tests
+1. **Используйте HTTPS везде** - шифруйте весь API-трафик
+2. **Добавляйте rate limiting** - предотвращайте злоупотребления и обеспечивайте справедливое использование
+3. **Валидируйте все inputs** - никогда не доверяйте данным клиента
+4. **Используйте корректную обработку ошибок** - возвращайте понятные сообщения
+5. **Документируйте API** - используйте OpenAPI/Swagger или GraphQL introspection
+6. **Версионируйте API** - планируйте breaking changes
+7. **Настраивайте CORS корректно** - аккуратно задавайте allowed origins
+8. **Логируйте запросы и ошибки** - включайте отладку и мониторинг
+9. **Используйте caching** - реализуйте ETags и Cache-Control headers
+10. **Тестируйте тщательно** - unit, integration и contract tests
 
-## Anti-Patterns
+## Антипаттерны
 
-- ❌ **Exposing internal IDs** - Use UUIDs or opaque identifiers
-- ❌ **Returning too much data** - Support field selection
-- ❌ **Ignoring idempotency** - PUT/PATCH/DELETE should be idempotent
-- ❌ **Inconsistent naming** - Use camelCase or snake_case consistently
-- ❌ **Missing pagination** - Always paginate collections
-- ❌ **No rate limiting** - Protect against abuse
-- ❌ **Verbose error messages** - Don't leak implementation details
-- ❌ **Synchronous long operations** - Use async jobs for long tasks
+- ❌ **Раскрытие внутренних IDs** - используйте UUID или opaque identifiers
+- ❌ **Слишком много данных в ответе** - поддерживайте field selection
+- ❌ **Игнорирование idempotency** - PUT/PATCH/DELETE должны быть idempotent
+- ❌ **Несогласованное именование** - последовательно используйте camelCase или snake_case
+- ❌ **Нет pagination** - всегда пагинируйте коллекции
+- ❌ **Нет rate limiting** - защищайтесь от злоупотреблений
+- ❌ **Избыточные сообщения об ошибках** - не раскрывайте детали реализации
+- ❌ **Синхронные долгие операции** - используйте async jobs для долгих задач
 
-## References
+## Источники
 
-- REST API Design Rulebook by Mark Masse
+- REST API Design Rulebook — Mark Masse
 - GraphQL Best Practices (graphql.org)
-- API Design Patterns by JJ Geewax
+- API Design Patterns — JJ Geewax
 - OpenAPI Specification (swagger.io)

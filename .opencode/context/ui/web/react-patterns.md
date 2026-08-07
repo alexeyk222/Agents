@@ -1,22 +1,22 @@
 <!-- Context: ui/react-patterns | Priority: low | Version: 1.0 | Updated: 2026-02-15 -->
 
-# React Patterns & Best Practices
+# React-паттерны и лучшие практики
 
 **Category**: development  
-**Purpose**: Modern React patterns, hooks usage, and component design principles  
+**Purpose**: Современные React-паттерны, использование hooks и принципы дизайна компонентов  
 **Used by**: frontend-specialist
 
 ---
 
-## Overview
+## Обзор
 
-This guide covers modern React patterns using functional components, hooks, and best practices for building scalable React applications.
+Гайд описывает современные React-паттерны с функциональными компонентами, hooks и лучшими практиками для масштабируемых React-приложений.
 
-## Component Patterns
+## Паттерны компонентов
 
-### 1. Functional Components with Hooks
+### 1. Функциональные компоненты с hooks
 
-**Always use functional components**:
+**Всегда используйте функциональные компоненты**:
 ```jsx
 // Good
 function UserProfile({ userId }) {
@@ -30,9 +30,9 @@ function UserProfile({ userId }) {
 }
 ```
 
-### 2. Custom Hooks for Reusable Logic
+### 2. Custom hooks для переиспользуемой логики
 
-**Extract common logic into custom hooks**:
+**Выносите общую логику в custom hooks**:
 ```jsx
 // Custom hook
 function useUser(userId) {
@@ -61,9 +61,9 @@ function UserProfile({ userId }) {
 }
 ```
 
-### 3. Composition Over Props Drilling
+### 3. Composition вместо props drilling
 
-**Use composition to avoid prop drilling**:
+**Используйте composition, чтобы избежать props drilling**:
 ```jsx
 // Bad - Props drilling
 function App() {
@@ -89,9 +89,9 @@ function Layout() {
 }
 ```
 
-### 4. Compound Components
+### 4. Compound components
 
-**For complex, related components**:
+**Для сложных связанных компонентов**:
 ```jsx
 function Tabs({ children }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -135,11 +135,11 @@ Tabs.Panel = function TabPanel({ index, children }) {
 </Tabs>
 ```
 
-## Hooks Best Practices
+## Лучшие практики hooks
 
-### 1. useEffect Dependencies
+### 1. Зависимости useEffect
 
-**Always specify dependencies correctly**:
+**Всегда указывайте зависимости корректно**:
 ```jsx
 // Bad - Missing dependencies
 useEffect(() => {
@@ -161,9 +161,9 @@ useEffect(() => {
 }, [userId, fetchData]);
 ```
 
-### 2. useMemo for Expensive Calculations
+### 2. useMemo для дорогих вычислений
 
-**Memoize expensive computations**:
+**Мемоизируйте дорогие вычисления**:
 ```jsx
 function DataTable({ data, filters }) {
   const filteredData = useMemo(() => {
@@ -176,9 +176,9 @@ function DataTable({ data, filters }) {
 }
 ```
 
-### 3. useCallback for Stable References
+### 3. useCallback для стабильных ссылок
 
-**Prevent unnecessary re-renders**:
+**Предотвращайте лишние re-render**:
 ```jsx
 function Parent() {
   const [count, setCount] = useState(0);
@@ -199,11 +199,11 @@ const Child = memo(function Child({ onClick }) {
 });
 ```
 
-## State Management Patterns
+## Паттерны управления состоянием
 
-### 1. Local State First
+### 1. Сначала local state
 
-**Start with local state, lift when needed**:
+**Начинайте с local state и поднимайте состояние только при необходимости**:
 ```jsx
 // Local state
 function Counter() {
@@ -223,9 +223,9 @@ function App() {
 }
 ```
 
-### 2. useReducer for Complex State
+### 2. useReducer для сложного состояния
 
-**Use reducer for related state updates**:
+**Используйте reducer для связанных обновлений состояния**:
 ```jsx
 const initialState = { count: 0, step: 1 };
 
@@ -255,11 +255,11 @@ function Counter() {
 }
 ```
 
-## Performance Optimization
+## Оптимизация производительности
 
-### 1. Code Splitting
+### 1. Code splitting
 
-**Lazy load routes and heavy components**:
+**Lazy-load маршруты и тяжелые компоненты**:
 ```jsx
 import { lazy, Suspense } from 'react';
 
@@ -278,9 +278,9 @@ function App() {
 }
 ```
 
-### 2. Virtualization for Long Lists
+### 2. Виртуализация длинных списков
 
-**Use virtualization for large datasets**:
+**Используйте виртуализацию для больших наборов данных**:
 ```jsx
 import { FixedSizeList } from 'react-window';
 
@@ -302,28 +302,28 @@ function VirtualList({ items }) {
 }
 ```
 
-## Best Practices
+## Лучшие практики
 
-1. **Keep components small and focused** - Single responsibility principle
-2. **Use TypeScript** - Type safety prevents bugs and improves DX
-3. **Colocate related code** - Keep components, styles, and tests together
-4. **Use meaningful prop names** - Clear, descriptive names improve readability
-5. **Avoid inline functions in JSX** - Extract to named functions or useCallback
-6. **Use fragments** - Avoid unnecessary wrapper divs
-7. **Handle loading and error states** - Always show feedback to users
-8. **Test components** - Use React Testing Library for user-centric tests
+1. **Держите компоненты маленькими и сфокусированными** - принцип single responsibility
+2. **Используйте TypeScript** - type safety предотвращает баги и улучшает DX
+3. **Colocate связанный код** - держите компоненты, стили и тесты рядом
+4. **Используйте понятные имена props** - ясные описательные имена улучшают читаемость
+5. **Избегайте inline functions в JSX** - выносите в именованные функции или useCallback
+6. **Используйте fragments** - избегайте лишних wrapper div
+7. **Обрабатывайте loading и error states** - всегда показывайте пользователям feedback
+8. **Тестируйте компоненты** - используйте React Testing Library для user-centric тестов
 
-## Anti-Patterns
+## Антипаттерны
 
-- ❌ **Prop drilling** - Use context or composition instead
-- ❌ **Massive components** - Break down into smaller, focused components
-- ❌ **Mutating state directly** - Always use setState or dispatch
-- ❌ **Using index as key** - Use stable, unique identifiers
-- ❌ **Unnecessary useEffect** - Derive state when possible
-- ❌ **Ignoring ESLint warnings** - React hooks rules prevent bugs
-- ❌ **Not memoizing context values** - Causes unnecessary re-renders
+- ❌ **Prop drilling** - вместо этого используйте context или composition
+- ❌ **Огромные компоненты** - разбивайте на маленькие сфокусированные компоненты
+- ❌ **Прямая мутация state** - всегда используйте setState или dispatch
+- ❌ **Index как key** - используйте стабильные уникальные идентификаторы
+- ❌ **Лишний useEffect** - по возможности выводите state из данных
+- ❌ **Игнорирование ESLint warnings** - правила React hooks предотвращают баги
+- ❌ **Нет memoization для context values** - вызывает лишние re-render
 
-## References
+## Ссылки
 
 - React Documentation (react.dev)
 - React Patterns by Kent C. Dodds

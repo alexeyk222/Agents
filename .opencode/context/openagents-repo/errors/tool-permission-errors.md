@@ -1,16 +1,16 @@
 <!-- Context: openagents-repo/errors | Priority: medium | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Tool Permission Errors
+# Ошибки прав инструментов
 
-**Purpose**: Diagnose and fix tool permission issues in agents
+**Назначение**: диагностировать и исправлять проблемы с правами инструментов у агентов
 
-**Last Updated**: 2026-01-07
+**Последнее обновление**: 2026-01-07
 
 ---
 
-## Error: Tool Permission Denied
+## Ошибка: отказано в доступе к инструменту
 
-### Symptom
+### Симптом
 
 ```json
 {
@@ -20,13 +20,13 @@
 }
 ```
 
-Or agent tries to use a tool but gets blocked silently (0 tool calls).
+Или агент пытается использовать инструмент, но тихо блокируется (0 tool calls).
 
 ---
 
-### Cause
+### Причина
 
-Agent has tool **disabled** or **denied** in frontmatter:
+У агента инструмент **отключен** или **запрещен** во frontmatter:
 
 ```yaml
 # In agent frontmatter
@@ -38,18 +38,18 @@ permission:
     "*": "deny"  # ← Explicitly denied
 ```
 
-**How it works**:
-- `bash: false` means agent doesn't have access to bash tool
-- Framework enforces this - agent can't use bash even if prompt says to
-- NOT an approval issue - it's a permission restriction
+**Как это работает**:
+- `bash: false` означает, что у агента нет доступа к инструменту bash
+- Фреймворк принудительно применяет это: агент не может использовать bash, даже если промпт просит
+- Это НЕ проблема approval, а ограничение прав
 
 ---
 
-### Solution
+### Решение
 
-**Option 1: Emphasize Tool Restrictions in Prompt** (Recommended)
+**Вариант 1: явно подчеркнуть ограничения инструментов в промпте** (рекомендуется)
 
-Add critical rules section at top of agent prompt:
+Добавьте секцию critical rules в начало промпта агента:
 
 ```xml
 <critical_rules priority="absolute" enforcement="strict">
@@ -65,22 +65,22 @@ Add critical rules section at top of agent prompt:
 </critical_rules>
 ```
 
-**Why this works**: Makes tool restrictions crystal clear in first 15% of prompt.
+**Почему это работает**: ограничения инструментов становятся предельно явными в первых 15% промпта.
 
-**Option 2: Enable Tool** (If agent needs it)
+**Вариант 2: включить инструмент** (если он нужен агенту)
 
 ```yaml
 tools:
   bash: true  # ← Enable if agent legitimately needs bash
 ```
 
-**Warning**: Only enable if agent truly needs the tool. Read-only subagents should NOT have bash/write/edit.
+**Предупреждение**: включайте инструмент только если он действительно нужен. Read-only субагенты НЕ должны иметь bash/write/edit.
 
 ---
 
-### Prevention
+### Профилактика
 
-**For Read-Only Subagents**:
+**Для субагентов только для чтения**:
 
 ```yaml
 # Correct configuration for read-only subagents
@@ -103,7 +103,7 @@ permissions:
     "**/*": "deny"
 ```
 
-**For Primary Agents**:
+**Для primary-агентов**:
 
 ```yaml
 # Primary agents may need execution tools
@@ -120,9 +120,9 @@ tools:
 
 ---
 
-## Error: Subagent Approval Gate Violation
+## Ошибка: нарушение approval gate у субагента
 
-### Symptom
+### Симптом
 
 ```json
 {
@@ -131,52 +131,52 @@ tools:
 }
 ```
 
-In a **subagent** test.
+В тесте **субагента**.
 
 ---
 
-### Cause
+### Причина
 
-**Subagents should NOT have approval gates** - they're delegated to by primary agents who already got approval.
+**У субагентов НЕ должно быть approval gates**: им делегируют primary-агенты, которые уже получили approval.
 
-The issue is usually:
-1. Subagent trying to use restricted tool (bash/write/edit)
-2. Test expecting approval behavior (wrong for subagents)
+Обычно причина в одном из двух:
+1. Субагент пытается использовать ограниченный инструмент (bash/write/edit)
+2. Тест ожидает approval-поведение (это неверно для субагентов)
 
 ---
 
-### Solution
+### Решение
 
-**Fix 1: Remove Tool Usage**
+**Исправление 1: убрать использование инструмента**
 
-Subagents shouldn't use execution tools. Update prompt to emphasize read-only nature.
+Субагенты не должны использовать execution tools. Обновите промпт и подчеркните read-only режим.
 
-**Fix 2: Update Test Configuration**
+**Исправление 2: обновить конфигурацию теста**
 
-Subagent tests should use `auto-approve`:
+Тесты субагентов должны использовать `auto-approve`:
 
 ```yaml
 approvalStrategy:
   type: auto-approve  # ← No approval gates for subagents
 ```
 
-**Fix 3: Check Tool Permissions**
+**Исправление 3: проверить права инструментов**
 
-Ensure subagent has `bash: false` in frontmatter.
-
----
-
-## Error: Tool Not Available
-
-### Symptom
-
-Agent tries to use a tool but framework says "tool not available".
+Убедитесь, что у субагента во frontmatter задано `bash: false`.
 
 ---
 
-### Cause
+## Ошибка: инструмент недоступен
 
-Tool not enabled in frontmatter:
+### Симптом
+
+Агент пытается использовать инструмент, но фреймворк сообщает "tool not available".
+
+---
+
+### Причина
+
+Инструмент не включен во frontmatter:
 
 ```yaml
 tools:
@@ -185,9 +185,9 @@ tools:
 
 ---
 
-### Solution
+### Решение
 
-Enable the tool:
+Включите инструмент:
 
 ```yaml
 tools:
@@ -196,32 +196,32 @@ tools:
 
 ---
 
-## Verification Checklist
+## Чек-лист проверки
 
-After fixing tool permission:
+После исправления прав инструмента:
 
-- [ ] Agent frontmatter has correct `tools:` configuration?
-- [ ] Prompt emphasizes allowed tools in critical rules section?
-- [ ] Prompt warns against restricted tools?
-- [ ] Test uses `auto-approve` for subagents?
-- [ ] Test verifies tool usage with `mustUseTools`?
+- [ ] Во frontmatter агента корректная конфигурация `tools:`?
+- [ ] Промпт подчеркивает разрешенные инструменты в секции critical rules?
+- [ ] Промпт предупреждает о запрещенных инструментах?
+- [ ] Тест использует `auto-approve` для субагентов?
+- [ ] Тест проверяет использование инструментов через `mustUseTools`?
 
 ---
 
-## Tool Permission Matrix
+## Матрица прав инструментов
 
-| Agent Type | bash | write | edit | task | read | grep | glob | list |
+| Тип агента | bash | write | edit | task | read | grep | glob | list |
 |------------|------|-------|------|------|------|------|------|------|
-| **Read-only subagent** | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
-| **Primary agent** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Orchestrator** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Субагент только для чтения** | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| **Primary-агент** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Оркестратор** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ---
 
-## Related
+## Связанные материалы
 
-- `concepts/subagent-testing-modes.md` - Understand subagent testing
-- `guides/testing-subagents.md` - How to test subagents
-- `examples/subagent-prompt-structure.md` - Prompt structure with tool emphasis
+- `concepts/subagent-testing-modes.md` - понять тестирование субагентов
+- `guides/testing-subagents.md` - как тестировать субагентов
+- `examples/subagent-prompt-structure.md` - структура промпта с акцентом на инструменты
 
-**Reference**: `.opencode/agent/subagents/core/contextscout.md` (tool configuration)
+**Справка**: `.opencode/agent/subagents/core/contextscout.md` (конфигурация инструментов)

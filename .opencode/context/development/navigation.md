@@ -1,60 +1,60 @@
 <!-- Context: development/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Development Navigation
+# Навигация по разработке
 
-**Purpose**: Software development across all stacks
+**Назначение**: Разработка ПО для всех стеков
 
 ---
 
-## Structure
+## Структура
 
 ```
 development/
 ├── navigation.md
-├── ui-navigation.md           # Specialized
-├── backend-navigation.md      # Specialized
-├── fullstack-navigation.md    # Specialized
+├── ui-navigation.md           # Специализированная
+├── backend-navigation.md      # Специализированная
+├── fullstack-navigation.md    # Специализированная
 │
-├── principles/                # Universal (language-agnostic)
+├── principles/                # Универсальные (не зависят от языка)
 │   ├── navigation.md
 │   ├── clean-code.md
 │   └── api-design.md
 │
-├── frameworks/                # Full-stack frameworks
+├── frameworks/                # Full-stack-фреймворки
 │   ├── navigation.md
 │   └── tanstack-start/
 │
-├── ai/                        # AI & Agents
+├── ai/                        # AI и агенты
 │   ├── navigation.md
 │   └── mastra-ai/
 │
-├── frontend/                  # Client-side
+├── frontend/                  # Клиентская часть
 │   ├── navigation.md
-│   ├── when-to-delegate.md    # When to use frontend-specialist
+│   ├── when-to-delegate.md    # Когда использовать frontend-specialist
 │   └── react/
 │       ├── navigation.md
 │       └── react-patterns.md
 │
-├── backend/                   # Server-side (future)
+├── backend/                   # Серверная часть (будущее)
 │   ├── navigation.md
 │   ├── api-patterns/
 │   ├── nodejs/
 │   ├── python/
 │   └── authentication/
 │
-├── data/                      # Data layer (future)
+├── data/                      # Слой данных (будущее)
 │   ├── navigation.md
 │   ├── sql-patterns/
 │   ├── nosql-patterns/
 │   └── orm-patterns/
 │
-├── integration/               # Connecting systems (future)
+├── integration/               # Связь систем (будущее)
 │   ├── navigation.md
 │   ├── package-management/
 │   ├── api-integration/
 │   └── third-party-services/
 │
-└── infrastructure/            # DevOps (future)
+└── infrastructure/            # DevOps (будущее)
     ├── navigation.md
     ├── docker/
     └── ci-cd/
@@ -62,33 +62,33 @@ development/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
 | **UI/Frontend** | `ui-navigation.md` |
-| **When to delegate frontend** | `frontend/when-to-delegate.md` |
+| **Когда делегировать frontend** | `frontend/when-to-delegate.md` |
 | **Backend/API** | `backend-navigation.md` |
 | **Full-stack** | `fullstack-navigation.md` |
-| **Clean code** | `principles/clean-code.md` |
-| **API design** | `principles/api-design.md` |
+| **Чистый код** | `principles/clean-code.md` |
+| **Проектирование API** | `principles/api-design.md` |
 
 ---
 
-## By Concern
+## По области
 
-**Principles** → Universal development practices
-**Frameworks** → Full-stack frameworks (Tanstack Start, Next.js)
-**AI** → AI frameworks and agent runtimes (MAStra AI)
-**Frontend** → React patterns and component design
-**Backend** → APIs, Node.js, Python, auth (future)
-**Data** → SQL, NoSQL, ORMs (future)
-**Integration** → Packages, APIs, services (future)
-**Infrastructure** → Docker, CI/CD (future)
+**Принципы** → Универсальные практики разработки
+**Фреймворки** → Full-stack-фреймворки (Tanstack Start, Next.js)
+**AI** → AI-фреймворки и среды выполнения агентов (MAStra AI)
+**Frontend** → Паттерны React и проектирование компонентов
+**Backend** → API, Node.js, Python, аутентификация (будущее)
+**Данные** → SQL, NoSQL, ORM (будущее)
+**Интеграция** → Пакеты, API, сервисы (будущее)
+**Инфраструктура** → Docker, CI/CD (будущее)
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Core Standards** → `../core/standards/navigation.md`
-- **UI Patterns** → `../ui/navigation.md`
+- **Базовые стандарты** → `../core/standards/navigation.md`
+- **Паттерны UI** → `../ui/navigation.md`

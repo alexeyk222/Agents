@@ -12,298 +12,244 @@ dependencies:
 # Context Manager
 
 <critical_rules priority="absolute" enforcement="strict">
-  <rule id="mvi_strict">
-    Files MUST be <200 lines. Extract core concepts only (1-3 sentences), 3-5 key points, minimal example, reference link.
-  </rule>
-  
-  <rule id="approval_gate">
-    ALWAYS present approval UI before deleting/archiving files. Letter-based selection (A B C or 'all'). NEVER auto-delete.
-  </rule>
-  
-  <rule id="function_structure">
-    ALWAYS organize by function: concepts/, examples/, guides/, lookup/, errors/ (not flat files).
-  </rule>
-  
-  <rule id="lazy_load">
-    ALWAYS read required context files from .opencode/context/core/context-system/ BEFORE executing operations.
-  </rule>
-</critical_rules>
+
+Файлы ДОЛЖНЫ содержать <200 строк. Извлекай только ключевые концепции: 1–3 предложения, 3–5 основных пунктов, минимальный пример и reference link.
 
 <execution_priority>
-  <tier level="1" desc="Safety & MVI">
-    - Files <200 lines (@critical_rules.mvi_strict)
-    - Show approval before cleanup (@critical_rules.approval_gate)
-    - Function-based structure (@critical_rules.function_structure)
-    - Load context before operations (@critical_rules.lazy_load)
-  </tier>
-  <tier level="2" desc="Core Operations">
-    - Harvest (default), Extract, Organize, Update workflows
-  </tier>
-  <tier level="3" desc="Enhancements">
-    - Cross-references, validation, navigation
-  </tier>
-  <conflict_resolution>
-    Tier 1 always overrides Tier 2/3.
-  </conflict_resolution>
+
+- Файлы <200 строк (@critical_rules.mvi_strict)
+- Показывать подтверждение перед cleanup (@critical_rules.approval_gate)
+- Использовать function-based структуру (@critical_rules.function_structure)
+- Загружать context перед выполнением операций (@critical_rules.lazy_load)
+
+- Workflows: Harvest (по умолчанию), Extract, Organize, Update
+
+- Cross-references, validation, navigation
+
+<conflict_resolution>
+Tier 1 всегда имеет приоритет над Tier 2/3.
+</conflict_resolution>
 </execution_priority>
 
 **Arguments**: `$ARGUMENTS`
 
 ---
 
-## Default Behavior (No Arguments)
+## Поведение по умолчанию (без аргументов)
 
-When invoked without arguments: `/context`
+При вызове без аргументов: `/context`
 
-<workflow id="default_scan_harvest">
-  <stage id="1" name="QuickScan">
-    Scan workspace for summary files:
-    - *OVERVIEW.md, *SUMMARY.md, SESSION-*.md, CONTEXT-*.md
-    - Files in .tmp/ directory
-    - Files >2KB in root directory
-  </stage>
-  
-  <stage id="2" name="Report">
-    Show what was found:
-    ```
-    Quick scan results:
-    
-    Found 3 summary files:
-      📄 CONTEXT-SYSTEM-OVERVIEW.md (4.2 KB)
-      📄 SESSION-auth-work.md (1.8 KB)
-      📄 .tmp/NOTES.md (800 bytes)
-    
-    Recommended action:
-      /context harvest  - Clean up summaries → permanent context
-    
-    Other options:
-      /context extract {source}  - Extract from docs/code
-      /context organize {category}  - Restructure existing files
-      /context help  - Show all operations
-    ```
-  </stage>
-</workflow>
+```text
+Найдено 3 summary-файла:
+  📄 CONTEXT-SYSTEM-OVERVIEW.md (4.2 KB)
+  📄 SESSION-auth-work.md (1.8 KB)
+  📄 .tmp/NOTES.md (800 bytes)
 
-**Purpose**: Quick tidy-up. Default assumes you want to harvest summaries and compact workspace.
+Рекомендуемое действие:
+  /context harvest  - Очистить summaries → перенести в постоянный context
+
+Другие варианты:
+  /context extract {source}  - Извлечь context из docs/code
+  /context organize {category}  - Реструктурировать существующие файлы
+  /context help  - Показать все операции
+```
+
+**Purpose**: Быстрая очистка и упорядочивание. По умолчанию предполагается, что пользователь хочет обработать summaries и сделать workspace компактнее.
 
 ---
 
-## Operations
+## Операции
 
-### Primary: Harvest & Compact (Default Focus)
+### Основная: Harvest & Compact (фокус по умолчанию)
 
-**`/context harvest [path]`** ⭐ Most Common
-- Extract knowledge from AI summaries → permanent context
-- Clean workspace (archive/delete summaries)
-- **Reads**: `operations/harvest.md` + `standards/mvi.md`
+**`/context harvest [path]`** ⭐ Используется чаще всего
+
+* Извлекает знания из AI summaries → сохраняет их в постоянный context
+* Очищает workspace — архивирует/удаляет summaries
+* **Читает**: `operations/harvest.md` + `standards/mvi.md`
 
 **`/context compact {file}`**
-- Minimize verbose file to MVI format
-- **Reads**: `guides/compact.md` + `standards/mvi.md`
+
+* Сжимает подробный файл до формата MVI
+* **Читает**: `guides/compact.md` + `standards/mvi.md`
 
 ---
 
-### Secondary: Custom Context Creation
+### Дополнительная: Создание пользовательского Context
 
 **`/context extract from {source}`**
-- Extract context from docs/code/URLs
-- **Reads**: `operations/extract.md` + `standards/mvi.md` + `guides/compact.md`
+
+* Извлекает context из docs/code/URLs
+* **Читает**: `operations/extract.md` + `standards/mvi.md` + `guides/compact.md`
 
 **`/context organize {category}`**
-- Restructure flat files → function-based folders
-- **Reads**: `operations/organize.md` + `standards/structure.md`
+
+* Преобразует плоскую структуру файлов → function-based folders
+* **Читает**: `operations/organize.md` + `standards/structure.md`
 
 **`/context update for {topic}`**
-- Update context when APIs/frameworks change
-- **Reads**: `operations/update.md` + `guides/workflows.md`
+
+* Обновляет context при изменении APIs/frameworks
+* **Читает**: `operations/update.md` + `guides/workflows.md`
 
 **`/context error for {error}`**
-- Add recurring error to knowledge base
-- **Reads**: `operations/error.md` + `standards/templates.md`
+
+* Добавляет повторяющуюся ошибку в knowledge base
+* **Читает**: `operations/error.md` + `standards/templates.md`
 
 **`/context create {category}`**
-- Create new context category with structure
-- **Reads**: `guides/creation.md` + `standards/structure.md` + `standards/templates.md`
+
+* Создаёт новую context-категорию с необходимой структурой
+* **Читает**: `guides/creation.md` + `standards/structure.md` + `standards/templates.md`
 
 ---
 
 ### Migration
 
 **`/context migrate`**
-- Copy project-intelligence from global (`~/.config/opencode/context/`) to local (`.opencode/context/`)
-- For users who installed globally but want project-specific, git-committed context
-- Shows diff if local files already exist, asks before overwriting
-- Optionally cleans up global project-intelligence after migration
-- **Reads**: `standards/mvi.md`
+
+* Копирует project-intelligence из global (`~/.config/opencode/context/`) в local (`.opencode/context/`)
+* Для пользователей, которые установили систему глобально, но хотят project-specific context, хранящийся в git
+* Показывает diff, если local-файлы уже существуют, и запрашивает подтверждение перед перезаписью
+* Опционально очищает global project-intelligence после migration
+* **Читает**: `standards/mvi.md`
 
 ---
 
-### Utility Operations
+### Вспомогательные операции
 
 **`/context map [category]`**
-- View current context structure, file counts
+
+* Показывает текущую структуру context и количество файлов
 
 **`/context validate`**
-- Check integrity, references, file sizes
+
+* Проверяет целостность, references и размеры файлов
 
 **`/context help`**
-- Show all operations with examples
+
+* Показывает все операции с примерами
 
 ---
 
-## Lazy Loading Strategy
+## Стратегия Lazy Loading
 
 <lazy_load_map>
-  <operation name="default">
-    Read: operations/harvest.md, standards/mvi.md
-  </operation>
-  
-  <operation name="harvest">
-    Read: operations/harvest.md, standards/mvi.md, guides/workflows.md
-  </operation>
-  
-  <operation name="compact">
-    Read: guides/compact.md, standards/mvi.md
-  </operation>
-  
-  <operation name="extract">
-    Read: operations/extract.md, standards/mvi.md, guides/compact.md, guides/workflows.md
-  </operation>
-  
-  <operation name="organize">
-    Read: operations/organize.md, standards/structure.md, guides/workflows.md
-  </operation>
-  
-  <operation name="update">
-    Read: operations/update.md, guides/workflows.md, standards/mvi.md
-  </operation>
-  
-  <operation name="error">
-    Read: operations/error.md, standards/templates.md, guides/workflows.md
-  </operation>
-  
-  <operation name="create">
-    Read: guides/creation.md, standards/structure.md, standards/templates.md
-  </operation>
-  
-  <operation name="migrate">
-    Read: standards/mvi.md
-  </operation>
-</lazy_load_map>
 
-**All files located in**: `.opencode/context/core/context-system/`
+Читать: `operations/harvest.md`, `standards/mvi.md`
+
+**Все файлы расположены в**: `.opencode/context/core/context-system/`
 
 ---
 
-## Subagent Routing
+## Маршрутизация Subagents
 
 <subagent_routing>
-  <!-- Delegate operations to specialized subagents -->
-  <route operations="harvest|extract|organize|update|error|create|migrate" to="ContextOrganizer">
-    Pass: operation name, arguments, lazy load map
-    Subagent loads: Required context files from .opencode/context/core/context-system/
-    Subagent executes: Multi-stage workflow per operation
-  </route>
-  
-  <route operations="map|validate" to="ContextScout">
-    Pass: operation name, arguments
-    Subagent executes: Read-only analysis and reporting
-  </route>
-</subagent_routing>
 
 ---
 
-## Quick Reference
+## Краткий справочник
 
-### Structure
-```
+### Структура
+
+```text
 .opencode/context/core/context-system/
-├── operations/     # How to do things (harvest, extract, organize, update)
-├── standards/      # What to follow (mvi, structure, templates)
-└── guides/         # Step-by-step (workflows, compact, creation)
+├── operations/     # Как выполнять операции (harvest, extract, organize, update)
+├── standards/      # Каким правилам следовать (mvi, structure, templates)
+└── guides/         # Пошаговые инструкции (workflows, compact, creation)
 ```
 
-### MVI Principle (Quick)
-- Core concept: 1-3 sentences
-- Key points: 3-5 bullets
-- Minimal example: <10 lines
-- Reference link: to full docs
-- File size: <200 lines
+### Принцип MVI (кратко)
 
-### Function-Based Structure (Quick)
-```
+* Ключевая концепция: 1–3 предложения
+* Основные пункты: 3–5 bullets
+* Минимальный пример: <10 строк
+* Reference link: ссылка на полную документацию
+* Размер файла: <200 строк
+
+### Function-Based Structure (кратко)
+
+```text
 {category}/
-├── navigation.md       # Navigation
-├── concepts/       # What it is
-├── examples/       # Working code
-├── guides/         # How to
-├── lookup/         # Quick reference
-└── errors/         # Common issues
+├── navigation.md   # Навигация
+├── concepts/       # Что это такое
+├── examples/       # Рабочий код
+├── guides/         # Как использовать
+├── lookup/         # Быстрый справочник
+└── errors/         # Распространённые проблемы
 ```
 
 ---
 
-## Examples
+## Примеры
 
-### Default (Quick Scan)
+### По умолчанию (быстрое сканирование)
+
 ```bash
 /context
-# Scans workspace, suggests harvest if summaries found
+# Сканирует workspace и предлагает harvest, если найдены summaries
 ```
 
 ### Harvest Summaries
+
 ```bash
 /context harvest
 /context harvest .tmp/
 /context harvest OVERVIEW.md
 ```
 
-### Extract from Docs
+### Извлечение из Docs
+
 ```bash
 /context extract from docs/api.md
 /context extract from https://react.dev/hooks
 ```
 
-### Organize Existing
+### Организация существующих файлов
+
 ```bash
 /context organize development/
 /context organize development/ --dry-run
 ```
 
-### Update for Changes
+### Обновление при изменениях
+
 ```bash
 /context update for Next.js 15
 /context update for React 19 breaking changes
 ```
 
-### Migrate Global to Local
+### Migration из Global в Local
+
 ```bash
 /context migrate
-# Copies project-intelligence from ~/.config/opencode/context/ to .opencode/context/
-# Shows what will be copied, asks for approval before proceeding
+# Копирует project-intelligence из ~/.config/opencode/context/ в .opencode/context/
+# Показывает, что будет скопировано, и запрашивает подтверждение перед выполнением
 ```
 
 ---
 
-## Success Criteria
+## Критерии успешного выполнения
 
-After any operation:
-- [ ] All files <200 lines? (@critical_rules.mvi_strict)
-- [ ] Function-based structure used? (@critical_rules.function_structure)
-- [ ] Approval UI shown for destructive ops? (@critical_rules.approval_gate)
-- [ ] Required context loaded? (@critical_rules.lazy_load)
-- [ ] navigation.md updated?
-- [ ] Files scannable in <30 seconds?
+После любой операции:
+
+* [ ] Все файлы <200 строк? (@critical_rules.mvi_strict)
+* [ ] Используется function-based структура? (@critical_rules.function_structure)
+* [ ] Для destructive operations показан approval UI? (@critical_rules.approval_gate)
+* [ ] Необходимый context загружен? (@critical_rules.lazy_load)
+* [ ] navigation.md обновлён?
+* [ ] Файлы просматриваются менее чем за 30 секунд?
 
 ---
 
-## Full Documentation
+## Полная документация
 
-**Context System Location**: `.opencode/context/core/context-system/`
+**Расположение Context System**: `.opencode/context/core/context-system/`
 
-**Structure**:
-- `operations/` - Detailed operation workflows
-- `standards/` - MVI, structure, templates
-- `guides/` - Interactive examples, creation standards
+**Структура**:
 
-**Read before using**: `standards/mvi.md` (understand Minimal Viable Information principle)
+* `operations/` — подробные workflows операций
+* `standards/` — MVI, structure, templates
+* `guides/` — интерактивные примеры и стандарты создания
+
+**Прочитать перед использованием**: `standards/mvi.md` — описание принципа Minimal Viable Information

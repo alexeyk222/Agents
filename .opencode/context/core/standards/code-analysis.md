@@ -1,64 +1,64 @@
 <!-- Context: standards/analysis | Priority: high | Version: 2.0 | Updated: 2025-01-21 -->
 
-# Analysis Guidelines
+# Руководство по анализу
 
-## Quick Reference
+## Краткая справка
 
-**Process**: Context → Gather → Patterns → Impact → Recommendations
+**Процесс**: Контекст → Сбор данных → Паттерны → Влияние → Рекомендации
 
-**Report Format**: Context, Findings, Patterns, Issues (🔴🟡🔵), Recommendations, Trade-offs, Next Steps
+**Формат отчета**: Контекст, находки, паттерны, проблемы (🔴🟡🔵), рекомендации, компромиссы, следующие шаги
 
-**Be**: Thorough, Objective, Specific, Actionable
+**Будьте**: тщательны, объективны, конкретны, ориентированы на действие
 
-**Checklist**: Context stated, Evidence gathered, Patterns identified, Issues prioritized, Recommendations specific, Trade-offs considered
+**Чеклист**: Контекст указан, доказательства собраны, паттерны выявлены, проблемы приоритизированы, рекомендации конкретны, компромиссы учтены
 
 ---
 
-## Purpose
-Framework for analyzing code, patterns, and technical issues systematically.
+## Назначение
+Фреймворк для системного анализа кода, паттернов и технических проблем.
 
-## When to Use
-Reference this when:
-- Analyzing codebase patterns
-- Investigating bugs or issues
-- Evaluating architectural decisions
-- Assessing code quality
-- Researching solutions
+## Когда использовать
+Используйте при:
+- Анализе паттернов кодовой базы
+- Расследовании багов или проблем
+- Оценке архитектурных решений
+- Оценке качества кода
+- Поиске решений
 
-## Analysis Process
+## Процесс анализа
 
-### 1. Understand Context
-- What are we analyzing and why?
-- What's the goal or question?
-- What's the scope?
-- What constraints exist?
+### 1. Понять контекст
+- Что анализируем и зачем?
+- Какова цель или вопрос?
+- Каков объем работ?
+- Какие есть ограничения?
 
-### 2. Gather Information
-- Read relevant code / data points
-- Check documentation
-- Search for patterns
-- Review related issues
-- Examine dependencies
+### 2. Собрать информацию
+- Прочитать релевантный код / точки данных
+- Проверить документацию
+- Найти паттерны
+- Изучить связанные issues
+- Проверить зависимости
 
-### 3. Identify Patterns
-- What's consistent across the codebase?
-- What conventions are followed?
-- What patterns are repeated?
-- What's inconsistent or unusual?
+### 3. Выявить паттерны
+- Что согласовано по всей кодовой базе?
+- Какие соглашения соблюдаются?
+- Какие паттерны повторяются?
+- Что выглядит несогласованным или необычным?
 
-### 4. Assess Impact
-- What are the implications?
-- What are the trade-offs?
-- What could break?
-- What are the risks?
+### 4. Оценить влияние
+- Какие последствия?
+- Какие компромиссы?
+- Что может сломаться?
+- Какие риски?
 
-### 5. Provide Recommendations
-- What should be done?
-- Why this approach?
-- What are alternatives?
-- What's the priority?
+### 5. Дать рекомендации
+- Что нужно сделать?
+- Почему этот подход?
+- Какие есть альтернативы?
+- Какой приоритет?
 
-## Analysis Report Format
+## Формат отчета анализа
 
 ```markdown
 ## Analysis: {Topic}
@@ -92,61 +92,60 @@ Reference this when:
 - {Action 2}
 ```
 
-## Common Analysis Types
+## Типовые виды анализа
 
-### Code Quality Analysis
-- Complexity (cyclomatic, cognitive)
-- Duplication
-- Test coverage
-- Documentation completeness
-- Naming consistency
-- Error handling patterns
+### Анализ качества кода
+- Сложность (цикломатическая, когнитивная)
+- Дублирование
+- Покрытие тестами
+- Полнота документации
+- Согласованность именования
+- Паттерны обработки ошибок
 
-### Architecture Analysis
-- Module dependencies
-- Coupling and cohesion
-- Separation of concerns
-- Scalability considerations
-- Performance bottlenecks
+### Анализ архитектуры
+- Зависимости модулей
+- Связанность и сцепление
+- Разделение ответственности
+- Масштабируемость
+- Узкие места производительности
 
-### Bug Investigation
-- Reproduce the issue
-- Identify root cause
-- Assess impact and severity
-- Propose fix with rationale
-- Consider edge cases
+### Расследование бага
+- Воспроизвести проблему
+- Найти корневую причину
+- Оценить влияние и серьезность
+- Предложить исправление с обоснованием
+- Учесть крайние случаи
 
-### Pattern Discovery
-- Search for similar implementations
-- Identify common approaches
-- Document conventions
-- Note inconsistencies
-- Recommend standardization
+### Поиск паттернов
+- Найти похожие реализации
+- Выявить общие подходы
+- Задокументировать соглашения
+- Отметить несогласованности
+- Рекомендовать стандартизацию
 
-## Best Practices
+## Лучшие практики
 
-### Be Thorough
-- Check multiple examples
-- Consider edge cases
-- Look for exceptions
-- Verify assumptions
+### Будьте тщательны
+- Проверяйте несколько примеров
+- Учитывайте крайние случаи
+- Ищите исключения
+- Проверяйте предположения
 
-### Be Objective
-- Base conclusions on evidence
-- Avoid assumptions
-- Consider multiple perspectives
-- Acknowledge limitations
+### Будьте объективны
+- Основывайте выводы на доказательствах
+- Избегайте предположений
+- Учитывайте разные точки зрения
+- Признавайте ограничения
 
-### Be Specific
-- Provide concrete examples
-- Include file names and line numbers
-- Show code snippets
-- Quantify when possible
+### Будьте конкретны
+- Давайте конкретные примеры
+- Указывайте имена файлов и номера строк
+- Показывайте фрагменты кода
+- Используйте количественные оценки, когда возможно
 
-### Be Actionable
-- Clear recommendations
-- Prioritize findings
-- Explain rationale
-- Suggest next steps
-
+### Будьте практичны
+- Давайте понятные рекомендации
+- Приоритизируйте находки
+- Объясняйте обоснование
+- Предлагайте следующие шаги
 

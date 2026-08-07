@@ -1,54 +1,54 @@
 <!-- Context: standards/intelligence-mgmt | Priority: high | Version: 1.0 | Updated: 2025-01-12 -->
 
-# Project Intelligence Management
+# Управление Project Intelligence
 
-> **What**: How to manage project intelligence files and folders.
-> **When**: Use this guide when adding, updating, or removing intelligence files.
-> **Related**: See `project-intelligence.md` for what and why.
+> **Что**: Как управлять файлами и папками project intelligence.
+> **Когда**: Используйте при добавлении, обновлении или удалении файлов intelligence.
+> **Связано**: Что и зачем — см. `project-intelligence.md`.
 
-## Quick Reference
+## Краткая справка
 
-| Action | Do This |
+| Действие | Что сделать |
 |--------|---------|
-| Update existing file | Edit + bump frontmatter version |
-| Add new file | Create `.md` + add to navigation.md |
-| Add subfolder | Create folder + `navigation.md` + update parent nav |
-| Remove file | Rename `.deprecated.md` + archive, don't delete |
+| Обновить существующий файл | Отредактировать + поднять версию в frontmatter |
+| Добавить новый файл | Создать `.md` + добавить в navigation.md |
+| Добавить подпапку | Создать папку + `navigation.md` + обновить родительскую навигацию |
+| Удалить файл | Переименовать в `.deprecated.md` + архивировать, не удалять |
 
 ---
 
-## Update Existing Files
+## Обновление существующих файлов
 
-**When**:
-- Business changes → Update `business-domain.md`
-- New decision → Add to `decisions-log.md`
-- New issues → Update `living-notes.md`
-- Feature launch → Update `business-tech-bridge.md`
-- Stack changes → Update `technical-domain.md`
+**Когда**:
+- Бизнес изменился → обновить `business-domain.md`
+- Новое решение → добавить в `decisions-log.md`
+- Новые проблемы → обновить `living-notes.md`
+- Запуск фичи → обновить `business-tech-bridge.md`
+- Изменения стека → обновить `technical-domain.md`
 
-**Process**:
-1. Edit the file
-2. Update frontmatter:
+**Процесс**:
+1. Отредактировать файл
+2. Обновить frontmatter:
    ```html
    <!-- Context: {category} | Priority: {level} | Version: {X.Y} | Updated: {YYYY-MM-DD} -->
    ```
-3. Keep under 200 lines
-4. Commit with message like: `docs: Update business-domain.md with new market focus`
+3. Держать файл <200 строк
+4. Закоммитить с сообщением вроде: `docs: Update business-domain.md with new market focus`
 
 ---
 
-## Add New Files
+## Добавление новых файлов
 
-**When**:
-- New domain area needs dedicated docs
-- Existing file exceeds 200 lines
-- Specialized context requires separation
+**Когда**:
+- Новой доменной области нужна отдельная документация
+- Существующий файл превышает 200 строк
+- Специализированный контекст нужно отделить
 
-**Naming**:
+**Именование**:
 - Kebab-case: `user-research.md`, `api-docs.md`
-- Descriptive: filename tells you what's inside
+- Описательно: имя файла говорит, что внутри
 
-**Template**:
+**Шаблон**:
 ```html
 <!-- Context: project-intelligence/{filename} | Priority: {high|medium} | Version: 1.0 | Updated: {YYYY-MM-DD} -->
 
@@ -56,38 +56,38 @@
 
 > One-line purpose statement
 
-## Quick Reference
+## Краткий справочник
 
 - **Purpose**: [What this covers]
 - **Update When**: [Triggers]
-- **Related Files**: [Links]
+- **Связанные файлы**: [Links]
 
 ## Content
 
 [Follow patterns from existing files]
 
-## Related Files
+## Связанные файлы
 
 - [File 1] - [Description]
 ```
 
-**Process**:
-1. Create file in `project-intelligence/`
-2. Add frontmatter with `project-intelligence/{filename}`
-3. Follow existing file patterns
-4. Keep under 200 lines
-5. Add to `navigation.md`
+**Процесс**:
+1. Создать файл в `project-intelligence/`
+2. Добавить frontmatter с `project-intelligence/{filename}`
+3. Следовать паттернам существующих файлов
+4. Держать файл <200 строк
+5. Добавить в `navigation.md`
 
 ---
 
-## Create Subfolders
+## Создание подпапок
 
-**When**:
-- 5+ related files need grouping
-- Subdomain warrants separation (e.g., `api/`, `mobile/`, `integrations/`)
-- Improves navigation clarity
+**Когда**:
+- 5+ связанных файлов нужно сгруппировать
+- Поддомен заслуживает отделения (например, `api/`, `mobile/`, `integrations/`)
+- Это улучшает понятность навигации
 
-**Structure**:
+**Структура**:
 ```
 project-intelligence/
 ├── navigation.md           # Root nav
@@ -97,9 +97,9 @@ project-intelligence/
 │   └── file-2.md
 ```
 
-**Process**:
-1. Create folder: `mkdir project-intelligence/{name}/`
-2. Create `navigation.md` inside:
+**Процесс**:
+1. Создать папку: `mkdir project-intelligence/{name}/`
+2. Создать внутри `navigation.md`:
    ```html
    <!-- Context: project-intelligence/{name}/nav | Priority: medium | Version: 1.0 | Updated: {YYYY-MM-DD} -->
    
@@ -113,137 +113,137 @@ project-intelligence/
    |------|---------|
    | `file-1.md` | [Desc] |
    ```
-3. Add content files
-4. Update root `navigation.md` with subfolder entry
+3. Добавить файлы контента
+4. Обновить корневой `navigation.md`, добавив подпапку
 
-**Rule**: Every subfolder MUST have `navigation.md`. Avoid nesting deeper than 2 levels (e.g., `project-intelligence/domain/subdomain/`) to prevent context fragmentation.
+**Правило**: У каждой подпапки ОБЯЗАТЕЛЬНО должен быть `navigation.md`. Избегайте вложенности глубже 2 уровней (например, `project-intelligence/domain/subdomain/`), чтобы не фрагментировать контекст.
 
 ---
 
-## Remove/Deprecate Files
+## Удаление/депрекация файлов
 
-**When**:
-- Content moved elsewhere
-- File no longer relevant
-- Merged with another file
+**Когда**:
+- Контент перенесен в другое место
+- Файл больше не актуален
+- Файл объединен с другим
 
-**Process**:
-1. Rename: `filename.md` → `filename.deprecated.md`
-2. Add frontmatter:
+**Процесс**:
+1. Переименовать: `filename.md` → `filename.deprecated.md`
+2. Добавить frontmatter:
    ```html
    <!-- DEPRECATED: {YYYY-MM-DD} - {Reason} -->
    <!-- REPLACED BY: {new-file.md} -->
    ```
-3. Add banner at top:
+3. Добавить баннер в начало:
    > ⚠️ **DEPRECATED**: See `new-file.md` for current info
-4. Mark as deprecated in `navigation.md`
+4. Пометить как deprecated в `navigation.md`
 
-**Never Delete**:
-- Decision history (archive instead)
-- Lessons learned (move to `living-notes.md`)
-- Context that might be needed later
+**Никогда не удаляйте**:
+- Историю решений (архивируйте)
+- Выученные уроки (переносите в `living-notes.md`)
+- Контекст, который может понадобиться позже
 
 ---
 
-## Version Tracking
+## Отслеживание версий
 
 **Frontmatter**:
 ```html
 <!-- Context: {category} | Priority: {level} | Version: {MAJOR.MINOR} | Updated: {YYYY-MM-DD} -->
 ```
 
-**Version Rules**:
-| Change | Version |
+**Правила версий**:
+| Изменение | Версия |
 |--------|---------|
-| New file | 1.0 |
-| Content addition/update | MINOR |
-| Structure change | MAJOR |
-| Typo fix | PATCH |
+| Новый файл | 1.0 |
+| Добавление/обновление контента | MINOR |
+| Изменение структуры | MAJOR |
+| Исправление опечатки | PATCH |
 
-**Date**: Always `YYYY-MM-DD`
-
----
-
-## Quality Standards
-
-**Line Limits**:
-- Files: <200 lines
-- Sections: 3-7 per file
-
-**Required Elements**:
-- Frontmatter with all fields
-- Quick Reference section
-- Related files section
-
-**Anti-Patterns**:
-❌ Mix concerns in one file
-❌ Exceed 200 lines
-❌ Delete files (archive instead)
-❌ Skip frontmatter
-❌ Duplicate information
-
-✅ Keep focused and scannable
-✅ Archive deprecated content
-✅ Use frontmatter consistently
-✅ Link to related files
+**Дата**: Всегда `YYYY-MM-DD`
 
 ---
 
-## Governance
+## Стандарты качества
 
-**Ownership**:
-| Area | Owner | Responsibility |
+**Лимиты строк**:
+- Файлы: <200 строк
+- Секции: 3–7 на файл
+
+**Обязательные элементы**:
+- Frontmatter со всеми полями
+- Секция «Краткая справка»
+- Секция «Связанные файлы»
+
+**Антипаттерны**:
+❌ Смешивать задачи в одном файле
+❌ Превышать 200 строк
+❌ Удалять файлы (архивируйте)
+❌ Пропускать frontmatter
+❌ Дублировать информацию
+
+✅ Держать фокус и сканируемость
+✅ Архивировать deprecated-контент
+✅ Последовательно использовать frontmatter
+✅ Ссылаться на связанные файлы
+
+---
+
+## Управление
+
+**Владение**:
+| Область | Владелец | Ответственность |
 |------|-------|----------------|
-| Business domain | Product Owner | Keep current, accurate |
-| Technical domain | Tech Lead | Keep current, accurate |
-| Decisions log | Tech Lead | Document decisions |
-| Living notes | Team | Keep active items current |
+| Бизнес-домен | Product Owner | Поддерживать актуальность и точность |
+| Технический домен | Tech Lead | Поддерживать актуальность и точность |
+| Журнал решений | Tech Lead | Документировать решения |
+| Живые заметки | Team | Поддерживать активные элементы актуальными |
 
-**Review Cadence**:
-| Activity | Frequency |
+**Каденция ревью**:
+| Активность | Частота |
 |----------|-----------|
-| Quick review | Per PR |
-| Full review | Quarterly |
-| Archive review | Semi-annually |
+| Быстрое ревью | На каждый PR |
+| Полное ревью | Ежеквартально |
+| Ревью архива | Раз в полгода |
 
 ---
 
-## Checklist
+## Чеклист
 
-### Add New Intelligence File
-- [ ] Follow naming convention
-- [ ] Add complete frontmatter
-- [ ] Include Quick Reference
-- [ ] Keep under 200 lines
-- [ ] Add to navigation.md
-- [ ] Link from related files
+### Добавить новый intelligence-файл
+- [ ] Следовать соглашению об именовании
+- [ ] Добавить полный frontmatter
+- [ ] Включить «Краткую справку»
+- [ ] Держать <200 строк
+- [ ] Добавить в navigation.md
+- [ ] Поставить ссылки из связанных файлов
 - [ ] Version: 1.0
 
-### Update Existing File
-- [ ] Make targeted changes
-- [ ] Update version/date in frontmatter
-- [ ] Verify <200 lines
-- [ ] Update navigation if needed
-- [ ] Update related files
+### Обновить существующий файл
+- [ ] Внести точечные изменения
+- [ ] Обновить version/date в frontmatter
+- [ ] Проверить <200 строк
+- [ ] Обновить навигацию при необходимости
+- [ ] Обновить связанные файлы
 
-### Create Subfolder
-- [ ] Verify warranted (5+ files)
-- [ ] Create folder with kebab-case name
-- [ ] Create `navigation.md` inside
-- [ ] Add subfolder to parent navigation
-- [ ] Create content files
+### Создать подпапку
+- [ ] Проверить обоснованность (5+ файлов)
+- [ ] Создать папку с kebab-case именем
+- [ ] Создать внутри `navigation.md`
+- [ ] Добавить подпапку в родительскую навигацию
+- [ ] Создать файлы контента
 
-### Deprecate File
-- [ ] Rename with `.deprecated.md`
-- [ ] Add deprecation frontmatter
-- [ ] Add deprecation banner
-- [ ] Mark deprecated in navigation
-- [ ] Document replacement
+### Депрецировать файл
+- [ ] Переименовать с `.deprecated.md`
+- [ ] Добавить deprecation frontmatter
+- [ ] Добавить deprecation banner
+- [ ] Пометить как deprecated в навигации
+- [ ] Задокументировать замену
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- **Standard**: `project-intelligence.md`
+- **Стандарт**: `project-intelligence.md`
 - **Project Intelligence**: `../../project-intelligence/navigation.md`
-- **Context System**: `../context-system.md`
+- **Система контекста**: `../context-system.md`

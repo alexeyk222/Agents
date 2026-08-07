@@ -1,51 +1,51 @@
 <!-- Context: workflows/external-libraries-faq | Priority: medium | Version: 1.0 | Updated: 2026-02-05 -->
-# External Libraries: FAQ
+# Внешние библиотеки: FAQ
 
-**Purpose**: Troubleshooting and common questions about ExternalScout
-
----
-
-## When exactly should I use ExternalScout?
-
-**ALWAYS when working with external packages.**
-
-**Triggers:**
-- User mentions library
-- `import`/`require` statements
-- package.json deps
-- Build errors
-- First-time setup
-- Version upgrades
-
-**Rule**: If it's not in `.opencode/context/`, use ExternalScout.
+**Назначение**: устранение неполадок и частые вопросы об ExternalScout
 
 ---
 
-## What if I already know the library?
+## Когда именно использовать ExternalScout?
 
-**DON'T rely on training data - it's outdated.**
+**ВСЕГДА при работе с внешними пакетами.**
 
-Example: You think "I know Next.js, I'll use pages/"  
-Reality: Next.js 15 uses app/  
-Result: Broken code ❌
+**Триггеры:**
+- Пользователь упоминает библиотеку
+- Операторы `import`/`require`
+- Зависимости в `package.json`
+- Ошибки сборки
+- Первая настройка
+- Обновления версий
 
-**Always fetch current docs, even if you "know" the library.**
-
----
-
-## How do I know if something is external?
-
-**External:** npm/pip/gem/cargo packages | Third-party frameworks | ORMs | Auth libraries | UI libraries
-
-**NOT external:** Your project's code | Project utilities | Internal modules
-
-**Check:** Is it in `package.json` dependencies? → External → Use ExternalScout
+**Правило**: если этого нет в `.opencode/context/`, используйте ExternalScout.
 
 ---
 
-## Can I use both ContextScout and ExternalScout?
+## Что если я уже знаю библиотеку?
 
-**YES! Use both for most features.**
+**НЕ полагайтесь на обучающие данные — они устарели.**
+
+Пример: вы думаете «Я знаю Next.js, использую `pages/`»  
+Реальность: Next.js 15 использует `app/`  
+Результат: сломанный код ❌
+
+**Всегда получайте актуальную документацию, даже если вы «знаете» библиотеку.**
+
+---
+
+## Как понять, что что-то внешнее?
+
+**Внешнее:** пакеты npm/pip/gem/cargo | сторонние фреймворки | ORM | библиотеки auth | UI-библиотеки
+
+**Не внешнее:** код вашего проекта | проектные утилиты | внутренние модули
+
+**Проверка:** есть ли это в зависимостях `package.json`? → внешнее → используйте ExternalScout
+
+---
+
+## Можно ли использовать ContextScout и ExternalScout вместе?
+
+**ДА! Для большинства функций используйте оба.**
 
 ```javascript
 // 1. ContextScout: Project standards
@@ -59,19 +59,19 @@ task(subagent_type="ExternalScout", ...)
 
 ---
 
-## What if ExternalScout doesn't have the library?
+## Что если у ExternalScout нет библиотеки?
 
-ExternalScout has two sources:
-1. **Context7 API** (primary): 50+ popular libraries
-2. **Official docs** (fallback): Any library with public docs
+У ExternalScout есть два источника:
+1. **Context7 API** (основной): 50+ популярных библиотек
+2. **Официальная документация** (fallback): любая библиотека с публичной документацией
 
-If library not in Context7: Auto-fallback to official docs via webfetch.
+Если библиотеки нет в Context7: автоматический fallback на официальную документацию через webfetch.
 
 ---
 
-## How do I write a good ExternalScout prompt?
+## Как написать хороший prompt для ExternalScout?
 
-**Template:**
+**Шаблон:**
 ```javascript
 task(
   subagent_type="ExternalScout",
@@ -86,16 +86,16 @@ task(
 )
 ```
 
-**Good:** ✅ Specific | ✅ Focused (3-5 things) | ✅ Contextual
-**Bad:** ❌ Vague | ❌ Too broad | ❌ No context
+**Хорошо:** ✅ конкретно | ✅ сфокусировано (3-5 пунктов) | ✅ с контекстом
+**Плохо:** ❌ расплывчато | ❌ слишком широко | ❌ без контекста
 
 ---
 
-## What if I get an error after using ExternalScout?
+## Что если после ExternalScout появилась ошибка?
 
-**Process:**
-1. Read error message carefully
-2. ExternalScout again with specific error:
+**Процесс:**
+1. Внимательно прочитайте сообщение об ошибке
+2. Снова вызовите ExternalScout с конкретной ошибкой:
 ```javascript
 task(
   subagent_type="ExternalScout",
@@ -105,61 +105,61 @@ task(
   Focus on: Common causes | Solutions"
 )
 ```
-3. Check install scripts (maybe setup incomplete)
-4. Verify versions (package.json vs docs)
+3. Проверьте install scripts (возможно, настройка неполная)
+4. Проверьте версии (`package.json` vs документация)
 
 ---
 
-## Do I need approval to use ExternalScout?
+## Нужно ли одобрение для использования ExternalScout?
 
-**NO - ExternalScout is read-only, no approval required.**
+**НЕТ — ExternalScout работает только на чтение, одобрение не требуется.**
 
-**Approval required:** ❌ Write code | ❌ Run commands | ❌ Install packages
-**No approval:** ✅ ContextScout | ✅ ExternalScout | ✅ Read files
+**Требуется одобрение:** ❌ писать код | ❌ запускать команды | ❌ устанавливать пакеты
+**Одобрение не нужно:** ✅ ContextScout | ✅ ExternalScout | ✅ читать файлы
 
 ---
 
-## ContextScout vs ExternalScout?
+## ContextScout и ExternalScout
 
-| Aspect | ContextScout | ExternalScout |
+| Аспект | ContextScout | ExternalScout |
 |--------|--------------|---------------|
-| **Searches** | Internal project files | External documentation |
-| **Location** | `.opencode/context/` | Internet (Context7, docs) |
-| **Returns** | Project standards | Library APIs |
-| **Use for** | "How we do things here" | "How this library works" |
-| **Speed** | Fast (local) | Slower (network) |
+| **Ищет** | Внутренние файлы проекта | Внешнюю документацию |
+| **Расположение** | `.opencode/context/` | Интернет (Context7, документация) |
+| **Возвращает** | Стандарты проекта | API библиотек |
+| **Использовать для** | "Как мы делаем это здесь" | "Как работает эта библиотека" |
+| **Скорость** | Быстро (локально) | Медленнее (сеть) |
 
-**Use both together for best results.**
-
----
-
-## Quick Checklist
-
-Before implementing with external libraries:
-
-- [ ] Used ContextScout for project standards?
-- [ ] Checked for install scripts first?
-- [ ] Used ExternalScout for EACH external library?
-- [ ] Asked for installation steps?
-- [ ] Asked for current API patterns?
-- [ ] Read returned docs before coding?
-
-**All checked? → You're doing it right! ✅**
+**Для лучшего результата используйте оба вместе.**
 
 ---
 
-## Supported Libraries
+## Краткий чеклист
 
-**See**: `.opencode/skills/context7/library-registry.md`
+Перед реализацией с внешними библиотеками:
 
-**Categories:** Database/ORM | Auth | Frontend | Infrastructure | UI | State | Validation | Testing
+- [ ] Использовали ContextScout для стандартов проекта?
+- [ ] Сначала проверили install scripts?
+- [ ] Использовали ExternalScout для КАЖДОЙ внешней библиотеки?
+- [ ] Запросили шаги установки?
+- [ ] Запросили актуальные паттерны API?
+- [ ] Прочитали возвращенную документацию перед кодингом?
 
-Not listed? ExternalScout can still fetch from official docs.
+**Все отмечено? → Вы все делаете правильно! ✅**
 
 ---
 
-## Related
+## Поддерживаемые библиотеки
 
-- `external-libraries-workflow.md` - Core workflow
-- `external-libraries-scenarios.md` - Common scenarios
-- `.opencode/agent/subagents/core/externalscout.md` - ExternalScout agent
+**См.**: `.opencode/skills/context7/library-registry.md`
+
+**Категории:** Database/ORM | Auth | Frontend | Infrastructure | UI | State | Validation | Testing
+
+Нет в списке? ExternalScout все равно может получить данные из официальной документации.
+
+---
+
+## Связанные материалы
+
+- `external-libraries-workflow.md` - основной рабочий процесс
+- `external-libraries-scenarios.md` - распространенные сценарии
+- `.opencode/agent/subagents/core/externalscout.md` - агент ExternalScout

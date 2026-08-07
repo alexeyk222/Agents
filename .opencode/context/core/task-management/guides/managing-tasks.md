@@ -1,21 +1,21 @@
 <!-- Context: core/managing-tasks | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Managing Task Lifecycle
+# Руководство: управление жизненным циклом задач
 
-**Purpose**: Step-by-step workflow for JSON-driven task management
+**Назначение**: пошаговый workflow для управления задачами на основе JSON
 
-**Last Updated**: 2026-01-11
-
----
-
-## Prerequisites
-
-- TaskManager agent available
-- Feature folder created in `.tmp/tasks/` (at project root)
+**Последнее обновление**: 2026-01-11
 
 ---
 
-## Workflow Overview
+## Предварительные условия
+
+- Доступен агент TaskManager
+- Папка feature создана в `.tmp/tasks/` (в корне проекта)
+
+---
+
+## Обзор workflow
 
 ```
 1. Initiation    → TaskManager creates task.json + subtasks
@@ -27,9 +27,9 @@
 
 ---
 
-## 1. Initiation (TaskManager)
+## 1. Инициация (TaskManager)
 
-Create feature folder and files:
+Создать папку feature и файлы:
 ```
 .tmp/tasks/{feature-slug}/
 ├── task.json
@@ -38,30 +38,30 @@ Create feature folder and files:
 └── subtask_03.json
 ```
 
-Validate with: `task-cli.ts validate {feature}`
+Проверить через: `task-cli.ts validate {feature}`
 
 ---
 
-## 2. Task Selection
+## 2. Выбор задачи
 
-Find eligible tasks using CLI:
+Найти подходящие задачи через CLI:
 ```bash
 task-cli.ts next {feature}      # All ready tasks
 task-cli.ts parallel {feature}  # Parallelizable only
 ```
 
-Selection criteria:
+Критерии выбора:
 - `status == "pending"`
-- All `depends_on` tasks have `status == "completed"`
+- Все задачи из `depends_on` имеют `status == "completed"`
 
 ---
 
-## 3. Execution (Working Agent)
+## 3. Выполнение (рабочий агент)
 
-When picking up task:
+При взятии задачи:
 
-1. Read subtask JSON
-2. Update status:
+1. Прочитать JSON подзадачи
+2. Обновить status:
    ```json
    {
      "status": "in_progress",
@@ -69,61 +69,61 @@ When picking up task:
      "started_at": "2026-01-11T14:30:00Z"
    }
    ```
-3. Load `context_files` (lazy)
-4. Implement `deliverables`
-5. Add `completion_summary` (max 200 chars)
+3. Загрузить `context_files` (лениво)
+4. Реализовать `deliverables`
+5. Добавить `completion_summary` (макс. 200 символов)
 
 ---
 
-## 4. Verification (TaskManager)
+## 4. Проверка (TaskManager)
 
-After agent signals completion:
+После сигнала агента о завершении:
 
-1. Check each `acceptance_criteria`
-2. If all pass → Mark completed:
+1. Проверить каждый `acceptance_criteria`
+2. Если все проходят → отметить completed:
    ```bash
    task-cli.ts complete {feature} {seq} "summary"
    ```
-3. If fail → Keep in_progress, report failures
+3. Если есть провал → оставить `in_progress`, сообщить об ошибках
 
 ---
 
-## 5. Archiving
+## 5. Архивация
 
-When `completed_count == subtask_count`:
+Когда `completed_count == subtask_count`:
 
-1. Update task.json: `status: "completed"`
-2. Move folder: `.tmp/tasks/{slug}/` → `.tmp/tasks/completed/{slug}/`
+1. Обновить `task.json`: `status: "completed"`
+2. Переместить папку: `.tmp/tasks/{slug}/` → `.tmp/tasks/completed/{slug}/`
 
 ---
 
-## Status Ownership
+## Владение статусами
 
-| Status | Who Sets | When |
+| Статус | Кто задает | Когда |
 |--------|----------|------|
-| pending | TaskManager | Initial creation |
-| in_progress | Working agent | Picks up task |
-| completed | TaskManager | After verification |
-| blocked | Either | Dependency/issue found |
+| pending | TaskManager | начальное создание |
+| in_progress | рабочий агент | берет задачу |
+| completed | TaskManager | после проверки |
+| blocked | любой | найдена зависимость/проблема |
 
 ---
 
-## CLI Commands Summary
+## Сводка CLI-команд
 
-| Command | Use Case |
+| Команда | Сценарий |
 |---------|----------|
-| `status` | Quick overview |
-| `next` | What to work on |
-| `parallel` | Batch parallel work |
-| `deps` | Understand blockers |
-| `blocked` | Identify issues |
-| `complete` | Mark task done |
-| `validate` | Health check |
+| `status` | краткий обзор |
+| `next` | над чем работать |
+| `parallel` | пакетная параллельная работа |
+| `deps` | понять блокеры |
+| `blocked` | найти проблемы |
+| `complete` | отметить задачу выполненной |
+| `validate` | проверить состояние |
 
 ---
 
-## Related
+## Связанные материалы
 
-- `../standards/task-schema.md` - JSON field reference
-- `splitting-tasks.md` - How to create subtasks
-- `../lookup/task-commands.md` - Full CLI reference
+- `../standards/task-schema.md` - справочник JSON-полей
+- `splitting-tasks.md` - как создавать подзадачи
+- `../lookup/task-commands.md` - полный справочник CLI

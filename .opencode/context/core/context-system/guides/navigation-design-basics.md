@@ -1,56 +1,56 @@
 <!-- Context: core/navigation-design-basics | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Designing Navigation Files
+# Руководство: проектирование файлов навигации
 
-**Purpose**: How to create token-efficient, scannable navigation files
-
----
-
-## Prerequisites
-
-- Understand MVI principle (`context-system/standards/mvi.md`)
-- Know your category's organizational pattern
-- Have content files already created
-
-**Estimated time**: 15-20 min per navigation file
+**Назначение**: как создавать токен-эффективные, быстро просматриваемые файлы навигации
 
 ---
 
-## Core Principles
+## Предварительные условия
 
-### 1. Token Efficiency
-**Goal**: 200-300 tokens per navigation file
+- Понимать принцип MVI (`context-system/standards/mvi.md`)
+- Знать организационный паттерн вашей категории
+- Иметь уже созданные файлы контента
 
-**How**:
-- Use ASCII trees (not verbose descriptions)
-- Use tables (not paragraphs)
-- Be concise (not comprehensive)
-
-### 2. Scannable Structure
-**Goal**: AI can find what it needs in <5 seconds
-
-**Format**:
-1. **Structure** (ASCII tree) - See what exists
-2. **Quick Routes** (table) - Jump to common tasks
-3. **By Concern/Type** (sections) - Browse by category
-
-### 3. Self-Contained
-**Include**: ✅ Paths | ✅ Brief descriptions (3-5 words) | ✅ When to use
-**Exclude**: ❌ File contents | ❌ Detailed explanations | ❌ Duplicates
+**Оценка времени**: 15–20 мин на файл навигации
 
 ---
 
-## Steps
+## Основные принципы
 
-### 1. Determine Navigation Type
+### 1. Токен-эффективность
+**Цель**: 200–300 токенов на файл навигации
 
-| Type | Path | Purpose |
+**Как**:
+- Используйте ASCII-деревья (не подробные описания)
+- Используйте таблицы (не абзацы)
+- Будьте краткими (не исчерпывающими)
+
+### 2. Сканируемая структура
+**Цель**: AI может найти нужное за <5 секунд
+
+**Формат**:
+1. **Structure** (ASCII-дерево) - увидеть, что существует
+2. **Quick Routes** (таблица) - перейти к частым задачам
+3. **By Concern/Type** (разделы) - просматривать по категории
+
+### 3. Самодостаточность
+**Включать**: ✅ пути | ✅ краткие описания (3-5 слов) | ✅ когда использовать
+**Исключать**: ❌ содержимое файлов | ❌ подробные объяснения | ❌ дубликаты
+
+---
+
+## Шаги
+
+### 1. Определить тип навигации
+
+| Тип | Путь | Назначение |
 |------|------|---------|
-| Category-level | `{category}/navigation.md` | Overview of category |
-| Subcategory-level | `{category}/{sub}/navigation.md` | Files in subcategory |
-| Specialized | `{category}/{domain}-navigation.md` | Cross-cutting (e.g., ui-navigation.md) |
+| Уровень категории | `{category}/navigation.md` | Обзор категории |
+| Уровень подкатегории | `{category}/{sub}/navigation.md` | Файлы в подкатегории |
+| Специализированная | `{category}/{domain}-navigation.md` | Сквозная навигация (например, ui-navigation.md) |
 
-### 2. Create Structure Section
+### 2. Создать раздел Structure
 
 ```markdown
 ## Structure
@@ -69,12 +69,12 @@ openagents-repo/
 ```
 ```
 
-**Token count**: ~50-100 tokens
+**Количество токенов**: ~50–100 токенов
 
-### 3. Create Quick Routes Table
+### 3. Создать таблицу Quick Routes
 
 ```markdown
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -83,9 +83,9 @@ openagents-repo/
 | **Find files** | `lookup/file-locations.md` |
 ```
 
-**Guidelines**: Use **bold** for tasks | Relative paths | 5-10 common tasks
+**Рекомендации**: используйте **жирный шрифт** для задач | относительные пути | 5–10 частых задач
 
-### 4. Create By Concern/Type Sections
+### 4. Создать разделы By Concern/Type
 
 ```markdown
 ## By Type
@@ -96,7 +96,7 @@ openagents-repo/
 **Errors** → Troubleshooting
 ```
 
-### 5. Add Related Context (Optional)
+### 5. Добавить Related Context (опционально)
 
 ```markdown
 ## Related Context
@@ -104,9 +104,9 @@ openagents-repo/
 - **Core Standards** → `../core/standards/navigation.md`
 ```
 
-### 6. Validate Token Count
+### 6. Проверить количество токенов
 
-**Target**: 200-300 tokens
+**Цель**: 200–300 токенов
 
 ```bash
 wc -w navigation.md  # Multiply by 1.3 for token estimate
@@ -114,20 +114,20 @@ wc -w navigation.md  # Multiply by 1.3 for token estimate
 
 ---
 
-## Verification Checklist
+## Чеклист проверки
 
-- [ ] Token count 200-300?
-- [ ] ASCII tree included?
-- [ ] Quick routes table?
-- [ ] By concern/type section?
-- [ ] Relative paths?
-- [ ] Descriptions 3-5 words?
-- [ ] No duplicate information?
+- [ ] Количество токенов 200–300?
+- [ ] ASCII-дерево включено?
+- [ ] Таблица быстрых маршрутов?
+- [ ] Раздел по задаче/типу?
+- [ ] Относительные пути?
+- [ ] Описания 3-5 слов?
+- [ ] Нет дублирующей информации?
 
 ---
 
-## Related
+## Связанные материалы
 
-- `navigation-templates.md` - Ready-to-use templates
-- `../standards/mvi.md` - MVI principle
-- `../examples/navigation-examples.md` - More examples
+- `navigation-templates.md` - готовые шаблоны
+- `../standards/mvi.md` - принцип MVI
+- `../examples/navigation-examples.md` - больше примеров

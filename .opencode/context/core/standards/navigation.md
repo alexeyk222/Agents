@@ -1,66 +1,66 @@
 <!-- Context: core/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Core Standards Navigation
+# Навигация по базовым стандартам
 
-**Purpose**: Universal standards for all development work
+**Назначение**: Универсальные стандарты для всей разработки
 
 ---
 
-## Files
+## Файлы
 
-| File | Topic | Priority | Load When |
+| Файл | Тема | Приоритет | Когда загружать |
 |------|-------|----------|-----------|
-| `code-quality.md` | Code quality rules | ⭐⭐⭐⭐⭐ | Writing/reviewing code |
-| `test-coverage.md` | Testing standards | ⭐⭐⭐⭐⭐ | Writing tests |
-| `documentation.md` | Documentation rules | ⭐⭐⭐⭐ | Writing docs |
-| `security-patterns.md` | Security best practices | ⭐⭐⭐⭐ | Security review, patterns |
-| `project-intelligence.md` | What and why | ⭐⭐⭐⭐ | Onboarding, understanding projects |
-| `project-intelligence-management.md` | How to manage | ⭐⭐⭐ | Managing intelligence files |
-| `code-analysis.md` | Analysis approaches | ⭐⭐⭐ | Analyzing code, debugging |
-| `typescript.md` | Universal TypeScript patterns | ⭐⭐⭐⭐ | Writing/reviewing TypeScript code |
-| `csharp.md` | Universal C# / .NET patterns | ⭐⭐⭐⭐ | Writing/reviewing C# code |
-| `csharp-project-structure.md` | ASP.NET Core project structure (Minimal APIs, CQRS, EF Core + PostgreSQL) | ⭐⭐⭐⭐ | Starting or structuring a C# API project |
+| `code-quality.md` | Правила качества кода | ⭐⭐⭐⭐⭐ | Написание/ревью кода |
+| `test-coverage.md` | Стандарты тестирования | ⭐⭐⭐⭐⭐ | Написание тестов |
+| `documentation.md` | Правила документации | ⭐⭐⭐⭐ | Написание документации |
+| `security-patterns.md` | Лучшие практики безопасности | ⭐⭐⭐⭐ | Ревью безопасности, паттерны |
+| `project-intelligence.md` | Что и зачем | ⭐⭐⭐⭐ | Онбординг, понимание проектов |
+| `project-intelligence-management.md` | Как управлять | ⭐⭐⭐ | Управление intelligence-файлами |
+| `code-analysis.md` | Подходы к анализу | ⭐⭐⭐ | Анализ кода, отладка |
+| `typescript.md` | Универсальные паттерны TypeScript | ⭐⭐⭐⭐ | Написание/ревью TypeScript-кода |
+| `csharp.md` | Универсальные паттерны C# / .NET | ⭐⭐⭐⭐ | Написание/ревью C#-кода |
+| `csharp-project-structure.md` | Структура проекта ASP.NET Core (Minimal APIs, CQRS, EF Core + PostgreSQL) | ⭐⭐⭐⭐ | Старт или структурирование C# API-проекта |
 
 ---
 
-## Loading Strategy
+## Стратегия загрузки
 
-**For code implementation**:
-1. Load `code-quality.md` (critical)
-2. Load `security-patterns.md` (high)
+**Для реализации кода**:
+1. Загрузить `code-quality.md` (critical)
+2. Загрузить `security-patterns.md` (high)
 
-**For TypeScript code**:
-1. Load `typescript.md` (critical)
-2. Load `code-quality.md` (high)
+**Для TypeScript-кода**:
+1. Загрузить `typescript.md` (critical)
+2. Загрузить `code-quality.md` (high)
 
-**For C# / .NET code**:
-1. Load `csharp.md` (critical)
-2. Load `code-quality.md` (high)
+**Для C# / .NET-кода**:
+1. Загрузить `csharp.md` (critical)
+2. Загрузить `code-quality.md` (high)
 
-**For C# API project structure**:
-1. Load `csharp-project-structure.md` (critical)
-2. Load `csharp.md` (high)
+**Для структуры C# API-проекта**:
+1. Загрузить `csharp-project-structure.md` (critical)
+2. Загрузить `csharp.md` (high)
 
-**For testing**:
-1. Load `test-coverage.md` (critical)
-2. Depends on: `code-quality.md`
+**Для тестирования**:
+1. Загрузить `test-coverage.md` (critical)
+2. Зависит от: `code-quality.md`
 
-**For documentation**:
-1. Load `documentation.md` (critical)
+**Для документации**:
+1. Загрузить `documentation.md` (critical)
 
-**For code review**:
-1. Load `code-quality.md` (critical)
-2. Load `security-patterns.md` (high)
-3. Load `test-coverage.md` (high)
+**Для ревью кода**:
+1. Загрузить `code-quality.md` (critical)
+2. Загрузить `security-patterns.md` (high)
+3. Загрузить `test-coverage.md` (high)
 
-**For project onboarding/understanding**:
-1. Load `project-intelligence.md` (high)
-2. Then load: `../../project-intelligence/` folder for full project context
+**Для онбординга/понимания проекта**:
+1. Загрузить `project-intelligence.md` (high)
+2. Затем загрузить папку `../../project-intelligence/` для полного контекста проекта
 
 ---
 
-## Related
+## Связанное
 
-- **Workflows** → `../workflows/navigation.md`
-- **Development Principles** → `../../development/principles/`
-- **Project Intelligence** → `../../project-intelligence/navigation.md` (full project context)
+- **Процессы** → `../workflows/navigation.md`
+- **Принципы разработки** → `../../development/principles/`
+- **Project Intelligence** → `../../project-intelligence/navigation.md` (полный контекст проекта)

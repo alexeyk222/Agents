@@ -1,60 +1,60 @@
 <!-- Context: core/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Core Workflows Navigation
+# Навигация по базовым рабочим процессам
 
-**Purpose**: Process workflows for common development tasks
+**Назначение**: рабочие процессы для распространенных задач разработки
 
 ---
 
-## Files
+## Файлы
 
-| File | Topic | Priority | Load When |
+| Файл | Тема | Приоритет | Когда загружать |
 |------|-------|----------|-----------|
-| `code-review.md` | Code review process | ⭐⭐⭐⭐ | Reviewing code |
-| `task-delegation-basics.md` | Core delegation workflow | ⭐⭐⭐⭐ | Using task tool |
-| `task-delegation-specialists.md` | When to delegate to whom | ⭐⭐⭐⭐ | Choosing specialist |
-| `task-delegation-caching.md` | Context caching | ⭐⭐⭐ | Repeated tasks |
-| `external-libraries-workflow.md` | External library process | ⭐⭐⭐⭐ | External packages |
-| `external-libraries-scenarios.md` | Common scenarios | ⭐⭐⭐ | Examples needed |
-| `external-libraries-faq.md` | Troubleshooting | ⭐⭐⭐ | Errors/questions |
-| `feature-breakdown.md` | Breaking down features | ⭐⭐⭐⭐ | 4+ files, complex tasks |
-| `session-management.md` | Managing sessions | ⭐⭐⭐ | Session cleanup |
-| `design-iteration-overview.md` | Design workflow overview | ⭐⭐⭐⭐ | Starting design work |
-| `design-iteration-plan-file.md` | Design plan template | ⭐⭐⭐⭐ | Creating design plan |
-| `design-iteration-stage-layout.md` | Stage 1: Layout | ⭐⭐⭐ | Layout design |
-| `design-iteration-stage-theme.md` | Stage 2: Theme | ⭐⭐⭐ | Theme design |
-| `design-iteration-stage-animation.md` | Stage 3: Animation | ⭐⭐⭐ | Animation design |
-| `design-iteration-stage-implementation.md` | Stage 4: Implementation | ⭐⭐⭐ | Implementation |
-| `design-iteration-visual-content.md` | Visual content generation | ⭐⭐ | Image generation |
-| `design-iteration-best-practices.md` | Best practices & troubleshooting | ⭐⭐⭐ | Quality check |
-| `design-iteration-plan-iterations.md` | Plan file iterations | ⭐⭐⭐ | Managing iterations |
+| `code-review.md` | Процесс ревью кода | ⭐⭐⭐⭐ | Ревью кода |
+| `task-delegation-basics.md` | Основной workflow делегирования | ⭐⭐⭐⭐ | Использование task tool |
+| `task-delegation-specialists.md` | Кому и когда делегировать | ⭐⭐⭐⭐ | Выбор специалиста |
+| `task-delegation-caching.md` | Кэширование контекста | ⭐⭐⭐ | Повторяющиеся задачи |
+| `external-libraries-workflow.md` | Процесс внешних библиотек | ⭐⭐⭐⭐ | Внешние пакеты |
+| `external-libraries-scenarios.md` | Распространенные сценарии | ⭐⭐⭐ | Нужны примеры |
+| `external-libraries-faq.md` | Устранение неполадок | ⭐⭐⭐ | Ошибки/вопросы |
+| `feature-breakdown.md` | Декомпозиция функций | ⭐⭐⭐⭐ | 4+ файла, сложные задачи |
+| `session-management.md` | Управление сессиями | ⭐⭐⭐ | Очистка сессии |
+| `design-iteration-overview.md` | Обзор workflow дизайна | ⭐⭐⭐⭐ | Начало работы над дизайном |
+| `design-iteration-plan-file.md` | Шаблон плана дизайна | ⭐⭐⭐⭐ | Создание плана дизайна |
+| `design-iteration-stage-layout.md` | Этап 1: макет | ⭐⭐⭐ | Дизайн макета |
+| `design-iteration-stage-theme.md` | Этап 2: тема | ⭐⭐⭐ | Дизайн темы |
+| `design-iteration-stage-animation.md` | Этап 3: анимация | ⭐⭐⭐ | Дизайн анимаций |
+| `design-iteration-stage-implementation.md` | Этап 4: реализация | ⭐⭐⭐ | Реализация |
+| `design-iteration-visual-content.md` | Генерация визуального контента | ⭐⭐ | Генерация изображений |
+| `design-iteration-best-practices.md` | Лучшие практики и устранение неполадок | ⭐⭐⭐ | Проверка качества |
+| `design-iteration-plan-iterations.md` | Итерации файла плана | ⭐⭐⭐ | Управление итерациями |
 
 ---
 
-## Loading Strategy
+## Стратегия загрузки
 
-**For code review**:
-1. Load `code-review.md` (high)
-2. Depends on: `../standards/code-quality.md`, `../standards/security-patterns.md`
+**Для ревью кода**:
+1. Загрузить `code-review.md` (high)
+2. Зависит от: `../standards/code-quality.md`, `../standards/security-patterns.md`
 
-**For task delegation**:
-1. Load `task-delegation-basics.md` (high)
-2. Load `task-delegation-specialists.md` (when choosing agent)
+**Для делегирования задач**:
+1. Загрузить `task-delegation-basics.md` (high)
+2. Загрузить `task-delegation-specialists.md` (при выборе агента)
 
-**For external libraries**:
-1. Load `external-libraries-workflow.md` (high)
-2. Reference `external-libraries-scenarios.md` for examples
+**Для внешних библиотек**:
+1. Загрузить `external-libraries-workflow.md` (high)
+2. Смотреть примеры в `external-libraries-scenarios.md`
 
-**For complex features**:
-1. Load `feature-breakdown.md` (high)
-2. Depends on: `task-delegation-basics.md`
+**Для сложных функций**:
+1. Загрузить `feature-breakdown.md` (high)
+2. Зависит от: `task-delegation-basics.md`
 
-**For session management**:
-1. Load `session-management.md` (medium)
+**Для управления сессиями**:
+1. Загрузить `session-management.md` (medium)
 
 ---
 
-## Related
+## Связанные материалы
 
-- **Standards** → `../standards/navigation.md`
-- **OpenAgents Control Delegation** → `../../openagents-repo/guides/subagent-invocation.md`
+- **Стандарты** → `../standards/navigation.md`
+- **Делегирование OpenAgents Control** → `../../openagents-repo/guides/subagent-invocation.md`

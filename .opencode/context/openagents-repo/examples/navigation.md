@@ -1,16 +1,16 @@
 <!-- Context: openagents-repo/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Examples
+# Примеры OpenAgents
 
-**Purpose**: Example implementations and use cases for OpenAgents Control
+**Назначение**: примеры реализаций и сценариев использования OpenAgents Control
 
 ---
 
-## Structure
+## Структура
 
 ```
 openagents-repo/examples/
-├── navigation.md (this file)
+├── navigation.md (этот файл)
 ├── hooks/
 │   └── navigation.md
 ├── skills/
@@ -21,28 +21,28 @@ openagents-repo/examples/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **Hook examples** | `hooks/navigation.md` |
-| **Skill examples** | `skills/navigation.md` |
-| **Subagent examples** | `subagents/navigation.md` |
-| **Guides** | `../guides/navigation.md` |
-| **Blueprints** | `../blueprints/navigation.md` |
+| **Примеры хуков** | `hooks/navigation.md` |
+| **Примеры skills** | `skills/navigation.md` |
+| **Примеры субагентов** | `subagents/navigation.md` |
+| **Руководства** | `../guides/navigation.md` |
+| **Чертежи** | `../blueprints/navigation.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Hooks** → Hook implementation examples  
-**Skills** → Skill implementation examples  
-**Subagents** → Subagent implementation examples
+**Hooks** → примеры реализации хуков  
+**Skills** → примеры реализации skills  
+**Subagents** → примеры реализации субагентов
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **OpenAgents Navigation** → `../navigation.md`
-- **Guides** → `../guides/navigation.md`
-- **Blueprints** → `../blueprints/navigation.md`
+- **Навигация OpenAgents** → `../navigation.md`
+- **Руководства** → `../guides/navigation.md`
+- **Чертежи** → `../blueprints/navigation.md`

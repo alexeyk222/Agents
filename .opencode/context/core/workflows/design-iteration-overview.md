@@ -1,48 +1,48 @@
 <!-- Context: workflows/design-iteration-overview | Priority: high | Version: 1.0 | Updated: 2025-12-09 -->
-# Design Iteration Workflow - Overview
+# Рабочий процесс итераций дизайна — обзор
 
-## Overview
+## Обзор
 
-A structured 4-stage workflow for creating and iterating on UI designs. This process ensures thoughtful design decisions with user approval at each stage.
+Структурированный 4-этапный workflow для создания UI-дизайнов и итераций по ним. Процесс обеспечивает осмысленные дизайн-решения с одобрением пользователя на каждом этапе.
 
-## Quick Reference
+## Краткая справка
 
-**Stages**: Layout → Theme → Animation → Implementation
-**Approval**: Required between each stage
-**Output**: Single HTML file per design iteration
-**Location**: `design_iterations/` folder
+**Этапы**: макет → тема → анимация → реализация
+**Одобрение**: требуется между каждым этапом
+**Выход**: один HTML-файл на итерацию дизайна
+**Расположение**: папка `design_iterations/`
 
 ---
 
-## When to Use This Workflow
+## Когда использовать этот workflow
 
-### Delegate to OpenFrontendSpecialist When:
+### Делегируйте OpenFrontendSpecialist, когда:
 
-**✅ STRONGLY RECOMMENDED** to delegate for:
-- **New UI/UX design work** - Landing pages, dashboards, app interfaces
-- **Design system creation** - Component libraries, theme systems, style guides
-- **Complex layouts** - Multi-column grids, responsive designs, intricate structures
-- **Visual polish** - Animations, transitions, micro-interactions
-- **Brand-focused work** - Marketing pages, product showcases, hero sections
-- **Accessibility-critical UI** - Forms, navigation, interactive components
+**✅ НАСТОЯТЕЛЬНО РЕКОМЕНДУЕТСЯ** делегировать для:
+- **Новой UI/UX-дизайн работы** - landing pages, dashboards, интерфейсы приложений
+- **Создания дизайн-систем** - библиотеки компонентов, системы тем, style guides
+- **Сложных макетов** - multi-column grids, responsive designs, сложные структуры
+- **Визуальной полировки** - анимации, transitions, micro-interactions
+- **Работы с фокусом на бренде** - маркетинговые страницы, product showcases, hero sections
+- **UI с критичной доступностью** - формы, навигация, интерактивные компоненты
 
-**Why delegate?**
-- OpenFrontendSpecialist follows the 4-stage design workflow (Layout → Theme → Animation → Implementation)
-- Ensures thoughtful design decisions with approval gates
-- Produces polished, accessible, production-ready UI
-- Handles responsive design, OKLCH colors, semantic HTML
-- Creates single-file HTML prototypes for quick iteration
+**Зачем делегировать?**
+- OpenFrontendSpecialist следует 4-этапному workflow дизайна (Layout → Theme → Animation → Implementation)
+- Обеспечивает осмысленные дизайн-решения с точками одобрения
+- Создает отполированный, доступный, production-ready UI
+- Учитывает responsive design, цвета OKLCH, семантический HTML
+- Создает однофайловые HTML-прототипы для быстрых итераций
 
-### Execute Directly When:
+### Выполняйте напрямую, когда:
 
-**⚠️ Simple cases only**:
-- Minor text/content updates to existing UI
-- Small CSS tweaks (colors, spacing, fonts)
-- Adding simple utility classes
-- Updating existing component props
-- Bug fixes in existing UI code
+**⚠️ Только простые случаи**:
+- Небольшие обновления текста/контента в существующем UI
+- Малые CSS-правки (цвета, отступы, шрифты)
+- Добавление простых utility-классов
+- Обновление props существующих компонентов
+- Исправления багов в существующем UI-коде
 
-### Delegation Pattern
+### Паттерн делегирования
 
 ```javascript
 // For UI design work
@@ -67,25 +67,25 @@ task(
 )
 ```
 
-### Example Scenarios
+### Примеры сценариев
 
-| Scenario | Action | Why |
+| Сценарий | Действие | Почему |
 |----------|--------|-----|
-| "Create a landing page for our SaaS product" | ✅ Delegate to OpenFrontendSpecialist | Complex UI design, needs 4-stage workflow |
-| "Design a user dashboard with charts" | ✅ Delegate to OpenFrontendSpecialist | Complex layout, visual design, interactions |
-| "Build a component library with our brand" | ✅ Delegate to OpenFrontendSpecialist | Design system work, requires theme expertise |
-| "Fix button color from blue to green" | ⚠️ Execute directly | Simple CSS change |
-| "Update hero text content" | ⚠️ Execute directly | Content update only |
+| "Create a landing page for our SaaS product" | ✅ Делегировать OpenFrontendSpecialist | Сложный UI-дизайн, нужен 4-этапный workflow |
+| "Design a user dashboard with charts" | ✅ Делегировать OpenFrontendSpecialist | Сложный макет, визуальный дизайн, взаимодействия |
+| "Build a component library with our brand" | ✅ Делегировать OpenFrontendSpecialist | Работа с дизайн-системой, нужна экспертиза по темам |
+| "Fix button color from blue to green" | ⚠️ Выполнить напрямую | Простое CSS-изменение |
+| "Update hero text content" | ⚠️ Выполнить напрямую | Только обновление контента |
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- [Design Plan File](./design-iteration-plan-file.md) - MANDATORY plan file template
-- [Stage 1: Layout](./design-iteration-stage-layout.md)
-- [Stage 2: Theme](./design-iteration-stage-theme.md)
-- [Stage 3: Animation](./design-iteration-stage-animation.md)
-- [Stage 4: Implementation](./design-iteration-stage-implementation.md)
-- [Visual Content Generation](./design-iteration-visual-content.md)
-- [Best Practices](./design-iteration-best-practices.md)
-- [Plan Iterations](./design-iteration-plan-iterations.md)
+- [Файл плана дизайна](./design-iteration-plan-file.md) - ОБЯЗАТЕЛЬНЫЙ шаблон плана
+- [Этап 1: Макет](./design-iteration-stage-layout.md)
+- [Этап 2: Тема](./design-iteration-stage-theme.md)
+- [Этап 3: Анимация](./design-iteration-stage-animation.md)
+- [Этап 4: Реализация](./design-iteration-stage-implementation.md)
+- [Генерация визуального контента](./design-iteration-visual-content.md)
+- [Лучшие практики](./design-iteration-best-practices.md)
+- [Итерации плана](./design-iteration-plan-iterations.md)

@@ -1,40 +1,40 @@
 <!-- Context: openagents-repo/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Lookup
+# Справочник OpenAgents
 
-**Purpose**: Quick reference and lookup tables for OpenAgents Control
+**Назначение**: краткие справочники и таблицы для OpenAgents Control
 
 ---
 
-## Structure
+## Структура
 
 ```
 openagents-repo/lookup/
-├── navigation.md (this file)
-└── [lookup reference files]
+├── navigation.md (этот файл)
+└── [справочные файлы]
 ```
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **View lookups** | `./` |
-| **Guides** | `../guides/navigation.md` |
-| **Core Concepts** | `../core-concepts/navigation.md` |
+| **Посмотреть справочники** | `./` |
+| **Руководства** | `../guides/navigation.md` |
+| **Ключевые концепции** | `../core-concepts/navigation.md` |
 
 ---
 
-## By Type
+## По типу
 
-**Quick Reference** → Fast lookup tables and commands  
-**Checklists** → Verification and validation checklists
+**Краткий справочник** → быстрые таблицы и команды  
+**Чек-листы** → проверки и валидация
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **OpenAgents Navigation** → `../navigation.md`
-- **Guides** → `../guides/navigation.md`
-- **Core Concepts** → `../core-concepts/navigation.md`
+- **Навигация OpenAgents** → `../navigation.md`
+- **Руководства** → `../guides/navigation.md`
+- **Ключевые концепции** → `../core-concepts/navigation.md`

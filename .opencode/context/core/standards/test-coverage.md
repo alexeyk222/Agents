@@ -1,33 +1,33 @@
 <!-- Context: standards/tests | Priority: critical | Version: 2.0 | Updated: 2025-01-21 -->
 
-# Testing Standards
+# Стандарты тестирования
 
-## Quick Reference
+## Краткая справка
 
-**Golden Rule**: If you can't test it easily, refactor it
+**Золотое правило**: Если это сложно тестировать — отрефакторьте
 
-**AAA Pattern**: Arrange → Act → Assert
+**Паттерн AAA**: Arrange → Act → Assert
 
-**Test** (✅ DO):
-- Happy path, edge cases, error cases
-- Business logic, public APIs
+**Тестируйте** (✅ делайте):
+- Основной сценарий, крайние случаи, ошибки
+- Бизнес-логику, публичные API
 
-**Don't Test** (❌ DON'T):
-- Third-party libraries, framework internals
-- Simple getters/setters, private details
+**Не тестируйте** (❌ не делайте):
+- Сторонние библиотеки, внутренности фреймворка
+- Простые getters/setters, приватные детали
 
-**Coverage**: Critical (100%), High (90%+), Medium (80%+)
+**Покрытие**: критическое (100%), высокое (90%+), среднее (80%+)
 
 ---
 
-## Principles
+## Принципы
 
-**Test behavior, not implementation**: Focus on what code does, not how
-**Keep tests simple**: One assertion per test, clear names, minimal setup
-**Independent tests**: No shared state, run in any order
-**Fast and reliable**: Quick execution, no flaky tests, deterministic
+**Тестируйте поведение, а не реализацию**: Фокус на том, что делает код, а не как
+**Держите тесты простыми**: Один assert на тест, ясные имена, минимум настройки
+**Независимые тесты**: Без общего состояния, запуск в любом порядке
+**Быстрые и надежные**: Быстро выполняются, не flaky, детерминированы
 
-## Test Structure (AAA Pattern)
+## Структура теста (паттерн AAA)
 
 ```javascript
 test('calculateTotal returns sum of item prices', () => {
@@ -42,29 +42,29 @@ test('calculateTotal returns sum of item prices', () => {
 });
 ```
 
-## What to Test
+## Что тестировать
 
-### ✅ DO Test
-- Happy path (normal usage)
-- Edge cases (boundaries, empty, null, undefined)
-- Error cases (invalid input, failures)
-- Business logic (core functionality)
-- Public APIs (exported functions)
+### ✅ Что тестировать
+- Основной сценарий (нормальное использование)
+- Крайние случаи (границы, пустые значения, null, undefined)
+- Ошибки (некорректный ввод, сбои)
+- Бизнес-логику (ключевая функциональность)
+- Публичные API (экспортируемые функции)
 
-### ❌ DON'T Test
-- Third-party libraries
-- Framework internals
-- Simple getters/setters
-- Private implementation details
+### ❌ Что не тестировать
+- Сторонние библиотеки
+- Внутренности фреймворка
+- Простые getters/setters
+- Приватные детали реализации
 
-## Coverage Goals
+## Цели покрытия
 
-1. **Critical**: Business logic, data transformations (100%)
-2. **High**: Public APIs, user-facing features (90%+)
-3. **Medium**: Utilities, helpers (80%+)
-4. **Low**: Simple wrappers, configs (optional)
+1. **Критическое**: Бизнес-логика, преобразования данных (100%)
+2. **Высокое**: Публичные API, пользовательские фичи (90%+)
+3. **Среднее**: Утилиты, helpers (80%+)
+4. **Низкое**: Простые обертки, конфиги (опционально)
 
-## Testing Pure Functions
+## Тестирование чистых функций
 
 ```javascript
 function add(a, b) { return a + b; }
@@ -76,7 +76,7 @@ test('add returns sum', () => {
 });
 ```
 
-## Testing with Dependencies
+## Тестирование с зависимостями
 
 ```javascript
 // Testable with dependency injection
@@ -100,7 +100,7 @@ test('getUser retrieves from database', () => {
 });
 ```
 
-## Test Naming
+## Именование тестов
 
 ```javascript
 // ✅ Good: Descriptive, clear expectation
@@ -113,15 +113,15 @@ test('it works', () => {});
 test('test user', () => {});
 ```
 
-## Best Practices
+## Лучшие практики
 
-✅ Test one thing per test
-✅ Use descriptive test names
-✅ Keep tests independent
-✅ Mock external dependencies
-✅ Test edge cases and errors
-✅ Make tests readable
-✅ Run tests frequently
-✅ Fix failing tests immediately
+✅ Тестируйте одну вещь в одном тесте
+✅ Используйте описательные имена тестов
+✅ Держите тесты независимыми
+✅ Мокайте внешние зависимости
+✅ Тестируйте крайние случаи и ошибки
+✅ Делайте тесты читаемыми
+✅ Запускайте тесты часто
+✅ Сразу исправляйте падающие тесты
 
-**Golden Rule**: If you can't test it easily, refactor it.
+**Золотое правило**: Если это сложно тестировать — отрефакторьте.

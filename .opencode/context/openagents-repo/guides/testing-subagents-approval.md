@@ -1,33 +1,33 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
 ---
-description: "Guide for testing subagents and handling approval gates"
+description: "Руководство по тестированию subagents и обработке approval gates"
 type: "context"
 category: "openagents-repo"
 tags: [testing, subagents, approval-gates]
 ---
 
-# Testing Subagents: Approval Gates
+# Тестирование subagents: approval gates
 
-**Context**: openagents-repo/guides | **Priority**: HIGH | **Updated**: 2026-01-09
+**Контекст**: openagents-repo/guides | **Приоритет**: HIGH | **Обновлено**: 2026-01-09
 
 ---
 
-## Critical Rule: Subagents Don't Need Approval Gates
+## Критическое правило: subagents не нужны approval gates
 
-**IMPORTANT**: When writing tests for subagents, DO NOT include `expectedViolations` for `approval-gate`.
+**ВАЖНО**: при написании тестов для subagents НЕ добавляйте `expectedViolations` для `approval-gate`.
 
-### Why?
+### Почему?
 
-Subagents are **delegated to** by parent agents (OpenAgent, OpenCoder, etc.). The parent agent already requested and received approval before delegating. Therefore:
+Subagents получают задачи через делегирование от parent agents (OpenAgent, OpenCoder и т. д.). Parent agent уже запросил и получил approval перед делегированием. Поэтому:
 
-- ✅ Subagents can execute tools directly without asking for approval
-- ✅ Subagents inherit approval from their parent
-- ❌ Subagents should NOT be tested for approval gate violations
+- ✅ Subagents могут напрямую выполнять tools без запроса approval
+- ✅ Subagents наследуют approval от parent
+- ❌ Subagents НЕ нужно тестировать на violations approval gate
 
-### Test Configuration for Subagents
+### Конфигурация тестов для subagents
 
-**Correct** (no approval gate expectations):
+**Правильно** (без ожиданий approval gate):
 ```yaml
 category: developer
 agent: ContextScout
@@ -48,7 +48,7 @@ behavior:
 # NO expectedViolations for approval-gate!
 ```
 
-**Incorrect** (don't do this):
+**Неправильно** (так не делайте):
 ```yaml
 expectedViolations:
   - rule: approval-gate        # ❌ WRONG for subagents
@@ -58,32 +58,32 @@ expectedViolations:
 
 ---
 
-## When to Test Approval Gates
+## Когда тестировать approval gates
 
-**Test approval gates for**:
+**Тестируйте approval gates для**:
 - ✅ Primary agents (OpenAgent, OpenCoder, System Builder)
-- ✅ Category agents (frontend-specialist, data-analyst, etc.)
+- ✅ Category agents (frontend-specialist, data-analyst и т. д.)
 
-**Don't test approval gates for**:
-- ❌ Subagents (contextscout, tester, reviewer, coder-agent, etc.)
-- ❌ Any agent with `mode: subagent` in frontmatter
+**Не тестируйте approval gates для**:
+- ❌ Subagents (contextscout, tester, reviewer, coder-agent и т. д.)
+- ❌ Любого агента с `mode: subagent` во frontmatter
 
 ---
 
-## Approval Strategy for Subagents
+## Стратегия approval для subagents
 
-Always use `auto-approve` for subagent tests:
+Всегда используйте `auto-approve` для тестов subagent:
 
 ```yaml
 approvalStrategy:
   type: auto-approve
 ```
 
-This simulates the parent agent having already approved the delegation.
+Это имитирует ситуацию, где parent agent уже одобрил делегирование.
 
 ---
 
-## Example: ContextScout Test
+## Пример: тест ContextScout
 
 ```yaml
 id: contextscout-code-standards
@@ -127,13 +127,13 @@ tags:
 
 ---
 
-## Related Files
+## Связанные файлы
 
-- **Testing subagents**: `.opencode/context/openagents-repo/guides/testing-subagents.md`
-- **Subagent invocation**: `.opencode/context/openagents-repo/guides/subagent-invocation.md`
-- **Agent concepts**: `.opencode/context/openagents-repo/core-concepts/agents.md`
+- **Тестирование subagents**: `.opencode/context/openagents-repo/guides/testing-subagents.md`
+- **Вызов subagent**: `.opencode/context/openagents-repo/guides/subagent-invocation.md`
+- **Концепции агентов**: `.opencode/context/openagents-repo/core-concepts/agents.md`
 
 ---
 
-**Last Updated**: 2026-01-09  
-**Version**: 1.0.0
+**Последнее обновление**: 2026-01-09  
+**Версия**: 1.0.0

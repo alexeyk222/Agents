@@ -1,66 +1,66 @@
 <!-- Context: openagents-repo/quick-start | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# OpenAgents Control Repository - Quick Start
+# Репозиторий OpenAgents Control — быстрый старт
 
-**Purpose**: Get oriented in this repo in 2 minutes
-
----
-
-## What Is This Repo?
-
-OpenAgents Control is an AI agent framework with:
-- **Category-based agents** (core, development, content, data, product, learning)
-- **Eval framework** for testing agent behavior
-- **Registry system** for component distribution
-- **Install system** for easy setup
+**Назначение**: сориентироваться в репозитории за 2 минуты
 
 ---
 
-## Core Concepts (Load These First)
+## Что это за репозиторий?
 
-Before working on this repo, understand these 4 systems:
-
-1. **Agents** → Load: `core-concepts/agents.md`
-   - How agents are structured
-   - Category system
-   - Prompt variants
-   - Subagents vs category agents
-
-2. **Evals** → Load: `core-concepts/evals.md`
-   - How testing works
-   - Running tests
-   - Evaluators
-   - Session collection
-
-3. **Registry** → Load: `core-concepts/registry.md`
-   - How components are tracked
-   - Auto-detect system
-   - Validation
-   - Install system
-
-4. **Categories** → Load: `core-concepts/categories.md`
-   - How organization works
-   - Naming conventions
-   - Path patterns
+OpenAgents Control — фреймворк AI-агентов с:
+- **агентами по категориям** (core, development, content, data, product, learning)
+- **eval-фреймворком** для проверки поведения агентов
+- **registry-системой** для распространения компонентов
+- **системой установки** для быстрой настройки
 
 ---
 
-## I Need To...
+## Ключевые концепции (загрузите сначала)
 
-| Task | Load These Files |
+Перед работой с репозиторием разберитесь в 4 системах:
+
+1. **Агенты** → загрузить: `core-concepts/agents.md`
+   - Как устроены агенты
+   - Система категорий
+   - Варианты промптов
+   - Субагенты vs агенты категорий
+
+2. **Evals** → загрузить: `core-concepts/evals.md`
+   - Как работает тестирование
+   - Запуск тестов
+   - Evaluators (правила проверки)
+   - Сбор сессий
+
+3. **Registry** → загрузить: `core-concepts/registry.md`
+   - Как отслеживаются компоненты
+   - Система auto-detect
+   - Валидация
+   - Система установки
+
+4. **Категории** → загрузить: `core-concepts/categories.md`
+   - Как устроена организация
+   - Соглашения об именовании
+   - Паттерны путей
+
+---
+
+## Мне нужно...
+
+| Задача | Загрузите эти файлы |
 |------|------------------|
-| Add a new agent | `core-concepts/agents.md` + `guides/adding-agent.md` |
-| Test an agent | `core-concepts/evals.md` + `guides/testing-agent.md` |
-| Fix registry | `core-concepts/registry.md` + `guides/updating-registry.md` |
-| Debug issue | `guides/debugging.md` |
-| Find files | `lookup/file-locations.md` |
-| Create release | `guides/creating-release.md` |
-| Write content or copy | `core-concepts/categories.md` + `../content-creation/principles/navigation.md` |
-| Use Claude Code helpers | `core-concepts/agents.md` + `guides/adding-agent.md` + `../to-be-consumed/claude-code-docs/create-subagents.md` |
+| Добавить нового агента | `core-concepts/agents.md` + `guides/adding-agent.md` |
+| Протестировать агента | `core-concepts/evals.md` + `guides/testing-agent.md` |
+| Исправить registry | `core-concepts/registry.md` + `guides/updating-registry.md` |
+| Отладить проблему | `guides/debugging.md` |
+| Найти файлы | `lookup/file-locations.md` |
+| Создать релиз | `guides/creating-release.md` |
+| Написать контент или copy | `core-concepts/categories.md` + `../content-creation/principles/navigation.md` |
+| Использовать помощников Claude Code | `core-concepts/agents.md` + `guides/adding-agent.md` + `../to-be-consumed/claude-code-docs/create-subagents.md` |
 
 ---
 
-## Essential Paths (Top 15)
+## Основные пути (топ-15)
 
 ```
 .opencode/agent/core/                    # Core agents (openagent, opencoder)
@@ -82,7 +82,7 @@ package.json                             # Node dependencies
 
 ---
 
-## Common Commands (Top 10)
+## Частые команды (топ-10)
 
 ```bash
 # Add new agent (auto-detect)
@@ -118,7 +118,7 @@ cat VERSION && cat package.json | jq '.version'
 
 ---
 
-## Repository Structure (Quick View)
+## Структура репозитория (кратко)
 
 ```
 opencode-agents/
@@ -146,26 +146,26 @@ opencode-agents/
 
 ---
 
-## Quick Troubleshooting
+## Быстрая диагностика
 
-| Problem | Solution |
+| Проблема | Решение |
 |---------|----------|
-| Registry validation fails | `./scripts/registry/auto-detect-components.sh --auto-add` |
-| Test fails | Load `guides/debugging.md` |
-| Can't find file | Load `lookup/file-locations.md` |
-| Install fails | Check: `which curl jq` |
-| Path resolution issues | Check `core-concepts/categories.md` |
+| Валидация registry падает | `./scripts/registry/auto-detect-components.sh --auto-add` |
+| Тест падает | Загрузите `guides/debugging.md` |
+| Не получается найти файл | Загрузите `lookup/file-locations.md` |
+| Установка падает | Проверьте: `which curl jq` |
+| Проблемы с разрешением путей | Проверьте `core-concepts/categories.md` |
 
 ---
 
-## Next Steps
+## Следующие шаги
 
-1. **First time?** → Read `core-concepts/agents.md`, `evals.md`, `registry.md`
-2. **Adding agent?** → Load `guides/adding-agent.md`
-3. **Testing?** → Load `guides/testing-agent.md`
-4. **Need details?** → Load specific files from `core-concepts/` or `guides/`
+1. **Впервые здесь?** → прочитайте `core-concepts/agents.md`, `evals.md`, `registry.md`
+2. **Добавляете агента?** → загрузите `guides/adding-agent.md`
+3. **Тестируете?** → загрузите `guides/testing-agent.md`
+4. **Нужны детали?** → загрузите конкретные файлы из `core-concepts/` или `guides/`
 
 ---
 
-**Last Updated**: 2026-01-13  
-**Version**: 0.5.1
+**Последнее обновление**: 2026-01-13  
+**Версия**: 0.5.1

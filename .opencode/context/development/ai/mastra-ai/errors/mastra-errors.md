@@ -1,33 +1,33 @@
 <!-- Context: development/mastra-errors | Priority: medium | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Errors: Mastra Implementation
+# Ошибки: реализация Mastra
 
-**Purpose**: Common errors, their causes, and recovery strategies.
+**Назначение**: Типовые ошибки, их причины и стратегии восстановления.
 
-**Last Updated**: 2026-01-09
+**Обновлено**: 2026-01-09
 
 ---
 
-## Core Idea
-Errors in Mastra typically fall into three categories: AI generation failures, structured output validation errors, and context/resource missing errors.
+## Основная идея
+Ошибки Mastra обычно делятся на три категории: сбои AI-генерации, ошибки валидации структурированного вывода и отсутствие контекста или ресурсов.
 
-## Key Points
-- **AIGenerationError**: Occurs when the LLM fails to generate a response (e.g., safety filters, model downtime).
-- **StructuredOutputError**: Triggered when the LLM response doesn't match the Zod schema defined in the tool or step.
-- **RateLimitError**: Hit when exceeding provider limits. Includes a `retryAfter` value.
-- **MastraContextError**: Raised when a required resource (like `services` or `mastra` instance) is missing from the execution context.
-- **Retry Strategy**: Use `isRetryableError(error)` to determine if a transient failure can be recovered with exponential backoff.
+## Ключевые пункты
+- **AIGenerationError**: возникает, когда LLM не может сгенерировать ответ (например, фильтры безопасности или простой модели).
+- **StructuredOutputError**: срабатывает, когда ответ LLM не соответствует Zod-схеме, заданной в tool или шаге.
+- **RateLimitError**: возникает при превышении лимитов провайдера. Содержит значение `retryAfter`.
+- **MastraContextError**: возникает, когда в контексте выполнения нет нужного ресурса, например `services` или экземпляра `mastra`.
+- **Стратегия повторов**: используйте `isRetryableError(error)`, чтобы определить, можно ли восстановиться после временного сбоя через экспоненциальный backoff.
 
-## Common Errors Table
+## Таблица типовых ошибок
 
-| Error | Cause | Fix |
+| Ошибка | Причина | Исправление |
 |-------|-------|-----|
-| `StructuredOutputError` | LLM hallucinated wrong JSON | Refine prompt or use simpler schema |
-| `RateLimitError` | Too many concurrent requests | Implement rate limiting or increase quota |
-| `NotFoundError` | Case or Document ID missing in DB | Check DB state before workflow start |
-| `MastraContextError` | `services` not passed to tool | Ensure `services` is in `ToolExecutionContext` |
+| `StructuredOutputError` | LLM сгенерировала неверный JSON | Уточните prompt или используйте более простую схему |
+| `RateLimitError` | Слишком много параллельных запросов | Добавьте rate limiting или увеличьте квоту |
+| `NotFoundError` | Case или Document ID отсутствует в БД | Проверьте состояние БД до старта workflow |
+| `MastraContextError` | `services` не передан в tool | Убедитесь, что `services` есть в `ToolExecutionContext` |
 
-**Reference**: `src/lib/errors.ts`
-**Related**:
+**Источник**: `src/lib/errors.ts`
+**Связано**:
 - concepts/core.md
 - guides/testing.md

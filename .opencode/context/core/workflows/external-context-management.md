@@ -1,15 +1,15 @@
 <!-- Context: workflows/external-context | Priority: high | Version: 1.0 | Updated: 2026-01-28 -->
-# External Context Management
+# Управление внешним контекстом
 
-## Overview
+## Обзор
 
-External context is live documentation fetched from external libraries and frameworks (via Context7 API or official docs). Instead of re-fetching on every task, we **persist external context** to `.tmp/external-context/` so main agents can pass it to subagents.
+Внешний контекст — это актуальная документация, полученная из внешних библиотек и фреймворков (через Context7 API или официальную документацию). Вместо повторной загрузки для каждой задачи мы **сохраняем внешний контекст** в `.tmp/external-context/`, чтобы основные агенты могли передавать его subagents.
 
-**Key Principle**: ExternalScout fetches once → persists to disk → main agents reference → subagents read (no re-fetching)
+**Ключевой принцип**: ExternalScout получает один раз → сохраняет на диск → основные агенты ссылаются → subagents читают (без повторной загрузки)
 
 ---
 
-## Directory Structure
+## Структура каталогов
 
 ```
 .tmp/external-context/
@@ -31,25 +31,25 @@ External context is live documentation fetched from external libraries and frame
     └── prefetching.md               # Fetched: "Prefetching strategies"
 ```
 
-### Naming Conventions
+### Правила именования
 
-- **Package name** (directory): Exact npm package name (kebab-case)
+- **Имя пакета** (каталог): точное имя npm-пакета (kebab-case)
   - ✅ `drizzle-orm`, `better-auth`, `next.js`, `@tanstack/react-query`
   - ❌ `drizzle`, `nextjs`, `tanstack-query`
 
-- **File name** (topic): Kebab-case description of the topic
+- **Имя файла** (topic): описание темы в kebab-case
   - ✅ `modular-schemas.md`, `nextjs-integration.md`, `server-components.md`
   - ❌ `modular schemas.md`, `NextJS Integration.md`, `ServerComponents.md`
 
 ---
 
-## Manifest File
+## Файл manifest
 
-**Location**: `.tmp/external-context/.manifest.json`
+**Расположение**: `.tmp/external-context/.manifest.json`
 
-**Purpose**: Track what's cached, when it was fetched, and from which source
+**Назначение**: отслеживать, что закэшировано, когда получено и из какого источника
 
-**Structure**:
+**Структура**:
 ```json
 {
   "last_updated": "2026-01-28T14:30:22Z",
@@ -90,11 +90,11 @@ External context is live documentation fetched from external libraries and frame
 
 ---
 
-## File Format
+## Формат файла
 
-Each external context file has a metadata header followed by the documentation content.
+Каждый файл внешнего контекста содержит metadata header, затем содержимое документации.
 
-**Template**:
+**Шаблон**:
 ```markdown
 ---
 source: Context7 API
@@ -126,9 +126,9 @@ official_docs: https://orm.drizzle.team/docs/goodies#multi-file-schemas
 
 ---
 
-## Workflow: How External Context Flows
+## Процесс: как проходит внешний контекст
 
-### Stage 1: Main Agent Needs External Context
+### Этап 1: основному агенту нужен внешний контекст
 
 ```
 Main Agent (e.g., OpenAgent)
@@ -138,7 +138,7 @@ Main Agent (e.g., OpenAgent)
   Calls: ExternalScout to fetch live docs
 ```
 
-### Stage 2: ExternalScout Fetches & Persists
+### Этап 2: ExternalScout получает и сохраняет
 
 ```
 ExternalScout
@@ -156,7 +156,7 @@ ExternalScout
   Returns: File paths + formatted documentation
 ```
 
-### Stage 3: Main Agent References in Session Context
+### Этап 3: основной агент ссылается в контексте сессии
 
 ```
 Main Agent
@@ -173,7 +173,7 @@ Main Agent
   Delegates to TaskManager with session path
 ```
 
-### Stage 4: Subagents Read External Context
+### Этап 4: subagents читают внешний контекст
 
 ```
 TaskManager (or CoderAgent, TestEngineer, etc.)
@@ -191,11 +191,11 @@ TaskManager (or CoderAgent, TestEngineer, etc.)
 
 ---
 
-## Integration with Task Delegation
+## Интеграция с делегированием задач
 
-### In Session Context File
+### В файле контекста сессии
 
-Add this section to `.tmp/sessions/{session-id}/context.md`:
+Добавьте этот раздел в `.tmp/sessions/{session-id}/context.md`:
 
 ```markdown
 ## External Context Fetched
@@ -217,9 +217,9 @@ These are live documentation files fetched from external libraries. Subagents sh
 **Important**: These files are read-only and should not be modified. They're cached for reference only.
 ```
 
-### In Subtask JSONs (Created by TaskManager)
+### В JSON подзадач (создает TaskManager)
 
-When TaskManager creates subtask JSONs, it should include external context files:
+Когда TaskManager создает JSON подзадач, он должен включать файлы внешнего контекста:
 
 ```json
 {
@@ -243,32 +243,32 @@ When TaskManager creates subtask JSONs, it should include external context files
 
 ---
 
-## Cleanup & Maintenance
+## Очистка и сопровождение
 
-### When to Clean Up
+### Когда очищать
 
-External context files should be cleaned up when:
-1. Task is complete and session is deleted
-2. External docs become stale (>7 days old)
-3. User explicitly requests cleanup
-4. Disk space is needed
+Файлы внешнего контекста нужно очищать, когда:
+1. Задача завершена и сессия удалена
+2. Внешняя документация устарела (>7 дней)
+3. Пользователь явно запросил очистку
+4. Нужно место на диске
 
-### How to Clean Up
+### Как очищать
 
-**Manual cleanup** (ask user first):
+**Ручная очистка** (сначала спросите пользователя):
 ```bash
 rm -rf .tmp/external-context/{package-name}/
 # Update .manifest.json to remove package entry
 ```
 
-**Automatic cleanup** (future enhancement):
-- Add cleanup script that removes files older than 7 days
-- Run as part of session cleanup process
-- Update manifest after cleanup
+**Автоматическая очистка** (будущее улучшение):
+- Добавить скрипт очистки, удаляющий файлы старше 7 дней
+- Запускать как часть процесса очистки сессии
+- Обновлять manifest после очистки
 
-### Manifest Cleanup
+### Очистка manifest
 
-After deleting external context files, update `.manifest.json`:
+После удаления файлов внешнего контекста обновите `.manifest.json`:
 ```json
 {
   "last_updated": "2026-01-28T15:00:00Z",
@@ -280,39 +280,39 @@ After deleting external context files, update `.manifest.json`:
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-### For Main Agents (OpenAgent, etc.)
+### Для основных агентов (OpenAgent и т. д.)
 
-1. **Call ExternalScout early** in the planning phase
-2. **Capture returned file paths** from ExternalScout
-3. **Add to session context** in "## External Context Fetched" section
-4. **Pass session path to subagents** so they know where to find external docs
-5. **Don't re-fetch** — trust that ExternalScout persisted correctly
+1. **Вызывайте ExternalScout рано** на этапе планирования
+2. **Сохраняйте возвращенные пути файлов** от ExternalScout
+3. **Добавляйте в контекст сессии** в раздел "## External Context Fetched"
+4. **Передавайте путь сессии subagents**, чтобы они знали, где искать внешнюю документацию
+5. **Не загружайте повторно** — доверяйте корректному сохранению ExternalScout
 
-### For ExternalScout
+### Для ExternalScout
 
-1. **Always persist** fetched documentation to `.tmp/external-context/`
-2. **Update manifest** after each fetch
-3. **Include metadata header** in every file (source, library, package, topic, fetched timestamp)
-4. **Filter aggressively** — only include relevant sections
-5. **Cite sources** — include official docs links
+1. **Всегда сохраняйте** полученную документацию в `.tmp/external-context/`
+2. **Обновляйте manifest** после каждой загрузки
+3. **Добавляйте metadata header** в каждый файл (source, library, package, topic, fetched timestamp)
+4. **Фильтруйте агрессивно** — включайте только релевантные разделы
+5. **Цитируйте источники** — добавляйте ссылки на официальную документацию
 
-### For Subagents (TaskManager, CoderAgent, etc.)
+### Для subagents (TaskManager, CoderAgent и т. д.)
 
-1. **Read external context files** from session context
-2. **Don't re-fetch** — use persisted files
-3. **Reference in implementation** — cite which external docs informed decisions
-4. **Don't modify** external context files — they're read-only
-5. **Include in subtask JSONs** — pass external_context to downstream agents
+1. **Читайте файлы внешнего контекста** из контекста сессии
+2. **Не загружайте повторно** — используйте сохраненные файлы
+3. **Ссылайтесь в реализации** — указывайте, какая внешняя документация повлияла на решения
+4. **Не изменяйте** файлы внешнего контекста — они только для чтения
+5. **Включайте в JSON подзадач** — передавайте `external_context` нижестоящим агентам
 
 ---
 
-## Examples
+## Примеры
 
-### Example 1: Drizzle + Better Auth Integration
+### Пример 1: интеграция Drizzle + Better Auth
 
-**Main Agent Flow**:
+**Поток основного агента**:
 ```
 1. User asks: "Set up Drizzle + Better Auth in Next.js"
 2. Main agent calls ExternalScout
@@ -329,7 +329,7 @@ After deleting external context files, update `.manifest.json`:
 8. CoderAgent implements using external docs (no re-fetching)
 ```
 
-**Session Context File**:
+**Файл контекста сессии**:
 ```markdown
 ## External Context Fetched
 
@@ -345,9 +345,9 @@ After deleting external context files, update `.manifest.json`:
 - `.tmp/external-context/next.js/app-router-setup.md`
 ```
 
-### Example 2: TanStack Query + Server Components
+### Пример 2: TanStack Query + Server Components
 
-**Main Agent Flow**:
+**Поток основного агента**:
 ```
 1. User asks: "How do I use TanStack Query with Next.js Server Components?"
 2. Main agent calls ExternalScout
@@ -362,45 +362,45 @@ After deleting external context files, update `.manifest.json`:
 
 ---
 
-## Troubleshooting
+## Устранение неполадок
 
-### External Context Files Not Found
+### Файлы внешнего контекста не найдены
 
-**Problem**: Subagent can't find `.tmp/external-context/{package-name}/{topic}.md`
+**Проблема**: subagent не может найти `.tmp/external-context/{package-name}/{topic}.md`
 
-**Solution**:
-1. Check that ExternalScout ran successfully
-2. Verify file path in session context matches actual file location
-3. Check `.manifest.json` to see what's cached
-4. If missing, re-run ExternalScout to fetch and persist
+**Решение**:
+1. Проверьте, что ExternalScout выполнился успешно
+2. Убедитесь, что путь в контексте сессии совпадает с фактическим расположением файла
+3. Проверьте `.manifest.json`, чтобы увидеть, что закэшировано
+4. Если файла нет, повторно запустите ExternalScout для загрузки и сохранения
 
-### Stale External Context
+### Устаревший внешний контекст
 
-**Problem**: External docs are outdated (>7 days old)
+**Проблема**: внешняя документация устарела (>7 дней)
 
-**Solution**:
-1. Delete stale files: `rm -rf .tmp/external-context/{package-name}/`
-2. Update `.manifest.json`
-3. Re-run ExternalScout to fetch fresh docs
-4. Update session context with new file paths
+**Решение**:
+1. Удалите устаревшие файлы: `rm -rf .tmp/external-context/{package-name}/`
+2. Обновите `.manifest.json`
+3. Повторно запустите ExternalScout для получения свежей документации
+4. Обновите контекст сессии новыми путями файлов
 
-### Manifest Out of Sync
+### Manifest не синхронизирован
 
-**Problem**: `.manifest.json` doesn't match actual files
+**Проблема**: `.manifest.json` не соответствует фактическим файлам
 
-**Solution**:
-1. Regenerate manifest by listing actual files:
+**Решение**:
+1. Пересоздайте manifest по списку фактических файлов:
    ```bash
    find .tmp/external-context -name "*.md" | sort
    ```
-2. Update `.manifest.json` to match
-3. Verify all files have metadata headers
+2. Обновите `.manifest.json`, чтобы он совпадал
+3. Убедитесь, что у всех файлов есть metadata headers
 
 ---
 
-## References
+## Ссылки
 
-- **ExternalScout**: `.opencode/agent/subagents/core/externalscout.md` — Fetches and persists external docs
-- **Task Delegation**: `.opencode/context/core/workflows/task-delegation-basics.md` — How to reference external context in sessions
-- **Session Management**: `.opencode/context/core/workflows/session-management.md` — Session lifecycle
-- **Library Registry**: `.opencode/skills/context7/library-registry.md` — Supported libraries and query patterns
+- **ExternalScout**: `.opencode/agent/subagents/core/externalscout.md` — получает и сохраняет внешнюю документацию
+- **Делегирование задач**: `.opencode/context/core/workflows/task-delegation-basics.md` — как ссылаться на внешний контекст в сессиях
+- **Управление сессиями**: `.opencode/context/core/workflows/session-management.md` — жизненный цикл сессии
+- **Реестр библиотек**: `.opencode/skills/context7/library-registry.md` — поддерживаемые библиотеки и паттерны запросов

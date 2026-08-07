@@ -1,23 +1,23 @@
 <!-- Context: development/evaluations | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Concept: Mastra Evaluations
+# Концепция: Mastra Evaluations
 
-**Purpose**: Quality assurance and scoring for LLM outputs.
+**Назначение**: Контроль качества и оценивание выводов LLM.
 
-**Last Updated**: 2026-01-09
+**Обновлено**: 2026-01-09
 
 ---
 
-## Core Idea
-Evaluations in Mastra use Scorers to assess the quality, accuracy, and safety of LLM-generated content. They provide a quantitative way to measure performance and detect issues like hallucinations or factual errors.
+## Основная идея
+Evaluations в Mastra используют Scorers для оценки качества, точности и безопасности контента, сгенерированного LLM. Они дают количественный способ измерять качество и находить проблемы вроде галлюцинаций или фактических ошибок.
 
-## Key Points
-- **Scorers**: Specialized functions that take LLM output (and optionally ground truth) and return a score (0-1).
-- **Integration**: Registered in the Mastra instance and can be triggered automatically during workflow execution.
-- **Metrics**: Common metrics include hallucination detection, fact validation, and relevance scoring.
-- **Audit Trail**: Scorer results are stored in the `mastra_scorers` table for long-term analysis and reporting.
+## Ключевые пункты
+- **Scorers**: специализированные функции, которые принимают вывод LLM (и при необходимости эталонные данные) и возвращают балл (0-1).
+- **Интеграция**: регистрируются в экземпляре Mastra и могут запускаться автоматически во время выполнения workflow.
+- **Метрики**: типовые метрики включают обнаружение галлюцинаций, проверку фактов и оценку релевантности.
+- **Аудит**: результаты Scorer сохраняются в таблице `mastra_scorers` для долгосрочного анализа и отчётности.
 
-## Quick Example
+## Быстрый пример
 ```typescript
 // Scorer definition
 export const hallucinationDetector = new Scorer({
@@ -35,7 +35,7 @@ export const mastra = new Mastra({
 });
 ```
 
-**Reference**: `src/mastra/scorers/`, `src/mastra/evaluation/`
-**Related**:
+**Источник**: `src/mastra/scorers/`, `src/mastra/evaluation/`
+**Связано**:
 - concepts/core.md
 - concepts/workflows.md

@@ -1,12 +1,12 @@
 <!-- Context: core/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Core System
+# Базовая система
 
-**Purpose**: System guides and paths for core operations
+**Назначение**: Системные руководства и пути для базовых операций
 
 ---
 
-## Structure
+## Структура
 
 ```
 core/system/
@@ -16,25 +16,25 @@ core/system/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **System guides** | `./` |
-| **Core standards** | `../standards/navigation.md` |
-| **Context system** | `../context-system/navigation.md` |
+| **Системные руководства** | `./` |
+| **Базовые стандарты** | `../standards/navigation.md` |
+| **Система контекста** | `../context-system/navigation.md` |
 
 ---
 
-## By Type
+## По типу
 
-**System Guides** → Operational guides for core systems  
-**Paths** → System paths and directory structures
+**Системные руководства** → Операционные руководства для базовых систем  
+**Пути** → Системные пути и структуры каталогов
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **Core Navigation** → `../navigation.md`
-- **Context System** → `../context-system/navigation.md`
-- **Core Standards** → `../standards/navigation.md`
+- **Базовая навигация** → `../navigation.md`
+- **Система контекста** → `../context-system/navigation.md`
+- **Базовые стандарты** → `../standards/navigation.md`

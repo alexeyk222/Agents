@@ -1,12 +1,12 @@
 <!-- Context: development/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Frontend Development Navigation
+# Навигация по frontend-разработке
 
-**Purpose**: Client-side development patterns
+**Назначение**: Паттерны клиентской разработки
 
 ---
 
-## Structure
+## Структура
 
 ```
 frontend/
@@ -19,24 +19,24 @@ frontend/
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
-| Task | Path |
+| Задача | Путь |
 |------|------|
-| **When to delegate** | `when-to-delegate.md` |
-| **React patterns** | `react/react-patterns.md` |
-| **React navigation** | `react/navigation.md` |
+| **Когда делегировать** | `when-to-delegate.md` |
+| **Паттерны React** | `react/react-patterns.md` |
+| **Навигация по React** | `react/navigation.md` |
 
 ---
 
-## By Framework
+## По фреймворку
 
-**React** → `react/` - Modern React patterns, hooks, component design
+**React** → `react/` — современные паттерны React, hooks, проектирование компонентов
 
 ---
 
-## Related Context
+## Связанный контекст
 
-- **UI Navigation** → `../ui-navigation.md`
-- **Visual Design** → `../../ui/web/navigation.md`
-- **Core Standards** → `../../core/standards/code-quality.md`
+- **Навигация по UI** → `../ui-navigation.md`
+- **Визуальный дизайн** → `../../ui/web/navigation.md`
+- **Базовые стандарты** → `../../core/standards/code-quality.md`

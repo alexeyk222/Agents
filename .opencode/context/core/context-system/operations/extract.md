@@ -1,25 +1,25 @@
 <!-- Context: core/extract | Priority: medium | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Extract Operation
+# Операция Extract
 
-**Purpose**: Extract context from docs, code, or URLs into organized context files
+**Назначение**: извлекать контекст из документации, кода или URL в организованные файлы контекста
 
-**Last Updated**: 2026-01-06
-
----
-
-## When to Use
-
-- Extracting from documentation (React docs, API docs, etc.)
-- Extracting from codebase (patterns, conventions)
-- Extracting from URLs (blog posts, guides)
-- Creating initial context for new topics
+**Последнее обновление**: 2026-01-06
 
 ---
 
-## 7-Stage Workflow
+## Когда использовать
 
-### Stage 1: Read Source
+- Извлечение из документации (документация React, API-документация и т. д.)
+- Извлечение из кодовой базы (паттерны, соглашения)
+- Извлечение из URL (посты в блогах, руководства)
+- Создание начального контекста для новых тем
+
+---
+
+## 7-этапный workflow
+
+### Этап 1: прочитать источник
 ```
 /context extract from https://react.dev/hooks
   ↓
@@ -27,28 +27,28 @@ Agent: "Reading source (8,500 lines)...
 Analyzing content for extractable items..."
 ```
 
-**Action**: Read and analyze source material
+**Действие**: прочитать и проанализировать исходный материал
 
 ---
 
-### Stage 2: Analyze & Categorize
-**Action**: Extract and categorize content by function
+### Этап 2: проанализировать и категоризировать
+**Действие**: извлечь и категоризировать контент по функции
 
-**Categorization**:
-- Design decisions → `concepts/`
-- Working code → `examples/`
-- Step-by-step workflows → `guides/`
-- Reference data (commands, paths) → `lookup/`
-- Errors/gotchas → `errors/`
+**Категоризация**:
+- Дизайн-решения → `concepts/`
+- Рабочий код → `examples/`
+- Пошаговые процессы → `guides/`
+- Справочные данные (команды, пути) → `lookup/`
+- Ошибки/подводные камни → `errors/`
 
-**Output**: List of extractable items with previews
+**Выход**: список извлекаемых элементов с предварительными просмотрами
 
 ---
 
-### Stage 3: Select Category (APPROVAL REQUIRED)
-**Action**: User chooses target category and items
+### Этап 3: выбрать категорию (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
+**Действие**: пользователь выбирает целевую категорию и элементы
 
-**Format**:
+**Формат**:
 ```
 Found 12 extractable items from {source}:
 
@@ -70,14 +70,14 @@ Which category?
 Select items (A B I or 'all') + category (1/2/3):
 ```
 
-**Validation**: MUST wait for user input before proceeding
+**Валидация**: ОБЯЗАТЕЛЬНО дождаться ввода пользователя перед продолжением
 
 ---
 
-### Stage 4: Preview (APPROVAL REQUIRED)
-**Action**: Show what will be created, check for conflicts
+### Этап 4: предварительный просмотр (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
+**Действие**: показать, что будет создано, проверить конфликты
 
-**Format**:
+**Формат**:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Extraction Plan: development/
@@ -115,42 +115,42 @@ Preview content? (type filename, 'all' for batch, or 'skip')
 Approve? [y/n/edit]: _
 ```
 
-**If user types 'all'**: Show first 10 lines of each file in sequence
-**If user types filename**: Show full content of that file
-**If user types 'skip'**: Proceed to approval
+**Если пользователь вводит `all`**: последовательно показать первые 10 строк каждого файла
+**Если пользователь вводит имя файла**: показать полное содержимое этого файла
+**Если пользователь вводит `skip`**: перейти к одобрению
 
-**Validation**: MUST get approval before proceeding
-
----
-
-### Stage 5: Create
-**Action**: Create files in function folders
-
-**Process**:
-1. Apply MVI format (1-3 sentences, 3-5 key points, minimal example)
-2. Create files in correct function folders
-3. Ensure all files <200 lines
-4. Add cross-references
-
-**Enforcement**: `@critical_rules.mvi_strict` + `@critical_rules.function_structure`
+**Валидация**: ОБЯЗАТЕЛЬНО получить одобрение перед продолжением
 
 ---
 
-### Stage 6: Update Navigation (preview included in Stage 4)
-**Action**: Update navigation.md and add cross-references
+### Этап 5: создать
+**Действие**: создать файлы в функциональных папках
 
-**Process**:
-1. Update category navigation.md with new files (as previewed in Stage 4)
-2. Add priority levels (critical/high/medium/low)
-3. Add cross-references between related files
-4. Update "Last Updated" dates
+**Процесс**:
+1. Применить формат MVI (1–3 предложения, 3–5 ключевых пунктов, минимальный пример)
+2. Создать файлы в правильных функциональных папках
+3. Убедиться, что все файлы <200 строк
+4. Добавить перекрестные ссылки
+
+**Обеспечение**: `@critical_rules.mvi_strict` + `@critical_rules.function_structure`
 
 ---
 
-### Stage 7: Report
-**Action**: Show comprehensive results
+### Этап 6: обновить навигацию (предварительный просмотр включен в этап 4)
+**Действие**: обновить `navigation.md` и добавить перекрестные ссылки
 
-**Format**:
+**Процесс**:
+1. Обновить `navigation.md` категории новыми файлами (как в предварительном просмотре этапа 4)
+2. Добавить уровни приоритета (critical/high/medium/low)
+3. Добавить перекрестные ссылки между связанными файлами
+4. Обновить даты "Last Updated"
+
+---
+
+### Этап 7: отчет
+**Действие**: показать полные результаты
+
+**Формат**:
 ```
 ✅ Extracted X items into {category}
 📄 Created Y files
@@ -164,39 +164,39 @@ Files created:
 
 ---
 
-## Examples
+## Примеры
 
-### Extract from URL
+### Извлечь из URL
 ```bash
 /context extract from https://react.dev/hooks
 ```
 
-### Extract from Local Docs
+### Извлечь из локальных docs
 ```bash
 /context extract from docs/api.md
 /context extract from docs/architecture/
 ```
 
-### Extract from Code
+### Извлечь из кода
 ```bash
 /context extract from src/utils/
 ```
 
 ---
 
-## Success Criteria
+## Критерии успеха
 
-- [ ] All files <200 lines?
-- [ ] MVI format applied (1-3 sentences, 3-5 points, example, reference)?
-- [ ] Files in correct function folders?
-- [ ] README.md updated?
-- [ ] Cross-references added?
-- [ ] User approved before creation?
+- [ ] Все файлы <200 строк?
+- [ ] Формат MVI применен (1–3 предложения, 3–5 пунктов, пример, ссылка)?
+- [ ] Файлы в правильных функциональных папках?
+- [ ] `README.md` обновлен?
+- [ ] Перекрестные ссылки добавлены?
+- [ ] Пользователь одобрил перед созданием?
 
 ---
 
-## Related
+## Связанные материалы
 
-- standards/mvi.md - What to extract
-- guides/compact.md - How to minimize
-- guides/workflows.md - Interactive examples
+- standards/mvi.md - что извлекать
+- guides/compact.md - как минимизировать
+- guides/workflows.md - интерактивные примеры

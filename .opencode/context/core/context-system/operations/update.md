@@ -1,28 +1,28 @@
 <!-- Context: core/update | Priority: medium | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Update Operation
+# Операция Update
 
-**Purpose**: Update context when APIs, frameworks, or contracts change
+**Назначение**: обновлять контекст при изменении API, фреймворков или контрактов
 
-**Last Updated**: 2026-01-06
-
----
-
-## When to Use
-
-- Framework version updates (Next.js 14 → 15)
-- API changes (breaking changes, deprecations)
-- New features added to existing topics
-- Migration guides needed
+**Последнее обновление**: 2026-01-06
 
 ---
 
-## 8-Stage Workflow
+## Когда использовать
 
-### Stage 1: Identify Changes (APPROVAL REQUIRED)
-**Action**: User describes what changed
+- Обновления версий фреймворков (Next.js 14 → 15)
+- Изменения API (несовместимые изменения, депрекации)
+- Новые функции добавлены к существующим темам
+- Нужны руководства по миграции
 
-**Format**:
+---
+
+## 8-этапный workflow
+
+### Этап 1: определить изменения (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
+**Действие**: пользователь описывает, что изменилось
+
+**Формат**:
 ```
 What changed in {topic}?
   [A] API changes
@@ -34,21 +34,21 @@ What changed in {topic}?
 Select all that apply (A B C D or describe):
 ```
 
-**Follow-up**: Get specific details for each selected type
+**Уточнение**: получить конкретные детали для каждого выбранного типа
 
-**Validation**: MUST get user input before proceeding
+**Валидация**: ОБЯЗАТЕЛЬНО получить ввод пользователя перед продолжением
 
 ---
 
-### Stage 2: Find Affected Files
-**Action**: Search for files referencing the topic
+### Этап 2: найти затронутые файлы
+**Действие**: найти файлы, ссылающиеся на тему
 
-**Process**:
-1. Grep for topic references across all context
-2. Count references per file
-3. Show impact analysis
+**Процесс**:
+1. Выполнить grep ссылок на тему по всему контексту
+2. Посчитать ссылки по файлам
+3. Показать анализ влияния
 
-**Format**:
+**Формат**:
 ```
 Found 5 files referencing {topic}:
   📄 concepts/routing.md (3 references, 145 lines)
@@ -62,10 +62,10 @@ Total impact: 17 references across 5 files
 
 ---
 
-### Stage 3: Preview Changes (APPROVAL REQUIRED)
-**Action**: Show line-by-line diff for each file
+### Этап 3: предварительный просмотр изменений (ТРЕБУЕТСЯ ОДОБРЕНИЕ)
+**Действие**: показать построчный diff для каждого файла
 
-**Format**:
+**Формат**:
 ```
 Proposed updates:
 
@@ -89,38 +89,38 @@ Preview next file? (yes/no/show-all)
 Approve changes? (yes/no/edit):
 ```
 
-**Edit mode**: Line-by-line approval for each change
+**Режим edit**: построчное одобрение каждого изменения
 
-**Validation**: MUST get approval before proceeding
-
----
-
-### Stage 4: Backup
-**Action**: Create backup before updating
-
-**Location**: `.tmp/backup/update-{topic}-{timestamp}/`
-
-**Purpose**: Enable rollback if updates cause issues
+**Валидация**: ОБЯЗАТЕЛЬНО получить одобрение перед продолжением
 
 ---
 
-### Stage 5: Update Files
-**Action**: Apply approved changes
+### Этап 4: резервная копия
+**Действие**: создать резервную копию перед обновлением
 
-**Process**:
-1. Update concepts, examples, guides, lookups
-2. Maintain MVI format (<200 lines)
-3. Update "Last Updated" dates
-4. Preserve file structure
+**Расположение**: `.tmp/backup/update-{topic}-{timestamp}/`
 
-**Enforcement**: `@critical_rules.mvi_strict`
+**Назначение**: включить откат, если обновления вызовут проблемы
 
 ---
 
-### Stage 6: Add Migration Notes
-**Action**: Add migration guide to errors/
+### Этап 5: обновить файлы
+**Действие**: применить одобренные изменения
 
-**Format**:
+**Процесс**:
+1. Обновить concepts, examples, guides, lookups
+2. Сохранить формат MVI (<200 строк)
+3. Обновить даты "Last Updated"
+4. Сохранить структуру файлов
+
+**Обеспечение**: `@critical_rules.mvi_strict`
+
+---
+
+### Этап 6: добавить заметки миграции
+**Действие**: добавить руководство по миграции в `errors/`
+
+**Формат**:
 ```markdown
 ## Migration: {Old Version} → {New Version}
 
@@ -135,25 +135,25 @@ Approve changes? (yes/no/edit):
 **Reference**: [Link to changelog]
 ```
 
-**Location**: `{category}/errors/{topic}-errors.md`
+**Расположение**: `{category}/errors/{topic}-errors.md`
 
 ---
 
-### Stage 7: Validate
-**Action**: Check all references and links
+### Этап 7: проверка
+**Действие**: проверить все ссылки
 
-**Checks**:
-- All internal references still work
-- No broken links
-- All files still <200 lines
-- MVI format maintained
+**Проверки**:
+- Все внутренние ссылки все еще работают
+- Нет битых ссылок
+- Все файлы все еще <200 строк
+- Формат MVI сохранен
 
 ---
 
-### Stage 8: Report
-**Action**: Show comprehensive results
+### Этап 8: отчет
+**Действие**: показать полные результаты
 
-**Format**:
+**Формат**:
 ```
 ✅ Updated X files
 📝 Modified Y references
@@ -172,66 +172,66 @@ Rollback available if needed.
 
 ---
 
-## Change Types
+## Типы изменений
 
-### API Changes
-- Method signatures changed
-- Parameters added/removed
-- Return types changed
+### Изменения API
+- Изменились сигнатуры методов
+- Параметры добавлены/удалены
+- Изменились возвращаемые типы
 
-### Deprecations
-- Features marked deprecated
-- Replacement APIs available
-- Timeline for removal
+### Депрекации
+- Фичи помечены deprecated
+- Доступны API-замены
+- Есть график удаления
 
-### New Features
-- New capabilities added
-- New APIs introduced
-- New patterns available
+### Новые функции
+- Добавлены новые возможности
+- Представлены новые API
+- Доступны новые паттерны
 
-### Breaking Changes
-- Incompatible changes
-- Migration required
-- Old code won't work
+### Несовместимые изменения
+- Несовместимые изменения
+- Требуется миграция
+- Старый код не будет работать
 
 ---
 
-## Examples
+## Примеры
 
-### Framework Update
+### Обновление фреймворка
 ```bash
 /context update for Next.js 15
 /context update for React 19
 ```
 
-### API Changes
+### Изменения API
 ```bash
 /context update for Stripe API v2024
 /context update for OpenAI API breaking changes
 ```
 
-### Library Update
+### Обновление библиотеки
 ```bash
 /context update for Tailwind CSS v4
 ```
 
 ---
 
-## Success Criteria
+## Критерии успеха
 
-- [ ] User described changes?
-- [ ] All affected files found?
-- [ ] Diff preview shown?
-- [ ] User approved changes?
-- [ ] Backup created?
-- [ ] Migration notes added?
-- [ ] All references validated?
-- [ ] All files still <200 lines?
+- [ ] Пользователь описал изменения?
+- [ ] Все затронутые файлы найдены?
+- [ ] Предварительный просмотр diff показан?
+- [ ] Пользователь одобрил изменения?
+- [ ] Резервная копия создана?
+- [ ] Заметки миграции добавлены?
+- [ ] Все ссылки проверены?
+- [ ] Все файлы все еще <200 строк?
 
 ---
 
-## Related
+## Связанные материалы
 
-- guides/workflows.md - Interactive diff examples
-- standards/mvi.md - Maintain MVI format
-- operations/error.md - Adding migration notes
+- guides/workflows.md - интерактивные diff-примеры
+- standards/mvi.md - поддержание формата MVI
+- operations/error.md - добавление migration notes

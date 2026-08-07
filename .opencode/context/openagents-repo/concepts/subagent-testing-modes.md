@@ -1,85 +1,85 @@
 <!-- Context: openagents-repo/concepts | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Subagent Testing Modes
+# Режимы тестирования субагентов
 
-**Purpose**: Understand the two ways to test subagents (standalone vs delegation)
+**Назначение**: понять два способа тестирования субагентов (standalone vs delegation)
 
-**Last Updated**: 2026-01-07
-
----
-
-## Core Concept
-
-Subagents have **two distinct testing modes** depending on what you're validating:
-
-1. **Standalone Mode** - Test subagent logic directly (unit testing)
-2. **Delegation Mode** - Test parent → subagent workflow (integration testing)
-
-The mode determines which agent runs and how tools are used.
+**Последнее обновление**: 2026-01-07
 
 ---
 
-## Standalone Mode (Unit Testing)
+## Ключевая концепция
 
-**Purpose**: Test subagent's logic in isolation
+У субагентов есть **два отдельных режима тестирования** — выбор зависит от того, что вы проверяете:
 
-**Command**:
+1. **Standalone-режим** - прямой тест логики субагента (unit testing)
+2. **Режим делегирования** - тест процесса parent → subagent (integration testing)
+
+Режим определяет, какой агент запускается и как используются инструменты.
+
+---
+
+## Standalone-режим (unit-тестирование)
+
+**Назначение**: тестировать логику субагента изолированно
+
+**Команда**:
 ```bash
 npm run eval:sdk -- --subagent=ContextScout
 ```
 
-**What Happens**:
-- Eval framework forces `mode: primary` (overrides `mode: subagent`)
-- ContextScout runs as the primary agent
-- ContextScout uses tools directly (glob, read, grep, list)
-- No parent agent involved
+**Что происходит**:
+- Eval-фреймворк принудительно ставит `mode: primary` (переопределяет `mode: subagent`)
+- ContextScout запускается как primary agent
+- ContextScout использует инструменты напрямую (glob, read, grep, list)
+- Parent agent не участвует
 
-**Use For**:
-- Unit testing subagent logic
-- Debugging tool usage
-- Feature development
-- Verifying prompt changes
+**Когда использовать**:
+- Unit-тестирование логики субагента
+- Отладка использования инструментов
+- Разработка фич
+- Проверка изменений промпта
 
-**Test Location**: `evals/agents/subagents/core/{subagent}/tests/standalone/`
+**Расположение тестов**: `evals/agents/subagents/core/{subagent}/tests/standalone/`
 
 ---
 
-## Delegation Mode (Integration Testing)
+## Режим делегирования (интеграционное тестирование)
 
-**Purpose**: Test real production workflow (parent delegates to subagent)
+**Назначение**: тестировать реальный production-процесс (parent делегирует субагенту)
 
-**Command**:
+**Команда**:
 ```bash
 npm run eval:sdk -- --agent=core/openagent --pattern="delegation/*.yaml"
 ```
 
-**What Happens**:
-- OpenAgent runs as primary agent
-- OpenAgent uses `task` tool to delegate to ContextScout
-- ContextScout runs with `mode: subagent` (natural mode)
-- Tests full delegation workflow
+**Что происходит**:
+- OpenAgent запускается как primary agent
+- OpenAgent использует инструмент `task` для делегирования ContextScout
+- ContextScout запускается с `mode: subagent` (естественный режим)
+- Проверяется полный процесс делегирования
 
-**Use For**:
-- Integration testing
-- Validating production behavior
-- Testing delegation logic
-- End-to-end workflows
+**Когда использовать**:
+- Интеграционное тестирование
+- Проверка production-поведения
+- Тестирование логики делегирования
+- End-to-end процессы
 
-**Test Location**: `evals/agents/subagents/core/{subagent}/tests/delegation/`
+**Расположение тестов**: `evals/agents/subagents/core/{subagent}/tests/delegation/`
 
 ---
 
-## Critical Distinction
+## Критическое различие
 
-| Aspect | Standalone Mode | Delegation Mode |
+| Аспект | Standalone-режим | Режим делегирования |
 |--------|----------------|-----------------|
-| **Flag** | `--subagent=NAME` | `--agent=PARENT` |
-| **Agent Mode** | Forced to `primary` | Natural `subagent` |
-| **Who Runs** | Subagent directly | Parent → Subagent |
-| **Tool Usage** | Subagent uses tools | Parent uses `task` tool |
-| **Tests** | `standalone/*.yaml` | `delegation/*.yaml` |
+| **Флаг** | `--subagent=NAME` | `--agent=PARENT` |
+| **Режим агента** | Принудительно `primary` | Естественный `subagent` |
+| **Кто запускается** | Субагент напрямую | Parent → Subagent |
+| **Использование инструментов** | Субагент использует инструменты | Parent использует инструмент `task` |
+| **Тесты** | `standalone/*.yaml` | `delegation/*.yaml` |
 
-**Common Mistake**:
+**Частая ошибка**:
 ```bash
 # ❌ WRONG - This runs OpenAgent, not ContextScout
 npm run eval:sdk -- --agent=ContextScout
@@ -90,16 +90,16 @@ npm run eval:sdk -- --subagent=ContextScout
 
 ---
 
-## How to Verify Correct Mode
+## Как проверить правильный режим
 
-### Standalone Mode Indicators:
+### Индикаторы standalone-режима:
 ```
 ⚡ Standalone Test Mode
    Subagent: contextscout
    Mode: Forced to 'primary' for direct testing
 ```
 
-### Delegation Mode Indicators:
+### Индикаторы режима делегирования:
 ```
 Testing agent: core/openagent
 🎯 PARENT: OpenAgent
@@ -108,26 +108,26 @@ Testing agent: core/openagent
 
 ---
 
-## When to Use Each Mode
+## Когда использовать каждый режим
 
-**Use Standalone When**:
-- Testing subagent's core logic
-- Debugging why subagent isn't using tools
-- Validating prompt changes
-- Quick iteration during development
+**Используйте standalone-режим, когда**:
+- Тестируете ключевую логику субагента
+- Отлаживаете, почему субагент не использует инструменты
+- Проверяете изменения промпта
+- Быстро итерируете при разработке
 
-**Use Delegation When**:
-- Testing production workflow
-- Validating parent → subagent communication
-- Testing context passing
-- Integration testing
+**Используйте режим делегирования, когда**:
+- Тестируете production-процесс
+- Проверяете коммуникацию parent → subagent
+- Тестируете передачу контекста
+- Проводите интеграционное тестирование
 
 ---
 
-## Related
+## Связанные материалы
 
-- `guides/testing-subagents.md` - Step-by-step testing guide
-- `lookup/subagent-test-commands.md` - Quick command reference
-- `errors/tool-permission-errors.md` - Common testing issues
+- `guides/testing-subagents.md` - пошаговое руководство по тестированию
+- `lookup/subagent-test-commands.md` - краткий справочник команд
+- `errors/tool-permission-errors.md` - типовые проблемы тестирования
 
-**Reference**: `evals/framework/src/sdk/run-sdk-tests.ts` (mode forcing logic)
+**Справка**: `evals/framework/src/sdk/run-sdk-tests.ts` (логика принудительного режима)

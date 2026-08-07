@@ -1,25 +1,25 @@
-# Context File Templates
+# Шаблоны файлов контекста
 
-**Purpose**: Standard formats for all context file types
+**Назначение**: стандартные форматы для всех типов файлов контекста
 
-**Last Updated**: 2026-01-06
+**Последнее обновление**: 2026-01-06
 
 ---
 
-## Template Selection
+## Выбор шаблона
 
-| Type | Max Lines | Required Sections |
+| Тип | Макс. строк | Обязательные разделы |
 |------|-----------|-------------------|
-| Concept | 100 | Purpose, Core Idea (1-3 sentences), Key Points (3-5), Example (<10 lines), Reference, Related |
-| Example | 80 | Purpose, Use Case, Code (10-30 lines), Explanation, Related |
-| Guide | 150 | Purpose, Prerequisites, Steps (4-7), Verification, Related |
-| Lookup | 100 | Purpose, Tables/Lists, Commands, Related |
-| Error | 150 | Purpose, Per-error: Symptom, Cause, Solution, Prevention, Reference, Related |
-| README | 100 | Purpose, Navigation tables (all 5 folders), Loading Strategy, Statistics |
+| Concept | 100 | Purpose, основная идея (1–3 предложения), ключевые пункты (3–5), пример (<10 строк), ссылка, связанные материалы |
+| Example | 80 | Purpose, сценарий, код (10–30 строк), пояснение, связанные материалы |
+| Guide | 150 | Purpose, предварительные условия, шаги (4–7), проверка, связанные материалы |
+| Lookup | 100 | Purpose, таблицы/списки, команды, связанные материалы |
+| Error | 150 | Purpose, для каждой ошибки: симптом, причина, решение, профилактика, ссылка, связанные материалы |
+| README | 100 | Purpose, навигационные таблицы (все 5 папок), стратегия загрузки, статистика |
 
 ---
 
-## 1. Concept Template
+## 1. Шаблон «Concept»
 
 ```markdown
 <!-- Context: {category}/concepts | Priority: {critical|high|medium|low} | Version: 1.0 | Updated: YYYY-MM-DD -->
@@ -40,7 +40,7 @@
 - Use case 1
 - Use case 2
 
-## Quick Example
+## Быстрый пример
 ```lang
 [<10 lines]
 ```
@@ -69,7 +69,7 @@
 
 ---
 
-## 2. Example Template
+## 2. Шаблон «Example»
 
 ```markdown
 <!-- Context: {category}/examples | Priority: {high|medium} | Version: 1.0 | Updated: YYYY-MM-DD -->
@@ -112,11 +112,11 @@
 
 ---
 
-## 3. Guide Template
+## 3. Шаблон «Guide»
 
 ```markdown
 <!-- Context: {category}/guides | Priority: {critical|high|medium} | Version: 1.0 | Updated: YYYY-MM-DD -->
-# Guide: {Action}
+# Руководство: {Action}
 
 **Purpose**: [1 sentence]
 **Last Updated**: {YYYY-MM-DD}
@@ -169,7 +169,7 @@
 
 ---
 
-## 4. Lookup Template
+## 4. Шаблон «Lookup»
 
 ```markdown
 <!-- Context: {category}/lookup | Priority: {high|medium} | Version: 1.0 | Updated: YYYY-MM-DD -->
@@ -211,11 +211,11 @@
 
 ---
 
-## 5. Error Template
+## 5. Шаблон «Error»
 
 ```markdown
 <!-- Context: {category}/errors | Priority: {high|medium} | Version: 1.0 | Updated: YYYY-MM-DD -->
-# Errors: {Framework}
+# Ошибки: {Framework}
 
 **Purpose**: Common errors for {framework}
 **Last Updated**: {YYYY-MM-DD}
@@ -274,11 +274,11 @@
 
 ---
 
-## 6. Navigation Template (Replaces README.md)
+## 6. Шаблон «Navigation» (заменяет README.md)
 
-**Note**: Use `navigation.md` instead of `README.md` for better discoverability
+**Примечание**: используйте `navigation.md` вместо `README.md` для лучшей обнаруживаемости
 
-**Target**: 200-300 tokens
+**Цель**: 200–300 токенов
 
 ```markdown
 # {Category} Navigation
@@ -299,7 +299,7 @@
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -324,11 +324,11 @@
 
 ---
 
-## 7. Specialized Navigation Template
+## 7. Шаблон специализированной навигации
 
-**Use for**: Cross-cutting concerns (e.g., `ui-navigation.md`)
+**Использовать для**: сквозных задач (например, `ui-navigation.md`)
 
-**Target**: 250-300 tokens
+**Цель**: 250–300 токенов
 
 ```markdown
 # {Domain} Navigation
@@ -345,7 +345,7 @@
 
 ---
 
-## Quick Routes
+## Быстрые маршруты
 
 | Task | Path |
 |------|------|
@@ -370,27 +370,27 @@
 
 ---
 
-## All Templates Must Have
+## Все шаблоны должны содержать
 
-1. Title with type prefix (# Concept:, # Example:, etc.)
-2. **Purpose** (1 sentence)
+1. Заголовок с префиксом типа (# Concept:, # Example: и т. д.)
+2. **Purpose** (1 предложение)
 3. **Last Updated** (YYYY-MM-DD)
-4. **Related** section (cross-references)
+4. Раздел **Related** (перекрестные ссылки)
 
 ---
 
-## Validation
+## Валидация
 
-- [ ] Correct template for file type?
-- [ ] Has required sections?
-- [ ] Under max line limit?
-- [ ] Cross-references added?
-- [ ] Added to README.md?
+- [ ] Правильный шаблон для типа файла?
+- [ ] Есть обязательные разделы?
+- [ ] Ниже максимального лимита строк?
+- [ ] Перекрестные ссылки добавлены?
+- [ ] Добавлено в README.md?
 
 ---
 
-## Related
+## Связанные материалы
 
-- creation.md - When to use each template
-- mvi-principle.md - How to fill templates
-- compact.md - How to stay under limits
+- creation.md - когда использовать каждый шаблон
+- mvi-principle.md - как заполнять шаблоны
+- compact.md - как оставаться в лимитах

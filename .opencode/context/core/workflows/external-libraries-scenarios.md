@@ -1,24 +1,24 @@
 <!-- Context: workflows/external-libraries-scenarios | Priority: medium | Version: 1.0 | Updated: 2026-02-05 -->
-# External Libraries: Common Scenarios
+# Внешние библиотеки: распространенные сценарии
 
-**Purpose**: Real-world examples of using ExternalScout
+**Назначение**: практические примеры использования ExternalScout
 
 ---
 
-## Scenario 1: New Build with External Packages
+## Сценарий 1: новая сборка с внешними пакетами
 
-**Example**: Next.js app with Drizzle + Better Auth
+**Пример**: приложение Next.js с Drizzle + Better Auth
 
-**Process:**
-1. Check install scripts: `ls scripts/install/`
-2. Identify packages: Next.js, Drizzle ORM, Better Auth
-3. ExternalScout for each package
-4. Check requirements: PostgreSQL? Env vars?
-5. Verify version compatibility
-6. Implement following current docs
-7. Test integration points
+**Процесс:**
+1. Проверить install scripts: `ls scripts/install/`
+2. Определить пакеты: Next.js, Drizzle ORM, Better Auth
+3. Вызвать ExternalScout для каждого пакета
+4. Проверить требования: PostgreSQL? Env vars?
+5. Проверить совместимость версий
+6. Реализовать по актуальной документации
+7. Протестировать точки интеграции
 
-**ExternalScout calls:**
+**Вызовы ExternalScout:**
 ```javascript
 // Drizzle ORM
 task(
@@ -41,50 +41,50 @@ task(
 
 ---
 
-## Scenario 2: Package Error During Build
+## Сценарий 2: ошибка пакета во время сборки
 
-**Example**: `Error: Cannot find module 'drizzle-orm/pg-core'`
+**Пример**: `Error: Cannot find module 'drizzle-orm/pg-core'`
 
-**Process:**
-1. Identify package: Drizzle ORM
+**Процесс:**
+1. Определить пакет: Drizzle ORM
 2. ExternalScout: "Fetch Drizzle docs: PostgreSQL imports"
-3. Check current import patterns
-4. Verify package.json has correct deps
-5. Propose fix from current docs
-6. Request approval → Apply fix
+3. Проверить текущие паттерны import
+4. Убедиться, что в `package.json` правильные зависимости
+5. Предложить исправление по актуальной документации
+6. Запросить одобрение → применить исправление
 
 ---
 
-## Scenario 3: First-Time Package Setup
+## Сценарий 3: первая настройка пакета
 
-**Example**: Setting up TanStack Query in Next.js
+**Пример**: настройка TanStack Query в Next.js
 
-**Process:**
-1. Check install scripts
+**Процесс:**
+1. Проверить install scripts
 2. ExternalScout: "Fetch TanStack Query docs: Next.js App Router setup"
-3. Get: Install steps | Peer deps | Config | Patterns
-4. If install script exists: Review → Run
-5. If no script: Follow docs for manual setup
-6. Implement → Test
+3. Получить: шаги установки | peer deps | config | patterns
+4. Если install script есть: review → run
+5. Если скрипта нет: следовать документации для ручной настройки
+6. Реализовать → протестировать
 
 ---
 
-## Scenario 4: Version Upgrade
+## Сценарий 4: обновление версии
 
-**Example**: Next.js 14 → 15
+**Пример**: Next.js 14 → 15
 
-**Process:**
+**Процесс:**
 1. ExternalScout: "Fetch Next.js 15 docs: Breaking changes and migration"
-2. Review breaking changes
-3. Identify affected code
-4. Plan migration steps
-5. Request approval → Implement → Test
+2. Проверить breaking changes
+3. Определить затронутый код
+4. Спланировать шаги миграции
+5. Запросить одобрение → реализовать → протестировать
 
 ---
 
-## Real-World Example: Auth Implementation
+## Практический пример: реализация Auth
 
-**Task**: "Add authentication with Better Auth to Next.js commerce"
+**Задача**: "Add authentication with Better Auth to Next.js commerce"
 
 ```javascript
 // 1. ContextScout: Project standards
@@ -113,18 +113,18 @@ task(
 
 ---
 
-## Error Handling Patterns
+## Паттерны обработки ошибок
 
-| Error Type | Process |
+| Тип ошибки | Процесс |
 |------------|---------|
-| **Package Installation** | ExternalScout: installation docs → Verify package name/version → Check peer deps |
-| **Import/Module** | ExternalScout: import patterns → Check current API exports |
-| **API/Configuration** | ExternalScout: API docs → Check current signatures |
-| **Build Errors** | Identify package → ExternalScout: relevant docs → Check known issues |
+| **Установка пакета** | ExternalScout: документация по установке → проверить имя/версию пакета → проверить peer deps |
+| **Import/Module** | ExternalScout: паттерны import → проверить текущие API-exports |
+| **API/конфигурация** | ExternalScout: API-документация → проверить текущие сигнатуры |
+| **Ошибки сборки** | Определить пакет → ExternalScout: релевантная документация → проверить known issues |
 
 ---
 
-## Related
+## Связанные материалы
 
-- `external-libraries-workflow.md` - Core workflow
-- `external-libraries-faq.md` - Troubleshooting FAQ
+- `external-libraries-workflow.md` - основной workflow
+- `external-libraries-faq.md` - FAQ по устранению неполадок

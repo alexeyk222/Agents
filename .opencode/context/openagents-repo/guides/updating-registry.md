@@ -1,13 +1,13 @@
 <!-- Context: openagents-repo/guides | Priority: high | Version: 1.0 | Updated: 2026-02-15 -->
 
-# Guide: Updating Registry
+# Руководство: обновление registry
 
-**Prerequisites**: Load `core-concepts/registry.md` first  
-**Purpose**: How to update the component registry
+**Предварительно**: сначала загрузите `core-concepts/registry.md`  
+**Цель**: как обновлять registry компонентов
 
 ---
 
-## Quick Commands
+## Быстрые команды
 
 ```bash
 # Auto-detect and add new components
@@ -22,28 +22,28 @@
 
 ---
 
-## When to Update Registry
+## Когда обновлять registry
 
-Update the registry when you:
-- ✅ Add a new agent
-- ✅ Add a new command
-- ✅ Add a new tool
-- ✅ Add a new context file
-- ✅ Change component metadata
-- ✅ Move or rename components
+Обновляйте registry, когда вы:
+- ✅ Добавляете нового агента
+- ✅ Добавляете новую команду
+- ✅ Добавляете новый tool
+- ✅ Добавляете новый context file
+- ✅ Меняете metadata компонента
+- ✅ Перемещаете или переименовываете компоненты
 
 ---
 
-## Auto-Detect (Recommended)
+## Auto-detect (рекомендуется)
 
-### Step 1: Dry Run
+### Шаг 1: dry run
 
 ```bash
 # See what would be added/updated
 ./scripts/registry/auto-detect-components.sh --dry-run
 ```
 
-**Output**:
+**Вывод**:
 ```
 Scanning .opencode/ for components...
 
@@ -55,14 +55,14 @@ Would update:
   - agent: core/openagent (description changed)
 ```
 
-### Step 2: Apply Changes
+### Шаг 2: примените изменения
 
 ```bash
 # Actually update registry
 ./scripts/registry/auto-detect-components.sh --auto-add
 ```
 
-### Step 3: Validate
+### Шаг 3: проверьте
 
 ```bash
 # Validate registry
@@ -71,13 +71,13 @@ Would update:
 
 ---
 
-## Frontmatter Metadata (Auto-Extracted)
+## Метаданные frontmatter (извлекаются автоматически)
 
-The auto-detect script automatically extracts `tags` and `dependencies` from component frontmatter. This is the **recommended way** to add metadata.
+Скрипт auto-detect автоматически извлекает `tags` и `dependencies` из frontmatter компонента. Это **рекомендуемый способ** добавлять метаданные.
 
-### Supported Formats
+### Поддерживаемые форматы
 
-**Multi-line arrays** (recommended for readability):
+**Многострочные массивы** (рекомендуется для читаемости):
 ```yaml
 ---
 description: Your component description
@@ -92,7 +92,7 @@ dependencies:
 ---
 ```
 
-**Inline arrays** (compact format):
+**Inline-массивы** (компактный формат):
 ```yaml
 ---
 description: Your component description
@@ -101,7 +101,7 @@ dependencies: [subagent:coder-agent, context:core/standards/code]
 ---
 ```
 
-### Component-Specific Examples
+### Примеры для компонентов
 
 **Command** (`.opencode/command/your-command.md`):
 ```yaml
@@ -134,7 +134,7 @@ dependencies:
 ---
 ```
 
-**Context** (`.opencode/context/category/your-context.md`):
+**Контекст** (`.opencode/context/category/your-context.md`):
 ```yaml
 ---
 description: What knowledge this context provides
@@ -146,17 +146,17 @@ dependencies:
 ---
 ```
 
-### Dependency Format
+### Формат dependencies
 
-Dependencies use the format: `type:id`
+Dependencies используют формат: `type:id`
 
-**Valid types**:
-- `subagent:` - References a subagent (e.g., `subagent:coder-agent`)
-- `command:` - References a command (e.g., `command:context`)
-- `context:` - References a context file (e.g., `context:core/standards/code`)
-- `agent:` - References a main agent (e.g., `agent:openagent`)
+**Допустимые типы**:
+- `subagent:` — ссылка на subagent (например, `subagent:coder-agent`)
+- `command:` — ссылка на command (например, `command:context`)
+- `context:` — ссылка на context file (например, `context:core/standards/code`)
+- `agent:` — ссылка на main agent (например, `agent:openagent`)
 
-**Examples**:
+**Примеры**:
 ```yaml
 dependencies:
   - subagent:coder-agent          # Depends on coder-agent subagent
@@ -164,29 +164,29 @@ dependencies:
   - command:context               # Uses context command
 ```
 
-### How It Works
+### Как это работает
 
-1. **Create component** with frontmatter (tags + dependencies)
-2. **Run auto-detect**: `./scripts/registry/auto-detect-components.sh --dry-run`
-3. **Verify extraction**: Check that tags/dependencies appear in output
-4. **Apply changes**: `./scripts/registry/auto-detect-components.sh --auto-add`
-5. **Validate**: `./scripts/registry/validate-registry.sh`
+1. **Создайте компонент** с frontmatter (tags + dependencies)
+2. **Запустите auto-detect**: `./scripts/registry/auto-detect-components.sh --dry-run`
+3. **Проверьте извлечение**: убедитесь, что tags/dependencies появились в выводе
+4. **Примените изменения**: `./scripts/registry/auto-detect-components.sh --auto-add`
+5. **Проверьте**: `./scripts/registry/validate-registry.sh`
 
-The script automatically:
-- ✅ Extracts `description`, `tags`, `dependencies` from frontmatter
-- ✅ Handles both inline and multi-line array formats
-- ✅ Converts to proper JSON arrays in registry
-- ✅ Validates dependency references exist
+Скрипт автоматически:
+- ✅ Извлекает `description`, `tags`, `dependencies` из frontmatter
+- ✅ Обрабатывает inline и многострочные форматы массивов
+- ✅ Преобразует в корректные JSON arrays в registry
+- ✅ Проверяет, что dependency references существуют
 
 ---
 
-## Manual Updates (Not Recommended)
+## Ручные обновления (не рекомендуется)
 
-Only edit `registry.json` manually if auto-detect doesn't work.
+Редактируйте `registry.json` вручную только если auto-detect не работает.
 
-**Prefer frontmatter**: Add tags/dependencies to component frontmatter instead of editing registry directly.
+**Предпочитайте frontmatter**: добавляйте tags/dependencies в frontmatter компонента, а не правьте registry напрямую.
 
-### Adding Component Manually
+### Ручное добавление компонента
 
 ```json
 {
@@ -202,7 +202,7 @@ Only edit `registry.json` manually if auto-detect doesn't work.
 }
 ```
 
-### Validate After Manual Edit
+### Проверка после ручного редактирования
 
 ```bash
 ./scripts/registry/validate-registry.sh
@@ -210,17 +210,17 @@ Only edit `registry.json` manually if auto-detect doesn't work.
 
 ---
 
-## Validation
+## Валидация
 
-### What Gets Validated
+### Что проверяется
 
-✅ **Schema** - Correct JSON structure  
-✅ **Paths** - All paths exist  
-✅ **IDs** - Unique IDs  
-✅ **Categories** - Valid categories  
-✅ **Dependencies** - Dependencies exist  
+✅ **Схема** — корректная структура JSON  
+✅ **Пути** — все пути существуют  
+✅ **IDs** — уникальные IDs  
+✅ **Категории** — допустимые категории  
+✅ **Зависимости** — зависимости существуют  
 
-### Validation Errors
+### Ошибки валидации
 
 ```bash
 # Example errors
@@ -230,18 +230,18 @@ ERROR: Invalid category: invalid-category
 ERROR: Missing dependency: subagent:nonexistent
 ```
 
-### Fixing Errors
+### Исправление ошибок
 
-1. **Path not found**: Fix path or remove entry
-2. **Duplicate ID**: Rename one component
-3. **Invalid category**: Use valid category
-4. **Missing dependency**: Add dependency or remove reference
+1. **Путь не найден**: исправьте путь или удалите запись
+2. **Дублирующийся ID**: переименуйте один компонент
+3. **Неверная категория**: используйте допустимую категорию
+4. **Отсутствующая зависимость**: добавьте зависимость или удалите ссылку
 
 ---
 
-## Testing Registry Changes
+## Тестирование изменений registry
 
-### Test Locally
+### Проверьте локально
 
 ```bash
 # Test with local registry
@@ -251,7 +251,7 @@ REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --list
 REGISTRY_URL="file://$(pwd)/registry.json" ./install.sh --component agent:your-agent
 ```
 
-### Verify Component Appears
+### Убедитесь, что компонент отображается
 
 ```bash
 # List all agents
@@ -263,9 +263,9 @@ cat registry.json | jq '.components.agents[] | select(.id == "your-agent")'
 
 ---
 
-## Common Tasks
+## Частые задачи
 
-### Add New Component to Registry
+### Добавить новый компонент в registry
 
 ```bash
 # 1. Create component file with frontmatter (including tags/dependencies)
@@ -276,7 +276,7 @@ cat registry.json | jq '.components.agents[] | select(.id == "your-agent")'
 ./scripts/registry/validate-registry.sh
 ```
 
-**Example**: Adding a new command with tags/dependencies:
+**Пример**: добавление новой command с tags/dependencies:
 
 ```bash
 # 1. Create .opencode/command/my-command.md with frontmatter:
@@ -301,7 +301,7 @@ EOF
 ./scripts/registry/validate-registry.sh
 ```
 
-### Update Component Metadata
+### Обновить метаданные компонента
 
 ```bash
 # 1. Update frontmatter in component file (tags, dependencies, description)
@@ -312,7 +312,7 @@ EOF
 ./scripts/registry/validate-registry.sh
 ```
 
-**Example**: Adding tags to existing component:
+**Пример**: добавление tags к существующему компоненту:
 
 ```bash
 # 1. Edit .opencode/command/existing-command.md frontmatter:
@@ -327,7 +327,7 @@ EOF
 ./scripts/registry/auto-detect-components.sh --auto-add
 ```
 
-### Remove Component
+### Удалить компонент
 
 ```bash
 # 1. Delete component file
@@ -340,18 +340,18 @@ EOF
 
 ---
 
-## CI/CD Integration
+## Интеграция CI/CD
 
-### Automatic Validation
+### Автоматическая валидация
 
-Registry is validated on:
+Registry проверяется при:
 - Pull requests (`.github/workflows/validate-registry.yml`)
 - Merges to main
 - Release tags
 
-### Auto-Update on Merge
+### Автообновление при merge
 
-Registry can be auto-updated after merge:
+Registry можно автоматически обновлять после merge:
 ```yaml
 # .github/workflows/update-registry.yml
 - name: Update Registry
@@ -360,41 +360,41 @@ Registry can be auto-updated after merge:
 
 ---
 
-## Best Practices
+## Лучшие практики
 
-✅ **Use frontmatter** - Add tags/dependencies to component files, not registry  
-✅ **Use auto-detect** - Don't manually edit registry  
-✅ **Validate often** - Catch issues early  
-✅ **Test locally** - Use local registry for testing  
-✅ **Dry run first** - See changes before applying  
-✅ **Version consistency** - Keep versions in sync  
-✅ **Multi-line arrays** - More readable than inline format  
-✅ **Meaningful tags** - Use descriptive, searchable tags  
-✅ **Declare dependencies** - Helps with component discovery and validation  
-
----
-
-## Related Files
-
-- **Registry concepts**: `core-concepts/registry.md`
-- **Adding agents**: `guides/adding-agent.md`
-- **Debugging**: `guides/debugging.md`
+✅ **Используйте frontmatter** — добавляйте tags/dependencies в файлы компонентов, не в registry  
+✅ **Используйте auto-detect** — не редактируйте registry вручную  
+✅ **Проверяйте часто** — ловите проблемы рано  
+✅ **Тестируйте локально** — используйте local registry для тестов  
+✅ **Сначала dry run** — смотрите изменения перед применением  
+✅ **Согласованность версий** — держите версии синхронизированными  
+✅ **Многострочные массивы** — читаемее inline format  
+✅ **Осмысленные tags** — используйте описательные, searchable tags  
+✅ **Объявляйте dependencies** — помогает discovery и validation компонентов  
 
 ---
 
-## Troubleshooting
+## Связанные файлы
 
-### Tags/Dependencies Not Extracted
+- **Концепции registry**: `core-concepts/registry.md`
+- **Добавление агентов**: `guides/adding-agent.md`
+- **Диагностика**: `guides/debugging.md`
 
-**Problem**: Auto-detect doesn't extract tags or dependencies from frontmatter.
+---
 
-**Solutions**:
-1. **Check frontmatter format**:
-   - Must be at top of file
-   - Must start/end with `---`
-   - Must use valid YAML syntax
+## Диагностика
 
-2. **Verify array format**:
+### Поля `tags`/`dependencies` не извлекаются
+
+**Проблема**: auto-detect не извлекает tags или dependencies из frontmatter.
+
+**Решения**:
+1. **Проверьте формат frontmatter**:
+   - Должен быть в начале файла
+   - Должен начинаться и заканчиваться `---`
+   - Должен использовать валидный YAML syntax
+
+2. **Проверьте формат массива**:
    ```yaml
    # ✅ Valid formats
    tags: [tag1, tag2]
@@ -406,7 +406,7 @@ Registry can be auto-updated after merge:
    tags: tag1, tag2  # Missing brackets
    ```
 
-3. **Check dependency format**:
+3. **Проверьте формат dependency**:
    ```yaml
    # ✅ Valid
    dependencies: [subagent:coder-agent, context:core/standards/code]
@@ -415,17 +415,17 @@ Registry can be auto-updated after merge:
    dependencies: [coder-agent]  # Missing type prefix
    ```
 
-4. **Run dry-run to debug**:
+4. **Запустите dry-run для debug**:
    ```bash
    ./scripts/registry/auto-detect-components.sh --dry-run
    # Check output shows extracted tags/dependencies
    ```
 
-### Dependency Validation Errors
+### Ошибки валидации зависимостей
 
-**Problem**: Validation fails with "Missing dependency" error.
+**Проблема**: validation падает с ошибкой "Missing dependency".
 
-**Solution**: Ensure referenced component exists in registry:
+**Решение**: убедитесь, что referenced component существует в registry:
 ```bash
 # Check if dependency exists
 jq '.components.subagents[] | select(.id == "coder-agent")' registry.json
@@ -433,30 +433,30 @@ jq '.components.subagents[] | select(.id == "coder-agent")' registry.json
 # If missing, add the dependency component first
 ```
 
-### Context Not Found (Aliases)
+### Контекст не найден (aliases)
 
-**Problem**: Error `Could not find path for context:old-name` even though file exists.
+**Проблема**: ошибка `Could not find path for context:old-name`, хотя файл существует.
 
-**Cause**: The context file might have been renamed or the ID in registry doesn't match the requested name.
+**Причина**: context file мог быть переименован, или ID в registry не совпадает с запрошенным именем.
 
-**Solution**: Add an alias to the component in `registry.json`.
+**Решение**: добавьте alias к компоненту в `registry.json`.
 
-1. Find the component in `registry.json`
-2. Add `"aliases": ["old-name", "alternative-name"]`
-3. Validate registry
+1. Найдите компонент в `registry.json`
+2. Добавьте `"aliases": ["old-name", "alternative-name"]`
+3. Проверьте registry
 
 ---
 
-## Managing Aliases
+## Управление aliases
 
-Aliases allow components to be referenced by multiple names. This is useful for:
-- Backward compatibility (renamed files)
-- Shorthand references
-- Alternative naming conventions
+Aliases позволяют ссылаться на компоненты по нескольким именам. Это полезно для:
+- Обратной совместимости (переименованные файлы)
+- Коротких ссылок
+- Альтернативных соглашений об именовании
 
-### Adding Aliases
+### Добавление aliases
 
-Currently, aliases must be added **manually** to `registry.json` (auto-detect does not yet support them).
+Сейчас aliases нужно добавлять **вручную** в `registry.json` (auto-detect пока их не поддерживает).
 
 ```json
 {
@@ -472,12 +472,12 @@ Currently, aliases must be added **manually** to `registry.json` (auto-detect do
 }
 ```
 
-**Note**: Always validate the registry after manual edits:
+**Примечание**: всегда проверяйте registry после ручных правок:
 ```bash
 ./scripts/registry/validate-registry.sh
 ```
 
 ---
 
-**Last Updated**: 2025-01-06  
-**Version**: 2.0.0
+**Последнее обновление**: 2025-01-06  
+**Версия**: 2.0.0
