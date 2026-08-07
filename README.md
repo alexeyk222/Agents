@@ -60,6 +60,12 @@ npm install
 Из корня проекта:
 
 ```bash
+opencode --agent OpenAgent
+```
+
+`OpenAgent` подходит для вопросов, небольших задач и знакомства с системой. Для сложной разработки, проектирования или рефакторинга используйте:
+
+```bash
 opencode --agent OpenCoder
 ```
 
@@ -114,6 +120,7 @@ opencode --agent OpenCoder
 
 ## Структура
 
+```text
 .opencode/
   ├── agent/                              # Промпты и права AI-агентов
   │   ├── core/
