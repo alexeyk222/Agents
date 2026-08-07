@@ -272,12 +272,9 @@ opencode --agent OpenCoder
   │                                       # переменных окружения из нескольких .env.
   │
   ├── README.md                            # Позиционирование OAC, установка и сценарии работы.
-  ├── package.json                         # Зависимость от @opencode-ai/plugin.
-  ├── package-lock.json                    # Зафиксированные версии npm-пакетов.
   ├── node_modules/                        # Установленные внешние зависимости; в презентацию
   │                                       # обычно не включают.
-  ├── env.example                          # Шаблон переменных Telegram/Gemini/MiniMax.
-  └── .gitignore                           # Что не должно попадать в Git.
+  └── env.example                          # Шаблон переменных Telegram/Gemini/MiniMax.
 
 ```
 
