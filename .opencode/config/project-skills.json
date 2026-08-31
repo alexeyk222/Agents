@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "profile": "project-support",
+  "description": "Project-local support skills shared explicitly by OpenCoder, CoderAgent, and ScientificAgent.",
+  "skills": {
+    "jupyter-notebook": {
+      "path": ".opencode/skills/jupyter-notebook",
+      "license": "Apache-2.0",
+      "purpose": "Create and validate reproducible notebooks; use guarded JupyterHub operations only when explicitly requested.",
+      "agents": ["OpenCoder", "CoderAgent", "ScientificAgent"]
+    },
+    "sql-queries": {
+      "path": ".opencode/skills/sql-queries",
+      "license": "MIT",
+      "purpose": "Write, review, validate, and optimize dialect-aware SQL without inventing schemas or silently mutating databases.",
+      "agents": ["OpenCoder", "CoderAgent", "ScientificAgent"]
+    },
+    "pdf-authoring": {
+      "path": ".opencode/skills/pdf-authoring",
+      "license": "Apache-2.0",
+      "purpose": "Create or revise polished PDFs with rendered-page visual quality assurance.",
+      "agents": ["OpenCoder", "CoderAgent", "ScientificAgent"]
+    }
+  }
+}

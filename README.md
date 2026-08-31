@@ -139,6 +139,21 @@ upstream repository, version и commit для воспроизводимого �
 python3 .opencode/scripts/validate-scientific-integration.py
 ```
 
+## Проектные прикладные skills
+
+Три project-local skill находятся рядом с vendored-профилем, но учитываются
+отдельно в [`.opencode/config/project-skills.json`](.opencode/config/project-skills.json):
+
+- `jupyter-notebook` — создание и проверка `.ipynb`, а также ограниченный
+  безопасный workflow для JupyterHub REST API;
+- `sql-queries` — написание, проверка и оптимизация SQL с учётом диалекта,
+  схемы, cardinality и границ live-мутаций;
+- `pdf-authoring` — создание PDF и обязательная визуальная проверка рендера.
+
+Они явно разрешены только `OpenCoder`, `CoderAgent` и `ScientificAgent`.
+`pdf-authoring` отвечает за создание итогового документа, а scientific skill
+`pdf` — за extraction, OCR, forms и преобразование существующих PDF.
+
 ## Команды
 
 | Команда | Назначение |
@@ -205,6 +220,7 @@ python3 .opencode/scripts/validate-scientific-integration.py
   │
   ├── config/
   │   ├── agent-metadata.json             # Центральный реестр метаданных агентов.
+  │   ├── project-skills.json             # Три общих project-local support skills.
   │   ├── scientific-skills.json          # Manifest 87 skills, категории и execution modes.
   │   └── scientific-skill-requirements.toml # Изолированные runtime-зависимости skills.
   │
@@ -319,7 +335,7 @@ python3 .opencode/scripts/validate-scientific-integration.py
   │                                       # переменных окружения из нескольких .env.
   │
   ├── scripts/
-  │   └── validate-scientific-integration.py # Read-only проверка научного профиля.
+  │   └── validate-scientific-integration.py # Read-only проверка scientific + support профилей.
   ├── opencode.json                       # Project config и точные vendored skill paths.
   ├── README.md                            # Позиционирование OAC, установка и сценарии работы.
   ├── node_modules/                        # Установленные внешние зависимости; в презентацию
@@ -379,3 +395,122 @@ bash .opencode/skills/task-management/router.sh validate
 ## Лицензия
 
 Исходная основа OAC распространяется по лицензии MIT. Перед публикацией форка добавьте в репозиторий собственный файл `LICENSE` с выбранными условиями использования.
+
+## Иерархия Scientific Agent Skills
+
+Дерево ниже показывает полный vendored-профиль `ScientificAgent`: какой skill
+выбирать и зачем он нужен. Пометка `[review]` означает подтверждение перед
+загрузкой skill. Обычно агент использует один основной и не более двух
+вспомогательных skills.
+
+```text
+ScientificAgent (87 skills)
+├── Machine Learning & Deep Learning (18)
+│   ├── aeon — временные ряды: classification, regression, clustering и forecasting
+│   ├── cirq — создание и симуляция квантовых схем в экосистеме Cirq
+│   ├── pufferlib — высокопроизводительное reinforcement learning и vectorized environments
+│   ├── pymc — Bayesian-модели, MCMC и probabilistic inference
+│   ├── pymoo — многокритериальная оптимизация и Pareto-поиск
+│   ├── pytorch-lightning — структурированное обучение и масштабирование PyTorch-моделей
+│   ├── pennylane — differentiable quantum computing и quantum ML
+│   ├── qiskit — квантовые схемы и вычисления в экосистеме IBM
+│   ├── qutip — динамика открытых квантовых систем
+│   ├── scikit-learn — классический ML, preprocessing, pipelines и evaluation
+│   ├── scikit-survival — survival analysis с censored data
+│   ├── shap — объяснение предсказаний и feature attribution
+│   ├── stable-baselines3 — готовые алгоритмы reinforcement learning
+│   ├── statsmodels — статистические модели, econometrics и time series
+│   ├── timesfm-forecasting — прогнозирование временных рядов моделью TimesFM
+│   ├── torch-geometric — graph neural networks на PyTorch Geometric
+│   ├── transformers — transformer-модели, tokenizers, inference и fine-tuning
+│   └── umap-learn — нелинейное снижение размерности и визуализация embeddings
+├── Analysis & Scientific Methodology (12)
+│   ├── experimental-design — планирование экспериментов, randomization и factorial design
+│   ├── exploratory-data-analysis — первичное исследование данных и поиск проблем качества
+│   ├── hypothesis-generation — формирование проверяемых научных гипотез
+│   ├── hypogenic — автоматизированная генерация и оценка гипотез
+│   ├── literature-review [review] — систематический поиск и evidence synthesis
+│   ├── peer-review — структурированное рецензирование рукописей
+│   ├── scientific-brainstorming — поиск исследовательских идей и направлений
+│   ├── scientific-critical-thinking — проверка аргументов, допущений и причинности
+│   ├── scientific-visualization — проектирование корректных научных графиков
+│   ├── scientific-writing — подготовка manuscripts и научных отчётов
+│   ├── statistical-analysis — выбор тестов, диагностика и интерпретация статистики
+│   └── statistical-power — power analysis и расчёт размера выборки
+├── Scientific Communication & Publishing (11)
+│   ├── bgpt-paper-search — поиск научных публикаций и релевантных источников
+│   ├── pyzotero — программная работа с библиотеками Zotero
+│   ├── citation-management [review] — поиск, проверка и форматирование citations/BibTeX
+│   ├── generate-image — генерация иллюстраций через поддерживаемые image APIs
+│   ├── infographics [review] — создание научных инфографик
+│   ├── latex-posters [review] — подготовка академических posters в LaTeX
+│   ├── market-research-reports — evidence-based market research reports
+│   ├── pptx-posters — создание научных posters в PowerPoint
+│   ├── scientific-schematics [review] — научные схемы и объясняющие диаграммы
+│   ├── scientific-slides [review] — исследовательские презентации и slide decks
+│   └── venue-templates — адаптация материалов под journal, conference или grant venue
+├── Cheminformatics & Drug Discovery (9)
+│   ├── datamol — стандартизация молекул и удобные RDKit workflows
+│   ├── deepchem — machine learning для chemistry и biology
+│   ├── diffdock — предсказание molecular docking poses
+│   ├── medchem — medicinal chemistry filters и compound analysis
+│   ├── molfeat — molecular descriptors и featurization
+│   ├── pytdc — datasets, benchmarks и oracles Therapeutics Data Commons
+│   ├── rdkit — molecular I/O, fingerprints, descriptors и substructure search
+│   ├── rowan — managed computational chemistry calculations
+│   └── torchdrug — graph ML для molecules, proteins и drug discovery
+├── Data Analysis & Visualization (9)
+│   ├── dask — distributed и out-of-core вычисления
+│   ├── geomaster [review] — geospatial AI и обработка пространственных данных
+│   ├── geopandas — анализ векторных геоданных
+│   ├── matplotlib — базовые scientific plots и figure composition
+│   ├── networkx — построение и анализ графов
+│   ├── polars — быстрые DataFrame workflows
+│   ├── seaborn — статистическая визуализация
+│   ├── uncertainty-and-units — единицы, propagation и uncertainty budgets
+│   └── vaex — анализ очень больших табличных datasets
+├── Scientific Databases (9)
+│   ├── database-lookup — единая маршрутизация запросов к публичным научным базам
+│   ├── depmap — cancer dependencies и cell-line datasets
+│   ├── imaging-data-commons — поиск публичных cancer imaging datasets
+│   ├── primekg — работа с Precision Medicine Knowledge Graph
+│   ├── ncats-arax — biomedical knowledge graph и Translator ARAX
+│   ├── usfiscaldata — получение данных U.S. Treasury Fiscal Data
+│   ├── ontology-term-resolution — нормализация ontology terms, IDs и CURIE
+│   ├── pathogen-variant-surveillance — анализ актуальных pathogen variants и lineages
+│   └── hugging-science — scientific models и datasets на Hugging Face
+├── Document Processing & Conversion (7)
+│   ├── docx — чтение, создание и проверка Word/OOXML
+│   ├── markitdown — преобразование документов в Markdown
+│   ├── liteparse — структурный parsing сложных документов
+│   ├── markdown-mermaid-writing — Markdown-документы, Mermaid и шаблоны
+│   ├── pdf — PDF extraction, OCR, forms, generation и conversion
+│   ├── pptx — создание и проверка PowerPoint/OOXML
+│   └── xlsx [review] — создание, изменение и проверка Excel/OOXML
+├── Engineering & Simulation (6)
+│   ├── lab-hardware-cad — CAD-проекты лабораторного оборудования
+│   ├── matlab — MATLAB analysis, scripts и numerical workflows
+│   ├── fluidsim — computational fluid dynamics simulations
+│   ├── openpiv — particle image velocimetry analysis
+│   ├── simpy — discrete-event simulation
+│   └── sympy — символьная математика и аналитические вычисления
+└── Research Methodology & Grants (6)
+    ├── paperclip — поиск full-text biomedical и regulatory literature
+    ├── paperzilla — организация paper projects и recommendations
+    ├── paper-lookup — поиск публикаций через academic APIs
+    ├── research-grants — подготовка proposals, specific aims и budgets
+    ├── research-lookup [review] — manuscript-ready evidence workflow
+    └── scholar-evaluation — качественная оценка научных работ и исследователей
+```
+
+### Project-local support skills
+
+Эти три skill не входят в число 87 и доступны только `OpenCoder`, `CoderAgent`
+и `ScientificAgent`:
+
+```text
+Project support (3)
+├── jupyter-notebook — воспроизводимые .ipynb и защищённые JupyterHub workflows
+├── sql-queries — корректный SQL, cardinality, EXPLAIN и контроль мутаций
+└── pdf-authoring — создание PDF, проверка шрифтов и визуальный QA всех страниц
+```

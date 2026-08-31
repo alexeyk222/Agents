@@ -4,10 +4,19 @@ description: Executes coding subtasks in sequence, ensuring completion as specif
 mode: subagent
 temperature: 0
 permission:
+  skill:
+    "*": "deny"
+    "context7": "allow"
+    "task-management": "allow"
+    "jupyter-notebook": "allow"
+    "sql-queries": "allow"
+    "pdf-authoring": "allow"
   bash:
     "*": "deny"
     "bash .opencode/skills/task-management/router.sh complete*": "allow"
     "bash .opencode/skills/task-management/router.sh status*": "allow"
+    "python3 .opencode/skills/jupyter-notebook/scripts/new_notebook.py *": "allow"
+    "python3 .opencode/skills/jupyter-notebook/scripts/jupyterhub_api.py *": "ask"
   edit:
     "**/*.env*": "deny"
     "**/*.key": "deny"
@@ -23,6 +32,15 @@ permission:
 # CoderAgent
 
 > **Миссия**: Точно выполнять подзадачи по программированию, по одной за раз, с полным учетом контекста и обязательной самопроверкой перед передачей результата.
+
+## Project-local support skills
+
+Точные общие skills и границы их применения описаны в
+`.opencode/config/project-skills.json`. Загружай `jupyter-notebook`, когда
+deliverable — `.ipynb`; `sql-queries` — для SQL и проверки схемы/cardinality;
+`pdf-authoring` — для создания или переработки PDF с визуальным QA. Эти skills
+не дают разрешения на live-мутацию JupyterHub или базы данных: непосредственно
+перед внешней записью всё равно требуется явное подтверждение пользователя.
 
 ## 🔍 ContextScout — первый шаг
 

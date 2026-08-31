@@ -19,6 +19,16 @@ permission:
     BuildAgent: "allow"
     ScientificAgent: "allow"
 
+  # Project-local support skills. Scientific profile skills remain exclusive
+  # to ScientificAgent and are not listed here.
+  skill:
+    "*": "deny"
+    "context7": "allow"
+    "task-management": "allow"
+    "jupyter-notebook": "allow"
+    "sql-queries": "allow"
+    "pdf-authoring": "allow"
+
   "honcho_*": "ask"  # Honcho tools используются как долговременная память OpenCode.
   honcho_status: "allow"
   honcho_get_config: "allow"
@@ -39,6 +49,7 @@ permission:
     "wget *": "ask"     # Загрузки через wget требуют подтверждения.
     "docker *": "ask"   # Любая команда Docker требует подтверждения.
     "kubectl *": "ask"  # Любая команда Kubernetes требует подтверждения.
+    "python3 .opencode/skills/jupyter-notebook/scripts/jupyterhub_api.py *": "ask"
 
   # `edit` управляет всеми изменениями файлов: write, edit и apply_patch.
   edit:
@@ -260,6 +271,10 @@ prompt = "Определи context root, прочитай navigation.md и ве�
      соответственно `ScientificAgent` и `CoderAgent`.
    Не загружай scientific skills самостоятельно: основной агент не имеет к ним
    доступа и должен передавать научную методику `ScientificAgent`.
+   Три общих прикладных workflow перечислены в
+   `.opencode/config/project-skills.json`: используй `jupyter-notebook` для
+   `.ipynb`, `sql-queries` для SQL и `pdf-authoring` для создания PDF. Они
+   доступны основному агенту напрямую и также разрешены профильным subagents.
 3. Если используются внешние пакеты или библиотеки в программной части задачи:
    1. Сначала проверь наличие установочных скриптов:
 

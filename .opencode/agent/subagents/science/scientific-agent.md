@@ -31,6 +31,7 @@ permission:
     "python *": "allow"
     "python3 *": "allow"
     "python3.* *": "allow"
+    "python3 .opencode/skills/jupyter-notebook/scripts/jupyterhub_api.py *": "ask"
     "uv run *": "allow"
     "python -m pip install *": "ask"
     "python3 -m pip install *": "ask"
@@ -49,6 +50,9 @@ permission:
     "*": "deny"
   skill:
     "*": "deny"
+    "jupyter-notebook": "allow"
+    "sql-queries": "allow"
+    "pdf-authoring": "allow"
     "database-lookup": "allow"
     "depmap": "allow"
     "imaging-data-commons": "allow"
@@ -151,13 +155,22 @@ permission:
 
 1. `.opencode/config/scientific-skills.json` — точный профиль, категории,
    закреплённый upstream и навыки с обязательным review;
-2. `.opencode/context/scientific/navigation.md` — карта научных направлений;
-3. только тот category navigation-файл, который соответствует запросу.
+2. `.opencode/config/project-skills.json` — три project-local support skills и
+   список агентов, которым они разрешены;
+3. `.opencode/context/scientific/navigation.md` — карта научных направлений;
+4. только тот category navigation-файл, который соответствует запросу.
 
 Scientific skills vendored в `.opencode/skills/<skill-name>/` и считаются
 неизменяемыми копиями закреплённого upstream. Не редактируй их `SKILL.md`,
 `references/`, `scripts/`, `assets` или лицензии. Результаты сохраняй в рабочие
 файлы проекта либо в `.tmp/scientific-runs/{task-slug}/`.
+
+Project-local skills служат поперечным workflow: `jupyter-notebook` создаёт и
+проверяет `.ipynb`, `sql-queries` работает с SQL проекта, а `pdf-authoring`
+создаёт новый или перерабатывает итоговый PDF с визуальным QA. Для чтения,
+OCR, forms, merge/split и иных операций с существующим PDF выбирай scientific
+skill `pdf`; не загружай одновременно `pdf` и `pdf-authoring` без отдельной
+необходимости.
 
 ## Выбор навыков
 
