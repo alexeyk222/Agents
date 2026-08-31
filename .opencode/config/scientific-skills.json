@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0.0",
+  "profile": "scientific-agent",
+  "description": "Vendored scientific skill profile exposed only to the ScientificAgent subagent.",
+  "source": {
+    "repository": "K-Dense-AI/scientific-agent-skills",
+    "plugin_version": "2.64.0",
+    "commit": "36d8f13a1e754618794bf42f417884940077b4ae"
+  },
+  "installation": {
+    "mode": "vendored",
+    "root": ".opencode/skills",
+    "requirements": ".opencode/config/scientific-skill-requirements.toml",
+    "requirements_sha256": "88da13f4c2c36556d0e9b58a45a7152a6146cd4942b0a83a7ca5e15fe995be39",
+    "license": ".opencode/skills/SCIENTIFIC-AGENT-SKILLS-LICENSE.md",
+    "license_sha256": "0207337e5ae2b28c15c647054fafaddafb159be533f9723825d7a5aa2610f21d",
+    "content_sha256": "c36e99a1e346f6da9774881e964afe9fcb16e92d45a5138fd9353de9200c45af"
+  },
+  "categories": {
+    "scientific-databases": [
+      "database-lookup",
+      "depmap",
+      "imaging-data-commons",
+      "primekg",
+      "ncats-arax",
+      "usfiscaldata",
+      "ontology-term-resolution",
+      "pathogen-variant-surveillance",
+      "hugging-science"
+    ],
+    "cheminformatics-drug-discovery": [
+      "datamol",
+      "deepchem",
+      "diffdock",
+      "medchem",
+      "molfeat",
+      "pytdc",
+      "rdkit",
+      "rowan",
+      "torchdrug"
+    ],
+    "machine-learning-deep-learning": [
+      "aeon",
+      "cirq",
+      "pufferlib",
+      "pymc",
+      "pymoo",
+      "pytorch-lightning",
+      "pennylane",
+      "qiskit",
+      "qutip",
+      "scikit-learn",
+      "scikit-survival",
+      "shap",
+      "stable-baselines3",
+      "statsmodels",
+      "timesfm-forecasting",
+      "torch-geometric",
+      "transformers",
+      "umap-learn"
+    ],
+    "engineering-simulation": [
+      "lab-hardware-cad",
+      "matlab",
+      "fluidsim",
+      "openpiv",
+      "simpy",
+      "sympy"
+    ],
+    "data-analysis-visualization": [
+      "dask",
+      "geomaster",
+      "geopandas",
+      "matplotlib",
+      "networkx",
+      "polars",
+      "seaborn",
+      "uncertainty-and-units",
+      "vaex"
+    ],
+    "scientific-communication-publishing": [
+      "bgpt-paper-search",
+      "pyzotero",
+      "citation-management",
+      "generate-image",
+      "infographics",
+      "latex-posters",
+      "market-research-reports",
+      "pptx-posters",
+      "scientific-schematics",
+      "scientific-slides",
+      "venue-templates"
+    ],
+    "document-processing-conversion": [
+      "docx",
+      "markitdown",
+      "liteparse",
+      "markdown-mermaid-writing",
+      "pdf",
+      "pptx",
+      "xlsx"
+    ],
+    "research-methodology-proposals": [
+      "paperclip",
+      "paperzilla",
+      "paper-lookup",
+      "research-grants",
+      "research-lookup",
+      "scholar-evaluation"
+    ],
+    "analysis-methodology": [
+      "experimental-design",
+      "exploratory-data-analysis",
+      "hypothesis-generation",
+      "hypogenic",
+      "literature-review",
+      "peer-review",
+      "scientific-brainstorming",
+      "scientific-critical-thinking",
+      "scientific-visualization",
+      "scientific-writing",
+      "statistical-analysis",
+      "statistical-power"
+    ]
+  },
+  "review_required": [
+    "geomaster",
+    "citation-management",
+    "infographics",
+    "latex-posters",
+    "scientific-schematics",
+    "scientific-slides",
+    "xlsx",
+    "research-lookup",
+    "literature-review"
+  ],
+  "execution_modes": {
+    "local": "Local reads, computation, and workspace output.",
+    "network-read": "Read-only requests to external APIs or document sources; confirm once per task.",
+    "external-write": "Any mutation of a remote service; always confirm immediately before execution.",
+    "hardware": "Any interaction with physical equipment; require an explicit reviewed run plan and confirmation."
+  }
+}

@@ -41,6 +41,7 @@
         "subagent:tester",
         "subagent:reviewer",
         "subagent:build-agent",
+        "subagent:scientific-agent",
         "subagent:contextscout",
         "subagent:externalscout",
         "context:standards-code",
@@ -274,6 +275,25 @@
       "author": "opencode",
       "tags": ["devops", "ci-cd", "infrastructure"],
       "dependencies": []
+    },
+    "scientific-agent": {
+      "id": "scientific-agent",
+      "name": "ScientificAgent",
+      "category": "subagents/science",
+      "type": "subagent",
+      "version": "1.0.0",
+      "author": "opencode",
+      "tags": [
+        "science",
+        "research",
+        "statistics",
+        "machine-learning",
+        "scientific-writing"
+      ],
+      "dependencies": [
+        "context:scientific-navigation",
+        "config:scientific-skills"
+      ]
     },
     "agent-generator": {
       "id": "agent-generator",

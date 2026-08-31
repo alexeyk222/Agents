@@ -94,6 +94,7 @@ opencode --agent OpenCoder
 | `ContextScout` | Перед новой задачей | Находит подходящие локальные стандарты и примеры. |
 | `ExternalScout` | Внешняя библиотека или API | Ищет актуальную внешнюю документацию. |
 | `TaskManager` | Большая фича с зависимостями | Делит работу на атомарные подзадачи. |
+| `ScientificAgent` | Научный анализ, ML, статистика, базы, cheminformatics, симуляции и публикации | Выбирает минимальный набор scientific skills и выполняет воспроизводимый workflow. |
 | `CoderAgent` | Реализация утверждённой части работы | Пишет код в заданных границах. |
 | `TestEngineer` | Проверка поведения | Создаёт и запускает тесты. |
 | `CodeReviewer` | Контроль качества и рисков | Делает ревью без изменения кода. |
@@ -101,6 +102,42 @@ opencode --agent OpenCoder
 | `DocWriter` | Документация | Создаёт и поддерживает документацию. |
 
 Промпты и права агентов находятся в [`agent/`](agent/). Главные агенты могут делегировать работу только разрешённым специалистам.
+
+## Научный профиль
+
+`ScientificAgent` использует 87 skills, vendored непосредственно в
+[`skills/`](.opencode/skills/): ML/deep learning, анализ и методология, научная
+коммуникация, cheminformatics/drug discovery, анализ и визуализация данных,
+научные базы, документы, инженерные симуляции и research methodology/grants.
+Соседний checkout `scientific-agent-skills/` для работы OAC не требуется.
+
+```text
+OpenCoder → scientific navigation → ScientificAgent → 1 основной + до 2 вспомогательных skills
+```
+
+Состав профиля и закреплённая версия upstream находятся в
+[`config/scientific-skills.json`](.opencode/config/scientific-skills.json), а OpenCode
+подключает только эти каталоги через [`opencode.json`](.opencode/opencode.json). Главный
+агент не загружает научные skills сам: чисто научную работу он делегирует
+`ScientificAgent`, а mixed-задачи делит через `TaskManager` между научными и
+программными подзадачами.
+
+Полностью локальные вычисления не требуют отдельного согласования. Контроль
+строится по типу действия (`local`, `network-read`, `external-write`, `hardware`),
+без классификации локальных данных. Девять skills, способных инициировать более
+широкий research/publishing workflow, отмечены `review_required` и требуют
+подтверждения при загрузке. Vendored skills считаются read-only; результаты
+создаются в рабочем проекте или `.tmp/scientific-runs/`. Manifest сохраняет
+upstream repository, version и commit для воспроизводимого обновления.
+Лицензия коллекции сохранена в
+[`skills/SCIENTIFIC-AGENT-SKILLS-LICENSE.md`](.opencode/skills/SCIENTIFIC-AGENT-SKILLS-LICENSE.md);
+у отдельных skills могут быть собственные условия в `SKILL.md` или `LICENSE*`.
+
+Проверить профиль после обновления vendored-копий или manifest:
+
+```bash
+python3 .opencode/scripts/validate-scientific-integration.py
+```
 
 ## Команды
 
@@ -115,6 +152,7 @@ opencode --agent OpenCoder
 | `/commit` | Подготовить conventional commit. |
 | `/validate-repo` | Проверить согласованность файлов OAC. |
 | `/check-context-deps` | Проверить связи агентов с контекстными файлами. |
+| `/validate-scientific-skills` | Проверить manifest, пути, permissions, navigation и pinned upstream научного профиля. |
 
 Полные инструкции команд находятся в [`command/`](command/).
 
@@ -141,6 +179,8 @@ opencode --agent OpenCoder
   │       ├── development/
   │       │   ├── frontend-specialist.md  # Специалист по frontend/UI-задачам.
   │       │   └── devops-specialist.md    # Специалист по CI/CD, контейнерам и инфраструктуре.
+  │       ├── science/
+  │       │   └── scientific-agent.md     # Исполняет выбранные scientific skills.
   │       └── system-builder/
   │           └── context-organizer.md    # Организует, сжимает и поддерживает базу контекста.
   │
@@ -158,13 +198,15 @@ opencode --agent OpenCoder
   │   ├── test.md                         # Запускает типы, lint и тесты.
   │   ├── validate-repo.md                # Проверяет согласованность компонентов,
   │   │                                   # документации и связей в OAC.
+  │   ├── validate-scientific-skills.md   # Проверяет интеграцию научного профиля.
   │   └── openagents/
   │       └── check-context-deps.md       # Ищет сломанные/необъявленные зависимости
   │                                       # между агентами и контекстными файлами.
   │
   ├── config/
-  │   └── agent-metadata.json             # Центральный реестр метаданных агентов:
-  │                                       # id, категория, теги и зависимости.
+  │   ├── agent-metadata.json             # Центральный реестр метаданных агентов.
+  │   ├── scientific-skills.json          # Manifest 87 skills, категории и execution modes.
+  │   └── scientific-skill-requirements.toml # Изолированные runtime-зависимости skills.
   │
   ├── context/                            # База знаний, загружаемая агентами по необходимости
   │   ├── navigation.md                   # Главная карта всей базы контекста.
@@ -224,6 +266,9 @@ opencode --agent OpenCoder
   │   │       ├── errors/*.md              # Ошибки Mastra.
   │   │       └── lookup/*.md              # Конфигурация Mastra.
   │   │
+  │   ├── scientific/                      # Маршрутизация по девяти научным категориям.
+  │   │   └── */navigation.md              # Индексы skills без загрузки их полного текста.
+  │   │
   │   ├── ui/                              # UI/UX-контекст
   │   │   ├── terminal/navigation.md       # Терминальный интерфейс.
   │   │   └── web/                         # Web UI:
@@ -261,16 +306,21 @@ opencode --agent OpenCoder
   │   │   ├── README.md                    # Быстрый сценарий применения.
   │   │   ├── library-registry.md          # Поддерживаемые библиотеки и шаблоны запросов.
   │   │   └── navigation.md                # Навигация по skill.
-  │   └── task-management/                 # Реальная CLI-реализация управления задачами:
+  │   ├── task-management/                 # Реальная CLI-реализация управления задачами:
   │       ├── SKILL.md                     # Контракт skill и JSON-модель задач.
   │       ├── router.sh                    # Bash-точка входа.
   │       └── scripts/task-cli.ts          # Команды status/next/parallel/deps/
   │                                       # blocked/complete/validate.
+  │   ├── {87 scientific skills}/         # Vendored profile для ScientificAgent.
+  │   └── SCIENTIFIC-AGENT-SKILLS-LICENSE.md # Лицензия исходной коллекции.
   │
   ├── tool/
   │   └── env/index.ts                     # TypeScript-утилита безопасной загрузки
   │                                       # переменных окружения из нескольких .env.
   │
+  ├── scripts/
+  │   └── validate-scientific-integration.py # Read-only проверка научного профиля.
+  ├── opencode.json                       # Project config и точные vendored skill paths.
   ├── README.md                            # Позиционирование OAC, установка и сценарии работы.
   ├── node_modules/                        # Установленные внешние зависимости; в презентацию
   │                                       # обычно не включают.

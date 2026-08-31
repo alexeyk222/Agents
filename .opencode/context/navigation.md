@@ -14,6 +14,7 @@
 ├── openagents-repo/        # Работа с репозиторием OpenAgents Control
 ├── development/            # Разработка ПО (все стеки)
 ├── ui/                     # Визуальный дизайн и UX
+├── scientific/             # Научные методы, вычисления и публикации
 ├── content-creation/       # Создание контента (все форматы)
 ├── data/                   # Инженерия данных и аналитика
 ├── product/                # Управление продуктом
@@ -34,6 +35,7 @@
 | **Добавить агента** | `openagents-repo/guides/adding-agent.md` |
 | **Разработка UI** | `development/ui-navigation.md` |
 | **Разработка API** | `development/backend-navigation.md` |
+| **Научный анализ / ML / публикации** | `scientific/navigation.md` |
 
 ---
 
@@ -43,6 +45,7 @@
 **openagents-repo/** - Специфика репозитория → `openagents-repo/navigation.md`
 **development/** - Вся разработка → `development/navigation.md`
 **ui/** - Дизайн и UX → `ui/navigation.md`
+**scientific/** - Научные skills и маршрутизация → `scientific/navigation.md`
 **content-creation/** - Создание контента (все форматы) → `content-creation/navigation.md`
 **data/** - Инженерия данных → `data/navigation.md`
 **product/** - Управление продуктом → `product/navigation.md`

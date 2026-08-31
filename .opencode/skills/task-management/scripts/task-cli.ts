@@ -46,6 +46,9 @@ interface Task {
   objective: string;
   context_files: string[];
   reference_files?: string[];
+  scientific_skills?: string[];
+  execution_modes?: Array<'local' | 'network-read' | 'external-write' | 'hardware'>;
+  runtime?: Record<string, unknown>;
   exit_criteria: string[];
   subtask_count: number;
   completed_count: number;
@@ -62,6 +65,9 @@ interface Subtask {
   parallel: boolean;
   context_files: string[];
   reference_files?: string[];
+  scientific_skills?: string[];
+  execution_modes?: Array<'local' | 'network-read' | 'external-write' | 'hardware'>;
+  runtime?: Record<string, unknown>;
   acceptance_criteria: string[];
   deliverables: string[];
   agent_id: string | null;
@@ -303,6 +309,7 @@ function cmdValidate(feature?: string): void {
 
   const validTaskStatuses = new Set(['active', 'completed', 'blocked', 'archived']);
   const validSubtaskStatuses = new Set(['pending', 'in_progress', 'completed', 'blocked']);
+  const validExecutionModes = new Set(['local', 'network-read', 'external-write', 'hardware']);
 
   const requiredTaskFields = [
     'id',
@@ -381,6 +388,17 @@ function cmdValidate(feature?: string): void {
       if (hasField(task, 'reference_files') && task.reference_files !== undefined && !isStringArray(task.reference_files)) {
         errors.push('task.json: reference_files must be string[] when present');
       }
+      if (hasField(task, 'scientific_skills') && task.scientific_skills !== undefined && !isStringArray(task.scientific_skills)) {
+        errors.push('task.json: scientific_skills must be string[] when present');
+      }
+      if (hasField(task, 'execution_modes') && task.execution_modes !== undefined) {
+        if (!isStringArray(task.execution_modes) || task.execution_modes.some(mode => !validExecutionModes.has(mode))) {
+          errors.push('task.json: execution_modes contains an unsupported mode');
+        }
+      }
+      if (hasField(task, 'runtime') && task.runtime !== undefined && (typeof task.runtime !== 'object' || task.runtime === null || Array.isArray(task.runtime))) {
+        errors.push('task.json: runtime must be an object when present');
+      }
       if (!isStringArray(task.exit_criteria)) {
         errors.push('task.json: exit_criteria must be string[]');
       }
@@ -430,6 +448,17 @@ function cmdValidate(feature?: string): void {
       }
       if (hasField(s, 'reference_files') && s.reference_files !== undefined && !isStringArray(s.reference_files)) {
         errors.push(`${s.seq}: reference_files must be string[] when present`);
+      }
+      if (hasField(s, 'scientific_skills') && s.scientific_skills !== undefined && !isStringArray(s.scientific_skills)) {
+        errors.push(`${s.seq}: scientific_skills must be string[] when present`);
+      }
+      if (hasField(s, 'execution_modes') && s.execution_modes !== undefined) {
+        if (!isStringArray(s.execution_modes) || s.execution_modes.some(mode => !validExecutionModes.has(mode))) {
+          errors.push(`${s.seq}: execution_modes contains an unsupported mode`);
+        }
+      }
+      if (hasField(s, 'runtime') && s.runtime !== undefined && (typeof s.runtime !== 'object' || s.runtime === null || Array.isArray(s.runtime))) {
+        errors.push(`${s.seq}: runtime must be an object when present`);
       }
       if (!isStringArray(s.acceptance_criteria)) {
         errors.push(`${s.seq}: acceptance_criteria must be string[]`);
