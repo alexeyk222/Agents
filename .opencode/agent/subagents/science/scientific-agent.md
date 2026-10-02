@@ -46,6 +46,7 @@ permission:
     "kubectl *": "ask"
     "rm *": "ask"
     "sudo *": "deny"
+    "impala-shell *": "ask"
   task:
     "*": "deny"
   skill:
@@ -140,6 +141,14 @@ permission:
     "xlsx": "ask"
     "research-lookup": "ask"
     "literature-review": "ask"
+  # Корпоративные источники (.opencode/context/enterprise/): чтение Confluence/Jira,
+  # Impala — каждый запрос с подтверждением. Запись в эти системы запрещена.
+  "atlassian_*": "deny"
+  atlassian_confluence_search: "allow"
+  "atlassian_confluence_get_*": "allow"
+  atlassian_jira_search: "allow"
+  "atlassian_jira_get_*": "allow"
+  "impala_*": "ask"
 ---
 
 # ScientificAgent
@@ -171,6 +180,15 @@ Project-local skills служат поперечным workflow: `jupyter-notebo
 OCR, forms, merge/split и иных операций с существующим PDF выбирай scientific
 skill `pdf`; не загружай одновременно `pdf` и `pdf-authoring` без отдельной
 необходимости.
+
+## Корпоративные данные (Impala, Confluence, Jira)
+
+Для разведки и профилирования корпоративных данных следуй
+`.opencode/context/enterprise/sources/impala.md` и сценарию
+`.opencode/context/enterprise/workflows/data-discovery.md`. Запрос к Impala —
+это `network-read`: всегда фильтр по партиции, агрегаты вместо сырых строк,
+`LIMIT` для выборок, никаких DML/DDL. Персональные данные в результаты и чат не
+выводи. Рядом с каждой цифрой сохраняй SQL, которым она получена.
 
 ## Выбор навыков
 

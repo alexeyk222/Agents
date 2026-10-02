@@ -13,14 +13,15 @@ OAC — конфигурационный слой для [OpenCode](https://open
 - **Контроль изменений.** В промптах предусмотрен цикл «анализ → план → подтверждение → выполнение → проверка».
 - **Редактируемые правила.** Поведение агентов описано обычными `.md`-файлами. Их можно адаптировать под процессы команды без разработки плагина.
 - **Минимальный контекст.** База знаний организована по принципу MVI: агент подгружает только файлы, нужные для текущей задачи.
+- **Корпоративный контур.** `ContextScout` умеет искать в Confluence, Jira и метаданных Impala в режиме чтения, а сценарий разведки данных ведёт от задачи в Jira до мэппинга атрибутов и дашборда.
 - **Honcho.** Интеграция с межсессионной памятью. https://honcho.dev/
 
 ## Как это работает
 
 ```text
-Запрос разработчика
+Запрос разработчика / аналитика
         ↓
-ContextScout находит правила и примеры проекта
+ContextScout находит правила проекта и знания из Confluence / Jira / Impala
         ↓
 Основной агент формирует план
         ↓
@@ -37,7 +38,7 @@ ContextScout находит правила и примеры проекта
 
 ### 1. Подготовьте окружение
 
-Нужны установленный [OpenCode CLI](https://opencode.ai/docs), Git и Node.js. Для встроенного CLI управления задачами также нужен `npx ts-node` (при первом запуске `npx` может предложить его скачать).
+Нужны установленный [OpenCode CLI](https://opencode.ai/docs) и Git. Для встроенного CLI управления задачами нужны Node.js и `npx ts-node` (при первом запуске `npx` может предложить его скачать), для научных skills и разведки данных — Python 3.
 
 Разместите эту папку в корне целевого проекта:
 
@@ -48,26 +49,23 @@ my-project/
 └── package.json
 ```
 
-Установите npm-зависимость, если она ещё не установлена:
-
-```bash
-cd .opencode
-npm install
-```
+Если агенты должны работать с корпоративными системами, подключите их по
+инструкции [`context/enterprise/setup/mcp-connection.md`](.opencode/context/enterprise/setup/mcp-connection.md):
+заполните `.env` по образцу [`env.example`](.opencode/env.example) и включите сервер
+`atlassian` в [`opencode.json`](.opencode/opencode.json).
 
 ### 2. Запустите агента
 
 Из корня проекта:
 
 ```bash
-opencode --agent OpenAgent
-```
-
-`OpenAgent` подходит для вопросов, небольших задач и знакомства с системой. Для сложной разработки, проектирования или рефакторинга используйте:
-
-```bash
 opencode --agent OpenCoder
 ```
+
+`OpenCoder` — главный агент harness'а: он сам вызывает `ContextScout`,
+предлагает план и делегирует работу специалистам. Для простых вопросов можно
+использовать встроенные агенты OpenCode (`build`, `plan`) — они не загружают
+правила harness'а.
 
 Пример запроса:
 
@@ -91,8 +89,8 @@ opencode --agent OpenCoder
 | Агент | Когда использовать | Роль |
 |---|---|---|
 | `OpenCoder` | Новая фича, архитектура, многофайловый рефакторинг | Координатор разработки с обязательными проверками. |
-| `ContextScout` | Перед новой задачей | Находит подходящие локальные стандарты и примеры. |
-| `ExternalScout` | Внешняя библиотека или API | Ищет актуальную внешнюю документацию. |
+| `ContextScout` | Перед новой задачей | Находит локальные стандарты и примеры, а также знания из Confluence, Jira и метаданных Impala (только чтение). |
+| `ExternalScout` | Публичная библиотека или API | Ищет актуальную документацию через Context7; в закрытом контуре без интернета не используется. |
 | `TaskManager` | Большая фича с зависимостями | Делит работу на атомарные подзадачи. |
 | `ScientificAgent` | Научный анализ, ML, статистика, базы, cheminformatics, симуляции и публикации | Выбирает минимальный набор scientific skills и выполняет воспроизводимый workflow. |
 | `CoderAgent` | Реализация утверждённой части работы | Пишет код в заданных границах. |
@@ -101,7 +99,50 @@ opencode --agent OpenCoder
 | `BuildAgent` | Финальная техническая проверка | Выполняет type-check и сборку, только сообщает результат. |
 | `DocWriter` | Документация | Создаёт и поддерживает документацию. |
 
-Промпты и права агентов находятся в [`agent/`](agent/). Главные агенты могут делегировать работу только разрешённым специалистам.
+Промпты и права агентов находятся в [`agent/`](.opencode/agent/). Главные агенты могут делегировать работу только разрешённым специалистам.
+
+## Корпоративный контур: Confluence, Jira, Impala
+
+Внутренние знания компании живут не в репозитории, а в корпоративных системах.
+Harness подключает их через MCP и описывает правила работы в
+[`context/enterprise/`](.opencode/context/enterprise/navigation.md):
+
+| Источник | Что даёт агенту | Кто обращается | Режим |
+|---|---|---|---|
+| **Jira** | Постановка, критерии приёмки, связанные баги и история решений | `ContextScout`, `OpenCoder`, `ScientificAgent` | Только чтение; запись — с подтверждением у `OpenCoder` |
+| **Confluence** | Бизнес-глоссарий, паспорта витрин, справочники, регламенты | `ContextScout`, `OpenCoder`, `ScientificAgent` | Только чтение; запись — с подтверждением у `OpenCoder` |
+| **Impala** | Схемы, типы, партиции, статистика, профили атрибутов | `ContextScout` — только метаданные; профилирование — `OpenCoder` / `ScientificAgent` | Каждый запрос подтверждается; DML/DDL запрещены без явного запроса |
+
+Защита построена в три слоя: права агентов в `agent/*.md` (`atlassian_*`,
+`impala_*`, `impala-shell *`), read-only режим самого MCP-сервера
+(`READ_ONLY_MODE=true`) и персональный токен с минимальными правами.
+Секреты — только в `.env`.
+
+### Сценарий: разведка данных
+
+```text
+Задача в Jira
+   ↓  ContextScout: Jira → Confluence → метаданные Impala
+Черновой список атрибутов + расхождения + SQL для профилирования
+   ↓  OpenCoder: план → подтверждение пользователя
+Профилирование (ScientificAgent: sql-queries, exploratory-data-analysis, jupyter-notebook)
+   ↓
+Мэппинг атрибутов на бизнес-глоссарий (шаблон)
+   ↓  CoderAgent
+Дашборд / отчёт → CodeReviewer → знания в project-intelligence
+```
+
+Пример запроса:
+
+```text
+Проведи разведку транзакционных атрибутов витрины dwh.dm_transactions по задаче DATA-1234.
+Сначала через ContextScout собери контекст из Jira, Confluence и метаданных Impala.
+Потом предложи план профилирования с SQL-запросами и жди подтверждения.
+Итог: мэппинг атрибутов на бизнес-глоссарий и дашборд с качеством данных.
+```
+
+Подробно: [`workflows/data-discovery.md`](.opencode/context/enterprise/workflows/data-discovery.md),
+шаблон результата — [`templates/attribute-mapping.md`](.opencode/context/enterprise/templates/attribute-mapping.md).
 
 ## Научный профиль
 
@@ -141,8 +182,8 @@ python3 .opencode/scripts/validate-scientific-integration.py
 
 ## Проектные прикладные skills
 
-Три project-local skill находятся рядом с vendored-профилем, но учитываются
-отдельно в [`.opencode/config/project-skills.json`](.opencode/config/project-skills.json):
+Три прикладных project-local skill доступны `OpenCoder`, `CoderAgent` и
+`ScientificAgent`:
 
 - `jupyter-notebook` — создание и проверка `.ipynb`, а также ограниченный
   безопасный workflow для JupyterHub REST API;
@@ -150,9 +191,11 @@ python3 .opencode/scripts/validate-scientific-integration.py
   схемы, cardinality и границ live-мутаций;
 - `pdf-authoring` — создание PDF и обязательная визуальная проверка рендера.
 
-Они явно разрешены только `OpenCoder`, `CoderAgent` и `ScientificAgent`.
-`pdf-authoring` отвечает за создание итогового документа, а scientific skill
-`pdf` — за extraction, OCR, forms и преобразование существующих PDF.
+Они находятся в `skills/`, описаны отдельно в
+[`config/project-skills.json`](.opencode/config/project-skills.json) и разрешены в
+frontmatter только трёх указанных агентов. Глобальная конфигурация их не
+разрешает. `pdf-authoring` создаёт итоговый документ, а scientific skill `pdf`
+отвечает за extraction, OCR, forms и преобразование существующих PDF.
 
 ## Команды
 
@@ -169,7 +212,7 @@ python3 .opencode/scripts/validate-scientific-integration.py
 | `/check-context-deps` | Проверить связи агентов с контекстными файлами. |
 | `/validate-scientific-skills` | Проверить manifest, пути, permissions, navigation и pinned upstream научного профиля. |
 
-Полные инструкции команд находятся в [`command/`](command/).
+Полные инструкции команд находятся в [`command/`](.opencode/command/).
 
 ## Структура
 
@@ -285,6 +328,12 @@ python3 .opencode/scripts/validate-scientific-integration.py
   │   ├── scientific/                      # Маршрутизация по девяти научным категориям.
   │   │   └── */navigation.md              # Индексы skills без загрузки их полного текста.
   │   │
+  │   ├── enterprise/                      # Корпоративные источники и разведка данных:
+  │   │   ├── setup/mcp-connection.md      # Подключение Confluence/Jira/Impala через MCP.
+  │   │   ├── sources/                     # confluence.md, jira.md, impala.md — правила поиска.
+  │   │   ├── workflows/data-discovery.md  # Сценарий «задача → мэппинг → дашборд».
+  │   │   └── templates/attribute-mapping.md # Шаблон мэппинга атрибутов.
+  │   │
   │   ├── ui/                              # UI/UX-контекст
   │   │   ├── terminal/navigation.md       # Терминальный интерфейс.
   │   │   └── web/                         # Web UI:
@@ -323,11 +372,12 @@ python3 .opencode/scripts/validate-scientific-integration.py
   │   │   ├── library-registry.md          # Поддерживаемые библиотеки и шаблоны запросов.
   │   │   └── navigation.md                # Навигация по skill.
   │   ├── task-management/                 # Реальная CLI-реализация управления задачами:
-  │       ├── SKILL.md                     # Контракт skill и JSON-модель задач.
-  │       ├── router.sh                    # Bash-точка входа.
-  │       └── scripts/task-cli.ts          # Команды status/next/parallel/deps/
-  │                                       # blocked/complete/validate.
-  │   ├── {87 scientific skills}/         # Vendored profile для ScientificAgent.
+  │   │   ├── SKILL.md                     # Контракт skill и JSON-модель задач.
+  │   │   ├── router.sh                    # Bash-точка входа.
+  │   │   └── scripts/task-cli.ts          # Команды status/next/parallel/deps/
+  │   │                                    # blocked/complete/validate.
+  │   ├── jupyter-notebook/, sql-queries/, pdf-authoring/ # Project-local support skills.
+  │   ├── {87 scientific skills}/          # Vendored profile для ScientificAgent.
   │   └── SCIENTIFIC-AGENT-SKILLS-LICENSE.md # Лицензия исходной коллекции.
   │
   ├── tool/
@@ -336,15 +386,14 @@ python3 .opencode/scripts/validate-scientific-integration.py
   │
   ├── scripts/
   │   └── validate-scientific-integration.py # Read-only проверка scientific + support профилей.
-  ├── opencode.json                       # Project config и точные vendored skill paths.
+  ├── opencode.json                        # Project config, vendored skill paths и
+  │                                        # заготовка MCP-сервера atlassian (выключен).
   ├── README.md                            # Позиционирование OAC, установка и сценарии работы.
-  ├── node_modules/                        # Установленные внешние зависимости; в презентацию
-  │                                       # обычно не включают.
-  └── env.example                          # Шаблон переменных Telegram/Gemini/MiniMax.
+  └── env.example                          # Шаблон переменных: Confluence, Jira, Impala, JupyterHub.
 
 ```
 
-Подробная карта базы знаний начинается с [`context/navigation.md`](context/navigation.md). Для задач по коду ключевой файл — [`context/core/standards/code-quality.md`](context/core/standards/code-quality.md).
+Подробная карта базы знаний начинается с [`context/navigation.md`](.opencode/context/navigation.md). Для задач по коду ключевой файл — [`context/core/standards/code-quality.md`](.opencode/context/core/standards/code-quality.md), для задач с данными — [`context/enterprise/navigation.md`](.opencode/context/enterprise/navigation.md).
 
 ## Работа с контекстом
 
@@ -354,7 +403,7 @@ python3 .opencode/scripts/validate-scientific-integration.py
 2. Если локальной базы нет, для общих правил может использоваться глобальный путь `~/.config/opencode/context`.
 3. `project-intelligence/` остаётся локальным: это знания именно вашего проекта.
 
-Файл [`context/core/config/paths.json`](context/core/config/paths.json) позволяет изменить эти пути.
+Файл [`context/core/config/paths.json`](.opencode/context/core/config/paths.json) позволяет изменить эти пути.
 
 ### Что стоит добавить первым
 
@@ -363,7 +412,9 @@ python3 .opencode/scripts/validate-scientific-integration.py
 - пример UI-компонента;
 - соглашения по именованию файлов, сущностей и веток;
 - правила тестирования и требования безопасности;
-- принятые архитектурные решения.
+- принятые архитектурные решения;
+- для аналитических проектов: ключевые базы и витрины Impala, пространства
+  Confluence и проекты Jira, владельцы данных и известные дефекты.
 
 Чем точнее эти сведения, тем меньше агенту приходится делать предположений.
 
@@ -379,7 +430,7 @@ bash .opencode/skills/task-management/router.sh blocked
 bash .opencode/skills/task-management/router.sh validate
 ```
 
-Формат файлов задач описан в [`context/core/task-management/standards/task-schema.md`](context/core/task-management/standards/task-schema.md).
+Формат файлов задач описан в [`context/core/task-management/standards/task-schema.md`](.opencode/context/core/task-management/standards/task-schema.md).
 
 ## Адаптация под команду
 
@@ -389,7 +440,7 @@ bash .opencode/skills/task-management/router.sh validate
 4. Проверьте связи между компонентами через `/check-context-deps`.
 5. Закоммитьте `.opencode/` вместе с кодом проекта.
 
-Не храните секреты в контексте или в Git. Для ключей используйте `.env`; пример имён переменных находится в [`env.example`](env.example).
+Не храните секреты в контексте или в Git. Для ключей используйте `.env`; пример имён переменных находится в [`env.example`](.opencode/env.example).
 
 
 ## Лицензия

@@ -1,4 +1,4 @@
-<!-- Context: core/navigation | Priority: critical | Version: 1.0 | Updated: 2026-02-15 -->
+<!-- Context: core/navigation | Priority: critical | Version: 1.1 | Updated: 2026-10-02 -->
 
 # Навигация по контексту
 
@@ -15,10 +15,8 @@
 ├── development/            # Разработка ПО (все стеки)
 ├── ui/                     # Визуальный дизайн и UX
 ├── scientific/             # Научные методы, вычисления и публикации
-├── content-creation/       # Создание контента (все форматы)
-├── data/                   # Инженерия данных и аналитика
-├── product/                # Управление продуктом
-└── learning/               # Образовательный контент
+├── enterprise/             # Корпоративные источники: Confluence, Jira, Impala
+└── project-intelligence/   # Знания о конкретном проекте
 ```
 
 ---
@@ -32,10 +30,13 @@
 | **Писать документацию** | `core/standards/documentation.md` |
 | **Ревью кода** | `core/workflows/code-review.md` |
 | **Делегировать задачу** | `core/workflows/task-delegation-basics.md` |
-| **Добавить агента** | `openagents-repo/guides/adding-agent.md` |
+| **Добавить агента** | `openagents-repo/guides/adding-agent-basics.md` |
 | **Разработка UI** | `development/ui-navigation.md` |
 | **Разработка API** | `development/backend-navigation.md` |
 | **Научный анализ / ML / публикации** | `scientific/navigation.md` |
+| **Разведка данных (Jira → Confluence → Impala)** | `enterprise/workflows/data-discovery.md` |
+| **Подключить Confluence / Jira / Impala** | `enterprise/setup/mcp-connection.md` |
+| **SQL и слой данных** | `development/data/navigation.md` |
 
 ---
 
@@ -46,7 +47,5 @@
 **development/** - Вся разработка → `development/navigation.md`
 **ui/** - Дизайн и UX → `ui/navigation.md`
 **scientific/** - Научные skills и маршрутизация → `scientific/navigation.md`
-**content-creation/** - Создание контента (все форматы) → `content-creation/navigation.md`
-**data/** - Инженерия данных → `data/navigation.md`
-**product/** - Управление продуктом → `product/navigation.md`
-**learning/** - Обучающие материалы → `learning/navigation.md`
+**enterprise/** - Confluence, Jira, Impala и разведка данных → `enterprise/navigation.md`
+**project-intelligence/** - Знания о проекте → `project-intelligence/navigation.md`

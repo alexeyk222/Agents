@@ -13,14 +13,15 @@ OAC — конфигурационный слой для [OpenCode](https://open
 - **Контроль изменений.** В промптах предусмотрен цикл «анализ → план → подтверждение → выполнение → проверка».
 - **Редактируемые правила.** Поведение агентов описано обычными `.md`-файлами. Их можно адаптировать под процессы команды без разработки плагина.
 - **Минимальный контекст.** База знаний организована по принципу MVI: агент подгружает только файлы, нужные для текущей задачи.
+- **Корпоративный контур.** `ContextScout` умеет искать в Confluence, Jira и метаданных Impala в режиме чтения, а сценарий разведки данных ведёт от задачи в Jira до мэппинга атрибутов и дашборда.
 - **Honcho.** Интеграция с межсессионной памятью. https://honcho.dev/
 
 ## Как это работает
 
 ```text
-Запрос разработчика
+Запрос разработчика / аналитика
         ↓
-ContextScout находит правила и примеры проекта
+ContextScout находит правила проекта и знания из Confluence / Jira / Impala
         ↓
 Основной агент формирует план
         ↓
@@ -37,7 +38,7 @@ ContextScout находит правила и примеры проекта
 
 ### 1. Подготовьте окружение
 
-Нужны установленный [OpenCode CLI](https://opencode.ai/docs), Git и Node.js. Для встроенного CLI управления задачами также нужен `npx ts-node` (при первом запуске `npx` может предложить его скачать).
+Нужны установленный [OpenCode CLI](https://opencode.ai/docs) и Git. Для встроенного CLI управления задачами нужны Node.js и `npx ts-node` (при первом запуске `npx` может предложить его скачать), для научных skills и разведки данных — Python 3.
 
 Разместите эту папку в корне целевого проекта:
 
@@ -48,26 +49,23 @@ my-project/
 └── package.json
 ```
 
-Установите npm-зависимость, если она ещё не установлена:
-
-```bash
-cd .opencode
-npm install
-```
+Если агенты должны работать с корпоративными системами, подключите их по
+инструкции [`context/enterprise/setup/mcp-connection.md`](context/enterprise/setup/mcp-connection.md):
+заполните `.env` по образцу [`env.example`](env.example) и включите сервер
+`atlassian` в [`opencode.json`](opencode.json).
 
 ### 2. Запустите агента
 
 Из корня проекта:
 
 ```bash
-opencode --agent OpenAgent
-```
-
-`OpenAgent` подходит для вопросов, небольших задач и знакомства с системой. Для сложной разработки, проектирования или рефакторинга используйте:
-
-```bash
 opencode --agent OpenCoder
 ```
+
+`OpenCoder` — главный агент harness'а: он сам вызывает `ContextScout`,
+предлагает план и делегирует работу специалистам. Для простых вопросов можно
+использовать встроенные агенты OpenCode (`build`, `plan`) — они не загружают
+правила harness'а.
 
 Пример запроса:
 
@@ -91,8 +89,8 @@ opencode --agent OpenCoder
 | Агент | Когда использовать | Роль |
 |---|---|---|
 | `OpenCoder` | Новая фича, архитектура, многофайловый рефакторинг | Координатор разработки с обязательными проверками. |
-| `ContextScout` | Перед новой задачей | Находит подходящие локальные стандарты и примеры. |
-| `ExternalScout` | Внешняя библиотека или API | Ищет актуальную внешнюю документацию. |
+| `ContextScout` | Перед новой задачей | Находит локальные стандарты и примеры, а также знания из Confluence, Jira и метаданных Impala (только чтение). |
+| `ExternalScout` | Публичная библиотека или API | Ищет актуальную документацию через Context7; в закрытом контуре без интернета не используется. |
 | `TaskManager` | Большая фича с зависимостями | Делит работу на атомарные подзадачи. |
 | `ScientificAgent` | Научный анализ, ML, статистика, базы, cheminformatics, симуляции и публикации | Выбирает минимальный набор scientific skills и выполняет воспроизводимый workflow. |
 | `CoderAgent` | Реализация утверждённой части работы | Пишет код в заданных границах. |
@@ -102,6 +100,49 @@ opencode --agent OpenCoder
 | `DocWriter` | Документация | Создаёт и поддерживает документацию. |
 
 Промпты и права агентов находятся в [`agent/`](agent/). Главные агенты могут делегировать работу только разрешённым специалистам.
+
+## Корпоративный контур: Confluence, Jira, Impala
+
+Внутренние знания компании живут не в репозитории, а в корпоративных системах.
+Harness подключает их через MCP и описывает правила работы в
+[`context/enterprise/`](context/enterprise/navigation.md):
+
+| Источник | Что даёт агенту | Кто обращается | Режим |
+|---|---|---|---|
+| **Jira** | Постановка, критерии приёмки, связанные баги и история решений | `ContextScout`, `OpenCoder`, `ScientificAgent` | Только чтение; запись — с подтверждением у `OpenCoder` |
+| **Confluence** | Бизнес-глоссарий, паспорта витрин, справочники, регламенты | `ContextScout`, `OpenCoder`, `ScientificAgent` | Только чтение; запись — с подтверждением у `OpenCoder` |
+| **Impala** | Схемы, типы, партиции, статистика, профили атрибутов | `ContextScout` — только метаданные; профилирование — `OpenCoder` / `ScientificAgent` | Каждый запрос подтверждается; DML/DDL запрещены без явного запроса |
+
+Защита построена в три слоя: права агентов в `agent/*.md` (`atlassian_*`,
+`impala_*`, `impala-shell *`), read-only режим самого MCP-сервера
+(`READ_ONLY_MODE=true`) и персональный токен с минимальными правами.
+Секреты — только в `.env`.
+
+### Сценарий: разведка данных
+
+```text
+Задача в Jira
+   ↓  ContextScout: Jira → Confluence → метаданные Impala
+Черновой список атрибутов + расхождения + SQL для профилирования
+   ↓  OpenCoder: план → подтверждение пользователя
+Профилирование (ScientificAgent: sql-queries, exploratory-data-analysis, jupyter-notebook)
+   ↓
+Мэппинг атрибутов на бизнес-глоссарий (шаблон)
+   ↓  CoderAgent
+Дашборд / отчёт → CodeReviewer → знания в project-intelligence
+```
+
+Пример запроса:
+
+```text
+Проведи разведку транзакционных атрибутов витрины dwh.dm_transactions по задаче DATA-1234.
+Сначала через ContextScout собери контекст из Jira, Confluence и метаданных Impala.
+Потом предложи план профилирования с SQL-запросами и жди подтверждения.
+Итог: мэппинг атрибутов на бизнес-глоссарий и дашборд с качеством данных.
+```
+
+Подробно: [`workflows/data-discovery.md`](context/enterprise/workflows/data-discovery.md),
+шаблон результата — [`templates/attribute-mapping.md`](context/enterprise/templates/attribute-mapping.md).
 
 ## Научный профиль
 
@@ -287,6 +328,12 @@ frontmatter только трёх указанных агентов. Глоба�
   │   ├── scientific/                      # Маршрутизация по девяти научным категориям.
   │   │   └── */navigation.md              # Индексы skills без загрузки их полного текста.
   │   │
+  │   ├── enterprise/                      # Корпоративные источники и разведка данных:
+  │   │   ├── setup/mcp-connection.md      # Подключение Confluence/Jira/Impala через MCP.
+  │   │   ├── sources/                     # confluence.md, jira.md, impala.md — правила поиска.
+  │   │   ├── workflows/data-discovery.md  # Сценарий «задача → мэппинг → дашборд».
+  │   │   └── templates/attribute-mapping.md # Шаблон мэппинга атрибутов.
+  │   │
   │   ├── ui/                              # UI/UX-контекст
   │   │   ├── terminal/navigation.md       # Терминальный интерфейс.
   │   │   └── web/                         # Web UI:
@@ -325,11 +372,12 @@ frontmatter только трёх указанных агентов. Глоба�
   │   │   ├── library-registry.md          # Поддерживаемые библиотеки и шаблоны запросов.
   │   │   └── navigation.md                # Навигация по skill.
   │   ├── task-management/                 # Реальная CLI-реализация управления задачами:
-  │       ├── SKILL.md                     # Контракт skill и JSON-модель задач.
-  │       ├── router.sh                    # Bash-точка входа.
-  │       └── scripts/task-cli.ts          # Команды status/next/parallel/deps/
-  │                                       # blocked/complete/validate.
-  │   ├── {87 scientific skills}/         # Vendored profile для ScientificAgent.
+  │   │   ├── SKILL.md                     # Контракт skill и JSON-модель задач.
+  │   │   ├── router.sh                    # Bash-точка входа.
+  │   │   └── scripts/task-cli.ts          # Команды status/next/parallel/deps/
+  │   │                                    # blocked/complete/validate.
+  │   ├── jupyter-notebook/, sql-queries/, pdf-authoring/ # Project-local support skills.
+  │   ├── {87 scientific skills}/          # Vendored profile для ScientificAgent.
   │   └── SCIENTIFIC-AGENT-SKILLS-LICENSE.md # Лицензия исходной коллекции.
   │
   ├── tool/
@@ -338,15 +386,14 @@ frontmatter только трёх указанных агентов. Глоба�
   │
   ├── scripts/
   │   └── validate-scientific-integration.py # Read-only проверка scientific + support профилей.
-  ├── opencode.json                       # Project config и точные vendored skill paths.
+  ├── opencode.json                        # Project config, vendored skill paths и
+  │                                        # заготовка MCP-сервера atlassian (выключен).
   ├── README.md                            # Позиционирование OAC, установка и сценарии работы.
-  ├── node_modules/                        # Установленные внешние зависимости; в презентацию
-  │                                       # обычно не включают.
-  └── env.example                          # Шаблон переменных Telegram/Gemini/MiniMax.
+  └── env.example                          # Шаблон переменных: Confluence, Jira, Impala, JupyterHub.
 
 ```
 
-Подробная карта базы знаний начинается с [`context/navigation.md`](context/navigation.md). Для задач по коду ключевой файл — [`context/core/standards/code-quality.md`](context/core/standards/code-quality.md).
+Подробная карта базы знаний начинается с [`context/navigation.md`](context/navigation.md). Для задач по коду ключевой файл — [`context/core/standards/code-quality.md`](context/core/standards/code-quality.md), для задач с данными — [`context/enterprise/navigation.md`](context/enterprise/navigation.md).
 
 ## Работа с контекстом
 
@@ -365,7 +412,9 @@ frontmatter только трёх указанных агентов. Глоба�
 - пример UI-компонента;
 - соглашения по именованию файлов, сущностей и веток;
 - правила тестирования и требования безопасности;
-- принятые архитектурные решения.
+- принятые архитектурные решения;
+- для аналитических проектов: ключевые базы и витрины Impala, пространства
+  Confluence и проекты Jira, владельцы данных и известные дефекты.
 
 Чем точнее эти сведения, тем меньше агенту приходится делать предположений.
 

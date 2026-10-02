@@ -91,6 +91,24 @@
       ".opencode/skills/statistical-power"
     ]
   },
+  "mcp": {
+    "atlassian": {
+      "type": "local",
+      "command": [
+        "mcp-atlassian"
+      ],
+      "enabled": false,
+      "environment": {
+        "CONFLUENCE_URL": "{env:CONFLUENCE_URL}",
+        "CONFLUENCE_PERSONAL_TOKEN": "{env:CONFLUENCE_PERSONAL_TOKEN}",
+        "JIRA_URL": "{env:JIRA_URL}",
+        "JIRA_PERSONAL_TOKEN": "{env:JIRA_PERSONAL_TOKEN}",
+        "CONFLUENCE_SPACES_FILTER": "{env:CONFLUENCE_SPACES_FILTER}",
+        "JIRA_PROJECTS_FILTER": "{env:JIRA_PROJECTS_FILTER}",
+        "READ_ONLY_MODE": "true"
+      }
+    }
+  },
   "permission": {
     "skill": {
       "*": "deny",

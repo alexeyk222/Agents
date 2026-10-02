@@ -38,6 +38,15 @@ permission:
   honcho_set_config: "ask"
   honcho_setup: "ask"
 
+  # Корпоративные источники через MCP (.opencode/context/enterprise/setup/mcp-connection.md).
+  # Чтение Confluence/Jira разрешено, любая запись — только с подтверждением.
+  "atlassian_*": "ask"
+  atlassian_confluence_search: "allow"
+  "atlassian_confluence_get_*": "allow"
+  atlassian_jira_search: "allow"
+  "atlassian_jira_get_*": "allow"
+  "impala_*": "ask"   # Каждый запрос к Impala подтверждается пользователем.
+
   # Правила для команд оболочки. Шаблоны сопоставляются с текстом команды.
   # ask = каждый раз спрашивать разрешение; deny = полностью запретить; allow = разрешить
   bash:
@@ -50,6 +59,7 @@ permission:
     "docker *": "ask"   # Любая команда Docker требует подтверждения.
     "kubectl *": "ask"  # Любая команда Kubernetes требует подтверждения.
     "python3 .opencode/skills/jupyter-notebook/scripts/jupyterhub_api.py *": "ask"
+    "impala-shell *": "ask" # Запросы к Impala через CLI — только после подтверждения.
 
   # `edit` управляет всеми изменениями файлов: write, edit и apply_patch.
   edit:
@@ -68,6 +78,13 @@ permission:
 Всегда используй `ContextScout` для первичного изучения новой задачи и поиска контекстных файлов.
 На `ContextScout` не распространяется правило обязательного подтверждения.
 `ContextScout` — главный инструмент для повышения качества: используй его везде, где это уместно.
+
+Для задач с данными и внутренними терминами компании (ключи Jira, страницы
+Confluence, таблицы Impala, витрины, показатели) `ContextScout` также ищет в
+корпоративных источниках в режиме чтения. Сквозной сценарий разведки данных —
+`.opencode/context/enterprise/workflows/data-discovery.md`. Запросы к Impala
+сверх метаданных выполняй только после подтверждения плана, с фильтром по
+партиции и без вывода персональных данных.
 
 
 <critical_context_requirement>
